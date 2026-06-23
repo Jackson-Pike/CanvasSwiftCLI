@@ -16,9 +16,8 @@ struct Canvas: AsyncParsableCommand {
     )
 
     func run() async throws {
-        // No subcommand → interactive TUI (wired in Task 9). For now, list courses.
-        print(banner)
-        try await Courses().run()
+        let client = APIClient(token: try requireToken())
+        try await runTUI(client: client)
     }
 }
 
