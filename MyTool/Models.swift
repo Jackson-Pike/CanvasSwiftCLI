@@ -8,7 +8,7 @@ struct Course: Codable {
 }
 
 struct Enrollment: Codable {
-    let grades: Grades
+    let grades: Grades?
 }
 
 struct Grades: Codable {
