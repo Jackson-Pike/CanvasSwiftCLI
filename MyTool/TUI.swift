@@ -13,10 +13,15 @@ final class RawMode {
 
     init() {
         tcgetattr(STDIN_FILENO, &original)
+        enter()
+    }
+
+    /// (Re-)applies raw mode based on the saved original termios.
+    func enter() {
         var raw = original
         raw.c_lflag &= ~(UInt(ECHO | ICANON))
-        raw.c_cc.6 = 1   // VMIN
-        raw.c_cc.5 = 0   // VTIME
+        raw.c_cc.16 = 1  // VMIN  (Darwin cc_t index)
+        raw.c_cc.17 = 0  // VTIME (Darwin cc_t index)
         tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw)
     }
 
@@ -70,7 +75,7 @@ func runTUI(client: APIClient) async throws {
         case .enter:
             raw.restore()
             try await showCourseDetail(courses[selected], client: client)  // Task 10
-            _ = RawMode()  // re-enter raw mode after detail returns
+            raw.enter()
         case .escape, .char("q"): return
         default: break
         }
