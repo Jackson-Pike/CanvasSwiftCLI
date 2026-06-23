@@ -1,7 +1,7 @@
 import Foundation
 
 
-let token = ProcessInfo.processInfo.environment["CANVAS_TOKEN"] ?? "No token"
+let token = ProcessInfo.processInfo.environment["CANVAS_TOKEN"] ?? ""
 
 
 
@@ -20,4 +20,22 @@ let banner = """
 """
 
 print(banner)
+
+
+func fetchCourses() async throws -> Data {
+    let url = URL(string: "https://byuh.instructure.com/api/v1/courses")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+    let (data, _) = try await URLSession.shared.data(for: request)
+    return data
+}
+
+let data = try await fetchCourses()
+let json = String(data: data, encoding: .utf8)!
+print(json)
+
+
 
