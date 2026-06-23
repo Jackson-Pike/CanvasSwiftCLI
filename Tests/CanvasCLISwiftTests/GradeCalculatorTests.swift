@@ -57,4 +57,26 @@ final class GradeCalculatorTests: XCTestCase {
         XCTAssertEqual(breakdown[0].percent!, 90.0, accuracy: 0.001)
         XCTAssertNil(breakdown[1].percent)
     }
+
+    func testApplyingWhatIfSetsSelectedItemsByPercent() {
+        let items = [item(1, group: 1, possible: 50, earned: 25),
+                     item(2, group: 1, possible: 50, earned: 50)]
+        let result = items.applyingWhatIf(percent: 100, toAssignmentIds: [1])
+        XCTAssertEqual(result[0].whatIfPoints, 50)   // 100% of 50
+        XCTAssertNil(result[1].whatIfPoints)         // untouched
+    }
+
+    func testBlanketOnlyAffectsUngraded() {
+        let items = [item(1, group: 1, possible: 100, earned: 70),
+                     item(2, group: 1, possible: 100, earned: nil)]
+        let result = items.applyingBlanketToUngraded(percent: 80)
+        XCTAssertNil(result[0].whatIfPoints)         // already graded → untouched
+        XCTAssertEqual(result[1].whatIfPoints, 80)   // 80% of 100
+    }
+
+    func testPerfectRemainingSetsUngradedTo100() {
+        let items = [item(1, group: 1, possible: 40, earned: nil)]
+        let result = items.applyingPerfectRemaining()
+        XCTAssertEqual(result[0].whatIfPoints, 40)
+    }
 }

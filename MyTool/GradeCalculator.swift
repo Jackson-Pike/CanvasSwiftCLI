@@ -79,3 +79,32 @@ struct GradeCalculator {
         }
     }
 }
+
+extension Array where Element == GradedItem {
+    /// An item is "ungraded" when it has neither a real earned score nor a prior what-if.
+    private func isUngraded(_ item: GradedItem) -> Bool {
+        item.earnedPoints == nil && item.whatIfPoints == nil
+    }
+
+    func applyingWhatIf(percent: Double, toAssignmentIds ids: Set<Int>) -> [GradedItem] {
+        map { item in
+            guard ids.contains(item.assignmentId) else { return item }
+            var copy = item
+            copy.whatIfPoints = item.pointsPossible * percent / 100
+            return copy
+        }
+    }
+
+    func applyingBlanketToUngraded(percent: Double) -> [GradedItem] {
+        map { item in
+            guard isUngraded(item) else { return item }
+            var copy = item
+            copy.whatIfPoints = item.pointsPossible * percent / 100
+            return copy
+        }
+    }
+
+    func applyingPerfectRemaining() -> [GradedItem] {
+        applyingBlanketToUngraded(percent: 100)
+    }
+}
