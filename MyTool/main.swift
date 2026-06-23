@@ -38,26 +38,54 @@ func fetchCourses() async throws -> Data {
     return data
 }
 
+func fetchGrades(courseId: Int) async throws -> Data {    
+
+    var components = URLComponents(string: "https://byuh.instructure.com/api/v1/courses/\(courseId)/enrollments")!
+    components.queryItems = [
+        URLQueryItem(name: "user_id", value: "self"),
+        URLQueryItem(name: "include[]", value: "grades")
+    ]
+    let url = components.url!
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+    let (data, _) = try await URLSession.shared.data(for: request)
+    return data
+}
+
 struct Course: Codable {
     let id: Int
     let name: String
     let courseCode: String
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case courseCode = "course_code"
-    }
 }
+
+struct Enrollment: Codable {
+    let grades: Grades
+}
+struct Grades: Codable {
+    let currentScore: Double?
+    let currentGrade: String?
+}
+
+
 Task {
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+
     let data = try await fetchCourses()
-    let courses = try JSONDecoder().decode([Course].self, from: data)
+    let courses = try decoder.decode([Course].self, from: data)
+
     for course in courses {
         print("\(course.id) — \(course.name)")
+        let raw_grades = try await fetchGrades(courseId: course.id)
+        let enrollments = try decoder.decode([Enrollment].self, from: raw_grades)
+        for enrollment in enrollments {
+            print("  Score: \(enrollment.grades.currentScore ?? 0)")
+            print("  Grade: \(enrollment.grades.currentGrade ?? "N/A")")
+        }
     }
-
-    let json = String(data: data, encoding: .utf8)!
-print(json)
 }
 
 RunLoop.main.run()
