@@ -92,9 +92,55 @@ private func renderCourseList(_ courses: [Course], selected: Int) {
     }
 }
 
-// Temporary stub — replaced in Task 10.
 func showCourseDetail(_ course: Course, client: APIClient) async throws {
+    let groups: [AssignmentGroup]
+    let submissions: [Submission]
+    do {
+        groups = try await client.assignmentGroups(courseId: course.id)
+        submissions = try await client.submissions(courseId: course.id)
+    } catch let error as APIError {
+        print(CLEAR, terminator: ""); print(error.description); _ = readKey(); return
+    }
+
+    let items = buildGradedItems(groups: groups, submissions: submissions)
+    let groupInfo = Dictionary(uniqueKeysWithValues: groups.map { ($0.id, GroupInfo(name: $0.name, weight: $0.groupWeight)) })
+    let calc = GradeCalculator(items: items, groups: groupInfo, weighted: course.applyAssignmentGroupWeights)
+
+    let raw = RawMode()
+    defer { raw.restore() }
+    while true {
+        renderDashboard(course: course, calc: calc, weighted: course.applyAssignmentGroupWeights)
+        switch readKey() {
+        case .char("c"):
+            raw.restore()
+            try await runCalculator(course: course, items: items, groupInfo: groupInfo,
+                                    weighted: course.applyAssignmentGroupWeights)
+            raw.enter()
+        case .escape, .char("b"): return
+        default: break
+        }
+    }
+}
+
+private func renderDashboard(course: Course, calc: GradeCalculator, weighted: Bool) {
     print(CLEAR, terminator: "")
-    print("Detail for \(course.name) — press any key to return.")
-    _ = readKey()
+    let overall = calc.currentGrade()
+    let letter = overall.map { " " + letterGrade(for: $0) } ?? ""
+    print("\(BOLD)\(course.courseCode) — \(course.name)\(RESET)   \(GOLD)\(formatPercent(overall))\(letter)\(RESET)")
+    print(String(repeating: "─", count: 53))
+    for result in calc.groupBreakdown().sorted(by: { $0.weight > $1.weight }) {
+        let name = result.name.padding(toLength: 16, withPad: " ", startingAt: 0)
+        let weightLabel = weighted ? String(format: "(%.0f%%)", result.weight) : "     "
+        if let pct = result.percent {
+            print(" \(name) \(weightLabel)  \(formatPercent(pct))  \(progressBar(percent: pct, width: 14))  \(letterGrade(for: pct))")
+        } else {
+            print(" \(name) \(weightLabel)  \(GOLD)not yet graded\(RESET)")
+        }
+    }
+    print("\n(c calculator · b back)")
+}
+
+// Temporary stub — replaced in Task 11.
+func runCalculator(course: Course, items: [GradedItem], groupInfo: [Int: GroupInfo], weighted: Bool) async throws {
+    print(CLEAR, terminator: ""); print("Calculator — press any key to return."); _ = readKey()
 }
