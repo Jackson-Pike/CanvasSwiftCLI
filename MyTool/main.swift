@@ -11,7 +11,7 @@ struct Canvas: AsyncParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "canvas",
         abstract: "Canvas CLI for BYU–Hawaii.",
-        subcommands: [Courses.self, Grades.self],
+        subcommands: [Courses.self, Grades.self, Calc.self],
         defaultSubcommand: nil
     )
 
@@ -73,6 +73,31 @@ extension Canvas {
                         print(" \(result.name.padding(toLength: 16, withPad: " ", startingAt: 0)) \(weightLabel)  not yet graded")
                     }
                 }
+            } catch let error as APIError {
+                FileHandle.standardError.write(Data((error.description + "\n").utf8))
+                throw ExitCode(1)
+            }
+        }
+    }
+}
+
+extension Canvas {
+    struct Calc: AsyncParsableCommand {
+        static let configuration = CommandConfiguration(abstract: "Interactive what-if grade calculator.")
+
+        @Argument(help: "Canvas course id.") var courseId: Int
+
+        func run() async throws {
+            let client = APIClient(token: try requireToken())
+            do {
+                let groups = try await client.assignmentGroups(courseId: courseId)
+                let submissions = try await client.submissions(courseId: courseId)
+                guard let course = try await client.courses().first(where: { $0.id == courseId }) else {
+                    print("Course \(courseId) not found."); throw ExitCode(1)
+                }
+                let items = buildGradedItems(groups: groups, submissions: submissions)
+                let groupInfo = Dictionary(uniqueKeysWithValues: groups.map { ($0.id, GroupInfo(name: $0.name, weight: $0.groupWeight)) })
+                try await runCalculator(course: course, items: items, groupInfo: groupInfo, weighted: course.applyAssignmentGroupWeights)
             } catch let error as APIError {
                 FileHandle.standardError.write(Data((error.description + "\n").utf8))
                 throw ExitCode(1)

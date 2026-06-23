@@ -140,7 +140,62 @@ private func renderDashboard(course: Course, calc: GradeCalculator, weighted: Bo
     print("\n(c calculator · b back)")
 }
 
-// Temporary stub — replaced in Task 11.
 func runCalculator(course: Course, items: [GradedItem], groupInfo: [Int: GroupInfo], weighted: Bool) async throws {
-    print(CLEAR, terminator: ""); print("Calculator — press any key to return."); _ = readKey()
+    guard !items.isEmpty else {
+        print(CLEAR, terminator: ""); print("No assignments found."); _ = readKey(); return
+    }
+
+    var working = items          // mutated by what-if actions
+    var selected = 0
+    let raw = RawMode()
+    defer { raw.restore() }
+
+    while true {
+        renderCalculator(course: course, items: working, groupInfo: groupInfo, weighted: weighted, selected: selected)
+        switch readKey() {
+        case .up:   selected = max(0, selected - 1)
+        case .down: selected = min(working.count - 1, selected + 1)
+        case .enter:
+            raw.restore()
+            if let pct = promptPercent("What-if score for \(working[selected].name) (0–100): ") {
+                working = working.applyingWhatIf(percent: pct, toAssignmentIds: [working[selected].assignmentId])
+            }
+            raw.enter()
+        case .char("b"):
+            raw.restore()
+            if let pct = promptPercent("Blanket score for all ungraded (0–100): ") {
+                working = working.applyingBlanketToUngraded(percent: pct)
+            }
+            raw.enter()
+        case .char("p"):
+            working = working.applyingPerfectRemaining()
+        case .char("r"):
+            working = items      // reset to real scores
+        case .escape, .char("q"): return
+        default: break
+        }
+    }
+}
+
+private func renderCalculator(course: Course, items: [GradedItem], groupInfo: [Int: GroupInfo], weighted: Bool, selected: Int) {
+    print(CLEAR, terminator: "")
+    let calc = GradeCalculator(items: items, groups: groupInfo, weighted: weighted)
+    print("\(BOLD)What-if — \(course.courseCode)\(RESET)   projected \(GOLD)\(formatPercent(calc.currentGrade()))\(RESET)")
+    print(String(repeating: "─", count: 53))
+    for (i, item) in items.enumerated() {
+        let marker = i == selected ? "\(GOLD)❯\(RESET)" : " "
+        let effective = item.whatIfPoints ?? item.earnedPoints
+        let pct = effective.map { item.pointsPossible > 0 ? $0 / item.pointsPossible * 100 : 0 }
+        let tag = item.whatIfPoints != nil ? "\(GOLD)*\(RESET)" : " "
+        print("\(marker)\(tag)\(item.name.padding(toLength: 28, withPad: " ", startingAt: 0)) \(formatPercent(pct))")
+    }
+    print("\n(↑/↓ select · Enter what-if · b blanket · p perfect · r reset · q exit)")
+}
+
+/// Reads a 0–100 percentage from a normal (cooked) terminal line; nil on invalid/empty.
+private func promptPercent(_ message: String) -> Double? {
+    print(CLEAR, terminator: "")
+    print(message, terminator: "")
+    guard let line = readLine(), let value = Double(line.trimmingCharacters(in: .whitespaces)) else { return nil }
+    return max(0, min(100, value))
 }
