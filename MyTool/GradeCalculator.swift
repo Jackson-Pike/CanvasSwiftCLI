@@ -3,6 +3,9 @@ import Foundation
 struct GroupInfo {
     let name: String
     let weight: Double      // 0–100
+    var dropLowest: Int = 0
+    var dropHighest: Int = 0
+    var neverDrop: Set<Int> = []
 }
 
 struct GroupResult {
@@ -51,11 +54,32 @@ struct GradeCalculator {
         return earned / possible * 100
     }
 
-    /// Percent (0–100) for one group over its graded items only; nil if none graded.
+    /// Percent (0–100) for one group, respecting drop_lowest / drop_highest rules.
     private func groupPercent(_ groupId: Int) -> Double? {
-        let graded = items.filter { $0.groupId == groupId && effectivePoints($0) != nil }
+        let info = groups[groupId]
+        var graded = items.filter { $0.groupId == groupId && effectivePoints($0) != nil }
         guard !graded.isEmpty else { return nil }
-        let earned = graded.reduce(0.0) { $0 + (effectivePoints($1) ?? 0) }
+
+        if let info, (info.dropLowest > 0 || info.dropHighest > 0) {
+            let neverDrop = info.neverDrop
+            var droppable = graded.filter { !neverDrop.contains($0.assignmentId) }
+            let pinned   = graded.filter {  neverDrop.contains($0.assignmentId) }
+
+            // sort droppable by score percentage ascending
+            droppable.sort {
+                let pA = $0.pointsPossible > 0 ? (effectivePoints($0) ?? 0) / $0.pointsPossible : 0
+                let pB = $1.pointsPossible > 0 ? (effectivePoints($1) ?? 0) / $1.pointsPossible : 0
+                return pA < pB
+            }
+
+            let dropL = min(info.dropLowest, droppable.count)
+            let dropH = min(info.dropHighest, max(0, droppable.count - dropL))
+            let kept = Array(droppable.dropFirst(dropL).dropLast(dropH))
+            graded = pinned + kept
+        }
+
+        guard !graded.isEmpty else { return nil }
+        let earned   = graded.reduce(0.0) { $0 + (effectivePoints($1) ?? 0) }
         let possible = graded.reduce(0.0) { $0 + $1.pointsPossible }
         guard possible > 0 else { return nil }
         return earned / possible * 100

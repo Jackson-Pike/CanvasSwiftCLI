@@ -51,7 +51,9 @@ func readKey() -> Key {
     }
 }
 
-private let CLEAR = "\u{001B}[2J\u{001B}[H"
+private let CLEAR        = "\u{001B}[2J\u{001B}[H"
+private let HIDE_CURSOR  = "\u{001B}[?25l"
+private let SHOW_CURSOR  = "\u{001B}[?25h"
 
 func runTUI(client: APIClient) async throws {
     let courses: [Course]
@@ -64,7 +66,8 @@ func runTUI(client: APIClient) async throws {
     guard !courses.isEmpty else { print("No active courses found."); return }
 
     let raw = RawMode()
-    defer { raw.restore(); print(RESET) }
+    print(HIDE_CURSOR, terminator: "")
+    defer { raw.restore(); print(SHOW_CURSOR + RESET) }
 
     var selected = 0
     while true {
@@ -103,11 +106,20 @@ func showCourseDetail(_ course: Course, client: APIClient) async throws {
     }
 
     let items = buildGradedItems(groups: groups, submissions: submissions)
-    let groupInfo = Dictionary(uniqueKeysWithValues: groups.map { ($0.id, GroupInfo(name: $0.name, weight: $0.groupWeight)) })
+    let groupInfo = Dictionary(uniqueKeysWithValues: groups.map { g in
+        let rules = g.rules
+        return (g.id, GroupInfo(
+            name: g.name, weight: g.groupWeight,
+            dropLowest:  rules?.dropLowest  ?? 0,
+            dropHighest: rules?.dropHighest ?? 0,
+            neverDrop:   Set(rules?.neverDrop ?? [])
+        ))
+    })
     let calc = GradeCalculator(items: items, groups: groupInfo, weighted: course.applyAssignmentGroupWeights)
 
     let raw = RawMode()
-    defer { raw.restore() }
+    print(HIDE_CURSOR, terminator: "")
+    defer { raw.restore(); print(SHOW_CURSOR, terminator: "") }
     while true {
         renderDashboard(course: course, calc: calc, weighted: course.applyAssignmentGroupWeights)
         switch readKey() {
@@ -124,9 +136,7 @@ func showCourseDetail(_ course: Course, client: APIClient) async throws {
 
 private func renderDashboard(course: Course, calc: GradeCalculator, weighted: Bool) {
     print(CLEAR, terminator: "")
-    let overall = calc.currentGrade()
-    let letter = overall.map { " " + letterGrade(for: $0) } ?? ""
-    print("\(BOLD)\(course.courseCode) — \(course.name)\(RESET)   \(GOLD)\(formatPercent(overall))\(letter)\(RESET)")
+    print("\(BOLD)\(course.courseCode) — \(course.name)\(RESET)")
     print(String(repeating: "─", count: 53))
     for result in calc.groupBreakdown().sorted(by: { $0.weight > $1.weight }) {
         let name = result.name.padding(toLength: 16, withPad: " ", startingAt: 0)
@@ -137,6 +147,10 @@ private func renderDashboard(course: Course, calc: GradeCalculator, weighted: Bo
             print(" \(name) \(weightLabel)  \(GOLD)not yet graded\(RESET)")
         }
     }
+    let overall = calc.currentGrade()
+    let letter = overall.map { " " + letterGrade(for: $0) } ?? ""
+    print(String(repeating: "─", count: 53))
+    print(" Overall: \(BOLD)\(GOLD)\(formatPercent(overall))\(letter)\(RESET)")
     print("\n(c calculator · b back)")
 }
 
@@ -148,7 +162,8 @@ func runCalculator(course: Course, items: [GradedItem], groupInfo: [Int: GroupIn
     var working = items          // mutated by what-if actions
     var selected = 0
     let raw = RawMode()
-    defer { raw.restore() }
+    print(HIDE_CURSOR, terminator: "")
+    defer { raw.restore(); print(SHOW_CURSOR, terminator: "") }
 
     while true {
         renderCalculator(course: course, items: working, groupInfo: groupInfo, weighted: weighted, selected: selected)
@@ -180,7 +195,7 @@ func runCalculator(course: Course, items: [GradedItem], groupInfo: [Int: GroupIn
 private func renderCalculator(course: Course, items: [GradedItem], groupInfo: [Int: GroupInfo], weighted: Bool, selected: Int) {
     print(CLEAR, terminator: "")
     let calc = GradeCalculator(items: items, groups: groupInfo, weighted: weighted)
-    print("\(BOLD)What-if — \(course.courseCode)\(RESET)   projected \(GOLD)\(formatPercent(calc.currentGrade()))\(RESET)")
+    print("\(BOLD)What-if — \(course.courseCode)\(RESET)")
     print(String(repeating: "─", count: 53))
     for (i, item) in items.enumerated() {
         let marker = i == selected ? "\(GOLD)❯\(RESET)" : " "
@@ -189,6 +204,8 @@ private func renderCalculator(course: Course, items: [GradedItem], groupInfo: [I
         let tag = item.whatIfPoints != nil ? "\(GOLD)*\(RESET)" : " "
         print("\(marker)\(tag)\(item.name.padding(toLength: 28, withPad: " ", startingAt: 0)) \(formatPercent(pct))")
     }
+    print(String(repeating: "─", count: 53))
+    print(" Projected: \(BOLD)\(GOLD)\(formatPercent(calc.currentGrade()))\(RESET)")
     print("\n(↑/↓ select · Enter what-if · b blanket · p perfect · r reset · q exit)")
 }
 

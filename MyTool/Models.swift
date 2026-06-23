@@ -16,10 +16,17 @@ struct Grades: Codable {
     let currentGrade: String?
 }
 
+struct AssignmentGroupRules: Codable {
+    let dropLowest: Int?
+    let dropHighest: Int?
+    let neverDrop: [Int]?
+}
+
 struct AssignmentGroup: Codable {
     let id: Int
     let name: String
     let groupWeight: Double
+    let rules: AssignmentGroupRules?
     let assignments: [Assignment]
 }
 
