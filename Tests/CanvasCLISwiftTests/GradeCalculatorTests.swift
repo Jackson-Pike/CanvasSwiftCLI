@@ -28,4 +28,33 @@ final class GradeCalculatorTests: XCTestCase {
         let calc = GradeCalculator(items: items, groups: [1: GroupInfo(name: "HW", weight: 100)], weighted: false)
         XCTAssertNil(calc.currentGrade())
     }
+
+    func testWeightedGradeNormalizesOverActiveGroups() {
+        // HW (weight 40): 90%. Quiz (weight 20): 80%. Final (weight 40): ungraded.
+        let items = [item(1, group: 1, possible: 100, earned: 90),
+                     item(2, group: 2, possible: 100, earned: 80),
+                     item(3, group: 3, possible: 100, earned: nil)]
+        let groups: [Int: GroupInfo] = [
+            1: GroupInfo(name: "HW", weight: 40),
+            2: GroupInfo(name: "Quiz", weight: 20),
+            3: GroupInfo(name: "Final", weight: 40)
+        ]
+        let calc = GradeCalculator(items: items, groups: groups, weighted: true)
+        // (0.9*40 + 0.8*20) / (40+20) = (36+16)/60 = 86.666...
+        XCTAssertEqual(calc.currentGrade()!, 86.6667, accuracy: 0.001)
+    }
+
+    func testGroupBreakdownReportsNilForUngradedGroup() {
+        let items = [item(1, group: 1, possible: 100, earned: 90),
+                     item(3, group: 3, possible: 100, earned: nil)]
+        let groups: [Int: GroupInfo] = [
+            1: GroupInfo(name: "HW", weight: 60),
+            3: GroupInfo(name: "Final", weight: 40)
+        ]
+        let calc = GradeCalculator(items: items, groups: groups, weighted: true)
+        let breakdown = calc.groupBreakdown().sorted { $0.groupId < $1.groupId }
+        XCTAssertEqual(breakdown.count, 2)
+        XCTAssertEqual(breakdown[0].percent!, 90.0, accuracy: 0.001)
+        XCTAssertNil(breakdown[1].percent)
+    }
 }

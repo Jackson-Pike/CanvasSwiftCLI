@@ -51,7 +51,31 @@ struct GradeCalculator {
         return earned / possible * 100
     }
 
-    // weightedGrade() and groupBreakdown() implemented in Task 4.
-    private func weightedGrade() -> Double? { nil }
-    func groupBreakdown() -> [GroupResult] { [] }
+    /// Percent (0–100) for one group over its graded items only; nil if none graded.
+    private func groupPercent(_ groupId: Int) -> Double? {
+        let graded = items.filter { $0.groupId == groupId && effectivePoints($0) != nil }
+        guard !graded.isEmpty else { return nil }
+        let earned = graded.reduce(0.0) { $0 + (effectivePoints($1) ?? 0) }
+        let possible = graded.reduce(0.0) { $0 + $1.pointsPossible }
+        guard possible > 0 else { return nil }
+        return earned / possible * 100
+    }
+
+    private func weightedGrade() -> Double? {
+        var weightedSum = 0.0
+        var activeWeight = 0.0
+        for (groupId, info) in groups {
+            guard let pct = groupPercent(groupId) else { continue }
+            weightedSum += (pct / 100) * info.weight
+            activeWeight += info.weight
+        }
+        guard activeWeight > 0 else { return nil }
+        return weightedSum / activeWeight * 100
+    }
+
+    func groupBreakdown() -> [GroupResult] {
+        groups.map { groupId, info in
+            GroupResult(groupId: groupId, name: info.name, weight: info.weight, percent: groupPercent(groupId))
+        }
+    }
 }
