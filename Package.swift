@@ -3,22 +3,25 @@ import PackageDescription
 
 let package = Package(
     name: "CanvasCLISwift",
-    platforms: [.macOS(.v12)],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.3.0")
+    platforms: [.macOS(.v13)],
+    products: [
+        .library(name: "CanvasCore", targets: ["CanvasCore"]),
+        .executable(name: "CanvasApp", targets: ["CanvasApp"]),
     ],
     targets: [
+        .target(
+            name: "CanvasCore",
+            path: "Sources/CanvasCore"
+        ),
         .executableTarget(
-            name: "CanvasCLISwift",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser")
-            ],
-            path: "MyTool"
+            name: "CanvasApp",
+            dependencies: ["CanvasCore"],
+            path: "CanvasApp"
         ),
         .testTarget(
-            name: "CanvasCLISwiftTests",
-            dependencies: ["CanvasCLISwift"],
-            path: "Tests/CanvasCLISwiftTests"
+            name: "CanvasCoreTests",
+            dependencies: ["CanvasCore"],
+            path: "Tests/CanvasCoreTests"
         )
     ]
 )
