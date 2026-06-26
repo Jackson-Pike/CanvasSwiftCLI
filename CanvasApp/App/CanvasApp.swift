@@ -25,6 +25,7 @@ struct PopoverContent: View {
         } else if !appState.hasToken {
             SettingsView(isOnboarding: true)
                 .environmentObject(appState)
+                .environmentObject(appState.hiddenCoursesStore)
         } else {
             NavigationStack {
                 CourseListView(vm: appState.coursesVM)
@@ -32,6 +33,7 @@ struct PopoverContent: View {
             .sheet(isPresented: $appState.showingSettings) {
                 SettingsView(isOnboarding: false)
                     .environmentObject(appState)
+                    .environmentObject(appState.hiddenCoursesStore)
             }
         }
     }
