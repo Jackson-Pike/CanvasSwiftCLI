@@ -7,8 +7,15 @@ final class AppState: ObservableObject {
     @Published var showingSettings = false
     @Published var hasSeenIntro: Bool = UserDefaults.standard.bool(forKey: "hasSeenIntro")
 
-    let coursesVM = CoursesViewModel()
+    let hiddenCoursesStore: HiddenCoursesStore
+    let coursesVM: CoursesViewModel
     private var detailVMs: [Int: CourseDetailViewModel] = [:]
+
+    init() {
+        let store = HiddenCoursesStore()
+        hiddenCoursesStore = store
+        coursesVM = CoursesViewModel(hiddenStore: store)
+    }
 
     var hasToken: Bool { !(token ?? "").isEmpty }
 

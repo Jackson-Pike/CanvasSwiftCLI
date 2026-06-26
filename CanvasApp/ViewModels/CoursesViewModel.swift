@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import CanvasCore
 
 @MainActor
@@ -8,21 +9,37 @@ final class CoursesViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
 
+    private(set) var allFetchedCourses: [Course] = []
+    private let hiddenStore: HiddenCoursesStore
+    private var cancellable: AnyCancellable?
+
     private var lastFetchedAt: Date?
     private let cacheTTL: TimeInterval = 5 * 60
+
+    init(hiddenStore: HiddenCoursesStore) {
+        self.hiddenStore = hiddenStore
+        cancellable = hiddenStore.$hiddenIDs.sink { [weak self] _ in
+            self?.applyFilter()
+        }
+    }
+
+    private func applyFilter() {
+        courses = allFetchedCourses.filter { !hiddenStore.isHidden($0.id) }
+    }
 
     func fetch(client: APIClient, force: Bool = false) async {
         if !force,
            let lastFetchedAt,
            Date().timeIntervalSince(lastFetchedAt) < cacheTTL,
-           !courses.isEmpty {
+           !allFetchedCourses.isEmpty {
             return
         }
         isLoading = true
         error = nil
         do {
             let fetched = try await client.courses()
-            courses = fetched
+            allFetchedCourses = fetched
+            applyFilter()
             await withTaskGroup(of: (Int, Enrollment?).self) { group in
                 for course in fetched {
                     group.addTask {
