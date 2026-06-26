@@ -16,7 +16,8 @@ let package = Package(
         .executableTarget(
             name: "CanvasApp",
             dependencies: ["CanvasCore"],
-            path: "CanvasApp"
+            path: "CanvasApp",
+            exclude: ["App/Info.plist"]
         ),
         .testTarget(
             name: "CanvasCoreTests",
