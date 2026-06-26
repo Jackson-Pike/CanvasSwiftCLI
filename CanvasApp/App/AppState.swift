@@ -9,7 +9,11 @@ final class AppState: ObservableObject {
     var hasToken: Bool { !(token ?? "").isEmpty }
 
     func saveToken(_ newToken: String) {
-        let trimmed = newToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        var trimmed = newToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Strip accidental "Bearer " prefix users sometimes copy along with the token
+        if trimmed.lowercased().hasPrefix("bearer ") {
+            trimmed = String(trimmed.dropFirst(7)).trimmingCharacters(in: .whitespaces)
+        }
         guard !trimmed.isEmpty else { return }
         KeychainHelper.save(token: trimmed)
         token = trimmed

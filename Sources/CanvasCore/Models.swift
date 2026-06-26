@@ -3,13 +3,20 @@ import Foundation
 public struct GradingSchemeEntry: Codable {
     public let name: String
     public let value: Double  // 0.0–1.0 lower-bound fraction
+
+    // Canvas encodes these as ["A", 0.94] arrays, not {"name":…,"value":…} objects
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        name  = try container.decode(String.self)
+        value = try container.decode(Double.self)
+    }
 }
 
 public struct Course: Codable {
     public let id: Int
     public let name: String
     public let courseCode: String
-    public let applyAssignmentGroupWeights: Bool
+    public let applyAssignmentGroupWeights: Bool?
     public let gradingScheme: [GradingSchemeEntry]?
 }
 
@@ -39,7 +46,7 @@ public struct AssignmentGroup: Codable {
 public struct Assignment: Codable {
     public let id: Int
     public let name: String
-    public let pointsPossible: Double
+    public let pointsPossible: Double?  // null for ungraded surveys / not-graded types
     public let dueAt: String?
     public let assignmentGroupId: Int
 }

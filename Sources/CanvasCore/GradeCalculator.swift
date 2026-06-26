@@ -41,11 +41,12 @@ public func buildGradedItems(groups: [AssignmentGroup], submissions: [Submission
         uniquingKeysWith: { first, _ in first }
     )
     return groups.flatMap { group in
-        group.assignments.map { a in
-            GradedItem(assignmentId: a.id, name: a.name, groupId: a.assignmentGroupId,
-                       pointsPossible: a.pointsPossible,
-                       earnedPoints: scoreByAssignment[a.id] ?? nil,
-                       whatIfPoints: nil)
+        group.assignments.compactMap { a in
+            guard let pts = a.pointsPossible else { return nil }
+            return GradedItem(assignmentId: a.id, name: a.name, groupId: a.assignmentGroupId,
+                              pointsPossible: pts,
+                              earnedPoints: scoreByAssignment[a.id] ?? nil,
+                              whatIfPoints: nil)
         }
     }
 }

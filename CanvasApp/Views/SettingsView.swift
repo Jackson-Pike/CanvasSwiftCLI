@@ -10,11 +10,15 @@ struct SettingsView: View {
         VStack(spacing: 20) {
             Text(isOnboarding ? "Welcome to Canvas" : "Settings")
                 .font(.headline)
-            Text("Enter your Canvas API token")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            SecureField("Canvas API Token", text: $tokenInput)
-                .textFieldStyle(.roundedBorder)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Canvas API Token")
+                    .font(.subheadline).foregroundStyle(.secondary)
+                SecureField("Paste token here…", text: $tokenInput)
+                    .textFieldStyle(.roundedBorder)
+                Text("Find this in Canvas → Account → Settings → New Access Token")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
             Button("Save") {
                 appState.saveToken(tokenInput)
                 if !isOnboarding { dismiss() }

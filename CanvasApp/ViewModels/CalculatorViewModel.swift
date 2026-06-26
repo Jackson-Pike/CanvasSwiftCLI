@@ -66,7 +66,7 @@ final class CalculatorViewModel: ObservableObject {
 
     var liveCalculator: GradeCalculator {
         GradeCalculator(items: effectiveItems, groups: groupInfo,
-                        weighted: course.applyAssignmentGroupWeights, gradingScale: gradingScale)
+                        weighted: course.applyAssignmentGroupWeights ?? false, gradingScale: gradingScale)
     }
 
     var liveGrade: Double? { liveCalculator.currentGrade() }

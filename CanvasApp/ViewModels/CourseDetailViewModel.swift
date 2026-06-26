@@ -33,7 +33,7 @@ final class CourseDetailViewModel: ObservableObject {
             let items = buildGradedItems(groups: fetchedGroups, submissions: fetchedSubs)
             allItems  = items
             calculator = GradeCalculator(items: items, groups: info,
-                                          weighted: course.applyAssignmentGroupWeights,
+                                          weighted: course.applyAssignmentGroupWeights ?? false,
                                           gradingScale: gradingScale)
         } catch let e as APIError { error = e.description }
         catch { self.error = error.localizedDescription }

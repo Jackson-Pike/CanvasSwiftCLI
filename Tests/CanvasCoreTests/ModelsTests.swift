@@ -12,7 +12,7 @@ final class ModelsTests: XCTestCase {
         """.data(using: .utf8)!
         let courses = try decoder().decode([Course].self, from: json)
         XCTAssertEqual(courses.first?.courseCode, "CS 246")
-        XCTAssertTrue(courses.first!.applyAssignmentGroupWeights)
+        XCTAssertTrue(courses.first!.applyAssignmentGroupWeights ?? false)
     }
 
     func testAssignmentGroupDecodesNestedAssignments() throws {

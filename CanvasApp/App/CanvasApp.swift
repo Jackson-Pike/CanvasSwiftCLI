@@ -26,13 +26,6 @@ struct PopoverContent: View {
             NavigationStack {
                 CourseListView()
             }
-            .toolbar {
-                ToolbarItem(placement: .automatic) {
-                    Button { appState.showingSettings = true } label: {
-                        Image(systemName: "gear")
-                    }
-                }
-            }
             .sheet(isPresented: $appState.showingSettings) {
                 SettingsView(isOnboarding: false)
                     .environmentObject(appState)

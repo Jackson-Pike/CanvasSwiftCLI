@@ -27,6 +27,19 @@ final class CoursesViewModel: ObservableObject {
             }
         } catch let e as APIError {
             error = e.description
+        } catch let e as DecodingError {
+            switch e {
+            case .keyNotFound(let key, let ctx):
+                self.error = "Missing field '\(key.stringValue)' at \(ctx.codingPath.map(\.stringValue).joined(separator: "."))"
+            case .typeMismatch(let type, let ctx):
+                self.error = "Type mismatch (\(type)) at \(ctx.codingPath.map(\.stringValue).joined(separator: "."))"
+            case .valueNotFound(let type, let ctx):
+                self.error = "Null value (\(type)) at \(ctx.codingPath.map(\.stringValue).joined(separator: "."))"
+            case .dataCorrupted(let ctx):
+                self.error = "Corrupted data at \(ctx.codingPath.map(\.stringValue).joined(separator: ".")): \(ctx.debugDescription)"
+            @unknown default:
+                self.error = e.localizedDescription
+            }
         } catch {
             self.error = error.localizedDescription
         }

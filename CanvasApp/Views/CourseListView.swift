@@ -14,6 +14,11 @@ struct CourseListView: View {
                     Text(error).foregroundStyle(.red).multilineTextAlignment(.center)
                     Button("Retry") { Task { await refresh() } }
                         .buttonStyle(.bordered)
+                    if error.contains("Invalid token") || error.contains("unauthorized") {
+                        Button("Update Token…") { appState.showingSettings = true }
+                            .buttonStyle(.borderedProminent)
+                            .tint(.byuhRed)
+                    }
                 }
                 .padding()
             } else if vm.courses.isEmpty {
@@ -36,6 +41,11 @@ struct CourseListView: View {
                     Image(systemName: "arrow.clockwise")
                 }
                 .disabled(vm.isLoading)
+            }
+            ToolbarItem(placement: .automatic) {
+                Button { appState.showingSettings = true } label: {
+                    Image(systemName: "gear")
+                }
             }
         }
         .task { await refresh() }
