@@ -16,7 +16,7 @@ struct CourseListView: View {
                     } description: {
                         Text(error)
                     } actions: {
-                        Button("Retry") { Task { await refresh(force: true) } }
+                        Button("Retry") { refresh(force: true) }
                             .buttonStyle(.bordered)
                         if error.contains("Invalid token") || error.contains("unauthorized") {
                             Button("Update Token…") { appState.showingSettings = true }
@@ -32,7 +32,7 @@ struct CourseListView: View {
                     } description: {
                         Text("Courses you're enrolled in this term will appear here.")
                     } actions: {
-                        Button("Refresh") { Task { await refresh(force: true) } }
+                        Button("Refresh") { refresh(force: true) }
                             .buttonStyle(.bordered)
                     }
                 )
@@ -59,7 +59,7 @@ struct CourseListView: View {
         .navigationTitle("Canvas")
         .toolbar {
             ToolbarItem(placement: .automatic) {
-                Button { Task { await refresh(force: true) } } label: {
+                Button { refresh(force: true) } label: {
                     Image(systemName: "arrow.clockwise")
                 }
                 .disabled(vm.isLoading)
@@ -74,12 +74,12 @@ struct CourseListView: View {
                 .help("Settings")
             }
         }
-        .task { await refresh() }
+        .task { refresh() }
     }
 
-    private func refresh(force: Bool = false) async {
+    private func refresh(force: Bool = false) {
         guard let client = appState.makeClient() else { return }
-        await vm.fetch(client: client, force: force)
+        vm.fetch(client: client, force: force)
     }
 }
 

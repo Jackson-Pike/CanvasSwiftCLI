@@ -38,7 +38,7 @@ final class ModelsTests: XCTestCase {
     func testCourseDecodesGradingScheme() throws {
         let json = """
         [{"id":1,"name":"CS 420","course_code":"CS 420","apply_assignment_group_weights":true,
-          "grading_scheme":[{"name":"A","value":0.94},{"name":"A-","value":0.90},{"name":"F","value":0.0}]}]
+          "grading_scheme":[["A",0.94],["A-",0.90],["F",0.0]]}]
         """.data(using: .utf8)!
         let courses = try decoder().decode([Course].self, from: json)
         let entry = try XCTUnwrap(courses.first?.gradingScheme?.first)

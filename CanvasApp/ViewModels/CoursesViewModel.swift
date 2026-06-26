@@ -15,6 +15,7 @@ final class CoursesViewModel: ObservableObject {
 
     private var lastFetchedAt: Date?
     private let cacheTTL: TimeInterval = 5 * 60
+    private var fetchTask: Task<Void, Never>?
 
     init(hiddenStore: HiddenCoursesStore) {
         self.hiddenStore = hiddenStore
@@ -27,7 +28,14 @@ final class CoursesViewModel: ObservableObject {
         courses = allFetchedCourses.filter { !hiddenStore.isHidden($0.id) }
     }
 
-    func fetch(client: APIClient, force: Bool = false) async {
+    func fetch(client: APIClient, force: Bool = false) {
+        fetchTask?.cancel()
+        fetchTask = Task {
+            await _fetch(client: client, force: force)
+        }
+    }
+
+    private func _fetch(client: APIClient, force: Bool) async {
         if !force,
            let lastFetchedAt,
            Date().timeIntervalSince(lastFetchedAt) < cacheTTL,
@@ -38,6 +46,7 @@ final class CoursesViewModel: ObservableObject {
         error = nil
         do {
             let fetched = try await client.courses()
+            guard !Task.isCancelled else { isLoading = false; return }
             allFetchedCourses = fetched
             applyFilter()
             await withTaskGroup(of: (Int, Enrollment?).self) { group in

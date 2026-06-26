@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "CanvasCLISwift",
-    platforms: [.macOS(.v13)],
+    platforms: [.macOS(.v14)],
     products: [
         .library(name: "CanvasCore", targets: ["CanvasCore"]),
         .executable(name: "CanvasApp", targets: ["CanvasApp"]),
