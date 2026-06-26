@@ -219,12 +219,13 @@ struct SolveResultView: View {
                         if vm.solveScope == .single, let id = vm.solveSingleId,
                            let item = vm.baseItems.first(where: { $0.assignmentId == id }) {
                             let pts = item.pointsPossible * percent / 100
-                            Text(String(format: "**%.1f%%** (%.0f / %.0f pts) on %@",
-                                        percent, pts, item.pointsPossible, item.name))
+                            (Text(String(format: "%.1f%%", percent)).bold()
+                                + Text(String(format: " (%.0f / %.0f pts) on %@", pts, item.pointsPossible, item.name)))
                                 .font(.headline)
                         } else {
                             let n = vm.solveAssignmentIds.count
-                            Text(String(format: "**%.1f%%** on each of your %d selected assignments", percent, n))
+                            (Text(String(format: "%.1f%%", percent)).bold()
+                                + Text(String(format: " on each of your %d selected assignments", n)))
                                 .font(.headline)
                         }
                         Text(String(format: "Target: %.1f%%  (%@)",
