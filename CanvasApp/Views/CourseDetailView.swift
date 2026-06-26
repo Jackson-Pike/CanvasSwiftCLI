@@ -3,24 +3,23 @@ import CanvasCore
 
 struct CourseDetailView: View {
     let course: Course
+    @ObservedObject var vm: CourseDetailViewModel
     @EnvironmentObject var appState: AppState
-    @StateObject private var vm: CourseDetailViewModel
-
-    init(course: Course) {
-        self.course = course
-        _vm = StateObject(wrappedValue: CourseDetailViewModel(course: course))
-    }
 
     var body: some View {
         Group {
             if vm.isLoading {
-                ProgressView("Loading grades…").padding()
+                Color.clear.overlay(ProgressView("Loading grades…"))
             } else if let error = vm.error {
-                VStack(spacing: 12) {
-                    Text(error).foregroundStyle(.red).multilineTextAlignment(.center)
-                    Button("Retry") { Task { await refresh() } }.buttonStyle(.bordered)
-                }
-                .padding()
+                Color.clear.overlay(
+                    ContentUnavailableView {
+                        Label("Couldn't Load Grades", systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text(error)
+                    } actions: {
+                        Button("Retry") { Task { await refresh(force: true) } }.buttonStyle(.bordered)
+                    }
+                )
             } else if let calc = vm.calculator {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
@@ -44,9 +43,9 @@ struct CourseDetailView: View {
         .task { await refresh() }
     }
 
-    private func refresh() async {
+    private func refresh(force: Bool = false) async {
         guard let client = appState.makeClient() else { return }
-        await vm.fetch(client: client)
+        await vm.fetch(client: client, force: force)
     }
 }
 
@@ -66,10 +65,13 @@ struct GradeDashboardView: View {
                 Spacer()
                 if let overall = calc.currentGrade() {
                     Text(String(format: "%.1f%%", overall))
-                        .font(.headline).foregroundStyle(Color.byuhGold)
+                        .font(.headline.monospacedDigit()).foregroundStyle(.primary)
                     let letter = letterGrade(for: overall, scale: gradingScale)
-                    Text(letter).font(.headline)
-                        .foregroundStyle(Color.letterGradeColor(letter))
+                    Text(letter)
+                        .font(.subheadline.bold())
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 8).padding(.vertical, 3)
+                        .background(Color.letterGradeColor(letter), in: Capsule())
                 } else {
                     Text("—").foregroundStyle(.secondary)
                 }
@@ -94,16 +96,20 @@ struct GroupRowView: View {
                 .frame(width: 40)
             if let pct = result.percent {
                 Text(String(format: "%.1f%%", pct))
-                    .font(.subheadline).foregroundStyle(Color.byuhGold)
+                    .font(.subheadline.monospacedDigit()).foregroundStyle(.primary)
                     .frame(width: 52, alignment: .trailing)
+                let letter = letterGrade(for: pct, scale: gradingScale)
                 ProgressView(value: pct, total: 100)
                     .progressViewStyle(LinearProgressViewStyle())
-                    .tint(Color.byuhRed)
+                    .tint(Color.letterGradeColor(letter))
                     .frame(width: 80)
-                let letter = letterGrade(for: pct, scale: gradingScale)
-                Text(letter).font(.caption.bold())
-                    .foregroundStyle(Color.letterGradeColor(letter))
-                    .frame(width: 24)
+                    .accessibilityValue(String(format: "%.0f percent", pct))
+                Text(letter)
+                    .font(.caption.bold())
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 5).padding(.vertical, 2)
+                    .background(Color.letterGradeColor(letter), in: Capsule())
+                    .frame(width: 32)
             } else {
                 Text("not graded")
                     .font(.caption).foregroundStyle(.secondary)

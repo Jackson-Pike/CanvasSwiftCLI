@@ -8,7 +8,16 @@ final class CoursesViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
 
-    func fetch(client: APIClient) async {
+    private var lastFetchedAt: Date?
+    private let cacheTTL: TimeInterval = 5 * 60
+
+    func fetch(client: APIClient, force: Bool = false) async {
+        if !force,
+           let lastFetchedAt,
+           Date().timeIntervalSince(lastFetchedAt) < cacheTTL,
+           !courses.isEmpty {
+            return
+        }
         isLoading = true
         error = nil
         do {
@@ -25,6 +34,7 @@ final class CoursesViewModel: ObservableObject {
                     if let enrollment { self.enrollments[id] = enrollment }
                 }
             }
+            lastFetchedAt = Date()
         } catch let e as APIError {
             error = e.description
         } catch let e as DecodingError {

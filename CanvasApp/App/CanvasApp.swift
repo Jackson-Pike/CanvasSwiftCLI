@@ -19,12 +19,15 @@ struct PopoverContent: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
-        if !appState.hasToken {
+        if !appState.hasSeenIntro {
+            WelcomeView()
+                .environmentObject(appState)
+        } else if !appState.hasToken {
             SettingsView(isOnboarding: true)
                 .environmentObject(appState)
         } else {
             NavigationStack {
-                CourseListView()
+                CourseListView(vm: appState.coursesVM)
             }
             .sheet(isPresented: $appState.showingSettings) {
                 SettingsView(isOnboarding: false)

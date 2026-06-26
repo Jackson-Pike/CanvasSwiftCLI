@@ -10,14 +10,22 @@ final class CourseDetailViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
 
+    private var lastFetchedAt: Date?
+    private let cacheTTL: TimeInterval = 5 * 60
+
     init(course: Course) { self.course = course }
 
-    var gradingScale: [(String, Double)] {
-        course.gradingScale
-    }
+    var gradingScale: [(String, Double)] { course.gradingScale }
 
-    func fetch(client: APIClient) async {
-        isLoading = true; error = nil
+    func fetch(client: APIClient, force: Bool = false) async {
+        if !force,
+           let lastFetchedAt,
+           Date().timeIntervalSince(lastFetchedAt) < cacheTTL,
+           calculator != nil {
+            return
+        }
+        isLoading = true
+        error = nil
         do {
             async let groups = client.assignmentGroups(courseId: course.id)
             async let subs   = client.submissions(courseId: course.id)
@@ -35,6 +43,7 @@ final class CourseDetailViewModel: ObservableObject {
             calculator = GradeCalculator(items: items, groups: info,
                                           weighted: course.applyAssignmentGroupWeights ?? false,
                                           gradingScale: gradingScale)
+            lastFetchedAt = Date()
         } catch let e as APIError { error = e.description }
         catch { self.error = error.localizedDescription }
         isLoading = false

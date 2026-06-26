@@ -3,30 +3,45 @@ import CanvasCore
 
 struct CourseListView: View {
     @EnvironmentObject var appState: AppState
-    @StateObject private var vm = CoursesViewModel()
+    @ObservedObject var vm: CoursesViewModel
 
     var body: some View {
         Group {
             if vm.isLoading {
-                ProgressView("Loading courses…").padding()
+                Color.clear.overlay(ProgressView("Loading courses…"))
             } else if let error = vm.error {
-                VStack(spacing: 12) {
-                    Text(error).foregroundStyle(.red).multilineTextAlignment(.center)
-                    Button("Retry") { Task { await refresh() } }
-                        .buttonStyle(.bordered)
-                    if error.contains("Invalid token") || error.contains("unauthorized") {
-                        Button("Update Token…") { appState.showingSettings = true }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.byuhRed)
+                Color.clear.overlay(
+                    ContentUnavailableView {
+                        Label("Couldn't Load Courses", systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text(error)
+                    } actions: {
+                        Button("Retry") { Task { await refresh(force: true) } }
+                            .buttonStyle(.bordered)
+                        if error.contains("Invalid token") || error.contains("unauthorized") {
+                            Button("Update Token…") { appState.showingSettings = true }
+                                .buttonStyle(.borderedProminent)
+                                .tint(.byuhRed)
+                        }
                     }
-                }
-                .padding()
+                )
             } else if vm.courses.isEmpty {
-                Text("No active courses found.")
-                    .foregroundStyle(.secondary).padding()
+                Color.clear.overlay(
+                    ContentUnavailableView {
+                        Label("No Active Courses", systemImage: "graduationcap")
+                    } description: {
+                        Text("Courses you're enrolled in this term will appear here.")
+                    } actions: {
+                        Button("Refresh") { Task { await refresh(force: true) } }
+                            .buttonStyle(.bordered)
+                    }
+                )
             } else {
                 List(vm.courses, id: \.id) { course in
-                    NavigationLink(destination: CourseDetailView(course: course)) {
+                    NavigationLink(destination: CourseDetailView(
+                        course: course,
+                        vm: appState.detailViewModel(for: course)
+                    )) {
                         CourseRowView(course: course, score: vm.currentScore(for: course.id),
                                       gradingScale: course.gradingScale)
                     }
@@ -37,23 +52,27 @@ struct CourseListView: View {
         .navigationTitle("Canvas")
         .toolbar {
             ToolbarItem(placement: .automatic) {
-                Button { Task { await refresh() } } label: {
+                Button { Task { await refresh(force: true) } } label: {
                     Image(systemName: "arrow.clockwise")
                 }
                 .disabled(vm.isLoading)
+                .accessibilityLabel("Refresh courses")
+                .help("Refresh courses")
             }
             ToolbarItem(placement: .automatic) {
                 Button { appState.showingSettings = true } label: {
                     Image(systemName: "gear")
                 }
+                .accessibilityLabel("Settings")
+                .help("Settings")
             }
         }
         .task { await refresh() }
     }
 
-    private func refresh() async {
+    private func refresh(force: Bool = false) async {
         guard let client = appState.makeClient() else { return }
-        await vm.fetch(client: client)
+        await vm.fetch(client: client, force: force)
     }
 }
 
@@ -66,20 +85,22 @@ struct CourseRowView: View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text(course.courseCode)
-                    .font(.headline).foregroundStyle(Color.byuhRed)
+                    .font(.headline).foregroundStyle(.secondary)
                 Text(course.name)
                     .font(.subheadline).foregroundStyle(.primary)
                     .lineLimit(1)
             }
             Spacer()
             if let score {
-                VStack(alignment: .trailing, spacing: 2) {
+                VStack(alignment: .trailing, spacing: 4) {
                     Text(String(format: "%.1f%%", score))
-                        .font(.headline).foregroundStyle(Color.byuhGold)
+                        .font(.headline.monospacedDigit()).foregroundStyle(.primary)
                     let letter = letterGrade(for: score, scale: gradingScale)
                     Text(letter)
-                        .font(.subheadline)
-                        .foregroundStyle(Color.letterGradeColor(letter))
+                        .font(.caption.bold())
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 6).padding(.vertical, 2)
+                        .background(Color.letterGradeColor(letter), in: Capsule())
                 }
             }
         }
