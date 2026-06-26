@@ -125,6 +125,57 @@ public struct GradeCalculator {
     }
 }
 
+public enum SolveResult: Equatable {
+    case alreadyAchieved
+    case needed(percent: Double)
+    case impossible(maxPossible: Double)
+
+    public static func == (lhs: SolveResult, rhs: SolveResult) -> Bool {
+        switch (lhs, rhs) {
+        case (.alreadyAchieved, .alreadyAchieved): return true
+        case (.needed(let a), .needed(let b)):         return abs(a - b) < 0.5
+        case (.impossible(let a), .impossible(let b)): return abs(a - b) < 0.5
+        default: return false
+        }
+    }
+}
+
+public extension GradeCalculator {
+    func solveForTarget(targetPercent: Double, solveAssignmentIds: Set<Int>) -> SolveResult {
+        // 1. Already achieved? Force ungraded solve assignments to 0 so their groups
+        //    are included in the grade (weighted normalises over active groups only,
+        //    so an ungraded group would be excluded, giving a misleadingly high grade).
+        let baseItems = items.map { item -> GradedItem in
+            guard solveAssignmentIds.contains(item.assignmentId),
+                  item.earnedPoints == nil, item.whatIfPoints == nil else { return item }
+            var copy = item; copy.whatIfPoints = 0; return copy
+        }
+        let baseCalc = GradeCalculator(items: baseItems, groups: groups, weighted: weighted, gradingScale: gradingScale)
+        if let current = baseCalc.currentGrade(), current >= targetPercent {
+            return .alreadyAchieved
+        }
+        // 2. Check if achievable (apply 100% to all solve assignments)
+        let maxItems = items.applyingWhatIf(percent: 100, toAssignmentIds: solveAssignmentIds)
+        let maxCalc  = GradeCalculator(items: maxItems, groups: groups, weighted: weighted, gradingScale: gradingScale)
+        guard let maxGrade = maxCalc.currentGrade(), maxGrade >= targetPercent else {
+            return .impossible(maxPossible: maxCalc.currentGrade() ?? 0)
+        }
+        // 3. Binary search for the uniform % needed
+        var lo = 0.0, hi = 100.0
+        while hi - lo > 0.05 {
+            let mid = (lo + hi) / 2
+            let testItems = items.applyingWhatIf(percent: mid, toAssignmentIds: solveAssignmentIds)
+            let testCalc  = GradeCalculator(items: testItems, groups: groups, weighted: weighted, gradingScale: gradingScale)
+            if let grade = testCalc.currentGrade(), grade >= targetPercent {
+                hi = mid
+            } else {
+                lo = mid
+            }
+        }
+        return .needed(percent: hi)
+    }
+}
+
 public extension Array where Element == GradedItem {
     func applyingWhatIf(percent: Double, toAssignmentIds ids: Set<Int>) -> [GradedItem] {
         map { item in
