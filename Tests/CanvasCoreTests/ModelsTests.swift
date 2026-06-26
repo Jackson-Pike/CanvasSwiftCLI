@@ -34,4 +34,15 @@ final class ModelsTests: XCTestCase {
         XCTAssertNil(subs.first?.score)
         XCTAssertEqual(subs.first?.workflowState, "unsubmitted")
     }
+
+    func testCourseDecodesGradingScheme() throws {
+        let json = """
+        [{"id":1,"name":"CS 420","course_code":"CS 420","apply_assignment_group_weights":true,
+          "grading_scheme":[{"name":"A","value":0.94},{"name":"A-","value":0.90},{"name":"F","value":0.0}]}]
+        """.data(using: .utf8)!
+        let courses = try decoder().decode([Course].self, from: json)
+        let entry = try XCTUnwrap(courses.first?.gradingScheme?.first)
+        XCTAssertEqual(entry.name, "A")
+        XCTAssertEqual(entry.value, 0.94, accuracy: 0.001)
+    }
 }

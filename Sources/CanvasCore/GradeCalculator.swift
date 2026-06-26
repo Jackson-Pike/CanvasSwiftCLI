@@ -1,5 +1,20 @@
 import Foundation
 
+public let byuhDefaultScale: [(String, Double)] = [
+    ("A",  94.0), ("A-", 90.0),
+    ("B+", 87.0), ("B",  84.0), ("B-", 80.0),
+    ("C+", 77.0), ("C",  74.0), ("C-", 70.0),
+    ("D+", 67.0), ("D",  64.0), ("D-", 60.0),
+    ("F",   0.0)
+]
+
+public func letterGrade(for percent: Double, scale: [(String, Double)]) -> String {
+    for (letter, threshold) in scale {
+        if percent >= threshold { return letter }
+    }
+    return "F"
+}
+
 public struct GroupInfo {
     public let name: String
     public let weight: Double
@@ -39,9 +54,16 @@ public struct GradeCalculator {
     public let items: [GradedItem]
     public let groups: [Int: GroupInfo]
     public let weighted: Bool
+    public let gradingScale: [(String, Double)]
 
-    public init(items: [GradedItem], groups: [Int: GroupInfo], weighted: Bool) {
-        self.items = items; self.groups = groups; self.weighted = weighted
+    public init(items: [GradedItem], groups: [Int: GroupInfo], weighted: Bool,
+                gradingScale: [(String, Double)] = byuhDefaultScale) {
+        self.items = items; self.groups = groups
+        self.weighted = weighted; self.gradingScale = gradingScale
+    }
+
+    public func letterGradeForPercent(_ percent: Double) -> String {
+        letterGrade(for: percent, scale: gradingScale)
     }
 
     private func effectivePoints(_ item: GradedItem) -> Double? {

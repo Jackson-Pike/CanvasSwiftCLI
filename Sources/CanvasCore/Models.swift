@@ -1,10 +1,16 @@
 import Foundation
 
+public struct GradingSchemeEntry: Codable {
+    public let name: String
+    public let value: Double  // 0.0–1.0 lower-bound fraction
+}
+
 public struct Course: Codable {
     public let id: Int
     public let name: String
     public let courseCode: String
     public let applyAssignmentGroupWeights: Bool
+    public let gradingScheme: [GradingSchemeEntry]?
 }
 
 public struct Enrollment: Codable {

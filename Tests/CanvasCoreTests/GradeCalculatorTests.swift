@@ -77,4 +77,22 @@ final class GradeCalculatorTests: XCTestCase {
         let result = items.applyingPerfectRemaining()
         XCTAssertEqual(result[0].whatIfPoints, 40)
     }
+
+    func testLetterGradeByuhScale() {
+        let scale = byuhDefaultScale
+        XCTAssertEqual(letterGrade(for: 100.0, scale: scale), "A")
+        XCTAssertEqual(letterGrade(for: 94.0,  scale: scale), "A")
+        XCTAssertEqual(letterGrade(for: 93.9,  scale: scale), "A-")
+        XCTAssertEqual(letterGrade(for: 90.0,  scale: scale), "A-")
+        XCTAssertEqual(letterGrade(for: 84.0,  scale: scale), "B")
+        XCTAssertEqual(letterGrade(for: 74.0,  scale: scale), "C")
+        XCTAssertEqual(letterGrade(for: 59.9,  scale: scale), "F")
+        XCTAssertEqual(letterGrade(for: 0.0,   scale: scale), "F")
+    }
+
+    func testLetterGradeCustomScale() {
+        let custom: [(String, Double)] = [("A", 90.0), ("B", 80.0), ("F", 0.0)]
+        XCTAssertEqual(letterGrade(for: 89.9, scale: custom), "B")
+        XCTAssertEqual(letterGrade(for: 90.0, scale: custom), "A")
+    }
 }

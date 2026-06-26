@@ -51,7 +51,8 @@ public struct APIClient {
     public func courses() async throws -> [Course] {
         let data = try await get("/courses", query: [
             URLQueryItem(name: "enrollment_state", value: "active"),
-            URLQueryItem(name: "per_page", value: "50")
+            URLQueryItem(name: "per_page", value: "50"),
+            URLQueryItem(name: "include[]", value: "grading_scheme")
         ])
         return try decoder().decode([Course].self, from: data)
     }
