@@ -13,7 +13,7 @@ final class CourseDetailViewModel: ObservableObject {
     init(course: Course) { self.course = course }
 
     var gradingScale: [(String, Double)] {
-        course.gradingScheme.map { $0.map { ($0.name, $0.value * 100) } } ?? byuhDefaultScale
+        course.gradingScale
     }
 
     func fetch(client: APIClient) async {

@@ -23,7 +23,7 @@ struct CourseListView: View {
                 List(vm.courses, id: \.id) { course in
                     NavigationLink(destination: CourseDetailView(course: course)) {
                         CourseRowView(course: course, score: vm.currentScore(for: course.id),
-                                      gradingScale: course.gradingScheme.map { $0.map { ($0.name, $0.value * 100) } } ?? byuhDefaultScale)
+                                      gradingScale: course.gradingScale)
                     }
                 }
                 .listStyle(.plain)

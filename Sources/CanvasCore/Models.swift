@@ -50,6 +50,14 @@ public struct Submission: Codable {
     public let workflowState: String
 }
 
+public extension Course {
+    var gradingScale: [(String, Double)] {
+        gradingScheme
+            .map { $0.map { ($0.name, $0.value * 100) }.sorted { $0.1 > $1.1 } }
+            ?? byuhDefaultScale
+    }
+}
+
 public struct GradedItem {
     public let assignmentId: Int
     public let name: String
