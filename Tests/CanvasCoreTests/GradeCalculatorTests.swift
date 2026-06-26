@@ -1,5 +1,5 @@
 import XCTest
-@testable import CanvasCLISwift
+@testable import CanvasCore
 
 final class GradeCalculatorTests: XCTestCase {
     private func item(_ id: Int, group: Int, possible: Double, earned: Double?) -> GradedItem {
@@ -7,7 +7,7 @@ final class GradeCalculatorTests: XCTestCase {
     }
 
     func testBuildGradedItemsJoinsScores() {
-        let groups = [AssignmentGroup(id: 1, name: "HW", groupWeight: 100,
+        let groups = [AssignmentGroup(id: 1, name: "HW", groupWeight: 100, rules: nil,
             assignments: [Assignment(id: 100, name: "HW1", pointsPossible: 10, dueAt: nil, assignmentGroupId: 1)])]
         let subs = [Submission(assignmentId: 100, score: 8, workflowState: "graded")]
         let items = buildGradedItems(groups: groups, submissions: subs)
@@ -30,7 +30,6 @@ final class GradeCalculatorTests: XCTestCase {
     }
 
     func testWeightedGradeNormalizesOverActiveGroups() {
-        // HW (weight 40): 90%. Quiz (weight 20): 80%. Final (weight 40): ungraded.
         let items = [item(1, group: 1, possible: 100, earned: 90),
                      item(2, group: 2, possible: 100, earned: 80),
                      item(3, group: 3, possible: 100, earned: nil)]
@@ -40,7 +39,6 @@ final class GradeCalculatorTests: XCTestCase {
             3: GroupInfo(name: "Final", weight: 40)
         ]
         let calc = GradeCalculator(items: items, groups: groups, weighted: true)
-        // (0.9*40 + 0.8*20) / (40+20) = (36+16)/60 = 86.666...
         XCTAssertEqual(calc.currentGrade()!, 86.6667, accuracy: 0.001)
     }
 
@@ -62,21 +60,39 @@ final class GradeCalculatorTests: XCTestCase {
         let items = [item(1, group: 1, possible: 50, earned: 25),
                      item(2, group: 1, possible: 50, earned: 50)]
         let result = items.applyingWhatIf(percent: 100, toAssignmentIds: [1])
-        XCTAssertEqual(result[0].whatIfPoints, 50)   // 100% of 50
-        XCTAssertNil(result[1].whatIfPoints)         // untouched
+        XCTAssertEqual(result[0].whatIfPoints, 50)
+        XCTAssertNil(result[1].whatIfPoints)
     }
 
     func testBlanketOnlyAffectsUngraded() {
         let items = [item(1, group: 1, possible: 100, earned: 70),
                      item(2, group: 1, possible: 100, earned: nil)]
         let result = items.applyingBlanketToUngraded(percent: 80)
-        XCTAssertNil(result[0].whatIfPoints)         // already graded → untouched
-        XCTAssertEqual(result[1].whatIfPoints, 80)   // 80% of 100
+        XCTAssertNil(result[0].whatIfPoints)
+        XCTAssertEqual(result[1].whatIfPoints, 80)
     }
 
     func testPerfectRemainingSetsUngradedTo100() {
         let items = [item(1, group: 1, possible: 40, earned: nil)]
         let result = items.applyingPerfectRemaining()
         XCTAssertEqual(result[0].whatIfPoints, 40)
+    }
+
+    func testLetterGradeByuhScale() {
+        let scale = byuhDefaultScale
+        XCTAssertEqual(letterGrade(for: 100.0, scale: scale), "A")
+        XCTAssertEqual(letterGrade(for: 94.0,  scale: scale), "A")
+        XCTAssertEqual(letterGrade(for: 93.9,  scale: scale), "A-")
+        XCTAssertEqual(letterGrade(for: 90.0,  scale: scale), "A-")
+        XCTAssertEqual(letterGrade(for: 84.0,  scale: scale), "B")
+        XCTAssertEqual(letterGrade(for: 74.0,  scale: scale), "C")
+        XCTAssertEqual(letterGrade(for: 59.9,  scale: scale), "F")
+        XCTAssertEqual(letterGrade(for: 0.0,   scale: scale), "F")
+    }
+
+    func testLetterGradeCustomScale() {
+        let custom: [(String, Double)] = [("A", 90.0), ("B", 80.0), ("F", 0.0)]
+        XCTAssertEqual(letterGrade(for: 89.9, scale: custom), "B")
+        XCTAssertEqual(letterGrade(for: 90.0, scale: custom), "A")
     }
 }
