@@ -63,7 +63,7 @@ All API endpoints are unchanged from Phase 2. `CanvasCore/APIClient.swift` is a 
 **Endpoints used:**
 | Endpoint | Purpose |
 |---|---|
-| `GET /courses` | Active courses |
+| `GET /courses?include[]=grading_scheme` | Active courses + per-course grading scheme |
 | `GET /courses/:id/enrollments` | Current grade/score |
 | `GET /courses/:id/assignment_groups?include[]=assignments` | Groups, weights, drop rules, assignments |
 | `GET /courses/:id/submissions?student_ids[]=self` | Submission scores + workflow state |
@@ -132,20 +132,20 @@ Binary search handles both weighted and unweighted courses without a closed-form
 
 ### Grade Scale
 
-**⚠️ Must verify against BYUH Registrar before implementation.**
-
-Placeholder (standard plus/minus scale):
+**Official BYUH scale (confirmed):**
 ```swift
-let letterThresholds: [(String, Double)] = [
-    ("A",  93.0), ("A-", 90.0),
-    ("B+", 87.0), ("B",  83.0), ("B-", 80.0),
-    ("C+", 77.0), ("C",  73.0), ("C-", 70.0),
-    ("D+", 67.0), ("D",  63.0), ("D-", 60.0),
+let byuhDefaultScale: [(String, Double)] = [
+    ("A",  94.0), ("A-", 90.0),
+    ("B+", 87.0), ("B",  84.0), ("B-", 80.0),
+    ("C+", 77.0), ("C",  74.0), ("C-", 70.0),
+    ("D+", 67.0), ("D",  64.0), ("D-", 60.0),
     ("F",   0.0)
 ]
 ```
 
-This is stored as a single constant in `GradeCalculator.swift`. If BYUH uses different cutoffs, only this one value changes.
+**Per-course customization:** Canvas exposes professor-set grading schemes via `GET /courses/:id?include[]=grading_scheme`. The app fetches this alongside course data and uses the course-specific scheme when present, falling back to `byuhDefaultScale` when the course has no custom scheme. The API returns a sorted array of `{ name, value }` pairs (value = lower-bound fraction 0–1), which maps directly to `[(String, Double)]` after multiplying by 100.
+
+`GradeCalculator` accepts a `gradingScale: [(String, Double)]` parameter so the solver and letter-grade display always use the course's actual thresholds.
 
 ---
 
@@ -238,7 +238,7 @@ Two modes, toggled via a `Picker` (segmented control) at the top:
 | Network failure | Show retry button with error message |
 | Course with no assignments | Show "No assignments yet" in calculator |
 | Target grade impossible | Show max-achievable grade clearly |
-| BYUH grade scale unverified | ⚠️ Placeholder — must confirm before shipping |
+| No grading scheme on course | Fall back to BYUH default scale |
 
 ---
 
