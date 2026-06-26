@@ -10,6 +10,7 @@ final class AppState: ObservableObject {
 
     func saveToken(_ newToken: String) {
         let trimmed = newToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
         KeychainHelper.save(token: trimmed)
         token = trimmed
     }
