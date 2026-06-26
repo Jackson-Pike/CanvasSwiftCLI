@@ -1,12 +1,12 @@
 import Foundation
 
-enum APIError: Error, CustomStringConvertible {
+public enum APIError: Error, CustomStringConvertible {
     case missingToken
     case unauthorized
     case http(Int)
     case network(String)
 
-    var description: String {
+    public var description: String {
         switch self {
         case .missingToken:     return "CANVAS_TOKEN is not set."
         case .unauthorized:     return "Invalid token — update in Settings."

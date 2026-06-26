@@ -61,7 +61,7 @@ public struct GradeCalculator {
         return earned / possible * 100
     }
 
-    func groupPercent(_ groupId: Int) -> Double? {
+    private func groupPercent(_ groupId: Int) -> Double? {
         let info = groups[groupId]
         var graded = items.filter { $0.groupId == groupId && effectivePoints($0) != nil }
         guard !graded.isEmpty else { return nil }
