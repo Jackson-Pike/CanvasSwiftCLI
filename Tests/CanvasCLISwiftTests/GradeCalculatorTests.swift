@@ -7,7 +7,7 @@ final class GradeCalculatorTests: XCTestCase {
     }
 
     func testBuildGradedItemsJoinsScores() {
-        let groups = [AssignmentGroup(id: 1, name: "HW", groupWeight: 100,
+        let groups = [AssignmentGroup(id: 1, name: "HW", groupWeight: 100, rules: nil,
             assignments: [Assignment(id: 100, name: "HW1", pointsPossible: 10, dueAt: nil, assignmentGroupId: 1)])]
         let subs = [Submission(assignmentId: 100, score: 8, workflowState: "graded")]
         let items = buildGradedItems(groups: groups, submissions: subs)
