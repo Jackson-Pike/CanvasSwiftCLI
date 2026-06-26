@@ -45,6 +45,13 @@ struct CourseListView: View {
                         CourseRowView(course: course, score: vm.currentScore(for: course.id),
                                       gradingScale: course.gradingScale)
                     }
+                    .swipeActions(edge: .trailing) {
+                        Button(role: .destructive) {
+                            appState.hiddenCoursesStore.hide(course.id)
+                        } label: {
+                            Label("Hide", systemImage: "eye.slash")
+                        }
+                    }
                 }
                 .listStyle(.plain)
             }
