@@ -9,7 +9,7 @@ final class CoursesViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
 
-    private(set) var allFetchedCourses: [Course] = []
+    @Published private(set) var allFetchedCourses: [Course] = []
     private let hiddenStore: HiddenCoursesStore
     private var cancellable: AnyCancellable?
 
