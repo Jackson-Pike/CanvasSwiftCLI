@@ -4,6 +4,8 @@ import Security
 enum KeychainHelper {
     private static let service = "com.byuh.CanvasApp"
     private static let account = "canvas_token"
+    private static let label = "Canvas Grades – API Token"
+    private static let itemDescription = "Canvas LMS API token for reading grades"
 
     static func save(token: String) {
         let data = Data(token.utf8)
@@ -12,10 +14,19 @@ enum KeychainHelper {
             kSecAttrService: service,
             kSecAttrAccount: account
         ]
-        SecItemDelete(query as CFDictionary)
-        var attributes = query
-        attributes[kSecValueData] = data
-        SecItemAdd(attributes as CFDictionary, nil)
+        let attributes: [CFString: Any] = [
+            kSecValueData: data,
+            kSecAttrLabel: label,
+            kSecAttrDescription: itemDescription
+        ]
+        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        if status == errSecItemNotFound {
+            var addAttrs = query
+            addAttrs[kSecValueData] = data
+            addAttrs[kSecAttrLabel] = label
+            addAttrs[kSecAttrDescription] = itemDescription
+            SecItemAdd(addAttrs as CFDictionary, nil)
+        }
     }
 
     static func load() -> String? {
