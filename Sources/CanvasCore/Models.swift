@@ -52,6 +52,7 @@ public struct Assignment: Codable {
 }
 
 public struct Submission: Codable {
+    public let id: Int
     public let assignmentId: Int
     public let score: Double?
     public let workflowState: String

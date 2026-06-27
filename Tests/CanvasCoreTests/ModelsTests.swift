@@ -28,7 +28,7 @@ final class ModelsTests: XCTestCase {
 
     func testSubmissionDecodesNullScore() throws {
         let json = """
-        [{"assignment_id":100,"score":null,"workflow_state":"unsubmitted"}]
+        [{"id":1,"assignment_id":100,"score":null,"workflow_state":"unsubmitted"}]
         """.data(using: .utf8)!
         let subs = try decoder().decode([Submission].self, from: json)
         XCTAssertNil(subs.first?.score)
