@@ -41,6 +41,7 @@ public struct APIClient {
             }
             return (data, nil)
         } catch let error as APIError { throw error }
+        catch let urlError as URLError where urlError.code == .cancelled { throw urlError }
         catch { throw APIError.network(error.localizedDescription) }
     }
 
