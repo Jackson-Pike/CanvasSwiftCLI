@@ -52,6 +52,7 @@ struct CourseListView: View {
                         )
                         .allowsHitTesting(false)
                     }
+                    .buttonStyle(.plain)
                     .accessibilityElement(children: .combine)
                     .accessibilityLabel({
                         if let score = vm.currentScore(for: course.id) {
