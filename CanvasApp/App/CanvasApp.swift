@@ -22,6 +22,9 @@ struct PopoverContent: View {
         if !appState.hasSeenIntro {
             WelcomeView()
                 .environmentObject(appState)
+        } else if !appState.hasAcknowledgedKeychain {
+            KeychainWarningView()
+                .environmentObject(appState)
         } else if !appState.hasToken {
             SettingsView(isOnboarding: true)
                 .environmentObject(appState)
