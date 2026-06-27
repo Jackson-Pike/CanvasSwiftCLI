@@ -16,7 +16,7 @@ final class AppState: ObservableObject {
         let store = HiddenCoursesStore()
         hiddenCoursesStore = store
         coursesVM = CoursesViewModel(hiddenStore: store)
-        if UserDefaults.standard.bool(forKey: "hasAcknowledgedKeychain") {
+        if hasAcknowledgedKeychain {
             token = KeychainHelper.load()
         }
     }

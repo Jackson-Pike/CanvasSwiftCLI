@@ -26,7 +26,7 @@ struct KeychainWarningView: View {
             Spacer()
 
             VStack(spacing: 12) {
-                Text("If macOS asks 'Allow CanvasApp to use your confidential information,' tap Always Allow.")
+                Text("If macOS asks 'Allow CanvasApp to use your confidential information,' click Always Allow.")
                     .font(.caption)
                     .foregroundStyle(.tertiary)
                     .multilineTextAlignment(.center)

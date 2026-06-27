@@ -26,6 +26,8 @@ enum KeychainHelper {
             addAttrs[kSecAttrLabel] = label
             addAttrs[kSecAttrDescription] = itemDescription
             SecItemAdd(addAttrs as CFDictionary, nil)
+        } else if status != errSecSuccess {
+            print("[KeychainHelper] SecItemUpdate failed with status: \(status)")
         }
     }
 
