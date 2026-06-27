@@ -37,44 +37,41 @@ struct CourseListView: View {
                     }
                 )
             } else {
-                List(vm.courses, id: \.id) { course in
-                    ZStack(alignment: .leading) {
-                        NavigationLink(destination: CourseDetailView(
-                            course: course,
-                            vm: appState.detailViewModel(for: course)
-                        )) { EmptyView() }
-                        .opacity(0)
-
-                        CourseCardView(
-                            course: course,
-                            score: vm.currentScore(for: course.id),
-                            gradingScale: course.gradingScale
-                        )
-                        .allowsHitTesting(false)
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel({
-                        if let score = vm.currentScore(for: course.id) {
-                            return "\(course.name), \(letterGrade(for: score, scale: course.gradingScale)) grade"
-                        } else {
-                            return course.name
-                        }
-                    }())
-                    .accessibilityHint("Opens course detail")
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(.init(top: 6, leading: 16, bottom: 6, trailing: 16))
-                    .swipeActions(edge: .trailing) {
-                        Button(role: .destructive) {
-                            appState.hiddenCoursesStore.hide(course.id)
-                        } label: {
-                            Label("Hide", systemImage: "eye.slash")
+                ScrollView {
+                    LazyVStack(spacing: 12) {
+                        ForEach(vm.courses, id: \.id) { course in
+                            NavigationLink(destination: CourseDetailView(
+                                course: course,
+                                vm: appState.detailViewModel(for: course)
+                            )) {
+                                CourseCardView(
+                                    course: course,
+                                    score: vm.currentScore(for: course.id),
+                                    gradingScale: course.gradingScale
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            .contextMenu {
+                                Button(role: .destructive) {
+                                    appState.hiddenCoursesStore.hide(course.id)
+                                } label: {
+                                    Label("Hide Course", systemImage: "eye.slash")
+                                }
+                            }
+                            .accessibilityElement(children: .combine)
+                            .accessibilityLabel({
+                                if let score = vm.currentScore(for: course.id) {
+                                    return "\(course.name), \(letterGrade(for: score, scale: course.gradingScale)) grade"
+                                } else {
+                                    return course.name
+                                }
+                            }())
+                            .accessibilityHint("Opens course detail")
                         }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 6)
                 }
-                .listStyle(.plain)
-                .scrollContentBackground(.hidden)
                 .background(Color.systemGroupedBackground)
             }
         }
