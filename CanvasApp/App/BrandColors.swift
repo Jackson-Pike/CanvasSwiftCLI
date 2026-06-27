@@ -15,11 +15,19 @@ extension Color {
 
     // Platform-appropriate system colors
     static var secondaryLabel: Color {
-        Color(.gray)
+        #if os(macOS)
+        Color(nsColor: .secondaryLabelColor)
+        #else
+        Color(.secondaryLabel)
+        #endif
     }
 
     static var systemBackground: Color {
-        Color.white
+        #if os(macOS)
+        Color(nsColor: .windowBackgroundColor)
+        #else
+        Color(.systemBackground)
+        #endif
     }
 
     static var systemGroupedBackground: Color {
