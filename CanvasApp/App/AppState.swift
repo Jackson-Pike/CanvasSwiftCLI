@@ -3,9 +3,10 @@ import CanvasCore
 
 @MainActor
 final class AppState: ObservableObject {
-    @Published var token: String? = KeychainHelper.load()
+    @Published var token: String? = nil
     @Published var showingSettings = false
     @Published var hasSeenIntro: Bool = UserDefaults.standard.bool(forKey: "hasSeenIntro")
+    @Published var hasAcknowledgedKeychain: Bool = UserDefaults.standard.bool(forKey: "hasAcknowledgedKeychain")
 
     let hiddenCoursesStore: HiddenCoursesStore
     let coursesVM: CoursesViewModel
@@ -15,6 +16,9 @@ final class AppState: ObservableObject {
         let store = HiddenCoursesStore()
         hiddenCoursesStore = store
         coursesVM = CoursesViewModel(hiddenStore: store)
+        if UserDefaults.standard.bool(forKey: "hasAcknowledgedKeychain") {
+            token = KeychainHelper.load()
+        }
     }
 
     var hasToken: Bool { !(token ?? "").isEmpty }
@@ -32,6 +36,12 @@ final class AppState: ObservableObject {
     func completeIntro() {
         UserDefaults.standard.set(true, forKey: "hasSeenIntro")
         hasSeenIntro = true
+    }
+
+    func acknowledgeKeychain() {
+        UserDefaults.standard.set(true, forKey: "hasAcknowledgedKeychain")
+        hasAcknowledgedKeychain = true
+        token = KeychainHelper.load()
     }
 
     func makeClient() -> APIClient? {
