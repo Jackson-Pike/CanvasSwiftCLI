@@ -89,7 +89,7 @@ final class APIClientPaginationTests: XCTestCase {
     // Three pages of courses
     func testCoursesPaginatesThreePages() async throws {
         let base = "https://byuh.instructure.com/api/v1"
-        let p1 = "\(base)/courses?enrollment_state=active&per_page=50&include%5B%5D=grading_scheme"
+        let p1 = "\(base)/courses?enrollment_state=active&enrollment_type%5B%5D=student&per_page=50&include%5B%5D=grading_scheme"
         let p2 = "\(base)/courses?page=2&per_page=50"
         let p3 = "\(base)/courses?page=3&per_page=50"
 

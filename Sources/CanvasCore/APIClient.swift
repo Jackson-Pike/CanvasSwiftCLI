@@ -75,9 +75,10 @@ public struct APIClient {
 
         while let currentURL = nextURL {
             let (pageData, pageNext) = try await getPage(url: currentURL)
-            if let pageItems = try JSONSerialization.jsonObject(with: pageData) as? [[String: Any]] {
-                allItems.append(contentsOf: pageItems)
+            guard let pageItems = try JSONSerialization.jsonObject(with: pageData) as? [[String: Any]] else {
+                throw APIError.network("Expected JSON array from Canvas API")
             }
+            allItems.append(contentsOf: pageItems)
             nextURL = pageNext
         }
 
@@ -93,6 +94,7 @@ public struct APIClient {
     public func courses() async throws -> [Course] {
         let data = try await getPaginated("/courses", query: [
             URLQueryItem(name: "enrollment_state", value: "active"),
+            URLQueryItem(name: "enrollment_type[]", value: "student"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "include[]", value: "grading_scheme")
         ])
