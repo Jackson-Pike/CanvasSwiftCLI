@@ -24,7 +24,7 @@ extension Color {
 
     static var systemBackground: Color {
         #if os(macOS)
-        Color(nsColor: .windowBackgroundColor)
+        Color(nsColor: .controlBackgroundColor)
         #else
         Color(.systemBackground)
         #endif
@@ -32,7 +32,7 @@ extension Color {
 
     static var systemGroupedBackground: Color {
         #if os(macOS)
-        Color(nsColor: NSColor.windowBackgroundColor)
+        Color(nsColor: .windowBackgroundColor)
         #else
         Color(.systemGroupedBackground)
         #endif

@@ -52,6 +52,15 @@ struct CourseListView: View {
                         )
                         .allowsHitTesting(false)
                     }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel({
+                        if let score = vm.currentScore(for: course.id) {
+                            return "\(course.name), \(letterGrade(for: score, scale: course.gradingScale)) grade"
+                        } else {
+                            return course.name
+                        }
+                    }())
+                    .accessibilityHint("Opens course detail")
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
                     .listRowInsets(.init(top: 6, leading: 16, bottom: 6, trailing: 16))
