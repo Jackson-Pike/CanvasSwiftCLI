@@ -38,13 +38,23 @@ struct CourseListView: View {
                 )
             } else {
                 List(vm.courses, id: \.id) { course in
-                    NavigationLink(destination: CourseDetailView(
-                        course: course,
-                        vm: appState.detailViewModel(for: course)
-                    )) {
-                        CourseRowView(course: course, score: vm.currentScore(for: course.id),
-                                      gradingScale: course.gradingScale)
+                    ZStack(alignment: .leading) {
+                        NavigationLink(destination: CourseDetailView(
+                            course: course,
+                            vm: appState.detailViewModel(for: course)
+                        )) { EmptyView() }
+                        .opacity(0)
+
+                        CourseCardView(
+                            course: course,
+                            score: vm.currentScore(for: course.id),
+                            gradingScale: course.gradingScale
+                        )
+                        .allowsHitTesting(false)
                     }
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(.init(top: 6, leading: 16, bottom: 6, trailing: 16))
                     .swipeActions(edge: .trailing) {
                         Button(role: .destructive) {
                             appState.hiddenCoursesStore.hide(course.id)
@@ -54,6 +64,8 @@ struct CourseListView: View {
                     }
                 }
                 .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .background(Color.systemGroupedBackground)
             }
         }
         .navigationTitle("Canvas")
@@ -83,34 +95,49 @@ struct CourseListView: View {
     }
 }
 
-struct CourseRowView: View {
+struct CourseCardView: View {
     let course: Course
     let score: Double?
     let gradingScale: [(String, Double)]
 
+    private var letter: String {
+        score.map { letterGrade(for: $0, scale: gradingScale) } ?? "—"
+    }
+
+    private var gradeColor: Color {
+        guard score != nil else { return Color.secondaryLabel }
+        return Color.letterGradeColor(letter)
+    }
+
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(course.courseCode)
-                    .font(.headline).foregroundStyle(.secondary)
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(course.name)
-                    .font(.subheadline).foregroundStyle(.primary)
-                    .lineLimit(1)
-            }
-            Spacer()
-            if let score {
-                VStack(alignment: .trailing, spacing: 4) {
+                    .font(.title3.bold())
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+                Text(course.courseCode)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                if let score {
                     Text(String(format: "%.1f%%", score))
-                        .font(.headline.monospacedDigit()).foregroundStyle(.primary)
-                    let letter = letterGrade(for: score, scale: gradingScale)
-                    Text(letter)
-                        .font(.caption.bold())
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 6).padding(.vertical, 2)
-                        .background(Color.letterGradeColor(letter), in: Capsule())
+                        .font(.headline.monospacedDigit())
+                        .foregroundStyle(.secondary)
                 }
             }
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            ZStack {
+                gradeColor.opacity(0.15)
+                Text(letter)
+                    .font(.system(size: 44, weight: .bold))
+                    .foregroundStyle(gradeColor)
+            }
+            .frame(width: 90)
         }
-        .padding(.vertical, 4)
+        .background(Color.systemBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: .black.opacity(0.08), radius: 4, y: 2)
     }
 }

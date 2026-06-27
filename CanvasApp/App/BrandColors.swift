@@ -12,4 +12,21 @@ extension Color {
         default:  return .byuhRed
         }
     }
+
+    // Platform-appropriate system colors
+    static var secondaryLabel: Color {
+        Color(.gray)
+    }
+
+    static var systemBackground: Color {
+        Color.white
+    }
+
+    static var systemGroupedBackground: Color {
+        #if os(macOS)
+        Color(nsColor: NSColor.windowBackgroundColor)
+        #else
+        Color(.systemGroupedBackground)
+        #endif
+    }
 }
