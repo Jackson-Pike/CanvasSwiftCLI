@@ -31,11 +31,18 @@ public struct APIClient {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        print("[APIClient] GET \(url)")
         do {
             let (data, response) = try await session.data(for: request)
             if let http = response as? HTTPURLResponse {
+                print("[APIClient] \(http.statusCode) \(url)")
                 if http.statusCode == 401 { throw APIError.unauthorized }
-                guard (200..<300).contains(http.statusCode) else { throw APIError.http(http.statusCode) }
+                guard (200..<300).contains(http.statusCode) else {
+                    if let body = String(data: data, encoding: .utf8) {
+                        print("[APIClient] Error body: \(body.prefix(500))")
+                    }
+                    throw APIError.http(http.statusCode)
+                }
                 let nextURL = Self.nextPageURL(from: http)
                 return (data, nextURL)
             }
@@ -93,16 +100,20 @@ public struct APIClient {
     }
 
     public func courses() async throws -> [Course] {
+        #if DEBUG
+        if token == "DEMO" { return [MockData.course] }
+        #endif
         let data = try await getPaginated("/courses", query: [
             URLQueryItem(name: "enrollment_state", value: "active"),
-            URLQueryItem(name: "enrollment_type[]", value: "student"),
-            URLQueryItem(name: "per_page", value: "50"),
-            URLQueryItem(name: "include[]", value: "grading_scheme")
+            URLQueryItem(name: "per_page", value: "50")
         ])
         return try decoder().decode([Course].self, from: data)
     }
 
     public func enrollments(courseId: Int) async throws -> [Enrollment] {
+        #if DEBUG
+        if token == "DEMO" { return [MockData.enrollment] }
+        #endif
         let data = try await getPaginated("/courses/\(courseId)/enrollments", query: [
             URLQueryItem(name: "user_id", value: "self"),
             URLQueryItem(name: "include[]", value: "grades")
@@ -111,6 +122,9 @@ public struct APIClient {
     }
 
     public func assignmentGroups(courseId: Int) async throws -> [AssignmentGroup] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.assignmentGroups }
+        #endif
         let data = try await getPaginated("/courses/\(courseId)/assignment_groups", query: [
             URLQueryItem(name: "include[]", value: "assignments"),
             URLQueryItem(name: "per_page", value: "100")
@@ -119,10 +133,26 @@ public struct APIClient {
     }
 
     public func submissions(courseId: Int) async throws -> [Submission] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.submissions }
+        #endif
         let data = try await getPaginated("/courses/\(courseId)/students/submissions", query: [
             URLQueryItem(name: "student_ids[]", value: "self"),
+            URLQueryItem(name: "include[]", value: "submission_comments"),
             URLQueryItem(name: "per_page", value: "100")
         ])
         return try decoder().decode([Submission].self, from: data)
+    }
+
+    public func courseTeachers(courseId: Int) async throws -> [Int] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.teacherIds }
+        #endif
+        let data = try await getPaginated("/courses/\(courseId)/enrollments", query: [
+            URLQueryItem(name: "type[]", value: "TeacherEnrollment"),
+            URLQueryItem(name: "per_page", value: "50")
+        ])
+        let enrollments = try decoder().decode([TeacherEnrollment].self, from: data)
+        return enrollments.map { $0.userId }
     }
 }
