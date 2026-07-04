@@ -9,7 +9,9 @@ final class GradeCalculatorTests: XCTestCase {
     func testBuildGradedItemsJoinsScores() {
         let groups = [AssignmentGroup(id: 1, name: "HW", groupWeight: 100, rules: nil,
             assignments: [Assignment(id: 100, name: "HW1", pointsPossible: 10, dueAt: nil, assignmentGroupId: 1)])]
-        let subs = [Submission(id: 1, assignmentId: 100, score: 8, workflowState: "graded")]
+        let subs = [Submission(id: 1, userId: 0, assignmentId: 100, score: 8,
+                               workflowState: "graded", gradedAt: nil,
+                               submittedAt: nil, submissionComments: nil)]
         let items = buildGradedItems(groups: groups, submissions: subs)
         XCTAssertEqual(items.count, 1)
         XCTAssertEqual(items[0].earnedPoints, 8)

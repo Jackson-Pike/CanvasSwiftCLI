@@ -49,18 +49,18 @@ final class APIClientPaginationTests: XCTestCase {
 
     // Two pages of submissions — result must contain items from both pages
     func testSubmissionsPaginatesAcrossMultiplePages() async throws {
-        let page1URL = "https://byuh.instructure.com/api/v1/courses/42/students/submissions?student_ids%5B%5D=self&per_page=100"
+        let page1URL = "https://byuh.instructure.com/api/v1/courses/42/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&per_page=100"
         let page2URL = "https://byuh.instructure.com/api/v1/courses/42/students/submissions?page=2&per_page=100"
 
         PaginationStub.pages[page1URL] = (
             """
-            [{"id":1,"assignment_id":10,"score":85.0,"workflow_state":"graded"}]
+            [{"id":1,"user_id":1,"assignment_id":10,"score":85.0,"workflow_state":"graded"}]
             """.data(using: .utf8)!,
             page2URL
         )
         PaginationStub.pages[page2URL] = (
             """
-            [{"id":2,"assignment_id":11,"score":90.0,"workflow_state":"graded"}]
+            [{"id":2,"user_id":1,"assignment_id":11,"score":90.0,"workflow_state":"graded"}]
             """.data(using: .utf8)!,
             nil
         )
@@ -73,10 +73,10 @@ final class APIClientPaginationTests: XCTestCase {
 
     // Single page — must not loop
     func testSinglePageReturnsCorrectly() async throws {
-        let pageURL = "https://byuh.instructure.com/api/v1/courses/7/students/submissions?student_ids%5B%5D=self&per_page=100"
+        let pageURL = "https://byuh.instructure.com/api/v1/courses/7/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&per_page=100"
         PaginationStub.pages[pageURL] = (
             """
-            [{"id":99,"assignment_id":5,"score":70.0,"workflow_state":"graded"}]
+            [{"id":99,"user_id":1,"assignment_id":5,"score":70.0,"workflow_state":"graded"}]
             """.data(using: .utf8)!,
             nil
         )
@@ -89,7 +89,7 @@ final class APIClientPaginationTests: XCTestCase {
     // Three pages of courses
     func testCoursesPaginatesThreePages() async throws {
         let base = "https://byuh.instructure.com/api/v1"
-        let p1 = "\(base)/courses?enrollment_state=active&enrollment_type%5B%5D=student&per_page=50&include%5B%5D=grading_scheme"
+        let p1 = "\(base)/courses?enrollment_state=active&per_page=50"
         let p2 = "\(base)/courses?page=2&per_page=50"
         let p3 = "\(base)/courses?page=3&per_page=50"
 

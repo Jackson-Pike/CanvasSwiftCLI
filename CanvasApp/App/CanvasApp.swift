@@ -30,13 +30,15 @@ struct PopoverContent: View {
                 .environmentObject(appState)
                 .environmentObject(appState.hiddenCoursesStore)
         } else {
-            NavigationStack {
+            NavigationStack(path: $appState.navigationPath) {
                 CourseListView(vm: appState.coursesVM)
-            }
-            .sheet(isPresented: $appState.showingSettings) {
-                SettingsView(isOnboarding: false)
-                    .environmentObject(appState)
-                    .environmentObject(appState.hiddenCoursesStore)
+                    .navigationDestination(for: String.self) { destination in
+                        if destination == "settings" {
+                            SettingsView(isOnboarding: false)
+                                .environmentObject(appState)
+                                .environmentObject(appState.hiddenCoursesStore)
+                        }
+                    }
             }
         }
     }

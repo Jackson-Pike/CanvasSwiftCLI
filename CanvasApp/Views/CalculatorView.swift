@@ -27,7 +27,7 @@ struct CalculatorView: View {
                 }
             }
             .padding()
-            .background(Color(nsColor: .controlBackgroundColor))
+            .background(Color.systemBackground)
 
             Picker("Mode", selection: $selectedTab) {
                 Text("What-If").tag(0)
@@ -43,6 +43,7 @@ struct CalculatorView: View {
                 SolveForMeTabView(vm: vm)
             }
         }
+        .background(Color.systemBackground)
         .navigationTitle("Calculator")
     }
 }
@@ -55,6 +56,8 @@ struct WhatIfTabView: View {
             WhatIfRowView(item: item, vm: vm)
         }
         .listStyle(.plain)
+        .background(Color.systemBackground)
+        .scrollContentBackground(.hidden)
     }
 }
 
@@ -196,6 +199,7 @@ struct SolveForMeTabView: View {
             }
             .padding()
         }
+        .background(Color.systemBackground)
     }
 }
 

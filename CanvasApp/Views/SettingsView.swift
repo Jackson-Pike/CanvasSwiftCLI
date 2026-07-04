@@ -5,13 +5,27 @@ struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var hiddenStore: HiddenCoursesStore
     @State private var tokenInput = ""
-    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Text(isOnboarding ? "Welcome to Canvas" : "Settings")
-                    .font(.headline)
+                ZStack {
+                    Text(isOnboarding ? "Welcome to Canvas" : "Settings")
+                        .font(.headline)
+                    if !isOnboarding {
+                        HStack {
+                            Spacer()
+                            Button {
+                                appState.navigationPath.removeLast()
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(.secondary)
+                                    .imageScale(.large)
+                            }
+                            .buttonStyle(.borderless)
+                        }
+                    }
+                }
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Canvas API Token")
                         .font(.subheadline).foregroundStyle(.secondary)
@@ -23,7 +37,7 @@ struct SettingsView: View {
                 }
                 Button("Save") {
                     appState.saveToken(tokenInput)
-                    if !isOnboarding { dismiss() }
+                    if !isOnboarding { appState.navigationPath.removeLast() }
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.byuhRed)

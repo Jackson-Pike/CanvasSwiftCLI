@@ -101,7 +101,7 @@ public struct APIClient {
 
     public func courses() async throws -> [Course] {
         #if DEBUG
-        if token == "DEMO" { return [MockData.course] }
+        if token == "DEMO" { return MockData.courses }
         #endif
         let data = try await getPaginated("/courses", query: [
             URLQueryItem(name: "enrollment_state", value: "active"),
@@ -112,7 +112,7 @@ public struct APIClient {
 
     public func enrollments(courseId: Int) async throws -> [Enrollment] {
         #if DEBUG
-        if token == "DEMO" { return [MockData.enrollment] }
+        if token == "DEMO" { return MockData.enrollments[courseId].map { [$0] } ?? [] }
         #endif
         let data = try await getPaginated("/courses/\(courseId)/enrollments", query: [
             URLQueryItem(name: "user_id", value: "self"),
@@ -123,7 +123,7 @@ public struct APIClient {
 
     public func assignmentGroups(courseId: Int) async throws -> [AssignmentGroup] {
         #if DEBUG
-        if token == "DEMO" { return MockData.assignmentGroups }
+        if token == "DEMO" { return MockData.assignmentGroups[courseId] ?? [] }
         #endif
         let data = try await getPaginated("/courses/\(courseId)/assignment_groups", query: [
             URLQueryItem(name: "include[]", value: "assignments"),
@@ -134,7 +134,7 @@ public struct APIClient {
 
     public func submissions(courseId: Int) async throws -> [Submission] {
         #if DEBUG
-        if token == "DEMO" { return MockData.submissions }
+        if token == "DEMO" { return MockData.submissions[courseId] ?? [] }
         #endif
         let data = try await getPaginated("/courses/\(courseId)/students/submissions", query: [
             URLQueryItem(name: "student_ids[]", value: "self"),

@@ -51,11 +51,22 @@ public struct Assignment: Codable {
     public let assignmentGroupId: Int
 }
 
+public struct SubmissionComment: Codable {
+    public let authorId: Int
+    public let authorName: String
+    public let comment: String
+    public let createdAt: String?
+}
+
 public struct Submission: Codable {
     public let id: Int
+    public let userId: Int
     public let assignmentId: Int
     public let score: Double?
     public let workflowState: String
+    public let gradedAt: String?
+    public let submittedAt: String?
+    public let submissionComments: [SubmissionComment]?
 }
 
 public extension Course {
@@ -64,6 +75,10 @@ public extension Course {
             .map { $0.map { ($0.name, $0.value * 100) }.sorted { $0.1 > $1.1 } }
             ?? byuhDefaultScale
     }
+}
+
+public struct TeacherEnrollment: Decodable {
+    public let userId: Int
 }
 
 public struct GradedItem {

@@ -1,10 +1,11 @@
 import Foundation
+import SwiftUI
 import CanvasCore
 
 @MainActor
 final class AppState: ObservableObject {
     @Published var token: String? = nil
-    @Published var showingSettings = false
+    @Published var navigationPath = NavigationPath()
     @Published var hasSeenIntro: Bool = UserDefaults.standard.bool(forKey: "hasSeenIntro")
     @Published var hasAcknowledgedKeychain: Bool = UserDefaults.standard.bool(forKey: "hasAcknowledgedKeychain")
 

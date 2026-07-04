@@ -1,0 +1,12 @@
+# Build artifacts
+canvas
+.build
+.DS_Store
+
+# Editor
+.vscode
+
+# JS tooling (headroom-ai) — unrelated to the Swift app
+node_modules/
+package.json
+package-lock.json
