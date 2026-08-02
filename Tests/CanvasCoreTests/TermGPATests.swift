@@ -35,4 +35,16 @@ final class TermGPATests: XCTestCase {
         ]
         XCTAssertEqual(currentTermGPA(s)!, 4.0, accuracy: 0.001) // only course 2 counts
     }
+
+    func testProjectedTermGPAWithOverride() {
+        let s = [
+            CourseGradeSummary(courseId: 1, credits: 3, nowPercent: 74, ceilingPercent: 90, floorPercent: 30, scale: byuhDefaultScale), // now C -> 2.0
+            CourseGradeSummary(courseId: 2, credits: 3, nowPercent: 95, ceilingPercent: 100, floorPercent: 40, scale: byuhDefaultScale), // A -> 4.0
+        ]
+        // current: (2.0+4.0)/2 = 3.0
+        XCTAssertEqual(currentTermGPA(s)!, 3.0, accuracy: 0.001)
+        // override course 1 to 84% (B -> 3.0): (3.0+4.0)/2 = 3.5
+        XCTAssertEqual(projectedTermGPA(s, overrides: [1: 84])!, 3.5, accuracy: 0.001)
+        XCTAssertEqual(gpaLift(s, overrides: [1: 84])!, 0.5, accuracy: 0.001)
+    }
 }

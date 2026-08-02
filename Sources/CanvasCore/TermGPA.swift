@@ -46,3 +46,13 @@ public func termGPA(_ summaries: [CourseGradeSummary], using pick: (CourseGradeS
 public func currentTermGPA(_ s: [CourseGradeSummary]) -> Double? { termGPA(s) { $0.nowPercent } }
 public func ceilingTermGPA(_ s: [CourseGradeSummary]) -> Double? { termGPA(s) { $0.ceilingPercent } }
 public func floorTermGPA(_ s: [CourseGradeSummary]) -> Double? { termGPA(s) { $0.floorPercent } }
+
+public func projectedTermGPA(_ summaries: [CourseGradeSummary], overrides: [Int: Double]) -> Double? {
+    termGPA(summaries) { overrides[$0.courseId] ?? $0.nowPercent }
+}
+
+public func gpaLift(_ summaries: [CourseGradeSummary], overrides: [Int: Double]) -> Double? {
+    guard let base = currentTermGPA(summaries),
+          let proj = projectedTermGPA(summaries, overrides: overrides) else { return nil }
+    return proj - base
+}
