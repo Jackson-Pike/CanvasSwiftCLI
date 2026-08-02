@@ -173,12 +173,22 @@ public actor SyncEngine {
         async let groupsFetch = fetchWithRetry { try await client.assignmentGroups(courseId: courseId) }
         async let subsFetch = fetchWithRetry { try await client.submissions(courseId: courseId) }
 
+        // Real first-sync signal for dueSoon baseline suppression: was there ever a
+        // successful submissions sync for this course before *this* run? (Not "are there
+        // zero cached submissions right now" — a course can legitimately have none.)
+        let submissionsMetaKey = "submissions:\(courseId)"
+        let hadPriorSubmissionsSync = fetchOne(FetchDescriptor<SyncMetadata>(
+            predicate: #Predicate<SyncMetadata> { $0.key == submissionsMetaKey }))?.lastSyncedAt != nil
+
         var firstError: (any Error)?
+        var groupsSucceeded = false
+        var submissionsSucceeded = false
 
         do {
             let groups = try await groupsFetch
             upsertGroups(groups, courseId: courseId, now: now)
             touch(.assignments, scope: "\(courseId)", error: nil, at: now)
+            groupsSucceeded = true
         } catch {
             firstError = error
             touch(.assignments, scope: "\(courseId)", error: String(describing: error), at: now)
@@ -191,10 +201,11 @@ public actor SyncEngine {
             let names = assignmentNames(courseId: courseId)
             insert(ChangeDetector.submissionChanges(courseId: courseId, old: old,
                                                     new: subs, assignmentNames: names), now: now)
-            if !old.isEmpty {   // baseline suppression applies to dueSoon too
+            if hadPriorSubmissionsSync {   // baseline suppression applies to dueSoon too
                 insert(dueSoonPending(courseId: courseId, subs: subs, now: now), now: now)
             }
             touch(.submissions, scope: "\(courseId)", error: nil, at: now)
+            submissionsSucceeded = true
         } catch {
             if firstError == nil { firstError = error }
             touch(.submissions, scope: "\(courseId)", error: String(describing: error), at: now)
@@ -202,8 +213,7 @@ public actor SyncEngine {
 
         try modelContext.save()
         // Partial failure is normal (spec §2.5): throw only if *everything* failed.
-        if let firstError, fetchCount(FetchDescriptor<CachedAssignmentGroup>(
-            predicate: #Predicate { $0.courseId == courseId })) == 0 {
+        if let firstError, !groupsSucceeded, !submissionsSucceeded {
             throw firstError
         }
     }
@@ -329,9 +339,5 @@ public actor SyncEngine {
         return ChangeDetector.dueSoonChanges(courseId: courseId, assignments: assignments,
                                              submittedAssignmentIds: submitted,
                                              alreadyNotified: Set(notified), now: now)
-    }
-
-    private func fetchCount<T: PersistentModel>(_ d: FetchDescriptor<T>) -> Int {
-        (try? modelContext.fetchCount(d)) ?? 0
     }
 }
