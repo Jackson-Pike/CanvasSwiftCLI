@@ -4,6 +4,10 @@ import CanvasCore
 
 @MainActor
 final class AppState: ObservableObject {
+    // Temporary hardcoded host — a later task replaces AppState with AppSession,
+    // which will make the host user-configurable.
+    private static let defaultHost = "byuh.instructure.com"
+
     @Published var token: String? = nil
     @Published var navigationPath = NavigationPath()
     @Published var hasSeenIntro: Bool = UserDefaults.standard.bool(forKey: "hasSeenIntro")
@@ -18,7 +22,7 @@ final class AppState: ObservableObject {
         hiddenCoursesStore = store
         coursesVM = CoursesViewModel(hiddenStore: store)
         if hasAcknowledgedKeychain {
-            token = KeychainHelper.load()
+            token = KeychainHelper.load(host: Self.defaultHost)
         }
     }
 
@@ -30,7 +34,7 @@ final class AppState: ObservableObject {
             trimmed = String(trimmed.dropFirst(7)).trimmingCharacters(in: .whitespaces)
         }
         guard !trimmed.isEmpty else { return }
-        KeychainHelper.save(token: trimmed)
+        KeychainHelper.save(token: trimmed, host: Self.defaultHost)
         token = trimmed
     }
 
@@ -42,12 +46,12 @@ final class AppState: ObservableObject {
     func acknowledgeKeychain() {
         UserDefaults.standard.set(true, forKey: "hasAcknowledgedKeychain")
         hasAcknowledgedKeychain = true
-        token = KeychainHelper.load()
+        token = KeychainHelper.load(host: Self.defaultHost)
     }
 
     func makeClient() -> APIClient? {
         guard let token, !token.isEmpty else { return nil }
-        return APIClient(token: token)
+        return APIClient(credentials: Credentials(host: Self.defaultHost, token: token))
     }
 
     func detailViewModel(for course: Course) -> CourseDetailViewModel {

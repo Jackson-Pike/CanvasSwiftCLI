@@ -12,7 +12,7 @@ final class APIClientMessagingTests: XCTestCase {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [PaginationStub.self]
         session = URLSession(configuration: config)
-        client = APIClient(token: "test-token", session: session)
+        client = APIClient(credentials: Credentials(host: "byuh.instructure.com", token: "test-token"), session: session)
     }
 
     func testCourseTeachersReturnsUserIds() async throws {

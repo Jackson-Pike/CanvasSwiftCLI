@@ -3,23 +3,32 @@ import Security
 
 enum KeychainHelper {
     private static let service = "com.byuh.CanvasApp"
-    private static let account = "canvas_token"
+    private static let legacyAccount = "canvas_token"
+    private static let legacyHost = "byuh.instructure.com"
     private static let label = "Canvas Grades – API Token"
     private static let itemDescription = "Canvas LMS API token for reading grades"
 
     // In DEBUG builds the app is re-signed on every rebuild, which triggers a
     // Keychain access prompt each time. UserDefaults sidesteps that entirely.
-    private static let devDefaultsKey = "dev_canvas_token"
+    private static let legacyDevDefaultsKey = "dev_canvas_token"
 
-    static func save(token: String) {
+    private static func account(for host: String) -> String {
+        "canvas_token.\(host)"
+    }
+
+    private static func devDefaultsKey(for host: String) -> String {
+        "dev_canvas_token.\(host)"
+    }
+
+    static func save(token: String, host: String) {
 #if DEBUG
-        UserDefaults.standard.set(token, forKey: devDefaultsKey)
+        UserDefaults.standard.set(token, forKey: devDefaultsKey(for: host))
 #else
         let data = Data(token.utf8)
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: account
+            kSecAttrAccount: account(for: host)
         ]
         let attributes: [CFString: Any] = [
             kSecValueData: data,
@@ -39,32 +48,65 @@ enum KeychainHelper {
 #endif
     }
 
-    static func load() -> String? {
+    static func load(host: String) -> String? {
 #if DEBUG
-        return UserDefaults.standard.string(forKey: devDefaultsKey)
+        if let token = UserDefaults.standard.string(forKey: devDefaultsKey(for: host)) {
+            return token
+        }
+        if host == legacyHost, let legacyToken = UserDefaults.standard.string(forKey: legacyDevDefaultsKey) {
+            UserDefaults.standard.set(legacyToken, forKey: devDefaultsKey(for: host))
+            UserDefaults.standard.removeObject(forKey: legacyDevDefaultsKey)
+            return legacyToken
+        }
+        return nil
 #else
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: account,
+            kSecAttrAccount: account(for: host),
             kSecReturnData: true,
             kSecMatchLimit: kSecMatchLimitOne
         ]
         var result: AnyObject?
-        guard SecItemCopyMatching(query as CFDictionary, &result) == errSecSuccess,
-              let data = result as? Data else { return nil }
-        return String(data: data, encoding: .utf8)
+        if SecItemCopyMatching(query as CFDictionary, &result) == errSecSuccess,
+           let data = result as? Data,
+           let token = String(data: data, encoding: .utf8) {
+            return token
+        }
+        if host == legacyHost {
+            let legacyQuery: [CFString: Any] = [
+                kSecClass: kSecClassGenericPassword,
+                kSecAttrService: service,
+                kSecAttrAccount: legacyAccount,
+                kSecReturnData: true,
+                kSecMatchLimit: kSecMatchLimitOne
+            ]
+            var legacyResult: AnyObject?
+            if SecItemCopyMatching(legacyQuery as CFDictionary, &legacyResult) == errSecSuccess,
+               let legacyData = legacyResult as? Data,
+               let legacyToken = String(data: legacyData, encoding: .utf8) {
+                save(token: legacyToken, host: host)
+                let deleteQuery: [CFString: Any] = [
+                    kSecClass: kSecClassGenericPassword,
+                    kSecAttrService: service,
+                    kSecAttrAccount: legacyAccount
+                ]
+                SecItemDelete(deleteQuery as CFDictionary)
+                return legacyToken
+            }
+        }
+        return nil
 #endif
     }
 
-    static func delete() {
+    static func delete(host: String) {
 #if DEBUG
-        UserDefaults.standard.removeObject(forKey: devDefaultsKey)
+        UserDefaults.standard.removeObject(forKey: devDefaultsKey(for: host))
 #else
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: account
+            kSecAttrAccount: account(for: host)
         ]
         SecItemDelete(query as CFDictionary)
 #endif

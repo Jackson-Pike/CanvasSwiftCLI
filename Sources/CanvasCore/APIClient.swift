@@ -17,12 +17,14 @@ public enum APIError: Error, CustomStringConvertible {
 }
 
 public struct APIClient {
-    let token: String
-    private let baseURL = "https://byuh.instructure.com/api/v1"
+    public let credentials: Credentials
     private let session: URLSession
 
-    public init(token: String, session: URLSession = .shared) {
-        self.token = token
+    var token: String { credentials.token }
+    private var baseURL: String { "https://\(credentials.host)/api/v1" }
+
+    public init(credentials: Credentials, session: URLSession = .shared) {
+        self.credentials = credentials
         self.session = session
     }
 

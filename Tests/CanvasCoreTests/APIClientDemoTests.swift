@@ -4,7 +4,7 @@ import XCTest
 #if DEBUG
 final class APIClientDemoTests: XCTestCase {
 
-    private let demo = APIClient(token: "DEMO")
+    private let demo = APIClient(credentials: Credentials(host: "byuh.instructure.com", token: "DEMO"))
 
     func testCoursesReturnsMockCourses() async throws {
         let courses = try await demo.courses()
