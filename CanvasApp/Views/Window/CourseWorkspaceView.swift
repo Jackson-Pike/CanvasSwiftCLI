@@ -18,7 +18,6 @@ private struct CourseWorkspaceBody: View {
     @ObservedObject var vm: CourseDetailViewModel
     @Environment(AppSession.self) private var session
     @Environment(Router.self) private var router
-    @State private var showCalculator = false
     @State private var showSettings = false
 
     var body: some View {
@@ -33,8 +32,7 @@ private struct CourseWorkspaceBody: View {
             .padding()
             Divider()
             if router.courseTab == .grades {
-                GradesTabView(vm: vm, showCalculator: $showCalculator,
-                              onFixCredentials: { showSettings = true })
+                GradesTabView(vm: vm, onFixCredentials: { showSettings = true })
             } else {
                 ComingSoonView(title: router.courseTab.rawValue.capitalized, phase: "a later phase")
             }
@@ -42,9 +40,9 @@ private struct CourseWorkspaceBody: View {
         .navigationTitle(vm.courseCode ?? "Course")
         .toolbar {
             ToolbarItem {
-                Toggle(isOn: $showCalculator) { Image(systemName: "function") }
-                    .help("What-If Calculator")
-                    .accessibilityLabel("What-If Calculator")
+                Toggle(isOn: $router.sandboxOpen) { Image(systemName: "function") }
+                    .help("What-If Sandbox")
+                    .accessibilityLabel("What-If Sandbox")
             }
         }
         .sheet(isPresented: $showSettings) {
@@ -57,23 +55,12 @@ private struct CourseWorkspaceBody: View {
 
 struct GradesTabView: View {
     @ObservedObject var vm: CourseDetailViewModel
-    @Binding var showCalculator: Bool
     var onFixCredentials: () -> Void = {}
 
     var body: some View {
         Group {
-            if let calc = vm.calculator {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 0) {
-                        GradeDashboard(breakdown: calc.groupBreakdown().sorted { $0.weight > $1.weight },
-                                       overall: calc.currentGrade(),
-                                       gradingScale: calc.gradingScale)
-                        if !vm.streamItems.isEmpty {
-                            StreamSection(items: vm.streamItems)
-                        }
-                        StalenessLabel(lastSyncedAt: vm.lastSyncedAt).padding()
-                    }
-                }
+            if let inputs = vm.inputs {
+                GradesSandboxSplit(inputs: inputs, streamItems: vm.streamItems, lastSyncedAt: vm.lastSyncedAt)
             } else if vm.isLoading {
                 SkeletonList()                       // cold, no cache (spec §5.8)
             } else if let error = vm.error {
@@ -92,12 +79,218 @@ struct GradesTabView: View {
                 Text("No grade data available.").foregroundStyle(.secondary)
             }
         }
-        .inspector(isPresented: $showCalculator) {
-            if let inputs = vm.inputs {
-                CalculatorView(items: inputs.items, groupInfo: inputs.groups,
-                               gradingScale: inputs.scale, weighted: inputs.weighted)
-                    .inspectorColumnWidth(min: 300, ideal: 340)
+    }
+}
+
+/// Owns the shared `CalculatorViewModel` for the loaded-grades state and docks the
+/// `SandboxRailView` alongside the main grades column (spec §2 "Course workspace + Sandbox").
+/// `CalculatorViewModel` needs non-optional inputs at init, so this is split out of
+/// `GradesTabView` (which still has to handle the optional/loading/error states).
+private struct GradesSandboxSplit: View {
+    @StateObject private var calc: CalculatorViewModel
+    let streamItems: [StreamItem]
+    let lastSyncedAt: Date?
+    @Environment(Router.self) private var router
+
+    init(inputs: CalculatorInputs, streamItems: [StreamItem], lastSyncedAt: Date?) {
+        _calc = StateObject(wrappedValue: CalculatorViewModel(
+            items: inputs.items, groupInfo: inputs.groups, gradingScale: inputs.scale, weighted: inputs.weighted))
+        self.streamItems = streamItems
+        self.lastSyncedAt = lastSyncedAt
+    }
+
+    var body: some View {
+        HStack(spacing: 0) {
+            ScrollView {
+                mainColumn
+            }
+            .frame(maxWidth: .infinity)
+            if router.sandboxOpen {
+                SandboxRailView(vm: calc)
+                    .frame(width: 330)
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
             }
         }
+        .animation(.easeInOut(duration: 0.2), value: router.sandboxOpen)
+    }
+
+    // MARK: - Main column
+
+    private var actualCalculator: GradeCalculator {
+        GradeCalculator(items: calc.baseItems, groups: calc.groupInfo,
+                        weighted: calc.weighted, gradingScale: calc.gradingScale)
+    }
+
+    private var mainColumn: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            headline
+            groupsSection
+            assignmentsSection
+            if !streamItems.isEmpty {
+                StreamSection(items: streamItems)
+            }
+            StalenessLabel(lastSyncedAt: lastSyncedAt)
+        }
+        .padding(.horizontal, 22)
+        .padding(.vertical, 20)
+    }
+
+    private var headline: some View {
+        let actual = actualCalculator.currentGrade()
+        let projected = calc.liveGrade
+        let projectedLetter = projected.map { letterGrade(for: $0, scale: calc.gradingScale) }
+        let activeCount = calc.whatIfEntries.values.filter { $0.isActive }.count
+
+        return HStack(alignment: .firstTextBaseline, spacing: 10) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("ACTUAL").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
+                Text(actual.map { String(format: "%.1f", $0) } ?? "—")
+                    .font(.mono(40, weight: .bold))
+                    .foregroundStyle(Color.inkPrimary)
+            }
+            Text("→")
+                .font(.system(size: 22))
+                .foregroundStyle(Color.inkTertiary)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("PROJECTED").font(.sectionLabel).foregroundStyle(Color.accentHypothetical)
+                HStack(spacing: 8) {
+                    Text(projected.map { String(format: "%.1f", $0) } ?? "—")
+                        .font(.mono(40, weight: .bold))
+                        .foregroundStyle(Color.accentHypothetical)
+                    if let projectedLetter {
+                        LetterBadge(letter: projectedLetter)
+                    }
+                }
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(activeCount == 1 ? "1 hypothetical active" : "\(activeCount) hypotheticals active")
+                    .font(.system(size: 11.5))
+                    .foregroundStyle(Color.inkTertiary)
+                if activeCount > 0 {
+                    Button("Reset sandbox") { calc.whatIfEntries.removeAll() }
+                        .font(.system(size: 11.5, weight: .semibold))
+                        .buttonStyle(.plain)
+                        .foregroundStyle(Color.accentHypothetical)
+                }
+            }
+        }
+        .animation(.easeOut(duration: 0.18), value: projected)
+    }
+
+    private var groupsSection: some View {
+        let actualBreakdown = actualCalculator.groupBreakdown().sorted { $0.weight > $1.weight }
+        let liveByGroup = Dictionary(uniqueKeysWithValues: calc.liveBreakdown.map { ($0.groupId, $0) })
+
+        return VStack(alignment: .leading, spacing: 6) {
+            Text("GROUPS").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+            ForEach(actualBreakdown, id: \.groupId) { result in
+                let livePercent = liveByGroup[result.groupId]?.percent
+                let lifted = (livePercent ?? 0) > (result.percent ?? 0) + 0.05
+                GroupLiftRow(result: result, livePercent: livePercent, lifted: lifted, gradingScale: calc.gradingScale)
+            }
+        }
+    }
+
+    private var assignmentsSection: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("ASSIGNMENTS").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+            ForEach(calc.baseItems, id: \.assignmentId) { item in
+                AssignmentRow(item: item, entry: calc.whatIfEntries[item.assignmentId], gradingScale: calc.gradingScale)
+            }
+        }
+    }
+}
+
+/// One `GROUPS` row: real percent track in `letterGradeColor`, with any what-if lift
+/// appended as an accent segment.
+private struct GroupLiftRow: View {
+    let result: GroupResult
+    let livePercent: Double?
+    let lifted: Bool
+    let gradingScale: [(String, Double)]
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Text(result.name)
+                .font(.system(size: 12.5))
+                .foregroundStyle(Color.inkPrimary)
+                .lineLimit(1)
+                .frame(width: 92, alignment: .leading)
+            Text(String(format: "%.0f%%", result.weight))
+                .font(.mono(11))
+                .foregroundStyle(Color.inkTertiary)
+                .frame(width: 34, alignment: .leading)
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    Capsule().fill(Color.barTrack)
+                    if let base = result.percent {
+                        Capsule()
+                            .fill(Color.letterGradeColor(letterGrade(for: base, scale: gradingScale)))
+                            .frame(width: geo.size.width * CGFloat(min(base, 100) / 100))
+                    }
+                    if let live = livePercent, let base = result.percent, live > base {
+                        Capsule()
+                            .fill(Color.accentHypothetical)
+                            .frame(width: geo.size.width * CGFloat(min(live, 100) / 100))
+                            .mask(alignment: .trailing) {
+                                Rectangle().frame(width: geo.size.width * CGFloat((min(live, 100) - base) / 100))
+                            }
+                    }
+                }
+            }
+            .frame(height: 8)
+            Text((livePercent ?? result.percent).map { String(format: "%.1f%%", $0) } ?? "—")
+                .font(.mono(11.5))
+                .foregroundStyle(lifted ? Color.accentHypothetical : Color.inkPrimary)
+                .frame(width: 52, alignment: .trailing)
+        }
+        .animation(.easeOut(duration: 0.18), value: livePercent)
+    }
+}
+
+/// One `ASSIGNMENTS` row. Hypothetical rows (active `whatIfEntry`) get an accent-tinted
+/// fill + 1pt accent border and an accent `what-if <pts>/<possible>` capsule.
+private struct AssignmentRow: View {
+    let item: GradedItem
+    let entry: CalculatorViewModel.WhatIfEntry?
+    let gradingScale: [(String, Double)]
+
+    private var isHypothetical: Bool { entry?.isActive == true }
+
+    var body: some View {
+        HStack {
+            Text(item.name)
+                .font(.system(size: 12.5))
+                .foregroundStyle(Color.inkPrimary)
+                .lineLimit(1)
+            Spacer()
+            if isHypothetical, let pts = entry?.resolvedPoints(possiblePoints: item.pointsPossible) {
+                Text(String(format: "what-if %.0f/%.0f", pts, item.pointsPossible))
+                    .font(.mono(11, weight: .semibold))
+                    .foregroundStyle(Color.onAccent)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(Color.accentHypothetical, in: Capsule())
+            } else if let earned = item.earnedPoints {
+                Text(String(format: "%.0f/%.0f", earned, item.pointsPossible))
+                    .font(.mono(11.5))
+                    .foregroundStyle(Color.inkSecondary)
+            } else {
+                Text(String(format: "—/%.0f", item.pointsPossible))
+                    .font(.mono(11.5))
+                    .foregroundStyle(Color.inkTertiary)
+            }
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
+        .background(
+            isHypothetical ? Color.accentHypothetical.opacity(0.08) : Color.inkPrimary.opacity(0.03),
+            in: RoundedRectangle(cornerRadius: 8)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(isHypothetical ? Color.accentHypothetical : .clear, lineWidth: 1)
+        )
     }
 }
