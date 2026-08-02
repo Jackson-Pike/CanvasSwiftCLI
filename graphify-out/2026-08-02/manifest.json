@@ -1,0 +1,357 @@
+{
+  "CanvasApp/App/AppState.swift": {
+    "mtime": 1785649181.3005857,
+    "ast_hash": "149c63a86a06079033f0f841b40edf83",
+    "semantic_hash": ""
+  },
+  "CanvasApp/App/CanvasApp.swift": {
+    "mtime": 1785648755.8254523,
+    "ast_hash": "dcddc3843a7ecf20760d97b78009da52",
+    "semantic_hash": ""
+  },
+  "CanvasApp/App/HiddenCoursesStore.swift": {
+    "mtime": 1785648755.825662,
+    "ast_hash": "391d6991353bb7c4b0d5c6607bf03d48",
+    "semantic_hash": ""
+  },
+  "CanvasApp/App/KeychainHelper.swift": {
+    "mtime": 1785649195.7673066,
+    "ast_hash": "68ad356e6077698d68bf62838a8876bf",
+    "semantic_hash": ""
+  },
+  "CanvasApp/ViewModels/CalculatorViewModel.swift": {
+    "mtime": 1785648755.8263698,
+    "ast_hash": "f2b759bb7b82c8360c20625e417ac139",
+    "semantic_hash": ""
+  },
+  "CanvasApp/ViewModels/CourseDetailViewModel.swift": {
+    "mtime": 1785648755.826528,
+    "ast_hash": "30495203df4bcb65bab957d290a70126",
+    "semantic_hash": ""
+  },
+  "CanvasApp/ViewModels/CoursesViewModel.swift": {
+    "mtime": 1785648755.826736,
+    "ast_hash": "ef18b2f4dace37b3d7715af8aba55d55",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/CalculatorView.swift": {
+    "mtime": 1785648936.5520077,
+    "ast_hash": "e18f798ac7f05e8d96ee72c0fc9c56e9",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/CourseDetailView.swift": {
+    "mtime": 1785648932.4068508,
+    "ast_hash": "335400847988aeb01cd0a5af21792c0b",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/CourseListView.swift": {
+    "mtime": 1785648928.488081,
+    "ast_hash": "89d0ce8b4b914dd84808849b620d843a",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/KeychainWarningView.swift": {
+    "mtime": 1785648960.5983913,
+    "ast_hash": "aa0f7000e621071d1c7682f5581e70de",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/SettingsView.swift": {
+    "mtime": 1785648951.2099822,
+    "ast_hash": "627c6a793220f8295a63cbcd37a2d779",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/WelcomeView.swift": {
+    "mtime": 1785648955.3655372,
+    "ast_hash": "c835cc0855ee3bdf0260dbf2f988d084",
+    "semantic_hash": ""
+  },
+  "Package.swift": {
+    "mtime": 1785648894.69043,
+    "ast_hash": "787f2afcf705a6ee4315f3b45fe100bc",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasCore/APIClient.swift": {
+    "mtime": 1785649507.6622794,
+    "ast_hash": "19806da76c88a0b7270ec9c552dc5054",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasCore/GradeCalculator.swift": {
+    "mtime": 1785648755.8294756,
+    "ast_hash": "99b1b866791bf938c36a8e0389130b29",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasCore/MockData.swift": {
+    "mtime": 1785651262.6670215,
+    "ast_hash": "5c3e1e2ed431b85e22c303fe0fbcb078",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasCore/Models.swift": {
+    "mtime": 1785649488.537349,
+    "ast_hash": "0bb4d6de8acd5c0e4cfa102f8db4c91e",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/ChangeKind.swift": {
+    "mtime": 1785648902.7963326,
+    "ast_hash": "b4cfa6c4cfe75e005d41a0a4dbe3adc0",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/BrandColors.swift": {
+    "mtime": 1785648916.3938816,
+    "ast_hash": "fe516f58eb2839a283244342ba771af1",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/APIClientDemoTests.swift": {
+    "mtime": 1785651373.7882867,
+    "ast_hash": "9bbb4fb038bbb229a4ce34c5379f424d",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/APIClientMessagingTests.swift": {
+    "mtime": 1785649209.3579037,
+    "ast_hash": "c52dacf73d69c8c8b6ad81a27d0445d5",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/APIClientPaginationTests.swift": {
+    "mtime": 1785649208.2695906,
+    "ast_hash": "5eea2c7dac8118df8eef5e7b67eac9a6",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/GradeCalculatorTests.swift": {
+    "mtime": 1785648755.8307593,
+    "ast_hash": "fab4f061ab7700e6658cfea9fea3fa99",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/MockDataTests.swift": {
+    "mtime": 1785651274.5946116,
+    "ast_hash": "6b9f31cc1f5eec984a3a45bcca4ace7f",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/ModelsTests.swift": {
+    "mtime": 1785648755.831246,
+    "ast_hash": "5bd8ec6d0c98ef9be8f8e96c2a59ce02",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/SolverTests.swift": {
+    "mtime": 1785648755.83144,
+    "ast_hash": "f1cf1209de27f69412122a579e0beb01",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/SmokeTests.swift": {
+    "mtime": 1785648919.9625883,
+    "ast_hash": "3c0a2c12e457e35c884fdc4de3c980c0",
+    "semantic_hash": ""
+  },
+  "scripts/classes_example.swift": {
+    "mtime": 1785648755.8354423,
+    "ast_hash": "1262165baeccbf0a8895262838a03a4a",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1785648773.6485806,
+    "ast_hash": "82efb97a359f5c7290bf2513d14686be",
+    "semantic_hash": ""
+  },
+  "docs/changelog.md": {
+    "mtime": 1785648755.8315778,
+    "ast_hash": "df2e90c2771038e87eb33b7fe3d5b7af",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-22-phase2-implementation.md": {
+    "mtime": 1785648755.8319018,
+    "ast_hash": "ae0f766ac92d1e21cd4e074079b0e869",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-25-api-caching.md": {
+    "mtime": 1785648755.8321066,
+    "ast_hash": "a395b0f99e7a68027403352ecb287151",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-25-course-filtering.md": {
+    "mtime": 1785648755.8324177,
+    "ast_hash": "038664e5b6b42ef48bcbaa2e496964be",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-25-swiftui-app-implementation.md": {
+    "mtime": 1785648755.832858,
+    "ast_hash": "89402562a930c2fdadd5a54051d28370",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-26-api-pagination.md": {
+    "mtime": 1785648755.833081,
+    "ast_hash": "5afdd387137658ee413a848bed5e61c6",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-26-course-list-redesign.md": {
+    "mtime": 1785648755.8331916,
+    "ast_hash": "13e3550a50335cee1ba541adf52ae751",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-26-instructor-messaging.md": {
+    "mtime": 1785648755.8334079,
+    "ast_hash": "fb2460d9495a86e1fc82c1ecaf654074",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-26-keychain-onboarding.md": {
+    "mtime": 1785648755.8335993,
+    "ast_hash": "82fad6a40ec6b4d93ff95dfd25f9172f",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-06-27-demo-mode.md": {
+    "mtime": 1785648755.833771,
+    "ast_hash": "aee55b6de5c7759948f0c293faaf2a10",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-08-01-desktop-app-phase0.md": {
+    "mtime": 1785648773.6466496,
+    "ast_hash": "83938e7f54f8d5d6615b507e3a1f9b97",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-22-phase2-design.md": {
+    "mtime": 1785648755.8339748,
+    "ast_hash": "8a6bad4215eb732d173bcaa2927612af",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-25-course-filtering-design.md": {
+    "mtime": 1785648755.8341374,
+    "ast_hash": "b8435dd967498931883dad1b79378783",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-25-swiftui-app-design.md": {
+    "mtime": 1785648755.8343112,
+    "ast_hash": "b9ed38b4c78cfd64036cb0ef62058fa1",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-26-course-list-redesign-design.md": {
+    "mtime": 1785648755.8345187,
+    "ast_hash": "fb127951a7c1d01c80262e66e985a200",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-26-instructor-messaging-design.md": {
+    "mtime": 1785648755.8346996,
+    "ast_hash": "c1876da96e7e26e1172f23cac3e0c43f",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-26-keychain-onboarding-design.md": {
+    "mtime": 1785648755.834821,
+    "ast_hash": "ddde4c81c4a864d9c26a93e55a09f8c2",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-26-student-ux-brief.md": {
+    "mtime": 1785648755.8350937,
+    "ast_hash": "a06d6e034ce4e1c279d3e9381bbae44a",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-06-27-demo-mode-design.md": {
+    "mtime": 1785648755.8352137,
+    "ast_hash": "3c75d80e87e5cacb58799cd5a1d0db34",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-07-04-onboarding-demo-design.md": {
+    "mtime": 1785648773.6358874,
+    "ast_hash": "f865f5ea41db85d688815afe93d9ffad",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-01-desktop-app-design.md": {
+    "mtime": 1785648773.6361966,
+    "ast_hash": "dc5c41d5661b82ff6faaa766da64b0c1",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasCore/Credentials.swift": {
+    "mtime": 1785649166.3320746,
+    "ast_hash": "ab07ee31a3bad90327b2f9281de683b7",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/CredentialsTests.swift": {
+    "mtime": 1785649153.3219526,
+    "ast_hash": "d10fe53d7da1788caa2e3bca7e1dcafe",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasCoreTests/ProfileTests.swift": {
+    "mtime": 1785649475.5073066,
+    "ast_hash": "0d6c38a90e7b061873943bb4bb0794f6",
+    "semantic_hash": ""
+  },
+  "test-output.txt": {
+    "mtime": 1785649532.5542846,
+    "ast_hash": "74918389b161c85538e56282136b6a1e",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/CanvasDate.swift": {
+    "mtime": 1785649748.3285704,
+    "ast_hash": "927c698f699d1c2d177e67fe64e0f4c9",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/CanvasStore.swift": {
+    "mtime": 1785649774.748868,
+    "ast_hash": "75dccc7ab7d6da506c5ce31cab9d315e",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/Models/CourseModels.swift": {
+    "mtime": 1785649759.626143,
+    "ast_hash": "336cd266af07bd615d87a4a03aa4ab24",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/Models/SubmissionModels.swift": {
+    "mtime": 1785649764.8736784,
+    "ast_hash": "01cdc90958f215447ef10d6f49c0d281",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/Models/TrackingModels.swift": {
+    "mtime": 1785649780.1380575,
+    "ast_hash": "8ccbd8de059f8453d177f84d716e34e5",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/SchemaTests.swift": {
+    "mtime": 1785649736.4389575,
+    "ast_hash": "53959b1ac27a3bf300ba461106ba5e3f",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/CanvasRepository.swift": {
+    "mtime": 1785650005.1966665,
+    "ast_hash": "3a233c84e299b3b32285ae61c982cd27",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/RepositoryTests.swift": {
+    "mtime": 1785649980.8023746,
+    "ast_hash": "1604833acbe9356ac54fa8e39eda71b1",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/ChangeDetector.swift": {
+    "mtime": 1785650239.6609368,
+    "ast_hash": "a09204e66619608738127481548c46ae",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/ChangeDetectorTests.swift": {
+    "mtime": 1785650223.1627064,
+    "ast_hash": "0103024974ccd7923003acb57a89ee1f",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/LegacyHiddenCourses.swift": {
+    "mtime": 1785650767.752698,
+    "ast_hash": "d81a970102e7c7de1ff312fc0a3aacd6",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasData/SyncEngine.swift": {
+    "mtime": 1785652338.7243052,
+    "ast_hash": "a3600d2e93ecfc8eb902190df939154b",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/SyncEngineAllTests.swift": {
+    "mtime": 1785650843.8657699,
+    "ast_hash": "a54e95909043f46eadeeb1f7b2054a6a",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/SyncEngineCourseTests.swift": {
+    "mtime": 1785651982.7004309,
+    "ast_hash": "d0267356d94017ceaa69d45c6e4ec05b",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/SyncEnginePolicyTests.swift": {
+    "mtime": 1785652290.4349227,
+    "ast_hash": "bd3f7d85d0e6addacb498230714e7ab1",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/SyncStub.swift": {
+    "mtime": 1785652273.4881895,
+    "ast_hash": "10b7e355a3fab8331b173c06788e779c",
+    "semantic_hash": ""
+  }
+}
