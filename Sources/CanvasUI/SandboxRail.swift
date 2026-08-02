@@ -79,8 +79,8 @@ public struct SandboxRailView: View {
                 case .needed(let percent):
                     (Text("Score ")
                         + Text("\(Int(percent.rounded()))%").foregroundStyle(Color.accentHypothetical).bold()
-                        + Text(" or better on the remaining work and you land an ")
-                        + Text(vm.targetLetter).bold()
+                        + Text(" or better on the remaining work and ")
+                        + targetPhrase
                         + Text("."))
                 case .alreadyAchieved:
                     Text("You've already locked this in.")
@@ -91,6 +91,18 @@ public struct SandboxRailView: View {
             .font(.system(size: 14))
             .foregroundStyle(Color.inkPrimary)
             .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    /// Trailing clause of the `.needed` answer sentence, branched on `targetMode` so it
+    /// names the target the user actually picked (letter chip vs. the "90%" chip) — in
+    /// `.percent` mode `targetLetter` is stale (defaults to "A") and must not be used.
+    private var targetPhrase: Text {
+        switch vm.targetMode {
+        case .letter:
+            return Text("you land an ") + Text(vm.targetLetter).bold()
+        case .percent:
+            return Text("you hit ") + Text("\(vm.targetPercentInput)%").bold()
         }
     }
 
