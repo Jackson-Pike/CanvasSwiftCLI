@@ -1,23 +1,6 @@
 import Foundation
 import CanvasCore
-
-struct StreamAssignment {
-    let id: Int
-    let name: String
-    let pointsPossible: Double?
-    let dueAt: Date?
-}
-
-struct StreamItem {
-    enum Kind {
-        case awaitingGrade
-        case upcoming(due: Date)
-        case recentlyGraded(score: Double?, possible: Double?, gradedAt: Date?)
-        case feedback(authorName: String, comment: String, createdAt: Date?)
-    }
-    let assignment: StreamAssignment
-    let kind: Kind
-}
+import CanvasData
 
 @MainActor
 final class CourseDetailViewModel: ObservableObject {
