@@ -17,8 +17,8 @@ public struct PointsBar: View {
         GeometryReader { geometry in
             let width = geometry.size.width
             if ledger.total > 0 {
-                let earnedWidth = width * CGFloat(ledger.earned / ledger.total)
-                let lostWidth = width * CGFloat(ledger.lost / ledger.total)
+                let earnedWidth = width * CGFloat(min(1, ledger.earned / ledger.total))
+                let lostWidth = min(width - earnedWidth, width * CGFloat(ledger.lost / ledger.total))
                 let inPlayWidth = max(0, width - earnedWidth - lostWidth)
 
                 HStack(spacing: 0) {
@@ -139,9 +139,14 @@ public struct LedgerRowView: View {
 
     private var courseCell: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(code)
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundStyle(Color.inkPrimary)
+            HStack(spacing: 6) {
+                Circle()
+                    .fill(dotColor)
+                    .frame(width: 7, height: 7)
+                Text(code)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(Color.inkPrimary)
+            }
             if let missingLabel {
                 Text(missingLabel)
                     .font(.system(size: 10.5))
