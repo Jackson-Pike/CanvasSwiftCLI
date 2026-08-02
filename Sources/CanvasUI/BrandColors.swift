@@ -1,10 +1,10 @@
 import SwiftUI
 
 extension Color {
-    static let byuhRed  = Color(red: 186/255, green: 12/255,  blue: 47/255)
-    static let byuhGold = Color(red: 198/255, green: 146/255, blue: 20/255)
+    public static let byuhRed  = Color(red: 186/255, green: 12/255,  blue: 47/255)
+    public static let byuhGold = Color(red: 198/255, green: 146/255, blue: 20/255)
 
-    static func letterGradeColor(_ letter: String) -> Color {
+    public static func letterGradeColor(_ letter: String) -> Color {
         switch letter.prefix(1) {
         case "A": return Color(red: 52/255, green: 168/255, blue: 83/255)   // green
         case "B": return Color(red: 66/255, green: 133/255, blue: 244/255)  // blue
@@ -14,7 +14,7 @@ extension Color {
     }
 
     // Platform-appropriate system colors
-    static var secondaryLabel: Color {
+    public static var secondaryLabel: Color {
         #if os(macOS)
         Color(nsColor: .secondaryLabelColor)
         #else
@@ -22,7 +22,7 @@ extension Color {
         #endif
     }
 
-    static var systemBackground: Color {
+    public static var systemBackground: Color {
         #if os(macOS)
         Color(nsColor: .controlBackgroundColor)
         #else
@@ -30,7 +30,7 @@ extension Color {
         #endif
     }
 
-    static var systemGroupedBackground: Color {
+    public static var systemGroupedBackground: Color {
         #if os(macOS)
         Color(nsColor: .windowBackgroundColor)
         #else

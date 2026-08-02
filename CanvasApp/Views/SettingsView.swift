@@ -1,4 +1,5 @@
 import SwiftUI
+import CanvasUI
 
 struct SettingsView: View {
     let isOnboarding: Bool

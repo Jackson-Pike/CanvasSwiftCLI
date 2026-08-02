@@ -1,4 +1,5 @@
 import SwiftUI
+import CanvasUI
 
 struct KeychainWarningView: View {
     @EnvironmentObject var appState: AppState

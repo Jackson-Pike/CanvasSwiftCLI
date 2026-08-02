@@ -1,5 +1,6 @@
 import SwiftUI
 import CanvasCore
+import CanvasUI
 
 struct CourseListView: View {
     @EnvironmentObject var appState: AppState

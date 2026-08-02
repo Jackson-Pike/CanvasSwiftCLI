@@ -1,5 +1,6 @@
 import SwiftUI
 import CanvasCore
+import CanvasUI
 
 struct CourseDetailView: View {
     let course: Course

@@ -1,4 +1,5 @@
 import SwiftUI
+import CanvasUI
 
 struct WelcomeView: View {
     @EnvironmentObject var appState: AppState

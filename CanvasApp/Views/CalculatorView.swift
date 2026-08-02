@@ -1,5 +1,6 @@
 import SwiftUI
 import CanvasCore
+import CanvasUI
 
 struct CalculatorView: View {
     @StateObject private var vm: CalculatorViewModel
