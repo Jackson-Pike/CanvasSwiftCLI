@@ -34,8 +34,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "swiftui",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "swiftui"
     },
     {
@@ -279,8 +279,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "canvasapp.swift"
     },
     {
@@ -291,8 +291,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasui",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "canvasui"
     },
     {
@@ -303,7 +303,7 @@
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_canvasgradesapp",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "canvasgradesapp"
     },
     {
@@ -314,7 +314,7 @@
       "_origin": "ast",
       "id": "app",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "app"
     },
     {
@@ -325,7 +325,7 @@
       "_origin": "ast",
       "id": "scene",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "scene"
     },
     {
@@ -336,7 +336,7 @@
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_canvasgradesapp_body",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -346,8 +346,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_popovercontent",
-      "community": 45,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "popovercontent"
     },
     {
@@ -357,7 +357,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "view",
-      "community": 45,
+      "community": 31,
       "community_name": "View",
       "norm_label": "view"
     },
@@ -368,8 +368,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_popovercontent_body",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".body"
     },
     {
@@ -886,8 +886,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursedetailviewmodel_coursedetailviewmodel_calculator",
-      "community": 11,
-      "community_name": "AppSession",
+      "community": 2,
+      "community_name": "GradeCalculator",
       "norm_label": ".calculator"
     },
     {
@@ -1117,8 +1117,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "coursedetailview.swift"
     },
     {
@@ -1129,8 +1129,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "appkit",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "appkit"
     },
     {
@@ -1173,8 +1173,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "courselistview.swift"
     },
     {
@@ -1272,8 +1272,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "keychainwarningview.swift"
     },
     {
@@ -1283,8 +1283,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview_keychainwarningview",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "keychainwarningview"
     },
     {
@@ -1294,8 +1294,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview_keychainwarningview_body",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".body"
     },
     {
@@ -1305,8 +1305,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_settingsview",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "settingsview.swift"
     },
     {
@@ -1317,7 +1317,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_settingsview",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "settingsview"
     },
     {
@@ -1328,7 +1328,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_swift_bool",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "bool"
     },
     {
@@ -1339,7 +1339,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_swift_string",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "string"
     },
     {
@@ -1350,7 +1350,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_teststate",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "teststate"
     },
     {
@@ -1360,7 +1360,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "equatable",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "equatable"
     },
@@ -1372,7 +1372,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_teststate_idle",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "idle"
     },
     {
@@ -1383,7 +1383,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_teststate_testing",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "testing"
     },
     {
@@ -1394,7 +1394,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_teststate_success",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "success"
     },
     {
@@ -1405,7 +1405,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_teststate_failure",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "failure"
     },
     {
@@ -1415,8 +1415,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_settingsview_normalizedhost",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".normalizedhost"
     },
     {
@@ -1427,7 +1427,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_settingsview_cantestconnection",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".cantestconnection"
     },
     {
@@ -1438,7 +1438,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_settingsview_cansave",
       "community": 46,
-      "community_name": "SettingsView",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".cansave"
     },
     {
@@ -1459,8 +1459,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "welcomeview.swift"
     },
     {
@@ -1470,8 +1470,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_welcomeview",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "welcomeview"
     },
     {
@@ -1481,8 +1481,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_welcomeview_body",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".body"
     },
     {
@@ -1492,8 +1492,8 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_disclosurerow",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "disclosurerow"
     },
     {
@@ -1503,8 +1503,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_swift_string",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "string"
     },
     {
@@ -1514,8 +1514,8 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_disclosurerow_body",
-      "community": 45,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".body"
     },
     {
@@ -1525,8 +1525,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "courseworkspaceview.swift"
     },
     {
@@ -1537,7 +1537,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_courseworkspaceview",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "courseworkspaceview"
     },
     {
@@ -1548,7 +1548,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_int",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "int"
     },
     {
@@ -1559,7 +1559,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_courseworkspaceview_body",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -1602,8 +1602,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview",
-      "community": 43,
-      "community_name": "SwiftUI",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "mainwindowview.swift"
     },
     {
@@ -1614,7 +1614,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "mainwindowview"
     },
     {
@@ -1625,7 +1625,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview_body",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -1636,7 +1636,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview_accentcolor",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": ".accentcolor()"
     },
     {
@@ -1647,7 +1647,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_swift_string",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "string"
     },
     {
@@ -1658,7 +1658,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_comingsoonview",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": "comingsoonview"
     },
     {
@@ -1669,7 +1669,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_comingsoonview_body",
       "community": 31,
-      "community_name": ".body",
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -1702,7 +1702,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "apiclient.swift"
     },
@@ -1713,7 +1713,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "apierror"
     },
@@ -1724,8 +1724,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "error",
-      "community": 13,
-      "community_name": "APIError",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "error"
     },
     {
@@ -1735,7 +1735,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "customstringconvertible",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "customstringconvertible"
     },
@@ -1746,7 +1746,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror_missingtoken",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "missingtoken"
     },
@@ -1757,7 +1757,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror_unauthorized",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "unauthorized"
     },
@@ -1768,7 +1768,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror_http",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "http"
     },
@@ -1780,7 +1780,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_int",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "int"
     },
     {
@@ -1790,7 +1790,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror_network",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "network"
     },
@@ -1801,7 +1801,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_string",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "string"
     },
@@ -1812,7 +1812,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror_ratelimited",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "ratelimited"
     },
@@ -1823,7 +1823,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_timeinterval",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "timeinterval"
     },
@@ -1834,7 +1834,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror_forbidden",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "forbidden"
     },
@@ -1845,7 +1845,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apierror_description",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": ".description"
     },
@@ -1856,7 +1856,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": "apiclient"
     },
@@ -1867,7 +1867,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_urlsession",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": "urlsession"
     },
@@ -1878,7 +1878,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_token",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": ".token"
     },
@@ -1889,7 +1889,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_baseurl",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": ".baseurl"
     },
@@ -1900,7 +1900,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_init",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": ".init()"
     },
@@ -1911,7 +1911,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_getpage",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": ".getpage()"
     },
@@ -1922,7 +1922,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_url",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "url"
     },
@@ -1933,7 +1933,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_data",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": "data"
     },
@@ -1944,7 +1944,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_nextpageurl",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": ".nextpageurl()"
     },
@@ -1955,8 +1955,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "httpurlresponse",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": "httpurlresponse"
     },
     {
@@ -1966,7 +1966,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_getpaginated",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": ".getpaginated()"
     },
@@ -1978,7 +1978,7 @@
       "_origin": "ast",
       "id": "urlqueryitem",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "urlqueryitem"
     },
     {
@@ -1989,7 +1989,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_decoder",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".decoder()"
     },
     {
@@ -2000,7 +2000,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_jsondecoder",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "jsondecoder"
     },
     {
@@ -2011,7 +2011,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_courses",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".courses()"
     },
     {
@@ -2022,7 +2022,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_enrollments",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".enrollments()"
     },
     {
@@ -2033,7 +2033,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_assignmentgroups",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".assignmentgroups()"
     },
     {
@@ -2044,7 +2044,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_submissions",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".submissions()"
     },
     {
@@ -2055,7 +2055,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_courseteachers",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".courseteachers()"
     },
     {
@@ -2065,7 +2065,7 @@
       "source_location": "L174",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_profile",
-      "community": 13,
+      "community": 17,
       "community_name": "APIError",
       "norm_label": ".profile()"
     },
@@ -2088,7 +2088,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "credentials"
     },
     {
@@ -2098,8 +2098,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sendable",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "sendable"
     },
     {
@@ -2109,8 +2109,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_credentials_swift_string",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": "string"
     },
     {
@@ -2120,8 +2120,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials_init",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".init()"
     },
     {
@@ -2131,8 +2131,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials_normalizehost",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".normalizehost()"
     },
     {
@@ -2230,8 +2230,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "sources_canvascore_gradecalculator_groupresult",
-      "community": 2,
-      "community_name": "GradeCalculator",
+      "community": 3,
+      "community_name": "GroupResult",
       "norm_label": "groupresult"
     },
     {
@@ -2461,8 +2461,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvascore_mockdata",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 25,
+      "community_name": "MockData",
       "norm_label": "mockdata.swift"
     },
     {
@@ -2758,8 +2758,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "canvasdate.swift"
     },
     {
@@ -2769,8 +2769,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_canvasdate",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "canvasdate"
     },
     {
@@ -2780,8 +2780,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "iso8601dateformatter",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "iso8601dateformatter"
     },
     {
@@ -2792,7 +2792,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_canvasdate_parse",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".parse()"
     },
     {
@@ -2803,7 +2803,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_swift_string",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "string"
     },
     {
@@ -2814,7 +2814,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_swift_date",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "date"
     },
     {
@@ -3133,7 +3133,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasstore_canvasstore_container",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".container()"
     },
     {
@@ -3144,7 +3144,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasstore_swift_bool",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "bool"
     },
     {
@@ -3155,7 +3155,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasstore_swift_modelcontainer",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "modelcontainer"
     },
     {
@@ -3165,7 +3165,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "changedetector.swift"
     },
@@ -3176,7 +3176,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_submissionsnapshot",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "submissionsnapshot"
     },
@@ -3187,7 +3187,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_double",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "double"
     },
@@ -3198,7 +3198,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_string",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "string"
     },
@@ -3209,7 +3209,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_set",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "set"
     },
@@ -3220,7 +3220,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_int",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "int"
     },
@@ -3231,7 +3231,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_submissionsnapshot_init",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".init()"
     },
@@ -3242,7 +3242,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_pendingchange",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "pendingchange"
     },
@@ -3253,7 +3253,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_pendingchange_init",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".init()"
     },
@@ -3264,7 +3264,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "changedetector"
     },
@@ -3275,7 +3275,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector_submissionchanges",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".submissionchanges()"
     },
@@ -3286,7 +3286,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector_gradechange",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".gradechange()"
     },
@@ -3297,7 +3297,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector_duesoonchanges",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".duesoonchanges()"
     },
@@ -3308,7 +3308,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_date",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "date"
     },
@@ -3419,7 +3419,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "derivedreads.swift"
     },
     {
@@ -3430,7 +3430,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_calculatorinputs",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "calculatorinputs"
     },
     {
@@ -3441,7 +3441,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_int",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "int"
     },
     {
@@ -3452,7 +3452,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_bool",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "bool"
     },
     {
@@ -3463,7 +3463,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_string",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "string"
     },
     {
@@ -3474,7 +3474,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_double",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "double"
     },
     {
@@ -3485,7 +3485,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamassignment",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "streamassignment"
     },
     {
@@ -3496,7 +3496,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_date",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "date"
     },
     {
@@ -3507,7 +3507,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamassignment_init",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -3518,7 +3518,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamitem",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "streamitem"
     },
     {
@@ -3529,7 +3529,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "kind"
     },
     {
@@ -3540,7 +3540,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_awaitinggrade",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "awaitinggrade"
     },
     {
@@ -3551,7 +3551,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_upcoming",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "upcoming"
     },
     {
@@ -3562,7 +3562,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_recentlygraded",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "recentlygraded"
     },
     {
@@ -3573,7 +3573,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_feedback",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "feedback"
     },
     {
@@ -3584,7 +3584,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamitem_init",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -3595,7 +3595,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_canvasrepository",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "canvasrepository"
     },
     {
@@ -3606,7 +3606,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_canvasrepository_calculatorinputs",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".calculatorinputs()"
     },
     {
@@ -3617,7 +3617,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_canvasrepository_stream",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".stream()"
     },
     {
@@ -3628,7 +3628,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "legacyhiddencourses.swift"
     },
     {
@@ -3639,7 +3639,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "legacyhiddencourses"
     },
     {
@@ -3650,7 +3650,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses_ids",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".ids()"
     },
     {
@@ -3661,7 +3661,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_swift_set",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "set"
     },
     {
@@ -3672,7 +3672,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_swift_int",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "int"
     },
     {
@@ -3683,7 +3683,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses_clear",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".clear()"
     },
     {
@@ -3693,8 +3693,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_models_coursemodels",
-      "community": 4,
-      "community_name": "CachedCourse",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "coursemodels.swift"
     },
     {
@@ -3891,8 +3891,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_models_submissionmodels",
-      "community": 4,
-      "community_name": "CachedCourse",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "submissionmodels.swift"
     },
     {
@@ -4144,8 +4144,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "syncscope"
     },
     {
@@ -4155,8 +4155,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope_all",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "all"
     },
     {
@@ -4166,8 +4166,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope_course",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "course"
     },
     {
@@ -4178,7 +4178,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_int",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "int"
     },
     {
@@ -4188,8 +4188,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "syncstate"
     },
     {
@@ -4199,8 +4199,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_idle",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "idle"
     },
     {
@@ -4210,8 +4210,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_syncing",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "syncing"
     },
     {
@@ -4221,8 +4221,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_failed",
-      "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": "failed"
     },
     {
@@ -4233,7 +4233,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_string",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "string"
     },
     {
@@ -4244,7 +4244,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_date",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "date"
     },
     {
@@ -4254,8 +4254,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncerror",
-      "community": 13,
-      "community_name": "APIError",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "syncerror"
     },
     {
@@ -4265,8 +4265,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncerror_noclient",
-      "community": 13,
-      "community_name": "APIError",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "noclient"
     },
     {
@@ -4277,7 +4277,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "entitykind"
     },
     {
@@ -4288,7 +4288,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_courses",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "courses"
     },
     {
@@ -4299,7 +4299,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_enrollments",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "enrollments"
     },
     {
@@ -4310,7 +4310,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_assignments",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "assignments"
     },
     {
@@ -4321,7 +4321,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_submissions",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "submissions"
     },
     {
@@ -4332,7 +4332,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "syncengine"
     },
     {
@@ -4343,7 +4343,7 @@
       "_origin": "ast",
       "id": "void",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "void"
     },
     {
@@ -4354,7 +4354,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_configure",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".configure()"
     },
     {
@@ -4364,8 +4364,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_setstatehandler",
-      "community": 11,
-      "community_name": "AppSession",
+      "community": 32,
+      "community_name": "Sendable",
       "norm_label": ".setstatehandler()"
     },
     {
@@ -4376,7 +4376,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_setstate",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".setstate()"
     },
     {
@@ -4387,7 +4387,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_refresh",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".refresh()"
     },
     {
@@ -4398,7 +4398,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_bool",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "bool"
     },
     {
@@ -4409,7 +4409,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_syncall",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".syncall()"
     },
     {
@@ -4420,7 +4420,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertcourses",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".upsertcourses()"
     },
     {
@@ -4431,7 +4431,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_applyenrollment",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".applyenrollment()"
     },
     {
@@ -4442,7 +4442,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_result",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "result"
     },
     {
@@ -4453,7 +4453,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_activecourseids",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".activecourseids()"
     },
     {
@@ -4464,7 +4464,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_fetchone",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".fetchone()"
     },
     {
@@ -4486,7 +4486,7 @@
       "_origin": "ast",
       "id": "t",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": "t"
     },
     {
@@ -4497,7 +4497,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_insert",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".insert()"
     },
     {
@@ -4508,7 +4508,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_touch",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".touch()"
     },
     {
@@ -4519,7 +4519,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_timeinterval",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "timeinterval"
     },
     {
@@ -4530,7 +4530,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_isfresh",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".isfresh()"
     },
     {
@@ -4541,7 +4541,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_fetchwithretry",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".fetchwithretry()"
     },
     {
@@ -4552,7 +4552,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_synccourse",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".synccourse()"
     },
     {
@@ -4563,7 +4563,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertgroups",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".upsertgroups()"
     },
     {
@@ -4574,7 +4574,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertsubmissions",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".upsertsubmissions()"
     },
     {
@@ -4585,7 +4585,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_submissionsnapshots",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".submissionsnapshots()"
     },
     {
@@ -4596,7 +4596,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_assignmentnames",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".assignmentnames()"
     },
     {
@@ -4607,7 +4607,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_duesoonpending",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".duesoonpending()"
     },
     {
@@ -4617,8 +4617,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors",
-      "community": 48,
-      "community_name": "Color",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "brandcolors.swift"
     },
     {
@@ -4628,8 +4628,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color",
-      "community": 48,
-      "community_name": "Color",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "color"
     },
     {
@@ -4639,8 +4639,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_lettergradecolor",
-      "community": 48,
-      "community_name": "Color",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".lettergradecolor()"
     },
     {
@@ -4650,8 +4650,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_swift_string",
-      "community": 48,
-      "community_name": "Color",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "string"
     },
     {
@@ -4661,8 +4661,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_secondarylabel",
-      "community": 48,
-      "community_name": "Color",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".secondarylabel"
     },
     {
@@ -4672,8 +4672,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_systembackground",
-      "community": 48,
-      "community_name": "Color",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".systembackground"
     },
     {
@@ -4683,8 +4683,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_systemgroupedbackground",
-      "community": 48,
-      "community_name": "Color",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".systemgroupedbackground"
     },
     {
@@ -4694,8 +4694,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "calculatorview.swift"
     },
     {
@@ -4705,8 +4705,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_calculatorview",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "calculatorview"
     },
     {
@@ -4716,8 +4716,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_calculatorview_init",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": ".init()"
     },
     {
@@ -4727,8 +4727,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_swift_int",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "int"
     },
     {
@@ -4738,8 +4738,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_swift_string",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "string"
     },
     {
@@ -4749,8 +4749,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_swift_double",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "double"
     },
     {
@@ -4760,8 +4760,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_swift_bool",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "bool"
     },
     {
@@ -4771,8 +4771,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_calculatorview_body",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": ".body"
     },
     {
@@ -4782,8 +4782,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_whatiftabview",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "whatiftabview"
     },
     {
@@ -4793,8 +4793,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_whatiftabview_init",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": ".init()"
     },
     {
@@ -4804,8 +4804,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_whatiftabview_body",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": ".body"
     },
     {
@@ -4870,8 +4870,8 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_solveformetabview",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": "solveformetabview"
     },
     {
@@ -4881,8 +4881,8 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_solveformetabview_init",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": ".init()"
     },
     {
@@ -4892,8 +4892,8 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_solveformetabview_gradeletters",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 13,
+      "community_name": ".init",
       "norm_label": ".gradeletters"
     },
     {
@@ -4969,8 +4969,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_swift_int",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "int"
     },
     {
@@ -4980,8 +4980,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_swift_string",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "string"
     },
     {
@@ -4991,8 +4991,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_swift_double",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "double"
     },
     {
@@ -5002,8 +5002,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_swift_bool",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "bool"
     },
     {
@@ -5090,8 +5090,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_whatifentry",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "whatifentry"
     },
     {
@@ -5101,8 +5101,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_inputmode",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "inputmode"
     },
     {
@@ -5112,8 +5112,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_inputmode_points",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "points"
     },
     {
@@ -5123,8 +5123,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_inputmode_percent",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": "percent"
     },
     {
@@ -5134,8 +5134,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_whatifentry_init",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": ".init()"
     },
     {
@@ -5145,8 +5145,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_whatifentry_resolvedpercent",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": ".resolvedpercent()"
     },
     {
@@ -5156,8 +5156,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_whatifentry_resolvedpoints",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": ".resolvedpoints()"
     },
     {
@@ -5167,8 +5167,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_calculatorviewmodel_init",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": ".init()"
     },
     {
@@ -5178,8 +5178,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_calculatorviewmodel_effectiveitems",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 21,
+      "community_name": ".init",
       "norm_label": ".effectiveitems"
     },
     {
@@ -5266,8 +5266,8 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_calculatorviewmodel_gradeletter",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 2,
+      "community_name": "GradeCalculator",
       "norm_label": ".gradeletter()"
     },
     {
@@ -5277,8 +5277,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "coursecard.swift"
     },
     {
@@ -5288,8 +5288,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "coursecard"
     },
     {
@@ -5299,8 +5299,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_swift_string",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "string"
     },
     {
@@ -5310,8 +5310,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_swift_double",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "double"
     },
     {
@@ -5321,8 +5321,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_init",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".init()"
     },
     {
@@ -5332,8 +5332,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_displayletter",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".displayletter"
     },
     {
@@ -5343,8 +5343,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_gradecolor",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".gradecolor"
     },
     {
@@ -5354,8 +5354,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_body",
-      "community": 47,
-      "community_name": "CourseCard",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": ".body"
     },
     {
@@ -5366,7 +5366,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "gradedashboard.swift"
     },
     {
@@ -5377,7 +5377,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_gradedashboard",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "gradedashboard"
     },
     {
@@ -5388,7 +5388,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_swift_double",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "double"
     },
     {
@@ -5399,7 +5399,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_swift_string",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "string"
     },
     {
@@ -5410,7 +5410,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_gradedashboard_init",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": ".init()"
     },
     {
@@ -5421,7 +5421,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_gradedashboard_body",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": ".body"
     },
     {
@@ -5432,7 +5432,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_groupbreakdownrow",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "groupbreakdownrow"
     },
     {
@@ -5443,7 +5443,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_groupbreakdownrow_init",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": ".init()"
     },
     {
@@ -5454,7 +5454,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_groupbreakdownrow_body",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": ".body"
     },
     {
@@ -5465,7 +5465,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "letterbadge.swift"
     },
     {
@@ -5476,7 +5476,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_letterbadge",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "letterbadge"
     },
     {
@@ -5487,7 +5487,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_swift_string",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": "string"
     },
     {
@@ -5498,7 +5498,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_letterbadge_init",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": ".init()"
     },
     {
@@ -5509,7 +5509,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_letterbadge_body",
       "community": 3,
-      "community_name": "GradeDashboard",
+      "community_name": "GroupResult",
       "norm_label": ".body"
     },
     {
@@ -5630,7 +5630,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "streamsection.swift"
     },
     {
@@ -5641,7 +5641,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "streamsection"
     },
     {
@@ -5652,7 +5652,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_init",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -5663,7 +5663,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_awaitinggrade",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".awaitinggrade"
     },
     {
@@ -5674,7 +5674,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_upcoming",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".upcoming"
     },
     {
@@ -5685,7 +5685,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_recentlygraded",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".recentlygraded"
     },
     {
@@ -5696,7 +5696,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_recentfeedback",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".recentfeedback"
     },
     {
@@ -5707,7 +5707,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_body",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".body"
     },
     {
@@ -5718,7 +5718,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsectionheader",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "streamsectionheader"
     },
     {
@@ -5729,7 +5729,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_swift_string",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "string"
     },
     {
@@ -5740,7 +5740,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsectionheader_body",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".body"
     },
     {
@@ -5751,7 +5751,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "streamrow"
     },
     {
@@ -5762,7 +5762,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow_init",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -5773,7 +5773,7 @@
       "_origin": "ast",
       "id": "dateformatter",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": "dateformatter"
     },
     {
@@ -5784,7 +5784,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow_body",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".body"
     },
     {
@@ -5795,7 +5795,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow_inlinedetail",
       "community": 32,
-      "community_name": "StreamItem",
+      "community_name": "Sendable",
       "norm_label": ".inlinedetail"
     },
     {
@@ -5829,7 +5829,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "apiclientdemotests"
     },
     {
@@ -5839,8 +5839,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "xctestcase",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": "xctestcase"
     },
     {
@@ -5851,7 +5851,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testcoursesreturnsmockcourses",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testcoursesreturnsmockcourses()"
     },
     {
@@ -5862,7 +5862,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testenrollmentsreturnsmockenrollment",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testenrollmentsreturnsmockenrollment()"
     },
     {
@@ -5873,7 +5873,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testassignmentgroupsreturnsmockgroups",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testassignmentgroupsreturnsmockgroups()"
     },
     {
@@ -5884,7 +5884,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testsubmissionsreturnsmocksubmissions",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testsubmissionsreturnsmocksubmissions()"
     },
     {
@@ -5895,7 +5895,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testcourseteachersreturnsmockteacherids",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testcourseteachersreturnsmockteacherids()"
     },
     {
@@ -5917,7 +5917,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "apiclientmessagingtests"
     },
     {
@@ -5928,7 +5928,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_swift_urlsession",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "urlsession"
     },
     {
@@ -5938,7 +5938,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_setup",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": ".setup()"
     },
@@ -5950,7 +5950,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_testcourseteachersreturnsuserids",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testcourseteachersreturnsuserids()"
     },
     {
@@ -5961,7 +5961,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_testcourseteachersemptywhennoteachers",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testcourseteachersemptywhennoteachers()"
     },
     {
@@ -5982,8 +5982,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": "paginationstub"
     },
     {
@@ -6004,8 +6004,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_string",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": "string"
     },
     {
@@ -6015,8 +6015,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_data",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": "data"
     },
     {
@@ -6026,8 +6026,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_caninit",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": ".caninit()"
     },
     {
@@ -6037,8 +6037,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_urlrequest",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": "urlrequest"
     },
     {
@@ -6048,8 +6048,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_bool",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": "bool"
     },
     {
@@ -6059,8 +6059,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_canonicalrequest",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": ".canonicalrequest()"
     },
     {
@@ -6070,8 +6070,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_startloading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": ".startloading()"
     },
     {
@@ -6081,8 +6081,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_stoploading",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": ".stoploading()"
     },
     {
@@ -6093,7 +6093,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "apiclientpaginationtests"
     },
     {
@@ -6104,7 +6104,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_urlsession",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": "urlsession"
     },
     {
@@ -6114,7 +6114,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_setup",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": ".setup()"
     },
@@ -6126,7 +6126,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_testsubmissionspaginatesacrossmultiplepages",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testsubmissionspaginatesacrossmultiplepages()"
     },
     {
@@ -6137,7 +6137,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_testsinglepagereturnscorrectly",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testsinglepagereturnscorrectly()"
     },
     {
@@ -6148,7 +6148,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_testcoursespaginatesthreepages",
       "community": 17,
-      "community_name": "APIClient",
+      "community_name": "APIError",
       "norm_label": ".testcoursespaginatesthreepages()"
     },
     {
@@ -6169,8 +6169,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": "credentialstests"
     },
     {
@@ -6180,8 +6180,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests_testnormalizehost",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".testnormalizehost()"
     },
     {
@@ -6191,8 +6191,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests_testapiclientbuildsurlsfromhost",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".testapiclientbuildsurlsfromhost()"
     },
     {
@@ -6268,8 +6268,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_recordingstub_startloading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": ".startloading()"
     },
     {
@@ -6796,7 +6796,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "tests_canvascoretests_profiletests_profiletests_testdemoprofile",
-      "community": 17,
+      "community": 0,
       "community_name": "APIClient",
       "norm_label": ".testdemoprofile()"
     },
@@ -7049,7 +7049,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "changedetectortests"
     },
@@ -7060,7 +7060,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_makesubmission",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".makesubmission()"
     },
@@ -7071,7 +7071,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_swift_int",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "int"
     },
@@ -7082,7 +7082,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_swift_double",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "double"
     },
@@ -7093,7 +7093,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_swift_string",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": "string"
     },
@@ -7104,7 +7104,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testnewgradefiresonniltoscore",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testnewgradefiresonniltoscore()"
     },
@@ -7115,7 +7115,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testnewgradefiresonscorechange",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testnewgradefiresonscorechange()"
     },
@@ -7126,7 +7126,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testmutedgradedoesnotfirenewgrade",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testmutedgradedoesnotfirenewgrade()"
     },
@@ -7137,7 +7137,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testidenticalresyncproduceszerorecords",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testidenticalresyncproduceszerorecords()"
     },
@@ -7148,7 +7148,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testfirstsyncbaselineproduceszerorecords",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testfirstsyncbaselineproduceszerorecords()"
     },
@@ -7159,7 +7159,7 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testnewinstructorcommentfires",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testnewinstructorcommentfires()"
     },
@@ -7170,7 +7170,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testowncommentdoesnotfire",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testowncommentdoesnotfire()"
     },
@@ -7181,7 +7181,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testexistingcommentdoesnotfire",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testexistingcommentdoesnotfire()"
     },
@@ -7192,7 +7192,7 @@
       "source_location": "L112",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testcommentwithoutidisignored",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testcommentwithoutidisignored()"
     },
@@ -7203,7 +7203,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testgradechangedthreshold",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testgradechangedthreshold()"
     },
@@ -7214,7 +7214,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testduesoonfiresinsidewindow",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testduesoonfiresinsidewindow()"
     },
@@ -7225,9 +7225,42 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testduesoonrespectssubmittedandnotifiedandwindow",
-      "community": 44,
+      "community": 46,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testduesoonrespectssubmittedandnotifiedandwindow()"
+    },
+    {
+      "label": "ConcurrencyStressTests.swift",
+      "file_type": "code",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_canvasdatatests_concurrencystresstests",
+      "community": 33,
+      "community_name": "CanvasCore",
+      "norm_label": "concurrencystresstests.swift"
+    },
+    {
+      "label": "ConcurrencyStressTests",
+      "file_type": "code",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests",
+      "community": 0,
+      "community_name": "APIClient",
+      "norm_label": "concurrencystresstests"
+    },
+    {
+      "label": ".testConcurrentSyncAndReads()",
+      "file_type": "code",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
+      "community": 0,
+      "community_name": "APIClient",
+      "norm_label": ".testconcurrentsyncandreads()"
     },
     {
       "label": "DerivedReadsTests.swift",
@@ -7247,8 +7280,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_derivedreadstests",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": "derivedreadstests"
     },
     {
@@ -7258,8 +7291,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_derivedreadstests_makerepo",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".makerepo()"
     },
     {
@@ -7269,8 +7302,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_swift_canvasrepository",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": "canvasrepository"
     },
     {
@@ -7280,8 +7313,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_derivedreadstests_testcalculatorinputsmatchbuildgradeditems",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".testcalculatorinputsmatchbuildgradeditems()"
     },
     {
@@ -7291,8 +7324,8 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_derivedreadstests_testcalculatorinputsreturnsnilforunknowncourse",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".testcalculatorinputsreturnsnilforunknowncourse()"
     },
     {
@@ -7302,8 +7335,8 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_derivedreadstests_teststreamrulesovercache",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".teststreamrulesovercache()"
     },
     {
@@ -7313,8 +7346,8 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_derivedreadstests_iso",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": ".iso()"
     },
     {
@@ -7324,8 +7357,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_swift_string",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": "string"
     },
     {
@@ -7335,8 +7368,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_swift_date",
-      "community": 27,
-      "community_name": ".makeRepo",
+      "community": 0,
+      "community_name": "APIClient",
       "norm_label": "date"
     },
     {
@@ -7457,7 +7490,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_schematests_schematests_testcanvasdateparsesiso8601",
       "community": 44,
-      "community_name": "SubmissionSnapshot",
+      "community_name": ".syncCourse",
       "norm_label": ".testcanvasdateparsesiso8601()"
     },
     {
@@ -7489,8 +7522,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tests_canvasdatatests_smoketests_smoketests",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "smoketests"
     },
     {
@@ -7500,8 +7533,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvasdatatests_smoketests_smoketests_testchangekindroundtrip",
-      "community": 21,
-      "community_name": "XCTestCase",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": ".testchangekindroundtrip()"
     },
     {
@@ -7523,7 +7556,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "syncenginealltests"
     },
     {
@@ -7534,7 +7567,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_teardown",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".teardown()"
     },
     {
@@ -7545,7 +7578,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testrefreshallpopulatescoursesandenrollments",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testrefreshallpopulatescoursesandenrollments()"
     },
     {
@@ -7556,7 +7589,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testrefreshallisidempotent",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testrefreshallisidempotent()"
     },
     {
@@ -7567,7 +7600,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testlegacyhiddenidsmigrate",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testlegacyhiddenidsmigrate()"
     },
     {
@@ -7578,7 +7611,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testsnapshotandgradechangedonscoremove",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testsnapshotandgradechangedonscoremove()"
     },
     {
@@ -7589,7 +7622,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testcoursemissingfromfullfetchissoftdeleted",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testcoursemissingfromfullfetchissoftdeleted()"
     },
     {
@@ -7611,7 +7644,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "syncenginecoursetests"
     },
     {
@@ -7622,7 +7655,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testcoursesyncpopulatesgroupsassignmentssubmissionscomments",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testcoursesyncpopulatesgroupsassignmentssubmissionscomments()"
     },
     {
@@ -7633,7 +7666,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testcourseresyncisidempotentandbaselinesilent",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testcourseresyncisidempotentandbaselinesilent()"
     },
     {
@@ -7644,7 +7677,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testgradetransitionemitsnewgraderecord",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testgradetransitionemitsnewgraderecord()"
     },
     {
@@ -7655,7 +7688,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testmutedgradeneveremitsnewgrade",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testmutedgradeneveremitsnewgrade()"
     },
     {
@@ -7666,7 +7699,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testassignmentmissingfromfetchissoftdeleted",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testassignmentmissingfromfetchissoftdeleted()"
     },
     {
@@ -7677,7 +7710,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testpartialfailurewithlegitimatelyemptygroupsdoesnotthrow",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testpartialfailurewithlegitimatelyemptygroupsdoesnotthrow()"
     },
     {
@@ -7688,7 +7721,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testbothfetchesfailingthrows",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testbothfetchesfailingthrows()"
     },
     {
@@ -7699,7 +7732,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testduesoonfiresonsecondsyncevenwithzerocachedsubmissions",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testduesoonfiresonsecondsyncevenwithzerocachedsubmissions()"
     },
     {
@@ -7710,7 +7743,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_groupsurl",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".groupsurl()"
     },
     {
@@ -7721,7 +7754,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_swift_int",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "int"
     },
     {
@@ -7732,7 +7765,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_swift_string",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "string"
     },
     {
@@ -7743,7 +7776,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_submissionsurl",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".submissionsurl()"
     },
     {
@@ -7754,7 +7787,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_stubbedclient",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".stubbedclient()"
     },
     {
@@ -7864,7 +7897,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": "syncenginepolicytests"
     },
     {
@@ -7886,7 +7919,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testttlgateskipsfreshdata",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testttlgateskipsfreshdata()"
     },
     {
@@ -7897,7 +7930,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testforcebypassesttl",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testforcebypassesttl()"
     },
     {
@@ -7908,7 +7941,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testpartialfailureisolation",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testpartialfailureisolation()"
     },
     {
@@ -7919,7 +7952,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testratelimitedretriesoncethensucceeds",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".testratelimitedretriesoncethensucceeds()"
     },
     {
@@ -7930,7 +7963,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_stubbedclient",
       "community": 0,
-      "community_name": "SyncEngine",
+      "community_name": "APIClient",
       "norm_label": ".stubbedclient()"
     },
     {
@@ -8050,8 +8083,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncstub_syncstub_startloading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 17,
+      "community_name": "APIError",
       "norm_label": ".startloading()"
     },
     {
@@ -11916,6 +11949,18 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests",
+      "target": "swiftdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "Tests/CanvasDataTests/DerivedReadsTests.swift",
       "source_location": "L2",
       "weight": 1.0,
@@ -12288,6 +12333,18 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests",
+      "target": "canvascore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "Tests/CanvasDataTests/DerivedReadsTests.swift",
       "source_location": "L3",
       "weight": 1.0,
@@ -12437,6 +12494,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_canvasdatatests_changedetectortests",
+      "target": "canvasdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests",
       "target": "canvasdata",
       "confidence_score": 1.0
     },
@@ -15207,7 +15276,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L152",
+      "source_location": "L158",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_settingsview_settingsview_body",
@@ -15231,7 +15300,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L142",
+      "source_location": "L148",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_settingsview_settingsview_body",
@@ -16847,6 +16916,18 @@
       "context": "call",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
+      "target": "sources_canvascore_apiclient_apiclient"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
       "source_file": "Tests/CanvasDataTests/DerivedReadsTests.swift",
       "source_location": "L11",
       "weight": 1.0,
@@ -17760,6 +17841,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_canvascoretests_profiletests_profiletests_testdemoprofile",
+      "target": "sources_canvascore_credentials_credentials"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
       "target": "sources_canvascore_credentials_credentials"
     },
     {
@@ -21756,6 +21849,18 @@
       "source": "sources_canvasdata_canvasstore_canvasstore_container",
       "target": "sources_canvasdata_canvasstore_swift_modelcontainer",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
+      "target": "sources_canvasdata_canvasstore_canvasstore_container"
     },
     {
       "relation": "calls",
@@ -25798,6 +25903,18 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
+      "target": "sources_canvasdata_syncengine_syncengine"
+    },
+    {
       "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
@@ -26012,6 +26129,18 @@
       "_origin": "ast",
       "source": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testttlgateskipsfreshdata",
       "target": "sources_canvasdata_syncengine_syncengine"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
+      "target": "sources_canvasdata_syncengine_syncengine_configure"
     },
     {
       "relation": "calls",
@@ -26276,6 +26405,18 @@
       "source": "sources_canvasdata_syncengine_syncengine_refresh",
       "target": "sources_canvasdata_syncengine_syncengine_synccourse",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
+      "target": "sources_canvasdata_syncengine_syncengine_refresh"
     },
     {
       "relation": "calls",
@@ -28798,6 +28939,18 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests",
+      "target": "xctest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "Tests/CanvasDataTests/DerivedReadsTests.swift",
       "source_location": "L1",
       "weight": 1.0,
@@ -29040,6 +29193,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_canvasdatatests_changedetectortests_changedetectortests",
+      "target": "xctestcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests",
       "target": "xctestcase",
       "confidence_score": 1.0
     },
@@ -30909,6 +31073,28 @@
       "_origin": "ast",
       "source": "tests_canvasdatatests_changedetectortests_changedetectortests_testowncommentdoesnotfire",
       "target": "tests_canvasdatatests_changedetectortests_changedetectortests_makesubmission",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests",
+      "target": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasDataTests/ConcurrencyStressTests.swift",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests",
+      "target": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
       "confidence_score": 1.0
     },
     {
@@ -35088,5 +35274,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "63c8c4a577d40cf13d6cca24fe7a0731819e4141"
+  "built_at_commit": "298a03b63cdf9ee17f3add4b911194e1935627b1"
 }
