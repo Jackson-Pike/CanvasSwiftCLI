@@ -28,6 +28,10 @@ private struct MainWindowBody: View {
     @Environment(AppSession.self) private var session
     @Environment(Router.self) private var router
     @State private var showSettings = false
+    /// Owned here alongside `coursesVM` (per-course credits/target prefs); `DashboardView`
+    /// receives it rather than constructing its own so the same prefs back the sidebar's
+    /// below-target coloring too.
+    @State private var settings = CourseSettingsStore()
 
     var body: some View {
         @Bindable var router = router
@@ -46,8 +50,13 @@ private struct MainWindowBody: View {
                             Circle().fill(accentColor(for: course.courseCode)).frame(width: 8, height: 8)
                             Text(course.courseCode)
                             Spacer()
-                            if let letter = coursesVM.letter(for: course.id) {
-                                LetterBadge(letter: letter)
+                            // §1.5: the ledger shows numbers, so the sidebar does too — this
+                            // replaces the sidebar's `LetterBadge`; `LetterBadge` stays in use
+                            // on the course workspace itself.
+                            if let score = coursesVM.currentScore(for: course.id) {
+                                Text(String(format: "%.1f", score))
+                                    .font(.mono(12))
+                                    .foregroundStyle(isBelowTarget(score, courseId: course.id) ? Color.lostMissing : Color.inkSecondary)
                             }
                         }
                         .tag(SidebarItem.course(course.id))
@@ -55,9 +64,19 @@ private struct MainWindowBody: View {
                 }
             }
             .navigationSplitViewColumnWidth(min: 180, ideal: 220)
+            // §1.5: staleness moves into the sidebar footer on the Dashboard. The toolbar
+            // StalenessLabel is left in place (it covers every other section, and duplicating
+            // it here is additive rather than a risk to existing wiring).
+            .safeAreaInset(edge: .bottom) {
+                if router.sidebar == .dashboard {
+                    StalenessLabel(lastSyncedAt: coursesVM.lastSyncedAt)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                }
+            }
         } detail: {
             switch router.sidebar {
-            case .dashboard: ComingSoonView(title: "Dashboard", phase: "Phase 1")
+            case .dashboard: DashboardView(coursesVM: coursesVM, settings: settings)
             case .inbox:     ComingSoonView(title: "Inbox", phase: "Phase 2")
             case .calendar:  ComingSoonView(title: "Calendar", phase: "Phase 3")
             case .todo:      ComingSoonView(title: "To-Do", phase: "Phase 3")
@@ -108,6 +127,17 @@ private struct MainWindowBody: View {
     private func accentColor(for code: String) -> Color {
         let hues: [Color] = [.blue, .green, .orange, .purple, .pink, .teal, .indigo, .red]
         return hues[abs(code.hashValue) % hues.count]
+    }
+
+    /// Compares a course's current percentage against its `CourseSettingsStore` target letter
+    /// grade (e.g. "B-"), converted to a minimum percent via the standard 10-point scale.
+    /// Courses with no target set are never flagged as below-target.
+    private func isBelowTarget(_ score: Double, courseId: Int) -> Bool {
+        guard let target = settings.targetGrade(for: courseId) else { return false }
+        let bases: [String: Double] = ["A": 90.0, "B": 80.0, "C": 70.0, "D": 60.0]
+        let base = target.first.flatMap { bases[String($0)] } ?? 0
+        let modifier: Double = target.hasSuffix("-") ? -3.33 : (target.hasSuffix("+") ? 3.33 : 0)
+        return score < base + modifier
     }
 }
 
