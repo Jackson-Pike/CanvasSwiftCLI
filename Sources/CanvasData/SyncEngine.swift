@@ -42,21 +42,25 @@ public actor SyncEngine {
 
     private func syncAll(client: APIClient, force: Bool) async throws {
         let now = Date()
-        let fetched = try await fetchWithRetry { try await client.courses() }
-        upsertCourses(fetched, now: now)
-        touch(.courses, scope: "all", error: nil, at: now)
-        try modelContext.save()
-        LegacyHiddenCourses.clear()
+        if force || !isFresh(.courses, scope: "all", now: now) {
+            let fetched = try await fetchWithRetry { try await client.courses() }
+            upsertCourses(fetched, now: now)
+            touch(.courses, scope: "all", error: nil, at: now)
+            try modelContext.save()
+            LegacyHiddenCourses.clear()
+        }
 
-        let ids = activeCourseIds()
+        let ids = activeCourseIds().filter { force || !isFresh(.enrollments, scope: "\($0)", now: now) }
         await withTaskGroup(of: (Int, Result<[Enrollment], any Error>).self) { group in
             var index = 0
             func addNext() {
                 guard index < ids.count else { return }
                 let id = ids[index]; index += 1
                 group.addTask {
-                    do { return (id, .success(try await client.enrollments(courseId: id))) }
-                    catch { return (id, .failure(error)) }
+                    do {
+                        let result = try await self.fetchWithRetry { try await client.enrollments(courseId: id) }
+                        return (id, .success(result))
+                    } catch { return (id, .failure(error)) }
                 }
             }
             for _ in 0..<min(4, ids.count) { addNext() }   // spec §2.5: fan-out cap 4
@@ -161,17 +165,33 @@ public actor SyncEngine {
         row.lastErrorDescription = error
     }
 
-    // Task 9 replaces this passthrough with rate-limit backoff.
-    private func fetchWithRetry<T>(_ operation: () async throws -> T) async throws -> T {
-        try await operation()
+    // spec §2.5 TTL table (seconds)
+    private static let ttl: [EntityKind: TimeInterval] = [
+        .courses: 300, .enrollments: 300, .assignments: 900, .submissions: 300,
+    ]
+
+    private func isFresh(_ kind: EntityKind, scope: String, now: Date) -> Bool {
+        let key = "\(kind.rawValue):\(scope)"
+        guard let last = fetchOne(FetchDescriptor<SyncMetadata>(
+            predicate: #Predicate { $0.key == key }))?.lastSyncedAt else { return false }
+        return now.timeIntervalSince(last) < (Self.ttl[kind] ?? 0)
+    }
+
+    // nonisolated: does not touch actor state, so fan-out tasks in syncAll aren't
+    // serialized through the actor executor while retrying.
+    private nonisolated func fetchWithRetry<T>(_ operation: () async throws -> T) async throws -> T {
+        do {
+            return try await operation()
+        } catch let APIError.rateLimited(retryAfter) {
+            try await Task.sleep(nanoseconds: UInt64(min(retryAfter, 30) * 1_000_000_000))
+            return try await operation()
+        }
     }
 
     // MARK: - .course
 
     private func syncCourse(_ courseId: Int, client: APIClient, force: Bool) async throws {
         let now = Date()
-        async let groupsFetch = fetchWithRetry { try await client.assignmentGroups(courseId: courseId) }
-        async let subsFetch = fetchWithRetry { try await client.submissions(courseId: courseId) }
 
         // Real first-sync signal for dueSoon baseline suppression: was there ever a
         // successful submissions sync for this course before *this* run? (Not "are there
@@ -180,39 +200,57 @@ public actor SyncEngine {
         let hadPriorSubmissionsSync = fetchOne(FetchDescriptor<SyncMetadata>(
             predicate: #Predicate<SyncMetadata> { $0.key == submissionsMetaKey }))?.lastSyncedAt != nil
 
-        var firstError: (any Error)?
-        var groupsSucceeded = false
-        var submissionsSucceeded = false
+        let needAssignments = force || !isFresh(.assignments, scope: "\(courseId)", now: now)
+        let needSubmissions = force || !isFresh(.submissions, scope: "\(courseId)", now: now)
+        guard needAssignments || needSubmissions else { return }
 
-        do {
-            let groups = try await groupsFetch
-            upsertGroups(groups, courseId: courseId, now: now)
-            touch(.assignments, scope: "\(courseId)", error: nil, at: now)
-            groupsSucceeded = true
-        } catch {
-            firstError = error
-            touch(.assignments, scope: "\(courseId)", error: String(describing: error), at: now)
+        async let groupsFetch: [AssignmentGroup] = {
+            guard needAssignments else { return [] }
+            return try await fetchWithRetry { try await client.assignmentGroups(courseId: courseId) }
+        }()
+        async let subsFetch: [Submission] = {
+            guard needSubmissions else { return [] }
+            return try await fetchWithRetry { try await client.submissions(courseId: courseId) }
+        }()
+
+        var firstError: (any Error)?
+        // A TTL-skipped fetch is not a failure — only fetches we actually attempted can fail.
+        var groupsSucceeded = !needAssignments
+        var submissionsSucceeded = !needSubmissions
+
+        if needAssignments {
+            do {
+                let groups = try await groupsFetch
+                upsertGroups(groups, courseId: courseId, now: now)
+                touch(.assignments, scope: "\(courseId)", error: nil, at: now)
+                groupsSucceeded = true
+            } catch {
+                firstError = error
+                touch(.assignments, scope: "\(courseId)", error: String(describing: error), at: now)
+            }
         }
 
-        do {
-            let subs = try await subsFetch
-            let old = submissionSnapshots(courseId: courseId)
-            upsertSubmissions(subs, courseId: courseId)
-            let names = assignmentNames(courseId: courseId)
-            insert(ChangeDetector.submissionChanges(courseId: courseId, old: old,
-                                                    new: subs, assignmentNames: names), now: now)
-            if hadPriorSubmissionsSync {   // baseline suppression applies to dueSoon too
-                insert(dueSoonPending(courseId: courseId, subs: subs, now: now), now: now)
+        if needSubmissions {
+            do {
+                let subs = try await subsFetch
+                let old = submissionSnapshots(courseId: courseId)
+                upsertSubmissions(subs, courseId: courseId)
+                let names = assignmentNames(courseId: courseId)
+                insert(ChangeDetector.submissionChanges(courseId: courseId, old: old,
+                                                        new: subs, assignmentNames: names), now: now)
+                if hadPriorSubmissionsSync {   // baseline suppression applies to dueSoon too
+                    insert(dueSoonPending(courseId: courseId, subs: subs, now: now), now: now)
+                }
+                touch(.submissions, scope: "\(courseId)", error: nil, at: now)
+                submissionsSucceeded = true
+            } catch {
+                if firstError == nil { firstError = error }
+                touch(.submissions, scope: "\(courseId)", error: String(describing: error), at: now)
             }
-            touch(.submissions, scope: "\(courseId)", error: nil, at: now)
-            submissionsSucceeded = true
-        } catch {
-            if firstError == nil { firstError = error }
-            touch(.submissions, scope: "\(courseId)", error: String(describing: error), at: now)
         }
 
         try modelContext.save()
-        // Partial failure is normal (spec §2.5): throw only if *everything* failed.
+        // Partial failure is normal (spec §2.5): throw only if *everything* attempted failed.
         if let firstError, !groupsSucceeded, !submissionsSucceeded {
             throw firstError
         }
