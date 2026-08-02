@@ -138,7 +138,12 @@ public struct InPlayHatch: View {
 
             context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(backgroundTint))
 
-            let stripeSpacing: CGFloat = 10 // 5pt on, 5pt off
+            // Perpendicular period (measured across the stripe direction) should be
+            // 10pt (5pt stroke + 5pt gap). Because lines are offset purely along the
+            // x-axis at a 45° angle, the x-axis increment must be the perpendicular
+            // period divided by sin(45°) to yield the correct perpendicular spacing.
+            let perpendicularPeriod: CGFloat = 10 // 5pt on, 5pt off
+            let stripeSpacing: CGFloat = perpendicularPeriod * 1.41421356237 // / sin(45°)
             let lineWidth: CGFloat = 5
             let diagonal = size.width + size.height
 
