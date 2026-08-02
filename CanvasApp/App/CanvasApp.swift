@@ -16,6 +16,13 @@ struct CanvasGradesApp: App {
                 .frame(width: 380, height: 520)
         }
         .menuBarExtraStyle(.window)
+
+        Window("Canvas", id: "main") {
+            MainWindowView()
+                .environment(session)
+                .environment(router)
+        }
+        .defaultSize(width: 1000, height: 700)
     }
 }
 
