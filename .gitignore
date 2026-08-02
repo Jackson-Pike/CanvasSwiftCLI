@@ -10,3 +10,6 @@ canvas
 node_modules/
 package.json
 package-lock.json
+
+# Captured test logs
+test-output.txt

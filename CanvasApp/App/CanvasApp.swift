@@ -28,8 +28,9 @@ struct CanvasGradesApp: App {
 
 struct PopoverContent: View {
     @Environment(AppSession.self) private var session
-    @StateObject private var coursesVM = CoursesViewModel()
     @State private var path = NavigationPath()
+
+    private var coursesVM: CoursesViewModel { session.coursesVM }
 
     var body: some View {
         if !session.hasSeenIntro {

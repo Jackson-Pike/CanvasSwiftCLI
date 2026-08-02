@@ -4,14 +4,26 @@ import CanvasCore
 import CanvasData
 import CanvasUI
 
+/// Thin resolver: pulls the cached view model out of the session and hands it to a child
+/// that actually *observes* it. Reading `vm` directly in this body would subscribe to
+/// nothing — `CourseDetailViewModel` is an `ObservableObject`, so it needs `@ObservedObject`.
 struct CourseDetailView: View {
     let courseId: Int
+    @Environment(AppSession.self) private var session
+
+    var body: some View {
+        CourseDetailBody(courseId: courseId, vm: session.detailViewModel(courseId: courseId))
+    }
+}
+
+private struct CourseDetailBody: View {
+    let courseId: Int
+    @ObservedObject var vm: CourseDetailViewModel
     @Environment(AppSession.self) private var session
     @Environment(Router.self) private var router
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
-        let vm = session.detailViewModel(courseId: courseId)
         Group {
             if vm.isLoading {
                 Color.systemBackground.overlay(SkeletonList())
@@ -76,6 +88,8 @@ struct CourseDetailView: View {
                 .keyboardShortcut(.return, modifiers: .command)
             }
         }
-        .task(id: courseId) { await vm.load(session: session) }
+        // Keyed on VM identity, not courseId: `saveCredentials` empties the VM cache, and a
+        // courseId-keyed task would not re-fire for the fresh (empty) view model.
+        .task(id: ObjectIdentifier(vm)) { await vm.load(session: session) }
     }
 }

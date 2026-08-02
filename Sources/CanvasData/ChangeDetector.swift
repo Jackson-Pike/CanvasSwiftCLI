@@ -29,12 +29,17 @@ public struct PendingChange: Equatable, Sendable {
 
 public enum ChangeDetector {
     /// .newGrade and .newFeedback. `old` is keyed by assignmentId.
-    /// Returns [] when `old` is empty (first sync for this course = baseline, no flood).
+    ///
+    /// Returns [] when `isBaseline` (first successful submissions sync for this course =
+    /// no flood). This must be driven by whether a prior sync *succeeded*, not by
+    /// `old.isEmpty`: a course that legitimately returned zero submissions on earlier
+    /// syncs (start of term) would otherwise swallow the entire first real batch of grades.
     public static func submissionChanges(courseId: Int,
                                          old: [Int: SubmissionSnapshot],
                                          new: [Submission],
-                                         assignmentNames: [Int: String]) -> [PendingChange] {
-        guard !old.isEmpty else { return [] }   // baseline sync
+                                         assignmentNames: [Int: String],
+                                         isBaseline: Bool) -> [PendingChange] {
+        guard !isBaseline else { return [] }
         var changes: [PendingChange] = []
         for sub in new {
             let prior = old[sub.assignmentId]

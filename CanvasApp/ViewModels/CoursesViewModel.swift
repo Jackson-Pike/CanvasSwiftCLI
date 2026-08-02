@@ -19,8 +19,7 @@ final class CoursesViewModel: ObservableObject {
         guard session.hasCredentials else { return }
         isLoading = courses.isEmpty                   // skeleton only when cold
         error = nil
-        await session.refresh(.all, force: force)
-        if case .failed(let message, _) = session.syncState { error = message }
+        error = await session.refresh(.all, force: force)
         readFromStore(session)                        // re-read after sync
         isLoading = false
     }

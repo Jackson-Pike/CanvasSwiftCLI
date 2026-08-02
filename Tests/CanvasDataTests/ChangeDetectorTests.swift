@@ -39,7 +39,7 @@ final class ChangeDetectorTests: XCTestCase {
     func testNewGradeFiresOnNilToScore() {
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: nil, workflowState: "graded", commentIds: [])]
         let sub = makeSubmission(assignmentId: 100, score: 92, workflowState: "graded")
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertEqual(changes.count, 1)
         XCTAssertEqual(changes.first?.kind, .newGrade)
         XCTAssertEqual(changes.first?.courseId, 1)
@@ -51,7 +51,7 @@ final class ChangeDetectorTests: XCTestCase {
     func testNewGradeFiresOnScoreChange() {
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: 80, workflowState: "graded", commentIds: [])]
         let sub = makeSubmission(assignmentId: 100, score: 85, workflowState: "graded")
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertEqual(changes.count, 1)
         XCTAssertEqual(changes.first?.kind, .newGrade)
         XCTAssertEqual(changes.first?.detail, "85.0")
@@ -63,22 +63,35 @@ final class ChangeDetectorTests: XCTestCase {
         // workflow_state "graded" but score nil (muted) must never fire, even against a baseline with a different score.
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: 70, workflowState: "graded", commentIds: [])]
         let sub = makeSubmission(assignmentId: 100, score: nil, workflowState: "graded")
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertTrue(changes.isEmpty)
     }
 
     func testIdenticalResyncProducesZeroRecords() {
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: 85, workflowState: "graded", commentIds: [])]
         let sub = makeSubmission(assignmentId: 100, score: 85, workflowState: "graded")
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertTrue(changes.isEmpty)
     }
 
     func testFirstSyncBaselineProducesZeroRecords() {
         let sub = makeSubmission(assignmentId: 100, score: 95, workflowState: "graded",
                                   comments: [(id: 1, authorId: 99, authorName: "Prof", comment: "Nice work")])
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: [:], new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: [:], new: [sub],
+                                                       assignmentNames: [100: "HW1"], isBaseline: true)
         XCTAssertTrue(changes.isEmpty)
+    }
+
+    /// Baseline suppression must key off "a prior sync succeeded", not "old is empty".
+    /// A course that returned zero submissions on earlier syncs (start of term) must still
+    /// fire on the first real batch of grades — the old `old.isEmpty` guard swallowed it.
+    func testEmptyPriorSyncStillFiresOnFirstRealGrade() {
+        let sub = makeSubmission(assignmentId: 100, score: 95, workflowState: "graded",
+                                  comments: [(id: 1, authorId: 99, authorName: "Prof", comment: "Nice work")])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: [:], new: [sub],
+                                                       assignmentNames: [100: "HW1"], isBaseline: false)
+        XCTAssertEqual(changes.filter { $0.kind == .newGrade }.count, 1)
+        XCTAssertEqual(changes.filter { $0.kind == .newFeedback }.count, 1)
     }
 
     // MARK: - .newFeedback
@@ -87,7 +100,7 @@ final class ChangeDetectorTests: XCTestCase {
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: 85, workflowState: "graded", commentIds: [])]
         let sub = makeSubmission(assignmentId: 100, score: 85, workflowState: "graded",
                                   comments: [(id: 1, authorId: 99, authorName: "Prof Smith", comment: "Good job")])
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertEqual(changes.count, 1)
         XCTAssertEqual(changes.first?.kind, .newFeedback)
         XCTAssertEqual(changes.first?.detail, "Prof Smith: Good job")
@@ -97,7 +110,7 @@ final class ChangeDetectorTests: XCTestCase {
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: 85, workflowState: "graded", commentIds: [])]
         let sub = makeSubmission(assignmentId: 100, userId: 7, score: 85, workflowState: "graded",
                                   comments: [(id: 1, authorId: 7, authorName: "Me", comment: "self note")])
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertTrue(changes.isEmpty)
     }
 
@@ -105,7 +118,7 @@ final class ChangeDetectorTests: XCTestCase {
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: 85, workflowState: "graded", commentIds: [1])]
         let sub = makeSubmission(assignmentId: 100, score: 85, workflowState: "graded",
                                   comments: [(id: 1, authorId: 99, authorName: "Prof", comment: "Good job")])
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertTrue(changes.isEmpty)
     }
 
@@ -113,7 +126,7 @@ final class ChangeDetectorTests: XCTestCase {
         let old: [Int: SubmissionSnapshot] = [100: SubmissionSnapshot(score: 85, workflowState: "graded", commentIds: [])]
         let sub = makeSubmission(assignmentId: 100, score: 85, workflowState: "graded",
                                   comments: [(id: nil, authorId: 99, authorName: "Prof", comment: "Good job")])
-        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"])
+        let changes = ChangeDetector.submissionChanges(courseId: 1, old: old, new: [sub], assignmentNames: [100: "HW1"], isBaseline: false)
         XCTAssertTrue(changes.isEmpty)
     }
 

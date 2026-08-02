@@ -5,8 +5,29 @@ import CanvasUI
 
 struct MainWindowView: View {
     @Environment(AppSession.self) private var session
+
+    var body: some View {
+        // The window is a restorable, Window-menu-reachable scene, so it must gate on setup
+        // exactly like the popover — otherwise a fresh user lands in an empty split view
+        // with no way to enter a token.
+        if !session.hasSeenIntro {
+            WelcomeView().frame(minWidth: 480, minHeight: 400)
+        } else if !session.hasAcknowledgedKeychain {
+            KeychainWarningView().frame(minWidth: 480, minHeight: 400)
+        } else if !session.hasCredentials {
+            SettingsView(isOnboarding: true, vm: session.coursesVM)
+                .frame(minWidth: 480, minHeight: 400)
+        } else {
+            MainWindowBody(coursesVM: session.coursesVM)
+        }
+    }
+}
+
+private struct MainWindowBody: View {
+    @ObservedObject var coursesVM: CoursesViewModel
+    @Environment(AppSession.self) private var session
     @Environment(Router.self) private var router
-    @StateObject private var coursesVM = CoursesViewModel()
+    @State private var showSettings = false
 
     var body: some View {
         @Bindable var router = router
@@ -56,9 +77,28 @@ struct MainWindowView: View {
                     else { Image(systemName: "arrow.clockwise") }
                 }
                 .help("Refresh")
+                .accessibilityLabel("Refresh")
+                .disabled(coursesVM.isLoading)
+            }
+            ToolbarItem {
+                Button { showSettings = true } label: { Image(systemName: "gearshape") }
+                    .help("Settings")
+                    .accessibilityLabel("Settings")
             }
         }
-        .task { await coursesVM.load(session: session) }
+        .sheet(isPresented: $showSettings) {
+            SettingsView(isOnboarding: false, vm: coursesVM)
+                .frame(minWidth: 460, minHeight: 420)
+        }
+        .task {
+            await coursesVM.load(session: session)
+            // A persisted selection can outlive the course (hidden, dropped, or a different
+            // host): fall back to the dashboard rather than rendering an orphan workspace.
+            if case .course(let id) = router.sidebar,
+               !coursesVM.courses.contains(where: { $0.id == id }) {
+                router.sidebar = .dashboard
+            }
+        }
     }
 
     /// Phase 0 accent: stable hash of the course code (spec §5.1 fallback;

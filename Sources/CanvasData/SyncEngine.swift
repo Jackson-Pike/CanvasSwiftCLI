@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 import CanvasCore
 
-public enum SyncScope: Equatable, Sendable { case all; case course(Int) }
+public enum SyncScope: Hashable, Sendable { case all; case course(Int) }
 public enum SyncState: Equatable, Sendable { case idle; case syncing(SyncScope); case failed(String, Date) }
 public enum SyncError: Error { case noClient }
 public enum EntityKind: String, Sendable { case courses, enrollments, assignments, submissions }
@@ -11,6 +11,7 @@ public enum EntityKind: String, Sendable { case courses, enrollments, assignment
 public actor SyncEngine {
     private var client: APIClient?
     private var stateHandler: (@Sendable (SyncState) -> Void)?
+    private var inFlight: [SyncScope: (force: Bool, task: Task<Void, any Error>)] = [:]
     public private(set) var state: SyncState = .idle
 
     public func configure(client: APIClient?) { self.client = client }
@@ -23,7 +24,23 @@ public actor SyncEngine {
         stateHandler?(s)
     }
 
+    /// Coalesces concurrent refreshes of the same scope. `refresh` suspends at every fetch,
+    /// so without this two scenes navigating at once issue duplicate network work and the
+    /// last one to finish overwrites `state` — misattributing one scope's failure to the other.
+    /// A `force` request never joins a non-forced one in flight; it waits and then runs.
     public func refresh(_ scope: SyncScope, force: Bool = false) async throws {
+        guard client != nil else { throw SyncError.noClient }
+        while let existing = inFlight[scope] {
+            if existing.force || !force { return try await existing.task.value }
+            _ = try? await existing.task.value   // in-flight is weaker than ours: let it settle
+        }
+        let task = Task<Void, any Error> { [self] in try await perform(scope, force: force) }
+        inFlight[scope] = (force: force, task: task)
+        defer { inFlight[scope] = nil }
+        try await task.value
+    }
+
+    private func perform(_ scope: SyncScope, force: Bool) async throws {
         guard let client else { throw SyncError.noClient }
         setState(.syncing(scope))
         do {
@@ -183,7 +200,9 @@ public actor SyncEngine {
         do {
             return try await operation()
         } catch let APIError.rateLimited(retryAfter) {
-            try await Task.sleep(nanoseconds: UInt64(min(retryAfter, 30) * 1_000_000_000))
+            // `retryAfter` is server-controlled: clamp the low end too, since UInt64(negative) traps.
+            let delay = max(0, min(retryAfter, 30))
+            try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
             return try await operation()
         }
     }
@@ -237,7 +256,8 @@ public actor SyncEngine {
                 upsertSubmissions(subs, courseId: courseId)
                 let names = assignmentNames(courseId: courseId)
                 insert(ChangeDetector.submissionChanges(courseId: courseId, old: old,
-                                                        new: subs, assignmentNames: names), now: now)
+                                                        new: subs, assignmentNames: names,
+                                                        isBaseline: !hadPriorSubmissionsSync), now: now)
                 if hadPriorSubmissionsSync {   // baseline suppression applies to dueSoon too
                     insert(dueSoonPending(courseId: courseId, subs: subs, now: now), now: now)
                 }

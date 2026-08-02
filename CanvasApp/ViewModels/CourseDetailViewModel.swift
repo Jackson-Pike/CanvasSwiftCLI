@@ -10,7 +10,7 @@ final class CourseDetailViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
     @Published var lastSyncedAt: Date?
-    var courseCode: String?
+    @Published var courseCode: String?
 
     var calculator: GradeCalculator? {
         inputs.map { GradeCalculator(items: $0.items, groups: $0.groups,
@@ -26,8 +26,7 @@ final class CourseDetailViewModel: ObservableObject {
         guard session.hasCredentials else { return }
         isLoading = (inputs == nil)                    // skeleton only when cold
         error = nil
-        await session.refresh(.course(courseId), force: force)
-        if case .failed(let message, _) = session.syncState { error = message }
+        error = await session.refresh(.course(courseId), force: force)
         readFromStore(session)                        // re-read after sync
         isLoading = false
     }

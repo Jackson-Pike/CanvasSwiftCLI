@@ -14,7 +14,14 @@ final class AppSession {
 
     let repository: CanvasRepository
     let syncEngine: SyncEngine
-    private var detailVMs: [Int: CourseDetailViewModel] = [:]
+
+    /// Single course list shared by both scenes. Two independent `@StateObject`s desynced on
+    /// every hide/restore/credential change — the popover updated and the window did not.
+    let coursesVM = CoursesViewModel()
+
+    /// `@ObservationIgnored`: this cache is looked up *during* view body evaluation, so an
+    /// observed property would both register a dependency and mutate it in the same pass.
+    @ObservationIgnored private var detailVMs: [Int: CourseDetailViewModel] = [:]
 
     var isDemo: Bool { credentials?.token == "DEMO" }
     var hasCredentials: Bool { credentials != nil }
@@ -63,6 +70,8 @@ final class AppSession {
             token = String(token.dropFirst(7)).trimmingCharacters(in: .whitespaces)
         }
         guard !token.isEmpty else { return }
+        // Moving to a different host must not strand the old host's token in the Keychain.
+        if newHost != host { KeychainHelper.delete(host: host) }
         KeychainHelper.save(token: token, host: newHost)
         UserDefaults.standard.set(newHost, forKey: "canvasHost")
         host = newHost
@@ -70,7 +79,7 @@ final class AppSession {
         detailVMs = [:]
         Task {
             await wireEngine()
-            await refresh(.all, force: true)
+            await coursesVM.load(session: self, force: true)
         }
     }
 
@@ -85,9 +94,13 @@ final class AppSession {
         catch { return .failure(error) }
     }
 
-    func refresh(_ scope: SyncScope, force: Bool = false) async {
-        do { try await syncEngine.refresh(scope, force: force) }
-        catch { /* state handler already carries .failed; VMs surface per-section errors */ }
+    /// Returns the failure message for *this* scope, or nil on success. Callers must use the
+    /// return value rather than sampling `syncState`: that slot is global, so a concurrent
+    /// refresh of another scope can overwrite it before the caller reads it.
+    @discardableResult
+    func refresh(_ scope: SyncScope, force: Bool = false) async -> String? {
+        do { try await syncEngine.refresh(scope, force: force); return nil }
+        catch { return String(describing: error) }
     }
 
     func detailViewModel(courseId: Int) -> CourseDetailViewModel {

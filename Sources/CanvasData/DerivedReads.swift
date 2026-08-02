@@ -71,7 +71,11 @@ extension CanvasRepository {
             StreamAssignment(id: a.id, name: a.name, pointsPossible: a.pointsPossible, dueAt: a.dueAt)
         }
         let assignmentById = Dictionary(uniqueKeysWithValues: allAssignments.map { ($0.id, $0) })
-        let subById = Dictionary(uniqueKeysWithValues: cachedSubmissions.map { ($0.assignmentId, $0) })
+        // assignmentId is not unique across submission rows (nothing in the write path
+        // enforces one row per assignment), so a duplicate must not trap. Matches the
+        // uniquing already used in `calculatorInputs`.
+        let subById = Dictionary(cachedSubmissions.map { ($0.assignmentId, $0) },
+                                 uniquingKeysWith: { first, _ in first })
 
         var commentsByAssignment: [Int: [CachedComment]] = [:]
         for a in cachedAssignments {
