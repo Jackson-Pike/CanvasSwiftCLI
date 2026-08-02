@@ -1,16 +1,16 @@
 # Graph Report - desktop-app-phase0  (2026-08-02)
 
 ## Corpus Check
-- 70 files · ~65,571 words
+- 74 files · ~67,475 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 924 nodes · 1850 edges · 44 communities (42 shown, 2 thin omitted)
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 253 edges (avg confidence: 0.8)
+- 995 nodes · 1988 edges · 44 communities (41 shown, 3 thin omitted)
+- Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 244 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `06132c41`
+- Built from commit: `0c0a8526`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,7 +26,7 @@
 - CanvasCLISwift — Phase 2 Design
 - Demo Mode Design
 - C2
-- .load
+- AppSession
 - CanvasCLISwift Phase 2 Implementation Plan
 - HiddenCoursesStore
 - Course Filtering Design
@@ -39,15 +39,15 @@
 - AppState
 - File Map
 - CoursesViewModel
-- CanvasApp
+- CourseTab
 - MockData
 - File Map
-- DisclosureRow
+- Color
 - 2026-06-26
 - File Map
 - Student UX Brief — CanvasCLISwift
-- CourseDetailViewModel
-- SwiftUI
+- View
+- Sendable
 - CanvasCore
 - Global Constraints
 - Global Constraints
@@ -56,58 +56,58 @@
 - CLAUDE.md
 - Package.swift
 - SyncStub
+- ModelsTests
 - .syncCourse
-- CourseDetailView.swift
 - CourseCardView
 
 ## God Nodes (most connected - your core abstractions)
-1. `APIClient` - 49 edges
-2. `SyncEngine` - 43 edges
-3. `CanvasRepository` - 42 edges
+1. `APIClient` - 52 edges
+2. `SyncEngine` - 46 edges
+3. `Credentials` - 35 edges
 4. `CalculatorViewModel` - 34 edges
-5. `Credentials` - 29 edges
+5. `CanvasCore` - 27 edges
 6. `GradeCalculator` - 27 edges
-7. `CanvasCore` - 24 edges
-8. `AppState` - 24 edges
-9. `MockData` - 23 edges
-10. `GradedItem` - 21 edges
+7. `AppState` - 24 edges
+8. `MockData` - 24 edges
+9. `GradedItem` - 23 edges
+10. `CourseDetailViewModel` - 21 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `.body` --calls--> `letterGrade()`  [INFERRED]
   CanvasApp/Views/CalculatorView.swift → Sources/CanvasCore/GradeCalculator.swift
+- `.body` --calls--> `letterGrade()`  [INFERRED]
+  CanvasApp/Views/CourseDetailView.swift → Sources/CanvasCore/GradeCalculator.swift
 - `.letter` --calls--> `letterGrade()`  [INFERRED]
   CanvasApp/Views/CourseListView.swift → Sources/CanvasCore/GradeCalculator.swift
 - `.liveCalculator` --calls--> `GradeCalculator`  [EXTRACTED]
   CanvasApp/ViewModels/CalculatorViewModel.swift → Sources/CanvasCore/GradeCalculator.swift
 - `.body` --calls--> `letterGrade()`  [INFERRED]
   CanvasApp/Views/CalculatorView.swift → Sources/CanvasCore/GradeCalculator.swift
-- `.body` --calls--> `letterGrade()`  [INFERRED]
-  CanvasApp/Views/CourseDetailView.swift → Sources/CanvasCore/GradeCalculator.swift
 
 ## Import Cycles
 - None detected.
 
-## Communities (44 total, 2 thin omitted)
+## Communities (44 total, 3 thin omitted)
 
 ### Community 0 - "APIClient"
 Cohesion: 0.09
-Nodes (30): Equatable, Sendable, APIClient, .baseURL, .token, URLSession, Credentials, String (+22 more)
+Nodes (25): APIClient, .baseURL, .token, URLSession, Credentials, String, Bool, ModelContainer (+17 more)
 
 ### Community 1 - "CalculatorViewModel"
-Cohesion: 0.07
-Nodes (42): Binding, CalculatorViewModel, .effectiveItems, .liveBreakdown, .liveCalculator, .liveGrade, .solveAssignmentIds, .solveResult (+34 more)
+Cohesion: 0.06
+Nodes (41): Binding, CalculatorViewModel, .effectiveItems, .liveBreakdown, .liveCalculator, .liveGrade, .solveAssignmentIds, .solveResult (+33 more)
 
 ### Community 2 - "GradeCalculator"
-Cohesion: 0.09
-Nodes (25): GradeDashboardView, .body, GroupRowView, .body, Double, Array, GradeCalculator, GroupInfo (+17 more)
+Cohesion: 0.10
+Nodes (22): .body, Equatable, Array, GradeCalculator, GroupInfo, GroupResult, letterGrade(), SolveResult (+14 more)
 
 ### Community 3 - "SubmissionSnapshot"
-Cohesion: 0.10
-Nodes (23): CaseIterable, ChangeDetector, PendingChange, SubmissionSnapshot, Date, Double, Int, Set (+15 more)
+Cohesion: 0.17
+Nodes (12): ChangeDetector, PendingChange, SubmissionSnapshot, Date, Double, Int, Set, String (+4 more)
 
 ### Community 4 - "CanvasRepository"
-Cohesion: 0.07
-Nodes (37): FetchDescriptor, ModelContext, CanvasRepository, .context, Bool, Date, Int, ModelContainer (+29 more)
+Cohesion: 0.06
+Nodes (46): FetchDescriptor, ModelContext, CanvasRepository, .context, Bool, Date, Int, ModelContainer (+38 more)
 
 ### Community 5 - "Canvas Grades — Windowed Desktop App Design Spec"
 Cohesion: 0.07
@@ -133,17 +133,17 @@ Nodes (18): Activation, Assignment Groups, Course, `courseTeachers(courseId:)`, 
 Cohesion: 0.18
 Nodes (4): C1, C2, C3, Int
 
-### Community 11 - ".load"
-Cohesion: 0.53
-Nodes (3): KeychainHelper, String, Security
+### Community 11 - "AppSession"
+Cohesion: 0.14
+Nodes (13): AppSession, .hasCredentials, .isDemo, Bool, CanvasRepository, Error, Int, Result (+5 more)
 
 ### Community 12 - "CanvasCLISwift Phase 2 Implementation Plan"
 Cohesion: 0.12
 Nodes (16): CanvasCLISwift Phase 2 Implementation Plan, File Structure, Global Constraints, Self-Review Notes, Task 10: TUI course detail — grade dashboard, Task 11: Calculator screen + `calc` subcommand, Task 1: Package setup — dependencies, file split, test target, Task 2: Models + JSON decoding tests (+8 more)
 
 ### Community 13 - "HiddenCoursesStore"
-Cohesion: 0.22
-Nodes (6): HiddenCoursesStore, Bool, Int, Set, .body, ObservableObject
+Cohesion: 0.24
+Nodes (5): HiddenCoursesStore, Bool, Int, Set, ObservableObject
 
 ### Community 14 - "Course Filtering Design"
 Cohesion: 0.12
@@ -159,7 +159,7 @@ Nodes (13): CanvasApp SwiftUI macOS Menu Bar App — Implementation Plan, File M
 
 ### Community 17 - "APIError"
 Cohesion: 0.06
-Nodes (27): Bool, CustomStringConvertible, Error, APIError, .description, forbidden, http, missingToken (+19 more)
+Nodes (29): CustomStringConvertible, Error, APIError, .description, forbidden, http, missingToken, network (+21 more)
 
 ### Community 18 - "Visual Design"
 Cohesion: 0.15
@@ -174,8 +174,8 @@ Cohesion: 0.17
 Nodes (11): `AppState` changes, `CanvasApp.swift` changes, Components, Files Changed, Flow, Goals, Keychain Onboarding UX — Design Spec, `KeychainHelper` changes (+3 more)
 
 ### Community 21 - "AppState"
-Cohesion: 0.24
-Nodes (8): AppState, .hasToken, Bool, Int, String, .body, KeychainWarningView, .body
+Cohesion: 0.13
+Nodes (18): App, AppState, .hasToken, Bool, Int, String, CanvasApp, .body (+10 more)
 
 ### Community 22 - "File Map"
 Cohesion: 0.20
@@ -185,21 +185,21 @@ Nodes (9): File Map, Global Constraints, Instructor Messaging Implementation Pla
 Cohesion: 0.18
 Nodes (10): AnyCancellable, CoursesViewModel, Bool, Date, Double, Int, String, TimeInterval (+2 more)
 
-### Community 24 - "CanvasApp"
-Cohesion: 0.33
-Nodes (6): App, CanvasApp, .body, PopoverContent, .body, Scene
+### Community 24 - "CourseTab"
+Cohesion: 0.09
+Nodes (27): CourseTab, announcements, assignments, discussions, files, grades, modules, syllabus (+19 more)
 
 ### Community 25 - "MockData"
-Cohesion: 0.11
-Nodes (25): Codable, Decodable, Decoder, buildGradedItems(), MockData, Int, String, Assignment (+17 more)
+Cohesion: 0.08
+Nodes (33): CourseDetailViewModel, .gradingScale, Bool, Date, Double, Int, String, TimeInterval (+25 more)
 
 ### Community 26 - "File Map"
 Cohesion: 0.22
 Nodes (8): Course Filtering Implementation Plan, File Map, Global Constraints, Task 1: Add enrollment_type filter to APIClient, Task 2: Create HiddenCoursesStore, Task 3: Update CoursesViewModel and AppState, Task 4: Add swipe-to-hide in CourseListView, Task 5: Add Hidden Courses restore section in SettingsView
 
-### Community 27 - "DisclosureRow"
-Cohesion: 0.33
-Nodes (5): DisclosureRow, .body, String, WelcomeView, .body
+### Community 27 - "Color"
+Cohesion: 0.15
+Nodes (10): DisclosureRow, .body, String, WelcomeView, .body, Color, .secondaryLabel, .systemBackground (+2 more)
 
 ### Community 28 - "2026-06-26"
 Cohesion: 0.25
@@ -213,17 +213,17 @@ Nodes (7): File Map, Global Constraints, Keychain Onboarding UX Implementation P
 Cohesion: 0.25
 Nodes (7): Context, Larger Features (future scope), Prioritized Implementation Order, QoL Improvements, Quick Wins (implement first), Student UX Brief — CanvasCLISwift, Visual Polish
 
-### Community 31 - "CourseDetailViewModel"
-Cohesion: 0.10
-Nodes (27): CourseDetailViewModel, .gradingScale, Kind, awaitingGrade, feedback, recentlyGraded, upcoming, StreamAssignment (+19 more)
+### Community 31 - "View"
+Cohesion: 0.14
+Nodes (21): CourseDetailView, .body, CourseStreamView, .awaitingGrade, .body, .recentFeedback, .recentlyGraded, .upcoming (+13 more)
 
-### Community 32 - "SwiftUI"
-Cohesion: 0.22
-Nodes (6): CourseListView, Bool, SettingsView, Bool, CanvasUI, SwiftUI
+### Community 32 - "Sendable"
+Cohesion: 0.21
+Nodes (15): Sendable, CalculatorInputs, CanvasRepository, Kind, awaitingGrade, feedback, recentlyGraded, upcoming (+7 more)
 
 ### Community 33 - "CanvasCore"
 Cohesion: 0.10
-Nodes (9): CanvasCore, CanvasData, Combine, Foundation, CanvasStore, SwiftData, ModelsTests, JSONDecoder (+1 more)
+Nodes (10): CanvasCore, CanvasData, Combine, Foundation, ISO8601DateFormatter, CanvasDate, CanvasStore, SwiftData (+2 more)
 
 ### Community 34 - "Global Constraints"
 Cohesion: 0.33
@@ -242,40 +242,36 @@ Cohesion: 0.50
 Nodes (3): Course List Billboard Card Redesign Implementation Plan, Global Constraints, Task 1: Rewrite `CourseCardView` and update `CourseListView`
 
 ### Community 40 - "SyncStub"
-Cohesion: 0.05
-Nodes (23): HTTPURLResponse, RecordingStub, Bool, URL, URLRequest, FixedResponseStub, ProfileTests, Bool (+15 more)
+Cohesion: 0.06
+Nodes (20): HTTPURLResponse, RecordingStub, Bool, URL, URLRequest, FixedResponseStub, Bool, String (+12 more)
 
 ### Community 44 - ".syncCourse"
-Cohesion: 0.10
-Nodes (18): ISO8601DateFormatter, Result, CanvasDate, Date, String, LegacyHiddenCourses, Int, Set (+10 more)
-
-### Community 45 - "CourseDetailView.swift"
-Cohesion: 0.40
-Nodes (4): CourseDetailView, .body, Bool, Task
+Cohesion: 0.09
+Nodes (23): Date, String, LegacyHiddenCourses, Int, Set, EntityKind, assignments, courses (+15 more)
 
 ### Community 51 - "CourseCardView"
-Cohesion: 0.15
-Nodes (11): CourseCardView, .body, .gradeColor, .letter, Double, String, Color, .secondaryLabel (+3 more)
+Cohesion: 0.20
+Nodes (9): CourseCardView, .body, .gradeColor, .letter, CourseListView, .body, Bool, Double (+1 more)
 
 ## Knowledge Gaps
-- **260 isolated node(s):** `.hasToken`, `Security`, `letter`, `percent`, `single` (+255 more)
+- **281 isolated node(s):** `.isDemo`, `.hasCredentials`, `.hasToken`, `Security`, `dashboard` (+276 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `APIClient` connect `APIClient` to `SyncStub`, `APIError`, `.syncCourse`, `CoursesViewModel`?**
-  _High betweenness centrality (0.080) - this node is a cross-community bridge._
-- **Why does `CanvasCore` connect `CanvasCore` to `SwiftUI`, `CalculatorViewModel`, `SubmissionSnapshot`, `CanvasRepository`, `CourseDetailView.swift`, `CanvasApp`, `CourseDetailViewModel`?**
-  _High betweenness centrality (0.056) - this node is a cross-community bridge._
-- **Why does `Course` connect `MockData` to `CalculatorViewModel`, `.syncCourse`, `CourseDetailView.swift`, `APIError`, `CourseCardView`, `AppState`, `CoursesViewModel`, `CourseDetailViewModel`?**
-  _High betweenness centrality (0.054) - this node is a cross-community bridge._
-- **Are the 10 inferred relationships involving `APIClient` (e.g. with `APIClientDemoTests` and `.startLoading()`) actually correct?**
-  _`APIClient` has 10 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `Foundation` connect `CanvasCore` to `Sendable`, `GradeCalculator`, `SubmissionSnapshot`, `CanvasRepository`, `SyncStub`, `AppSession`, `.syncCourse`, `HiddenCoursesStore`, `APIError`, `AppState`, `CourseTab`, `MockData`?**
+  _High betweenness centrality (0.073) - this node is a cross-community bridge._
+- **Why does `APIClient` connect `APIClient` to `SyncStub`, `AppSession`, `.syncCourse`, `APIError`, `CoursesViewModel`, `MockData`?**
+  _High betweenness centrality (0.072) - this node is a cross-community bridge._
+- **Why does `CanvasCore` connect `CanvasCore` to `Sendable`, `CalculatorViewModel`, `SubmissionSnapshot`, `CanvasRepository`, `CourseCardView`, `AppState`, `View`?**
+  _High betweenness centrality (0.050) - this node is a cross-community bridge._
+- **Are the 13 inferred relationships involving `APIClient` (e.g. with `.testConnection()` and `.wireEngine()`) actually correct?**
+  _`APIClient` has 13 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 17 inferred relationships involving `SyncEngine` (e.g. with `.testCourseMissingFromFullFetchIsSoftDeleted()` and `.testLegacyHiddenIdsMigrate()`) actually correct?**
   _`SyncEngine` has 17 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 21 inferred relationships involving `CanvasRepository` (e.g. with `.testClearStoreEmptiesEveryModel()` and `.testCoursesSortPinnedFirstThenSortIndexAndExcludeHiddenAndRemoved()`) actually correct?**
-  _`CanvasRepository` has 21 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 22 inferred relationships involving `Credentials` (e.g. with `.makeClient()` and `APIClientDemoTests`) actually correct?**
+  _`Credentials` has 22 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `CalculatorViewModel` (e.g. with `.body` and `.body`) actually correct?**
   _`CalculatorViewModel` has 3 INFERRED edges - model-reasoned connections that need verification._

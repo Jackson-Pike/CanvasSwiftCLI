@@ -19,11 +19,6 @@
     "ast_hash": "68ad356e6077698d68bf62838a8876bf",
     "semantic_hash": ""
   },
-  "CanvasApp/ViewModels/CalculatorViewModel.swift": {
-    "mtime": 1785648755.8263698,
-    "ast_hash": "f2b759bb7b82c8360c20625e417ac139",
-    "semantic_hash": ""
-  },
   "CanvasApp/ViewModels/CourseDetailViewModel.swift": {
     "mtime": 1785653228.9238489,
     "ast_hash": "eb541a59fda762280d5be60af5072122",
@@ -34,19 +29,14 @@
     "ast_hash": "ef18b2f4dace37b3d7715af8aba55d55",
     "semantic_hash": ""
   },
-  "CanvasApp/Views/CalculatorView.swift": {
-    "mtime": 1785648936.5520077,
-    "ast_hash": "e18f798ac7f05e8d96ee72c0fc9c56e9",
-    "semantic_hash": ""
-  },
   "CanvasApp/Views/CourseDetailView.swift": {
-    "mtime": 1785653234.2474809,
-    "ast_hash": "f3dc2990546ecfdb3990c4b7c8856445",
+    "mtime": 1785653702.9075723,
+    "ast_hash": "03e01678f5a999540cc0f2ce1c02dd8a",
     "semantic_hash": ""
   },
   "CanvasApp/Views/CourseListView.swift": {
-    "mtime": 1785648928.488081,
-    "ast_hash": "89d0ce8b4b914dd84808849b620d843a",
+    "mtime": 1785653678.5227275,
+    "ast_hash": "a6f80bc6b37b40fbb5ffcac18d664921",
     "semantic_hash": ""
   },
   "CanvasApp/Views/KeychainWarningView.swift": {
@@ -372,6 +362,46 @@
   "Tests/CanvasDataTests/DerivedReadsTests.swift": {
     "mtime": 1785653207.9194584,
     "ast_hash": "d97af9c2699be1a4f7f031a17942fd55",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/CalculatorView.swift": {
+    "mtime": 1785653666.3114262,
+    "ast_hash": "9916c9d37cd1561972af56e5d829914b",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/CalculatorViewModel.swift": {
+    "mtime": 1785653637.8643148,
+    "ast_hash": "2fedb8548f4619d7cc3cf07c8802f1ce",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/CourseCard.swift": {
+    "mtime": 1785653556.017371,
+    "ast_hash": "b39dd1746523baac559008945b5fc8d2",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/GradeDashboard.swift": {
+    "mtime": 1785653571.7043347,
+    "ast_hash": "cfd204da7a9977b046e93a2754171768",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/LetterBadge.swift": {
+    "mtime": 1785653547.8665297,
+    "ast_hash": "ec4cf37abefe6e16e740c8b44d0a3aec",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/SkeletonList.swift": {
+    "mtime": 1785653598.1316454,
+    "ast_hash": "bc9707043df286e4346f786c7e823c03",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/StalenessLabel.swift": {
+    "mtime": 1785653593.7510257,
+    "ast_hash": "68f81cf6f2b044707306e689631107e2",
+    "semantic_hash": ""
+  },
+  "Sources/CanvasUI/StreamSection.swift": {
+    "mtime": 1785653588.0382667,
+    "ast_hash": "7fe1feda7bd5eb866e80b15eef642084",
     "semantic_hash": ""
   }
 }

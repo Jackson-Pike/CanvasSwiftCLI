@@ -73,10 +73,13 @@ struct CourseListView: View {
                                     course: course,
                                     vm: appState.detailViewModel(for: course)
                                 )) {
-                                    CourseCardView(
-                                        course: course,
+                                    CourseCard(
+                                        name: course.name,
+                                        courseCode: course.courseCode,
                                         score: vm.currentScore(for: course.id),
-                                        gradingScale: course.gradingScale
+                                        letter: vm.currentScore(for: course.id).map {
+                                            letterGrade(for: $0, scale: course.gradingScale)
+                                        }
                                     )
                                 }
                                 .buttonStyle(.plain)
@@ -111,52 +114,5 @@ struct CourseListView: View {
     private func refresh(force: Bool = false) {
         guard let client = appState.makeClient() else { return }
         vm.fetch(client: client, force: force)
-    }
-}
-
-struct CourseCardView: View {
-    let course: Course
-    let score: Double?
-    let gradingScale: [(String, Double)]
-
-    private var letter: String {
-        score.map { letterGrade(for: $0, scale: gradingScale) } ?? "—"
-    }
-
-    private var gradeColor: Color {
-        guard score != nil else { return Color.secondaryLabel }
-        return Color.letterGradeColor(letter)
-    }
-
-    var body: some View {
-        HStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(course.name)
-                    .font(.title3.bold())
-                    .foregroundStyle(.primary)
-                    .lineLimit(2)
-                Text(course.courseCode)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                if let score {
-                    Text(String(format: "%.1f%%", score))
-                        .font(.headline.monospacedDigit())
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .padding(16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            ZStack {
-                gradeColor.opacity(0.15)
-                Text(letter)
-                    .font(.system(size: 44, weight: .bold))
-                    .foregroundStyle(gradeColor)
-            }
-            .frame(width: 90)
-        }
-        .background(Color.systemBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(color: .black.opacity(0.08), radius: 4, y: 2)
     }
 }

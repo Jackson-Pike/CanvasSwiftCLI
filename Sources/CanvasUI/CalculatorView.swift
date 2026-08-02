@@ -1,17 +1,16 @@
 import SwiftUI
 import CanvasCore
-import CanvasUI
 
-struct CalculatorView: View {
+public struct CalculatorView: View {
     @StateObject private var vm: CalculatorViewModel
     @State private var selectedTab = 0
 
-    init(course: Course, items: [GradedItem], groupInfo: [Int: GroupInfo], gradingScale: [(String, Double)]) {
+    public init(items: [GradedItem], groupInfo: [Int: GroupInfo], gradingScale: [(String, Double)], weighted: Bool) {
         _vm = StateObject(wrappedValue: CalculatorViewModel(
-            course: course, items: items, groupInfo: groupInfo, gradingScale: gradingScale))
+            items: items, groupInfo: groupInfo, gradingScale: gradingScale, weighted: weighted))
     }
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 0) {
             // Live grade header
             HStack {
@@ -49,10 +48,14 @@ struct CalculatorView: View {
     }
 }
 
-struct WhatIfTabView: View {
+public struct WhatIfTabView: View {
     @ObservedObject var vm: CalculatorViewModel
 
-    var body: some View {
+    public init(vm: CalculatorViewModel) {
+        self.vm = vm
+    }
+
+    public var body: some View {
         List(vm.baseItems, id: \.assignmentId) { item in
             WhatIfRowView(item: item, vm: vm)
         }
@@ -62,10 +65,15 @@ struct WhatIfTabView: View {
     }
 }
 
-struct WhatIfRowView: View {
+public struct WhatIfRowView: View {
     let item: GradedItem
     @ObservedObject var vm: CalculatorViewModel
     @FocusState private var focused: Bool
+
+    public init(item: GradedItem, vm: CalculatorViewModel) {
+        self.item = item
+        self.vm = vm
+    }
 
     private var binding: Binding<CalculatorViewModel.WhatIfEntry> {
         Binding(
@@ -74,7 +82,7 @@ struct WhatIfRowView: View {
         )
     }
 
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Toggle("", isOn: binding.isActive)
@@ -117,14 +125,18 @@ struct WhatIfRowView: View {
     }
 }
 
-struct SolveForMeTabView: View {
+public struct SolveForMeTabView: View {
     @ObservedObject var vm: CalculatorViewModel
+
+    public init(vm: CalculatorViewModel) {
+        self.vm = vm
+    }
 
     private var gradeLetters: [String] {
         vm.gradingScale.map { $0.0 }
     }
 
-    var body: some View {
+    public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
 
@@ -204,10 +216,14 @@ struct SolveForMeTabView: View {
     }
 }
 
-struct SolveResultView: View {
+public struct SolveResultView: View {
     @ObservedObject var vm: CalculatorViewModel
 
-    var body: some View {
+    public init(vm: CalculatorViewModel) {
+        self.vm = vm
+    }
+
+    public var body: some View {
         Group {
             if vm.solveAssignmentIds.isEmpty {
                 Text("Select an assignment above.")
@@ -251,5 +267,20 @@ struct SolveResultView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical, 4)
+    }
+}
+
+#Preview {
+    let items = [
+        GradedItem(assignmentId: 1, name: "HW 1", groupId: 1, pointsPossible: 100, earnedPoints: 92),
+        GradedItem(assignmentId: 2, name: "HW 2", groupId: 1, pointsPossible: 100, earnedPoints: nil),
+        GradedItem(assignmentId: 3, name: "Midterm", groupId: 2, pointsPossible: 100, earnedPoints: 85)
+    ]
+    let groups: [Int: GroupInfo] = [
+        1: GroupInfo(name: "Homework", weight: 40),
+        2: GroupInfo(name: "Exams", weight: 60)
+    ]
+    return NavigationStack {
+        CalculatorView(items: items, groupInfo: groups, gradingScale: byuhDefaultScale, weighted: true)
     }
 }

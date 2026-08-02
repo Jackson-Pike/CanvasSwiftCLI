@@ -1,0 +1,204 @@
+Building for debugging...
+[0/6] Write sources
+[1/6] Write swift-version--58304C5D6DBC2206.txt
+[3/10] Compiling CanvasCore APIClient.swift
+[4/10] Compiling CanvasCore Models.swift
+[5/10] Compiling CanvasCore MockData.swift
+[6/10] Emitting module CanvasCore
+[7/11] Compiling CanvasCore GradeCalculator.swift
+[8/35] Compiling CanvasCoreTests GradeCalculatorTests.swift
+[9/35] Compiling CanvasCoreTests ModelsTests.swift
+[10/35] Compiling CanvasCoreTests SolverTests.swift
+[11/35] Compiling CanvasCoreTests ProfileTests.swift
+[12/35] Compiling CanvasCoreTests CredentialsTests.swift
+[13/35] Compiling CanvasCoreTests APIClientPaginationTests.swift
+[14/35] Compiling CanvasCoreTests APIClientDemoTests.swift
+[15/35] Compiling CanvasCoreTests APIClientMessagingTests.swift
+[16/35] Emitting module CanvasCoreTests
+[17/35] Compiling CanvasCoreTests MockDataTests.swift
+[17/35] Write Objects.LinkFileList
+[19/35] Compiling CanvasApp KeychainWarningView.swift
+[20/36] Compiling CanvasApp SettingsView.swift
+[21/36] Compiling CanvasApp CalculatorViewModel.swift
+[22/36] Compiling CanvasApp CourseDetailViewModel.swift
+[23/36] Compiling CanvasApp CourseDetailView.swift
+[24/36] Compiling CanvasApp CoursesViewModel.swift
+[25/36] Compiling CanvasApp CourseListView.swift
+[26/36] Compiling CanvasApp HiddenCoursesStore.swift
+[27/36] Compiling CanvasApp KeychainHelper.swift
+[28/36] Emitting module CanvasApp
+[29/36] Compiling CanvasApp AppState.swift
+[30/36] Compiling CanvasApp CanvasApp.swift
+[31/36] Compiling CanvasApp CalculatorView.swift
+[32/36] Compiling CanvasApp WelcomeView.swift
+[32/36] Write Objects.LinkFileList
+[33/36] Linking CanvasCLISwiftPackageTests
+[34/36] Linking CanvasApp
+[35/36] Applying CanvasApp
+Build complete! (2.05s)
+Test Suite 'All tests' started at 2026-08-01 23:45:32.478.
+Test Suite 'CanvasCLISwiftPackageTests.xctest' started at 2026-08-01 23:45:32.479.
+Test Suite 'APIClientDemoTests' started at 2026-08-01 23:45:32.479.
+Test Case '-[CanvasCoreTests.APIClientDemoTests testAssignmentGroupsReturnsMockGroups]' started.
+Test Case '-[CanvasCoreTests.APIClientDemoTests testAssignmentGroupsReturnsMockGroups]' passed (0.001 seconds).
+Test Case '-[CanvasCoreTests.APIClientDemoTests testCoursesReturnsMockCourses]' started.
+Test Case '-[CanvasCoreTests.APIClientDemoTests testCoursesReturnsMockCourses]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.APIClientDemoTests testCourseTeachersReturnsMockTeacherIds]' started.
+Test Case '-[CanvasCoreTests.APIClientDemoTests testCourseTeachersReturnsMockTeacherIds]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.APIClientDemoTests testEnrollmentsReturnsMockEnrollment]' started.
+Test Case '-[CanvasCoreTests.APIClientDemoTests testEnrollmentsReturnsMockEnrollment]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.APIClientDemoTests testSubmissionsReturnsMockSubmissions]' started.
+Test Case '-[CanvasCoreTests.APIClientDemoTests testSubmissionsReturnsMockSubmissions]' passed (0.000 seconds).
+Test Suite 'APIClientDemoTests' passed at 2026-08-01 23:45:32.481.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'APIClientMessagingTests' started at 2026-08-01 23:45:32.481.
+Test Case '-[CanvasCoreTests.APIClientMessagingTests testCourseTeachersEmptyWhenNoTeachers]' started.
+Test Case '-[CanvasCoreTests.APIClientMessagingTests testCourseTeachersEmptyWhenNoTeachers]' passed (0.002 seconds).
+Test Case '-[CanvasCoreTests.APIClientMessagingTests testCourseTeachersReturnsUserIds]' started.
+Test Case '-[CanvasCoreTests.APIClientMessagingTests testCourseTeachersReturnsUserIds]' passed (0.000 seconds).
+Test Suite 'APIClientMessagingTests' passed at 2026-08-01 23:45:32.483.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'APIClientPaginationTests' started at 2026-08-01 23:45:32.483.
+Test Case '-[CanvasCoreTests.APIClientPaginationTests testCoursesPaginatesThreePages]' started.
+Test Case '-[CanvasCoreTests.APIClientPaginationTests testCoursesPaginatesThreePages]' passed (0.001 seconds).
+Test Case '-[CanvasCoreTests.APIClientPaginationTests testSinglePageReturnsCorrectly]' started.
+Test Case '-[CanvasCoreTests.APIClientPaginationTests testSinglePageReturnsCorrectly]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.APIClientPaginationTests testSubmissionsPaginatesAcrossMultiplePages]' started.
+Test Case '-[CanvasCoreTests.APIClientPaginationTests testSubmissionsPaginatesAcrossMultiplePages]' passed (0.001 seconds).
+Test Suite 'APIClientPaginationTests' passed at 2026-08-01 23:45:32.485.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'CredentialsTests' started at 2026-08-01 23:45:32.485.
+Test Case '-[CanvasCoreTests.CredentialsTests testAPIClientBuildsURLsFromHost]' started.
+Test Case '-[CanvasCoreTests.CredentialsTests testAPIClientBuildsURLsFromHost]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.CredentialsTests testNormalizeHost]' started.
+Test Case '-[CanvasCoreTests.CredentialsTests testNormalizeHost]' passed (0.000 seconds).
+Test Suite 'CredentialsTests' passed at 2026-08-01 23:45:32.485.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'GradeCalculatorTests' started at 2026-08-01 23:45:32.485.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testApplyingWhatIfSetsSelectedItemsByPercent]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testApplyingWhatIfSetsSelectedItemsByPercent]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testBlanketOnlyAffectsUngraded]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testBlanketOnlyAffectsUngraded]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testBuildGradedItemsJoinsScores]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testBuildGradedItemsJoinsScores]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testCurrentGradeNilWhenNothingGraded]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testCurrentGradeNilWhenNothingGraded]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testGroupBreakdownReportsNilForUngradedGroup]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testGroupBreakdownReportsNilForUngradedGroup]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testLetterGradeByuhScale]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testLetterGradeByuhScale]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testLetterGradeCustomScale]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testLetterGradeCustomScale]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testPerfectRemainingSetsUngradedTo100]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testPerfectRemainingSetsUngradedTo100]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testUnweightedIgnoresUngradedItems]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testUnweightedIgnoresUngradedItems]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testWeightedGradeNormalizesOverActiveGroups]' started.
+Test Case '-[CanvasCoreTests.GradeCalculatorTests testWeightedGradeNormalizesOverActiveGroups]' passed (0.000 seconds).
+Test Suite 'GradeCalculatorTests' passed at 2026-08-01 23:45:32.487.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'MockDataTests' started at 2026-08-01 23:45:32.487.
+Test Case '-[CanvasCoreTests.MockDataTests testAwaitingGradeSubmissionExists]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testAwaitingGradeSubmissionExists]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testCourseHasExpectedIdentity]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testCourseHasExpectedIdentity]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testEnrollmentHasScore]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testEnrollmentHasScore]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testExamsGroupHasTwoAssignments]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testExamsGroupHasTwoAssignments]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testFeedbackCommentHasDifferentAuthor]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testFeedbackCommentHasDifferentAuthor]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testFinalExamDueInFuture]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testFinalExamDueInFuture]' passed (0.001 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testFourCoursesAvailable]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testFourCoursesAvailable]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testHomeworkGroupHasFourAssignments]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testHomeworkGroupHasFourAssignments]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testMidtermIsGradedWithScore]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testMidtermIsGradedWithScore]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testNoSubmissionForFinalExam]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testNoSubmissionForFinalExam]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testQuizzesGroupHasThreeAssignments]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testQuizzesGroupHasThreeAssignments]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testSubmissionsCountAndStudentId]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testSubmissionsCountAndStudentId]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testTeacherIdsContainsTeacherUserId]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testTeacherIdsContainsTeacherUserId]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.MockDataTests testThreeGroupsWithCorrectWeights]' started.
+Test Case '-[CanvasCoreTests.MockDataTests testThreeGroupsWithCorrectWeights]' passed (0.000 seconds).
+Test Suite 'MockDataTests' passed at 2026-08-01 23:45:32.489.
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'ModelsTests' started at 2026-08-01 23:45:32.489.
+Test Case '-[CanvasCoreTests.ModelsTests testAssignmentGroupDecodesNestedAssignments]' started.
+Test Case '-[CanvasCoreTests.ModelsTests testAssignmentGroupDecodesNestedAssignments]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.ModelsTests testCourseDecodesGradingScheme]' started.
+Test Case '-[CanvasCoreTests.ModelsTests testCourseDecodesGradingScheme]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.ModelsTests testCourseDecodesSnakeCase]' started.
+Test Case '-[CanvasCoreTests.ModelsTests testCourseDecodesSnakeCase]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.ModelsTests testSubmissionDecodesNullScore]' started.
+Test Case '-[CanvasCoreTests.ModelsTests testSubmissionDecodesNullScore]' passed (0.000 seconds).
+Test Suite 'ModelsTests' passed at 2026-08-01 23:45:32.490.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ProfileTests' started at 2026-08-01 23:45:32.490.
+Test Case '-[CanvasCoreTests.ProfileTests testDemoProfile]' started.
+Test Case '-[CanvasCoreTests.ProfileTests testDemoProfile]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.ProfileTests testPlainForbidden]' started.
+Test Case '-[CanvasCoreTests.ProfileTests testPlainForbidden]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.ProfileTests testProfileDecodes]' started.
+Test Case '-[CanvasCoreTests.ProfileTests testProfileDecodes]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.ProfileTests testRateLimitedMapsToBackoffError]' started.
+Test Case '-[CanvasCoreTests.ProfileTests testRateLimitedMapsToBackoffError]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.ProfileTests testSubmissionCommentDecodesId]' started.
+Test Case '-[CanvasCoreTests.ProfileTests testSubmissionCommentDecodesId]' passed (0.000 seconds).
+Test Suite 'ProfileTests' passed at 2026-08-01 23:45:32.491.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'SmokeTests' started at 2026-08-01 23:45:32.491.
+Test Case '-[CanvasDataTests.SmokeTests testChangeKindRoundTrip]' started.
+Test Case '-[CanvasDataTests.SmokeTests testChangeKindRoundTrip]' passed (0.000 seconds).
+Test Suite 'SmokeTests' passed at 2026-08-01 23:45:32.492.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'SolverTests' started at 2026-08-01 23:45:32.492.
+Test Case '-[CanvasCoreTests.SolverTests testAlreadyAchievedUnweighted]' started.
+Test Case '-[CanvasCoreTests.SolverTests testAlreadyAchievedUnweighted]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.SolverTests testImpossibleUnweighted]' started.
+Test Case '-[CanvasCoreTests.SolverTests testImpossibleUnweighted]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.SolverTests testNeededUnweighted]' started.
+Test Case '-[CanvasCoreTests.SolverTests testNeededUnweighted]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.SolverTests testNeededWeighted]' started.
+Test Case '-[CanvasCoreTests.SolverTests testNeededWeighted]' passed (0.000 seconds).
+Test Case '-[CanvasCoreTests.SolverTests testSolveAcrossMultipleAssignments]' started.
+Test Case '-[CanvasCoreTests.SolverTests testSolveAcrossMultipleAssignments]' passed (0.000 seconds).
+Test Suite 'SolverTests' passed at 2026-08-01 23:45:32.492.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'CanvasCLISwiftPackageTests.xctest' passed at 2026-08-01 23:45:32.492.
+	 Executed 51 tests, with 0 failures (0 unexpected) in 0.011 (0.013) seconds
+Test Suite 'All tests' passed at 2026-08-01 23:45:32.492.
+	 Executed 51 tests, with 0 failures (0 unexpected) in 0.011 (0.014) seconds
+[APIClient] GET https://byuh.instructure.com/api/v1/courses/5/enrollments?type%5B%5D=TeacherEnrollment&per_page=50
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses/5/enrollments?type%5B%5D=TeacherEnrollment&per_page=50
+[APIClient] GET https://byuh.instructure.com/api/v1/courses/5/enrollments?type%5B%5D=TeacherEnrollment&per_page=50
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses/5/enrollments?type%5B%5D=TeacherEnrollment&per_page=50
+[APIClient] GET https://byuh.instructure.com/api/v1/courses?enrollment_state=active&per_page=50
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses?enrollment_state=active&per_page=50
+[APIClient] GET https://byuh.instructure.com/api/v1/courses?page=2&per_page=50
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses?page=2&per_page=50
+[APIClient] GET https://byuh.instructure.com/api/v1/courses?page=3&per_page=50
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses?page=3&per_page=50
+[APIClient] GET https://byuh.instructure.com/api/v1/courses/7/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&per_page=100
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses/7/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&per_page=100
+[APIClient] GET https://byuh.instructure.com/api/v1/courses/42/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&per_page=100
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses/42/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&per_page=100
+[APIClient] GET https://byuh.instructure.com/api/v1/courses/42/students/submissions?page=2&per_page=100
+[APIClient] 200 https://byuh.instructure.com/api/v1/courses/42/students/submissions?page=2&per_page=100
+[APIClient] GET https://canvas.other.edu/api/v1/courses?enrollment_state=active&per_page=50
+[APIClient] 200 https://canvas.other.edu/api/v1/courses?enrollment_state=active&per_page=50
+[APIClient] GET https://byuh.instructure.com/api/v1/users/self/profile
+[APIClient] 403 https://byuh.instructure.com/api/v1/users/self/profile
+[APIClient] GET https://byuh.instructure.com/api/v1/users/self/profile
+[APIClient] 200 https://byuh.instructure.com/api/v1/users/self/profile
+[APIClient] GET https://byuh.instructure.com/api/v1/users/self/profile
+[APIClient] 403 https://byuh.instructure.com/api/v1/users/self/profile
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.
