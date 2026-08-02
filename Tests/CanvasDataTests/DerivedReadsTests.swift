@@ -149,4 +149,31 @@ final class DerivedReadsTests: XCTestCase {
     private func iso(_ string: String) -> Date {
         ISO8601DateFormatter().date(from: string)!
     }
+
+    /// `assignmentId` is not unique across submission rows — only `id` is. A duplicate must
+    /// not trap the main actor on every course-detail render.
+    func testStreamToleratesDuplicateSubmissionRowsForOneAssignment() async throws {
+        let container = try CanvasStore.container(inMemory: true)
+        let engine = SyncEngine(modelContainer: container)
+        let client = APIClient(credentials: Credentials(host: "byuh.instructure.com", token: "DEMO"))
+        await engine.configure(client: client)
+        let repo = await CanvasRepository(modelContainer: container)
+        let courseId = MockData.csCourseId
+
+        try await engine.refresh(.all)
+        try await engine.refresh(.course(courseId))
+
+        // Second row for an assignment that already has one, with a distinct submission id.
+        let ctx = ModelContext(container)
+        let existing = try ctx.fetch(FetchDescriptor<CachedSubmission>())
+        let original = try XCTUnwrap(existing.first { $0.courseId == courseId })
+        ctx.insert(CachedSubmission(id: original.id + 9_000_000, assignmentId: original.assignmentId,
+                                    courseId: original.courseId, userId: original.userId,
+                                    score: original.score, workflowState: original.workflowState,
+                                    gradedAt: original.gradedAt, submittedAt: original.submittedAt))
+        try ctx.save()
+
+        let items = try await repo.stream(courseId: courseId)   // must not trap
+        XCTAssertFalse(items.isEmpty)
+    }
 }

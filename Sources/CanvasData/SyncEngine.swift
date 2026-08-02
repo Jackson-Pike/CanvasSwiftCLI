@@ -4,7 +4,11 @@ import CanvasCore
 
 public enum SyncScope: Hashable, Sendable { case all; case course(Int) }
 public enum SyncState: Equatable, Sendable { case idle; case syncing(SyncScope); case failed(String, Date) }
-public enum SyncError: Error { case noClient }
+public enum SyncError: Error, CustomStringConvertible {
+    case noClient
+    // Surfaced to the user via `String(describing:)`, so it must not read as "noClient".
+    public var description: String { "Not signed in to Canvas — add a token in Settings." }
+}
 public enum EntityKind: String, Sendable { case courses, enrollments, assignments, submissions }
 
 @ModelActor
@@ -33,10 +37,18 @@ public actor SyncEngine {
         while let existing = inFlight[scope] {
             if existing.force || !force { return try await existing.task.value }
             _ = try? await existing.task.value   // in-flight is weaker than ours: let it settle
+            await Task.yield()                   // don't starve the owner's continuation
         }
-        let task = Task<Void, any Error> { [self] in try await perform(scope, force: force) }
+        // The slot is cleared from *inside* the task, before its future is fulfilled, so a
+        // waiter resuming ahead of the owner can never observe an already-completed entry
+        // and re-await it without suspending — which would wedge this actor.
+        let task = Task<Void, any Error> { [self] in
+            defer { inFlight[scope] = nil }
+            try await perform(scope, force: force)
+        }
+        // Safe to register after creating: the task body is actor-isolated and cannot start
+        // until this call suspends at `task.value` below.
         inFlight[scope] = (force: force, task: task)
-        defer { inFlight[scope] = nil }
         try await task.value
     }
 

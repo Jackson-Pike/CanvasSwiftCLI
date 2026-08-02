@@ -88,9 +88,11 @@ private struct MainWindowBody: View {
         }
         .sheet(isPresented: $showSettings) {
             SettingsView(isOnboarding: false, vm: coursesVM)
-                .frame(minWidth: 460, minHeight: 420)
+                .frame(minHeight: 420)   // SettingsView sets its own 340pt width
         }
-        .task {
+        // Keyed on host: switching hosts from this window's own Settings sheet must re-run
+        // the stale-selection check, or the sidebar keeps pointing at the old host's course.
+        .task(id: session.host) {
             await coursesVM.load(session: session)
             // A persisted selection can outlive the course (hidden, dropped, or a different
             // host): fall back to the dashboard rather than rendering an orphan workspace.

@@ -49,7 +49,7 @@ private struct CourseWorkspaceBody: View {
         }
         .sheet(isPresented: $showSettings) {
             SettingsView(isOnboarding: false, vm: session.coursesVM)
-                .frame(minWidth: 460, minHeight: 420)
+                .frame(minHeight: 420)   // SettingsView sets its own 340pt width
         }
         .task(id: ObjectIdentifier(vm)) { await vm.load(session: session) }
     }
