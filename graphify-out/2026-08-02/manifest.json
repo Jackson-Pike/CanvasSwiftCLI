@@ -1,17 +1,7 @@
 {
-  "CanvasApp/App/AppState.swift": {
-    "mtime": 1785649181.3005857,
-    "ast_hash": "149c63a86a06079033f0f841b40edf83",
-    "semantic_hash": ""
-  },
   "CanvasApp/App/CanvasApp.swift": {
-    "mtime": 1785648755.8254523,
-    "ast_hash": "dcddc3843a7ecf20760d97b78009da52",
-    "semantic_hash": ""
-  },
-  "CanvasApp/App/HiddenCoursesStore.swift": {
-    "mtime": 1785648755.825662,
-    "ast_hash": "391d6991353bb7c4b0d5c6607bf03d48",
+    "mtime": 1785654375.0619226,
+    "ast_hash": "5006644378fa3df36ba3a652dd4774f0",
     "semantic_hash": ""
   },
   "CanvasApp/App/KeychainHelper.swift": {
@@ -20,38 +10,38 @@
     "semantic_hash": ""
   },
   "CanvasApp/ViewModels/CourseDetailViewModel.swift": {
-    "mtime": 1785653228.9238489,
-    "ast_hash": "eb541a59fda762280d5be60af5072122",
+    "mtime": 1785654116.1017556,
+    "ast_hash": "38d9778f7a4f31b569a03a90ade9c6c0",
     "semantic_hash": ""
   },
   "CanvasApp/ViewModels/CoursesViewModel.swift": {
-    "mtime": 1785648755.826736,
-    "ast_hash": "ef18b2f4dace37b3d7715af8aba55d55",
+    "mtime": 1785654228.385803,
+    "ast_hash": "28d698b61ed61397b7d5b2a34dc1e668",
     "semantic_hash": ""
   },
   "CanvasApp/Views/CourseDetailView.swift": {
-    "mtime": 1785653702.9075723,
-    "ast_hash": "03e01678f5a999540cc0f2ce1c02dd8a",
+    "mtime": 1785654180.3013601,
+    "ast_hash": "c56edc9390b2faf03a4cbb4e82956b63",
     "semantic_hash": ""
   },
   "CanvasApp/Views/CourseListView.swift": {
-    "mtime": 1785653678.5227275,
-    "ast_hash": "a6f80bc6b37b40fbb5ffcac18d664921",
+    "mtime": 1785654159.7617989,
+    "ast_hash": "197ddcfd297a2da2f0637200ffcd048c",
     "semantic_hash": ""
   },
   "CanvasApp/Views/KeychainWarningView.swift": {
-    "mtime": 1785648960.5983913,
-    "ast_hash": "aa0f7000e621071d1c7682f5581e70de",
+    "mtime": 1785654133.6323981,
+    "ast_hash": "6ace19428d9987c866c95021ad8e799c",
     "semantic_hash": ""
   },
   "CanvasApp/Views/SettingsView.swift": {
-    "mtime": 1785648951.2099822,
-    "ast_hash": "627c6a793220f8295a63cbcd37a2d779",
+    "mtime": 1785654141.8731813,
+    "ast_hash": "354bd95c1ec785c896d3301eb1f6dd5c",
     "semantic_hash": ""
   },
   "CanvasApp/Views/WelcomeView.swift": {
-    "mtime": 1785648955.3655372,
-    "ast_hash": "c835cc0855ee3bdf0260dbf2f988d084",
+    "mtime": 1785654131.0628111,
+    "ast_hash": "4d8a80c62609e509e9db0f4f3967e3d4",
     "semantic_hash": ""
   },
   "Package.swift": {
@@ -345,8 +335,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/App/AppSession.swift": {
-    "mtime": 1785652961.1455493,
-    "ast_hash": "33cfa1f0bd49b3910fe359b6c4d0a845",
+    "mtime": 1785654121.705115,
+    "ast_hash": "cb04f46755626718d363b19ee14804fe",
     "semantic_hash": ""
   },
   "CanvasApp/App/Router.swift": {
@@ -402,6 +392,16 @@
   "Sources/CanvasUI/StreamSection.swift": {
     "mtime": 1785653588.0382667,
     "ast_hash": "7fe1feda7bd5eb866e80b15eef642084",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/Window/CourseWorkspaceView.swift": {
+    "mtime": 1785654216.0189862,
+    "ast_hash": "6244b57b20fe80a0f59414a80b4303ce",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/Window/MainWindowView.swift": {
+    "mtime": 1785654203.7387342,
+    "ast_hash": "4edf461bf17bedf54c5cc5bea983a3e9",
     "semantic_hash": ""
   }
 }
