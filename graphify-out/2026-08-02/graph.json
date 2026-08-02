@@ -34,8 +34,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "swiftui",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "swiftui"
     },
     {
@@ -279,8 +279,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "canvasapp.swift"
     },
     {
@@ -291,8 +291,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasui",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "canvasui"
     },
     {
@@ -302,8 +302,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_canvasgradesapp",
-      "community": 24,
-      "community_name": "SidebarItem",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "canvasgradesapp"
     },
     {
@@ -313,8 +313,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app",
-      "community": 24,
-      "community_name": "SidebarItem",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "app"
     },
     {
@@ -324,8 +324,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "scene",
-      "community": 24,
-      "community_name": "SidebarItem",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "scene"
     },
     {
@@ -335,8 +335,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_canvasgradesapp_body",
-      "community": 24,
-      "community_name": "SidebarItem",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": ".body"
     },
     {
@@ -346,7 +346,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_popovercontent",
-      "community": 42,
+      "community": 45,
       "community_name": "View",
       "norm_label": "popovercontent"
     },
@@ -357,7 +357,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "view",
-      "community": 42,
+      "community": 45,
       "community_name": "View",
       "norm_label": "view"
     },
@@ -368,7 +368,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_popovercontent_body",
-      "community": 42,
+      "community": 45,
       "community_name": "View",
       "norm_label": ".body"
     },
@@ -952,8 +952,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "coursesviewmodel"
     },
     {
@@ -963,8 +963,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_swift_string",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "string"
     },
     {
@@ -974,8 +974,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_swift_date",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "date"
     },
     {
@@ -985,8 +985,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_swift_int",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "int"
     },
     {
@@ -996,8 +996,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_swift_double",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "double"
     },
     {
@@ -1007,8 +1007,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_init",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".init()"
     },
     {
@@ -1018,8 +1018,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_load",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".load()"
     },
     {
@@ -1029,8 +1029,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_swift_bool",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "bool"
     },
     {
@@ -1040,8 +1040,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_readfromstore",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".readfromstore()"
     },
     {
@@ -1051,8 +1051,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_currentscore",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".currentscore()"
     },
     {
@@ -1062,8 +1062,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_letter",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".letter()"
     },
     {
@@ -1073,8 +1073,8 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_hide",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".hide()"
     },
     {
@@ -1084,8 +1084,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_restore",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".restore()"
     },
     {
@@ -1095,8 +1095,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_hiddencourses",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".hiddencourses()"
     },
     {
@@ -1106,8 +1106,8 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_markchangesseen",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".markchangesseen()"
     },
     {
@@ -1117,8 +1117,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "coursedetailview.swift"
     },
     {
@@ -1129,8 +1129,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "appkit",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "appkit"
     },
     {
@@ -1141,7 +1141,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview_coursedetailview",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "coursedetailview"
     },
     {
@@ -1152,7 +1152,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview_swift_int",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "int"
     },
     {
@@ -1163,7 +1163,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview_coursedetailview_body",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": ".body"
     },
     {
@@ -1173,8 +1173,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "courselistview.swift"
     },
     {
@@ -1184,8 +1184,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "courselistview"
     },
     {
@@ -1195,8 +1195,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "navigationpath",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "navigationpath"
     },
     {
@@ -1206,8 +1206,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".body"
     },
     {
@@ -1217,8 +1217,8 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview_sinceyoulastlooked",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".sinceyoulastlooked"
     },
     {
@@ -1228,8 +1228,8 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview_icon",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".icon()"
     },
     {
@@ -1239,8 +1239,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_swift_string",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "string"
     },
     {
@@ -1250,8 +1250,8 @@
       "source_location": "L174",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview_refresh",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".refresh()"
     },
     {
@@ -1261,8 +1261,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_swift_bool",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "bool"
     },
     {
@@ -1272,8 +1272,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "keychainwarningview.swift"
     },
     {
@@ -1283,7 +1283,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview_keychainwarningview",
-      "community": 42,
+      "community": 45,
       "community_name": "View",
       "norm_label": "keychainwarningview"
     },
@@ -1294,7 +1294,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview_keychainwarningview_body",
-      "community": 42,
+      "community": 45,
       "community_name": "View",
       "norm_label": ".body"
     },
@@ -1305,19 +1305,19 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_settingsview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "settingsview.swift"
     },
     {
       "label": "SettingsView",
       "file_type": "code",
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L4",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_settingsview",
-      "community": 42,
-      "community_name": "View",
+      "community": 46,
+      "community_name": "SettingsView",
       "norm_label": "settingsview"
     },
     {
@@ -1327,19 +1327,129 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_swift_bool",
-      "community": 42,
-      "community_name": "View",
+      "community": 46,
+      "community_name": "SettingsView",
       "norm_label": "bool"
+    },
+    {
+      "label": "String",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_swift_string",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": "string"
+    },
+    {
+      "label": "TestState",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_teststate",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": "teststate"
+    },
+    {
+      "label": "Equatable",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "equatable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
+      "norm_label": "equatable"
+    },
+    {
+      "label": "idle",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_teststate_idle",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": "idle"
+    },
+    {
+      "label": "testing",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_teststate_testing",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": "testing"
+    },
+    {
+      "label": "success",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_teststate_success",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": "success"
+    },
+    {
+      "label": "failure",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_teststate_failure",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": "failure"
+    },
+    {
+      "label": ".normalizedHost",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_settingsview_normalizedhost",
+      "community": 21,
+      "community_name": "XCTestCase",
+      "norm_label": ".normalizedhost"
+    },
+    {
+      "label": ".canTestConnection",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_settingsview_cantestconnection",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": ".cantestconnection"
+    },
+    {
+      "label": ".canSave",
+      "file_type": "code",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "canvasapp_views_settingsview_settingsview_cansave",
+      "community": 46,
+      "community_name": "SettingsView",
+      "norm_label": ".cansave"
     },
     {
       "label": ".body",
       "file_type": "code",
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L11",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_settingsview_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".body"
     },
     {
@@ -1349,8 +1459,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "welcomeview.swift"
     },
     {
@@ -1360,8 +1470,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_welcomeview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 45,
+      "community_name": "View",
       "norm_label": "welcomeview"
     },
     {
@@ -1371,8 +1481,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_welcomeview_body",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 45,
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -1382,8 +1492,8 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_disclosurerow",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 45,
+      "community_name": "View",
       "norm_label": "disclosurerow"
     },
     {
@@ -1393,8 +1503,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_swift_string",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 45,
+      "community_name": "View",
       "norm_label": "string"
     },
     {
@@ -1404,8 +1514,8 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_disclosurerow_body",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 45,
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -1415,8 +1525,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "courseworkspaceview.swift"
     },
     {
@@ -1426,8 +1536,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_courseworkspaceview",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "courseworkspaceview"
     },
     {
@@ -1437,8 +1547,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_int",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "int"
     },
     {
@@ -1448,8 +1558,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_courseworkspaceview_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": ".body"
     },
     {
@@ -1460,7 +1570,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradestabview",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "gradestabview"
     },
     {
@@ -1471,7 +1581,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_bool",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "bool"
     },
     {
@@ -1482,7 +1592,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradestabview_body",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": ".body"
     },
     {
@@ -1492,8 +1602,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 43,
+      "community_name": "SwiftUI",
       "norm_label": "mainwindowview.swift"
     },
     {
@@ -1503,8 +1613,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "mainwindowview"
     },
     {
@@ -1514,8 +1624,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": ".body"
     },
     {
@@ -1525,8 +1635,8 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview_accentcolor",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": ".accentcolor()"
     },
     {
@@ -1536,8 +1646,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_swift_string",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "string"
     },
     {
@@ -1547,8 +1657,8 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_comingsoonview",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": "comingsoonview"
     },
     {
@@ -1558,8 +1668,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_comingsoonview_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 31,
+      "community_name": ".body",
       "norm_label": ".body"
     },
     {
@@ -1614,8 +1724,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "error",
-      "community": 44,
-      "community_name": ".syncCourse",
+      "community": 13,
+      "community_name": "APIError",
       "norm_label": "error"
     },
     {
@@ -1856,8 +1966,8 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_getpaginated",
-      "community": 17,
-      "community_name": "APIClient",
+      "community": 13,
+      "community_name": "APIError",
       "norm_label": ".getpaginated()"
     },
     {
@@ -1977,8 +2087,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials",
-      "community": 21,
-      "community_name": "Credentials",
+      "community": 0,
+      "community_name": "SyncEngine",
       "norm_label": "credentials"
     },
     {
@@ -1988,20 +2098,9 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sendable",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "sendable"
-    },
-    {
-      "label": "Equatable",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "equatable",
-      "community": 2,
-      "community_name": "GradeCalculator",
-      "norm_label": "equatable"
     },
     {
       "label": "String",
@@ -2011,7 +2110,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_swift_string",
       "community": 21,
-      "community_name": "Credentials",
+      "community_name": "XCTestCase",
       "norm_label": "string"
     },
     {
@@ -2022,7 +2121,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials_init",
       "community": 21,
-      "community_name": "Credentials",
+      "community_name": "XCTestCase",
       "norm_label": ".init()"
     },
     {
@@ -2033,7 +2132,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials_normalizehost",
       "community": 21,
-      "community_name": "Credentials",
+      "community_name": "XCTestCase",
       "norm_label": ".normalizehost()"
     },
     {
@@ -2131,8 +2230,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "sources_canvascore_gradecalculator_groupresult",
-      "community": 42,
-      "community_name": "View",
+      "community": 2,
+      "community_name": "GradeCalculator",
       "norm_label": "groupresult"
     },
     {
@@ -2659,8 +2758,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate",
-      "community": 44,
-      "community_name": ".syncCourse",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "canvasdate.swift"
     },
     {
@@ -2670,8 +2769,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_canvasdate",
-      "community": 44,
-      "community_name": ".syncCourse",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "canvasdate"
     },
     {
@@ -2681,8 +2780,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "iso8601dateformatter",
-      "community": 44,
-      "community_name": ".syncCourse",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "iso8601dateformatter"
     },
     {
@@ -2693,7 +2792,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_canvasdate_parse",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".parse()"
     },
     {
@@ -2704,7 +2803,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_swift_string",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "string"
     },
     {
@@ -2715,7 +2814,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_swift_date",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "date"
     },
     {
@@ -3066,7 +3165,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "changedetector.swift"
     },
@@ -3077,7 +3176,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_submissionsnapshot",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "submissionsnapshot"
     },
@@ -3088,7 +3187,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_double",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "double"
     },
@@ -3099,7 +3198,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_string",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "string"
     },
@@ -3110,7 +3209,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_set",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "set"
     },
@@ -3121,7 +3220,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_int",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "int"
     },
@@ -3132,7 +3231,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_submissionsnapshot_init",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".init()"
     },
@@ -3143,7 +3242,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_pendingchange",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "pendingchange"
     },
@@ -3154,7 +3253,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_pendingchange_init",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".init()"
     },
@@ -3165,7 +3264,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "changedetector"
     },
@@ -3176,7 +3275,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector_submissionchanges",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".submissionchanges()"
     },
@@ -3187,7 +3286,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector_gradechange",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".gradechange()"
     },
@@ -3198,7 +3297,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_changedetector_duesoonchanges",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".duesoonchanges()"
     },
@@ -3209,7 +3308,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_changedetector_swift_date",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "date"
     },
@@ -3220,8 +3319,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "changekind.swift"
     },
     {
@@ -3231,8 +3330,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind_changekind",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "changekind"
     },
     {
@@ -3242,8 +3341,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "string",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "string"
     },
     {
@@ -3253,8 +3352,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind_changekind_newgrade",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "newgrade"
     },
     {
@@ -3264,8 +3363,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind_changekind_gradechanged",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "gradechanged"
     },
     {
@@ -3275,8 +3374,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind_changekind_newfeedback",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "newfeedback"
     },
     {
@@ -3286,8 +3385,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind_changekind_newannouncement",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "newannouncement"
     },
     {
@@ -3297,8 +3396,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind_changekind_newmessage",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "newmessage"
     },
     {
@@ -3308,8 +3407,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasdata_changekind_changekind_duesoon",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "duesoon"
     },
     {
@@ -3320,7 +3419,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "derivedreads.swift"
     },
     {
@@ -3331,7 +3430,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_calculatorinputs",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "calculatorinputs"
     },
     {
@@ -3342,7 +3441,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_int",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "int"
     },
     {
@@ -3353,7 +3452,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_bool",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "bool"
     },
     {
@@ -3364,7 +3463,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_string",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "string"
     },
     {
@@ -3375,7 +3474,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_double",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "double"
     },
     {
@@ -3386,7 +3485,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamassignment",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "streamassignment"
     },
     {
@@ -3397,7 +3496,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_swift_date",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "date"
     },
     {
@@ -3408,7 +3507,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamassignment_init",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".init()"
     },
     {
@@ -3419,7 +3518,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamitem",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "streamitem"
     },
     {
@@ -3430,7 +3529,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "kind"
     },
     {
@@ -3441,7 +3540,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_awaitinggrade",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "awaitinggrade"
     },
     {
@@ -3452,7 +3551,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_upcoming",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "upcoming"
     },
     {
@@ -3463,7 +3562,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_recentlygraded",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "recentlygraded"
     },
     {
@@ -3474,7 +3573,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_kind_feedback",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "feedback"
     },
     {
@@ -3485,7 +3584,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_streamitem_init",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".init()"
     },
     {
@@ -3496,7 +3595,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_canvasrepository",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "canvasrepository"
     },
     {
@@ -3507,7 +3606,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_canvasrepository_calculatorinputs",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".calculatorinputs()"
     },
     {
@@ -3518,7 +3617,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_derivedreads_canvasrepository_stream",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".stream()"
     },
     {
@@ -3529,7 +3628,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "legacyhiddencourses.swift"
     },
     {
@@ -3540,7 +3639,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "legacyhiddencourses"
     },
     {
@@ -3551,7 +3650,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses_ids",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".ids()"
     },
     {
@@ -3562,7 +3661,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_swift_set",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "set"
     },
     {
@@ -3573,7 +3672,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_swift_int",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "int"
     },
     {
@@ -3584,7 +3683,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses_clear",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".clear()"
     },
     {
@@ -3990,8 +4089,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "sources_canvasdata_models_trackingmodels_changerecord_changekind",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": ".changekind"
     },
     {
@@ -4045,8 +4144,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "syncscope"
     },
     {
@@ -4056,8 +4155,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope_all",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "all"
     },
     {
@@ -4067,8 +4166,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope_course",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "course"
     },
     {
@@ -4079,7 +4178,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_int",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "int"
     },
     {
@@ -4089,8 +4188,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "syncstate"
     },
     {
@@ -4100,8 +4199,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_idle",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "idle"
     },
     {
@@ -4111,8 +4210,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_syncing",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "syncing"
     },
     {
@@ -4122,8 +4221,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_failed",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": "SubmissionSnapshot",
       "norm_label": "failed"
     },
     {
@@ -4134,7 +4233,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_string",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "string"
     },
     {
@@ -4145,7 +4244,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_date",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "date"
     },
     {
@@ -4155,8 +4254,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncerror",
-      "community": 44,
-      "community_name": ".syncCourse",
+      "community": 13,
+      "community_name": "APIError",
       "norm_label": "syncerror"
     },
     {
@@ -4166,8 +4265,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncerror_noclient",
-      "community": 44,
-      "community_name": ".syncCourse",
+      "community": 13,
+      "community_name": "APIError",
       "norm_label": "noclient"
     },
     {
@@ -4178,7 +4277,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "entitykind"
     },
     {
@@ -4189,7 +4288,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_courses",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "courses"
     },
     {
@@ -4200,7 +4299,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_enrollments",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "enrollments"
     },
     {
@@ -4211,7 +4310,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_assignments",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "assignments"
     },
     {
@@ -4222,7 +4321,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_submissions",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "submissions"
     },
     {
@@ -4265,8 +4364,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_setstatehandler",
-      "community": 32,
-      "community_name": "Sendable",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".setstatehandler()"
     },
     {
@@ -4299,7 +4398,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_bool",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "bool"
     },
     {
@@ -4310,7 +4409,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_syncall",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".syncall()"
     },
     {
@@ -4321,7 +4420,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertcourses",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".upsertcourses()"
     },
     {
@@ -4332,7 +4431,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_applyenrollment",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".applyenrollment()"
     },
     {
@@ -4343,7 +4442,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_result",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "result"
     },
     {
@@ -4354,7 +4453,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_activecourseids",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".activecourseids()"
     },
     {
@@ -4365,7 +4464,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_fetchone",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".fetchone()"
     },
     {
@@ -4387,7 +4486,7 @@
       "_origin": "ast",
       "id": "t",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": "t"
     },
     {
@@ -4398,7 +4497,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_insert",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".insert()"
     },
     {
@@ -4409,7 +4508,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_touch",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".touch()"
     },
     {
@@ -4431,7 +4530,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_isfresh",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".isfresh()"
     },
     {
@@ -4442,7 +4541,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_fetchwithretry",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".fetchwithretry()"
     },
     {
@@ -4453,7 +4552,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_synccourse",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".synccourse()"
     },
     {
@@ -4464,7 +4563,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertgroups",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".upsertgroups()"
     },
     {
@@ -4475,7 +4574,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertsubmissions",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".upsertsubmissions()"
     },
     {
@@ -4486,7 +4585,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_submissionsnapshots",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".submissionsnapshots()"
     },
     {
@@ -4497,7 +4596,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_assignmentnames",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".assignmentnames()"
     },
     {
@@ -4508,7 +4607,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_duesoonpending",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".duesoonpending()"
     },
     {
@@ -4518,8 +4617,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 48,
+      "community_name": "Color",
       "norm_label": "brandcolors.swift"
     },
     {
@@ -4529,8 +4628,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 48,
+      "community_name": "Color",
       "norm_label": "color"
     },
     {
@@ -4540,8 +4639,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_lettergradecolor",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 48,
+      "community_name": "Color",
       "norm_label": ".lettergradecolor()"
     },
     {
@@ -4551,8 +4650,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_swift_string",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 48,
+      "community_name": "Color",
       "norm_label": "string"
     },
     {
@@ -4562,8 +4661,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_secondarylabel",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 48,
+      "community_name": "Color",
       "norm_label": ".secondarylabel"
     },
     {
@@ -4573,8 +4672,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_systembackground",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 48,
+      "community_name": "Color",
       "norm_label": ".systembackground"
     },
     {
@@ -4584,8 +4683,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "sources_canvasui_brandcolors_color_systemgroupedbackground",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 48,
+      "community_name": "Color",
       "norm_label": ".systemgroupedbackground"
     },
     {
@@ -4595,8 +4694,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 1,
+      "community_name": "CalculatorViewModel",
       "norm_label": "calculatorview.swift"
     },
     {
@@ -4606,8 +4705,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_calculatorview",
-      "community": 42,
-      "community_name": "View",
+      "community": 1,
+      "community_name": "CalculatorViewModel",
       "norm_label": "calculatorview"
     },
     {
@@ -5145,8 +5244,8 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_calculatorviewmodel_solveresult",
-      "community": 2,
-      "community_name": "GradeCalculator",
+      "community": 1,
+      "community_name": "CalculatorViewModel",
       "norm_label": ".solveresult"
     },
     {
@@ -5167,8 +5266,8 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorviewmodel_calculatorviewmodel_gradeletter",
-      "community": 2,
-      "community_name": "GradeCalculator",
+      "community": 1,
+      "community_name": "CalculatorViewModel",
       "norm_label": ".gradeletter()"
     },
     {
@@ -5178,8 +5277,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": "coursecard.swift"
     },
     {
@@ -5189,8 +5288,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": "coursecard"
     },
     {
@@ -5200,8 +5299,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_swift_string",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": "string"
     },
     {
@@ -5211,8 +5310,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_swift_double",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": "double"
     },
     {
@@ -5222,8 +5321,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_init",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": ".init()"
     },
     {
@@ -5233,8 +5332,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_displayletter",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": ".displayletter"
     },
     {
@@ -5244,8 +5343,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_gradecolor",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": ".gradecolor"
     },
     {
@@ -5255,8 +5354,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "sources_canvasui_coursecard_coursecard_body",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 47,
+      "community_name": "CourseCard",
       "norm_label": ".body"
     },
     {
@@ -5266,8 +5365,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "gradedashboard.swift"
     },
     {
@@ -5277,8 +5376,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_gradedashboard",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "gradedashboard"
     },
     {
@@ -5288,8 +5387,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_swift_double",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "double"
     },
     {
@@ -5299,8 +5398,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_swift_string",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "string"
     },
     {
@@ -5310,8 +5409,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_gradedashboard_init",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": ".init()"
     },
     {
@@ -5321,8 +5420,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_gradedashboard_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": ".body"
     },
     {
@@ -5332,8 +5431,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_groupbreakdownrow",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "groupbreakdownrow"
     },
     {
@@ -5343,8 +5442,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_groupbreakdownrow_init",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": ".init()"
     },
     {
@@ -5354,8 +5453,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard_groupbreakdownrow_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": ".body"
     },
     {
@@ -5365,8 +5464,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "letterbadge.swift"
     },
     {
@@ -5376,8 +5475,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_letterbadge",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "letterbadge"
     },
     {
@@ -5387,8 +5486,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_swift_string",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": "string"
     },
     {
@@ -5398,8 +5497,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_letterbadge_init",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": ".init()"
     },
     {
@@ -5409,8 +5508,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "sources_canvasui_letterbadge_letterbadge_body",
-      "community": 42,
-      "community_name": "View",
+      "community": 3,
+      "community_name": "GradeDashboard",
       "norm_label": ".body"
     },
     {
@@ -5421,7 +5520,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_skeletonlist",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "skeletonlist.swift"
     },
     {
@@ -5432,7 +5531,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_skeletonlist_skeletonlist",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "skeletonlist"
     },
     {
@@ -5443,7 +5542,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_skeletonlist_swift_int",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "int"
     },
     {
@@ -5454,7 +5553,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_skeletonlist_skeletonlist_init",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": ".init()"
     },
     {
@@ -5465,7 +5564,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_skeletonlist_skeletonlist_body",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": ".body"
     },
     {
@@ -5476,7 +5575,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "stalenesslabel.swift"
     },
     {
@@ -5487,7 +5586,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_stalenesslabel",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "stalenesslabel"
     },
     {
@@ -5498,7 +5597,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_swift_date",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": "date"
     },
     {
@@ -5509,7 +5608,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_stalenesslabel_init",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": ".init()"
     },
     {
@@ -5520,7 +5619,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_stalenesslabel_body",
       "community": 42,
-      "community_name": "View",
+      "community_name": "SkeletonList",
       "norm_label": ".body"
     },
     {
@@ -5530,8 +5629,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_streamsection",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": "streamsection.swift"
     },
     {
@@ -5542,7 +5641,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "streamsection"
     },
     {
@@ -5553,7 +5652,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_init",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".init()"
     },
     {
@@ -5564,7 +5663,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_awaitinggrade",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".awaitinggrade"
     },
     {
@@ -5575,7 +5674,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_upcoming",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".upcoming"
     },
     {
@@ -5586,7 +5685,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_recentlygraded",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".recentlygraded"
     },
     {
@@ -5597,7 +5696,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_recentfeedback",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".recentfeedback"
     },
     {
@@ -5608,7 +5707,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsection_body",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".body"
     },
     {
@@ -5619,7 +5718,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsectionheader",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "streamsectionheader"
     },
     {
@@ -5630,7 +5729,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_swift_string",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "string"
     },
     {
@@ -5641,7 +5740,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamsectionheader_body",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".body"
     },
     {
@@ -5652,7 +5751,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "streamrow"
     },
     {
@@ -5663,7 +5762,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow_init",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".init()"
     },
     {
@@ -5674,7 +5773,7 @@
       "_origin": "ast",
       "id": "dateformatter",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": "dateformatter"
     },
     {
@@ -5685,7 +5784,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow_body",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".body"
     },
     {
@@ -5696,7 +5795,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_streamsection_streamrow_inlinedetail",
       "community": 32,
-      "community_name": "Sendable",
+      "community_name": "StreamItem",
       "norm_label": ".inlinedetail"
     },
     {
@@ -5741,7 +5840,7 @@
       "_origin": "ast",
       "id": "xctestcase",
       "community": 21,
-      "community_name": "Credentials",
+      "community_name": "XCTestCase",
       "norm_label": "xctestcase"
     },
     {
@@ -5817,8 +5916,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests",
-      "community": 21,
-      "community_name": "Credentials",
+      "community": 17,
+      "community_name": "APIClient",
       "norm_label": "apiclientmessagingtests"
     },
     {
@@ -5828,8 +5927,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_swift_urlsession",
-      "community": 21,
-      "community_name": "Credentials",
+      "community": 17,
+      "community_name": "APIClient",
       "norm_label": "urlsession"
     },
     {
@@ -5839,8 +5938,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_setup",
-      "community": 21,
-      "community_name": "Credentials",
+      "community": 17,
+      "community_name": "APIClient",
       "norm_label": ".setup()"
     },
     {
@@ -5861,8 +5960,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_testcourseteachersemptywhennoteachers",
-      "community": 21,
-      "community_name": "Credentials",
+      "community": 17,
+      "community_name": "APIClient",
       "norm_label": ".testcourseteachersemptywhennoteachers()"
     },
     {
@@ -5971,8 +6070,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_startloading",
-      "community": 23,
-      "community_name": "PaginationStub",
+      "community": 40,
+      "community_name": "SyncStub",
       "norm_label": ".startloading()"
     },
     {
@@ -6071,7 +6170,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests",
       "community": 21,
-      "community_name": "Credentials",
+      "community_name": "XCTestCase",
       "norm_label": "credentialstests"
     },
     {
@@ -6082,7 +6181,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests_testnormalizehost",
       "community": 21,
-      "community_name": "Credentials",
+      "community_name": "XCTestCase",
       "norm_label": ".testnormalizehost()"
     },
     {
@@ -6092,8 +6191,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests_testapiclientbuildsurlsfromhost",
-      "community": 17,
-      "community_name": "APIClient",
+      "community": 21,
+      "community_name": "XCTestCase",
       "norm_label": ".testapiclientbuildsurlsfromhost()"
     },
     {
@@ -6697,8 +6796,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "tests_canvascoretests_profiletests_profiletests_testdemoprofile",
-      "community": 21,
-      "community_name": "Credentials",
+      "community": 17,
+      "community_name": "APIClient",
       "norm_label": ".testdemoprofile()"
     },
     {
@@ -6950,7 +7049,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "changedetectortests"
     },
@@ -6961,7 +7060,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_makesubmission",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".makesubmission()"
     },
@@ -6972,7 +7071,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_swift_int",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "int"
     },
@@ -6983,7 +7082,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_swift_double",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "double"
     },
@@ -6994,7 +7093,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_swift_string",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": "string"
     },
@@ -7005,7 +7104,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testnewgradefiresonniltoscore",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testnewgradefiresonniltoscore()"
     },
@@ -7016,7 +7115,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testnewgradefiresonscorechange",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testnewgradefiresonscorechange()"
     },
@@ -7027,7 +7126,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testmutedgradedoesnotfirenewgrade",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testmutedgradedoesnotfirenewgrade()"
     },
@@ -7038,7 +7137,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testidenticalresyncproduceszerorecords",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testidenticalresyncproduceszerorecords()"
     },
@@ -7049,7 +7148,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testfirstsyncbaselineproduceszerorecords",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testfirstsyncbaselineproduceszerorecords()"
     },
@@ -7060,7 +7159,7 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testnewinstructorcommentfires",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testnewinstructorcommentfires()"
     },
@@ -7071,7 +7170,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testowncommentdoesnotfire",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testowncommentdoesnotfire()"
     },
@@ -7082,7 +7181,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testexistingcommentdoesnotfire",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testexistingcommentdoesnotfire()"
     },
@@ -7093,7 +7192,7 @@
       "source_location": "L112",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testcommentwithoutidisignored",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testcommentwithoutidisignored()"
     },
@@ -7104,7 +7203,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testgradechangedthreshold",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testgradechangedthreshold()"
     },
@@ -7115,7 +7214,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testduesoonfiresinsidewindow",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testduesoonfiresinsidewindow()"
     },
@@ -7126,7 +7225,7 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "tests_canvasdatatests_changedetectortests_changedetectortests_testduesoonrespectssubmittedandnotifiedandwindow",
-      "community": 3,
+      "community": 44,
       "community_name": "SubmissionSnapshot",
       "norm_label": ".testduesoonrespectssubmittedandnotifiedandwindow()"
     },
@@ -7358,7 +7457,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_schematests_schematests_testcanvasdateparsesiso8601",
       "community": 44,
-      "community_name": ".syncCourse",
+      "community_name": "SubmissionSnapshot",
       "norm_label": ".testcanvasdateparsesiso8601()"
     },
     {
@@ -7390,8 +7489,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tests_canvasdatatests_smoketests_smoketests",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 21,
+      "community_name": "XCTestCase",
       "norm_label": "smoketests"
     },
     {
@@ -7401,8 +7500,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvasdatatests_smoketests_smoketests_testchangekindroundtrip",
-      "community": 3,
-      "community_name": "SubmissionSnapshot",
+      "community": 21,
+      "community_name": "XCTestCase",
       "norm_label": ".testchangekindroundtrip()"
     },
     {
@@ -11949,6 +12048,18 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview",
+      "target": "canvascore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/CourseWorkspaceView.swift",
       "source_location": "L2",
       "weight": 1.0,
@@ -13397,7 +13508,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L11",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "context": "field",
@@ -14842,7 +14953,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -15096,7 +15207,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L58",
+      "source_location": "L152",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_settingsview_settingsview_body",
@@ -15120,7 +15231,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L48",
+      "source_location": "L142",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_settingsview_settingsview_body",
@@ -15445,7 +15556,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_settingsview",
@@ -15456,7 +15567,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L11",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_settingsview_settingsview",
@@ -15464,16 +15575,218 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_settingsview",
+      "target": "canvasapp_views_settingsview_settingsview_cansave",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_settingsview",
+      "target": "canvasapp_views_settingsview_settingsview_cantestconnection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_settingsview",
+      "target": "canvasapp_views_settingsview_settingsview_normalizedhost",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/SettingsView.swift",
-      "source_location": "L5",
+      "source_location": "L27",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
       "source": "canvasapp_views_settingsview_settingsview",
       "target": "canvasapp_views_settingsview_swift_bool",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_settingsview",
+      "target": "canvasapp_views_settingsview_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "field",
+      "source": "canvasapp_views_settingsview_settingsview",
+      "target": "canvasapp_views_settingsview_teststate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L18",
+      "weight": 1.0,
+      "context": "type",
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_teststate",
+      "target": "canvasapp_views_settingsview_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_teststate",
+      "target": "canvasapp_views_settingsview_teststate_failure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_teststate",
+      "target": "canvasapp_views_settingsview_teststate_idle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_teststate",
+      "target": "canvasapp_views_settingsview_teststate_success",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_teststate",
+      "target": "canvasapp_views_settingsview_teststate_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_teststate",
+      "target": "equatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Credentials.swift",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_credentials_credentials",
+      "target": "equatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/GradeCalculator.swift",
+      "source_location": "L129",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_gradecalculator_solveresult",
+      "target": "equatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasData/ChangeDetector.swift",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvasdata_changedetector_pendingchange",
+      "target": "equatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasData/ChangeDetector.swift",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvasdata_changedetector_submissionsnapshot",
+      "target": "equatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasData/SyncEngine.swift",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvasdata_syncengine_syncscope",
+      "target": "equatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasData/SyncEngine.swift",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvasdata_syncengine_syncstate",
+      "target": "equatable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CanvasApp/Views/SettingsView.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "canvasapp_views_settingsview_settingsview_normalizedhost",
+      "target": "sources_canvascore_credentials_credentials_normalizehost"
     },
     {
       "relation": "contains",
@@ -17340,17 +17653,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_credentials_credentials",
-      "target": "equatable",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/Credentials.swift",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "sources_canvascore_credentials_credentials",
       "target": "sendable",
       "confidence_score": 1.0
     },
@@ -17783,61 +18085,6 @@
       "_origin": "ast",
       "source": "sources_canvasdata_syncengine_syncstate",
       "target": "sendable",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/GradeCalculator.swift",
-      "source_location": "L129",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "sources_canvascore_gradecalculator_solveresult",
-      "target": "equatable",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasData/ChangeDetector.swift",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "sources_canvasdata_changedetector_pendingchange",
-      "target": "equatable",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasData/ChangeDetector.swift",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "sources_canvasdata_changedetector_submissionsnapshot",
-      "target": "equatable",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasData/SyncEngine.swift",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "sources_canvasdata_syncengine_syncscope",
-      "target": "equatable",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasData/SyncEngine.swift",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "sources_canvasdata_syncengine_syncstate",
-      "target": "equatable",
       "confidence_score": 1.0
     },
     {
@@ -34841,5 +35088,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6b83694c599d1ac5f7a8d1a89797b1c8eb0470e3"
+  "built_at_commit": "63c8c4a577d40cf13d6cca24fe7a0731819e4141"
 }

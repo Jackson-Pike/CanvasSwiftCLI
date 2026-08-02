@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/SettingsView.swift": {
-    "mtime": 1785654815.0902534,
-    "ast_hash": "67d2d7ae3a53dbb9b26196b995364243",
+    "mtime": 1785692239.4135244,
+    "ast_hash": "639332b8d6dca34a0f33b9adc136c606",
     "semantic_hash": ""
   },
   "CanvasApp/Views/WelcomeView.swift": {
@@ -402,6 +402,11 @@
   "CanvasApp/Views/Window/MainWindowView.swift": {
     "mtime": 1785654203.7387342,
     "ast_hash": "4edf461bf17bedf54c5cc5bea983a3e9",
+    "semantic_hash": ""
+  },
+  "Tests/CanvasDataTests/ConcurrencyStressTests.swift": {
+    "mtime": 1785655003.6729403,
+    "ast_hash": "6a60b39859f5294d4fcb4fe6f5e2b10f",
     "semantic_hash": ""
   }
 }
