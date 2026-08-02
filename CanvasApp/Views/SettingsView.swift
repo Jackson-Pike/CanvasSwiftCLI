@@ -21,7 +21,7 @@ struct SettingsView: View {
     private var normalizedHost: String? { Credentials.normalizeHost(hostInput) }
 
     private var canTestConnection: Bool {
-        normalizedHost != nil && !tokenInput.isEmpty
+        normalizedHost != nil && !tokenInput.isEmpty && testState != .testing
     }
 
     private var canSave: Bool {
@@ -81,6 +81,12 @@ struct SettingsView: View {
                     testState = .testing
                     Task {
                         let result = await session.testConnection(host: normalized, token: trimmedToken)
+                        // If the fields changed while this request was in flight, the
+                        // tested pair is stale — don't let it resurrect .success/.failure
+                        // for credentials that no longer match what's on screen.
+                        guard normalizedHost == normalized,
+                              tokenInput.trimmingCharacters(in: .whitespacesAndNewlines) == trimmedToken
+                        else { return }
                         switch result {
                         case .success(let profile):
                             testState = .success(name: profile.name)
