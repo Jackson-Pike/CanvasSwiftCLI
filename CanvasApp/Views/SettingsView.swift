@@ -3,8 +3,9 @@ import CanvasUI
 
 struct SettingsView: View {
     let isOnboarding: Bool
-    @EnvironmentObject var appState: AppState
-    @EnvironmentObject var hiddenStore: HiddenCoursesStore
+    @ObservedObject var vm: CoursesViewModel
+    @Environment(AppSession.self) private var session
+    @Environment(\.dismiss) private var dismiss
     @State private var tokenInput = ""
 
     var body: some View {
@@ -17,7 +18,7 @@ struct SettingsView: View {
                         HStack {
                             Spacer()
                             Button {
-                                appState.navigationPath.removeLast()
+                                dismiss()
                             } label: {
                                 Image(systemName: "xmark.circle.fill")
                                     .foregroundStyle(.secondary)
@@ -37,26 +38,24 @@ struct SettingsView: View {
                         .foregroundStyle(.tertiary)
                 }
                 Button("Save") {
-                    appState.saveToken(tokenInput)
-                    if !isOnboarding { appState.navigationPath.removeLast() }
+                    session.saveCredentials(host: session.host, token: tokenInput)
+                    if !isOnboarding { dismiss() }
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.byuhRed)
                 .disabled(tokenInput.isEmpty)
 
-                if !hiddenStore.hiddenIDs.isEmpty {
+                let hidden = vm.hiddenCourses(session: session)
+                if !hidden.isEmpty {
                     Divider()
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Hidden Courses")
                             .font(.subheadline).foregroundStyle(.secondary)
-                        ForEach(Array(hiddenStore.hiddenIDs).sorted(), id: \.self) { courseId in
+                        ForEach(hidden, id: \.id) { course in
                             HStack {
-                                let name = appState.coursesVM.allFetchedCourses
-                                    .first { $0.id == courseId }?.courseCode
-                                    ?? "Course \(courseId)"
-                                Text(name).font(.subheadline)
+                                Text(course.courseCode).font(.subheadline)
                                 Spacer()
-                                Button("Restore") { hiddenStore.restore(courseId) }
+                                Button("Restore") { vm.restore(courseId: course.id, session: session) }
                                     .buttonStyle(.bordered)
                                     .controlSize(.small)
                             }

@@ -30,7 +30,7 @@
   "28": "2026-06-26",
   "29": "File Map",
   "30": "Student UX Brief — CanvasCLISwift",
-  "31": "View",
+  "31": "CourseDetailView",
   "32": "Sendable",
   "33": "CanvasCore",
   "34": "Global Constraints",
@@ -41,6 +41,8 @@
   "39": "Package.swift",
   "40": "SyncStub",
   "41": "ModelsTests",
+  "42": "GradeDashboard",
+  "43": "View",
   "44": ".syncCourse",
-  "51": "CourseCardView"
+  "45": "CourseCard"
 }

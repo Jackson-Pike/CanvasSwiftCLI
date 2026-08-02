@@ -1,14 +1,18 @@
 import SwiftUI
 import CanvasCore
+import CanvasData
+import CanvasUI
 
 @main
-struct CanvasApp: App {
-    @StateObject private var appState = AppState()
+struct CanvasGradesApp: App {
+    @State private var session = AppSession()
+    @State private var router = Router()
 
     var body: some Scene {
         MenuBarExtra("Canvas", systemImage: "graduationcap.fill") {
             PopoverContent()
-                .environmentObject(appState)
+                .environment(session)
+                .environment(router)
                 .frame(width: 380, height: 520)
         }
         .menuBarExtraStyle(.window)
@@ -16,27 +20,23 @@ struct CanvasApp: App {
 }
 
 struct PopoverContent: View {
-    @EnvironmentObject var appState: AppState
+    @Environment(AppSession.self) private var session
+    @StateObject private var coursesVM = CoursesViewModel()
+    @State private var path = NavigationPath()
 
     var body: some View {
-        if !appState.hasSeenIntro {
+        if !session.hasSeenIntro {
             WelcomeView()
-                .environmentObject(appState)
-        } else if !appState.hasAcknowledgedKeychain {
+        } else if !session.hasAcknowledgedKeychain {
             KeychainWarningView()
-                .environmentObject(appState)
-        } else if !appState.hasToken {
-            SettingsView(isOnboarding: true)
-                .environmentObject(appState)
-                .environmentObject(appState.hiddenCoursesStore)
+        } else if !session.hasCredentials {
+            SettingsView(isOnboarding: true, vm: coursesVM)
         } else {
-            NavigationStack(path: $appState.navigationPath) {
-                CourseListView(vm: appState.coursesVM)
+            NavigationStack(path: $path) {
+                CourseListView(vm: coursesVM, path: $path)
                     .navigationDestination(for: String.self) { destination in
                         if destination == "settings" {
-                            SettingsView(isOnboarding: false)
-                                .environmentObject(appState)
-                                .environmentObject(appState.hiddenCoursesStore)
+                            SettingsView(isOnboarding: false, vm: coursesVM)
                         }
                     }
             }

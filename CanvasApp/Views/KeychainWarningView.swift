@@ -2,7 +2,7 @@ import SwiftUI
 import CanvasUI
 
 struct KeychainWarningView: View {
-    @EnvironmentObject var appState: AppState
+    @Environment(AppSession.self) private var session
 
     var body: some View {
         VStack(spacing: 0) {
@@ -35,7 +35,7 @@ struct KeychainWarningView: View {
                     .padding(.horizontal, 28)
 
                 Button {
-                    appState.acknowledgeKeychain()
+                    session.acknowledgeKeychain()
                 } label: {
                     Text("Continue")
                         .font(.headline)

@@ -1,10 +1,15 @@
 import SwiftUI
+import AppKit
 import CanvasCore
+import CanvasData
 import CanvasUI
 
 struct CourseListView: View {
-    @EnvironmentObject var appState: AppState
+    @Environment(AppSession.self) private var session
+    @Environment(Router.self) private var router
+    @Environment(\.openWindow) private var openWindow
     @ObservedObject var vm: CoursesViewModel
+    @Binding var path: NavigationPath
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,7 +26,15 @@ struct CourseListView: View {
                     .disabled(vm.isLoading)
                     .accessibilityLabel("Refresh courses")
                     .help("Refresh courses")
-                    Button { appState.navigationPath.append("settings") } label: {
+                    Button {
+                        openWindow(id: "main")
+                        NSApp.activate(ignoringOtherApps: true)
+                    } label: {
+                        Image(systemName: "macwindow")
+                    }
+                    .accessibilityLabel("Open in Window")
+                    .help("Open in Window")
+                    Button { path.append("settings") } label: {
                         Image(systemName: "gear")
                     }
                     .accessibilityLabel("Settings")
@@ -37,7 +50,7 @@ struct CourseListView: View {
 
             Group {
                 if vm.isLoading {
-                    Color.clear.overlay(ProgressView("Loading courses…"))
+                    Color.clear.overlay(SkeletonList())
                 } else if let error = vm.error {
                     Color.clear.overlay(
                         ContentUnavailableView {
@@ -48,7 +61,7 @@ struct CourseListView: View {
                             Button("Retry") { refresh(force: true) }
                                 .buttonStyle(.bordered)
                             if error.contains("Invalid token") || error.contains("unauthorized") {
-                                Button("Update Token…") { appState.navigationPath.append("settings") }
+                                Button("Update Token…") { path.append("settings") }
                                     .buttonStyle(.borderedProminent)
                                     .tint(.byuhRed)
                             }
@@ -68,32 +81,38 @@ struct CourseListView: View {
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 12) {
+                            if !vm.unseenChanges.isEmpty {
+                                sinceYouLastLooked
+                            }
                             ForEach(vm.courses, id: \.id) { course in
-                                NavigationLink(destination: CourseDetailView(
-                                    course: course,
-                                    vm: appState.detailViewModel(for: course)
-                                )) {
+                                NavigationLink(destination: CourseDetailView(courseId: course.id)) {
                                     CourseCard(
                                         name: course.name,
                                         courseCode: course.courseCode,
                                         score: vm.currentScore(for: course.id),
-                                        letter: vm.currentScore(for: course.id).map {
-                                            letterGrade(for: $0, scale: course.gradingScale)
-                                        }
+                                        letter: vm.letter(for: course.id)
                                     )
                                 }
                                 .buttonStyle(.plain)
                                 .contextMenu {
+                                    Button {
+                                        router.reveal(.course(id: course.id, tab: .grades))
+                                        openWindow(id: "main")
+                                        NSApp.activate(ignoringOtherApps: true)
+                                    } label: {
+                                        Label("Open in Window", systemImage: "macwindow")
+                                    }
+                                    .keyboardShortcut(.return, modifiers: .command)
                                     Button(role: .destructive) {
-                                        appState.hiddenCoursesStore.hide(course.id)
+                                        vm.hide(courseId: course.id, session: session)
                                     } label: {
                                         Label("Hide Course", systemImage: "eye.slash")
                                     }
                                 }
                                 .accessibilityElement(children: .combine)
                                 .accessibilityLabel({
-                                    if let score = vm.currentScore(for: course.id) {
-                                        return "\(course.name), \(letterGrade(for: score, scale: course.gradingScale)) grade"
+                                    if let letter = vm.letter(for: course.id) {
+                                        return "\(course.name), \(letter) grade"
                                     } else {
                                         return course.name
                                     }
@@ -108,11 +127,51 @@ struct CourseListView: View {
                 }
             }
         }
-        .task { refresh() }
+        .task { await vm.load(session: session) }
+    }
+
+    private var sinceYouLastLooked: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text("Since you last looked")
+                    .font(.subheadline.bold())
+                Spacer()
+                Button("Mark all seen") { vm.markChangesSeen(session: session) }
+                    .buttonStyle(.borderless)
+                    .font(.caption)
+            }
+            ForEach(vm.unseenChanges, id: \.id) { record in
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: icon(for: record))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 16)
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(record.title).font(.caption.bold())
+                        if let detail = record.detail {
+                            Text(detail).font(.caption2).foregroundStyle(.secondary)
+                        }
+                    }
+                    Spacer()
+                }
+            }
+        }
+        .padding(10)
+        .background(Color.systemGroupedBackground, in: RoundedRectangle(cornerRadius: 8))
+    }
+
+    private func icon(for record: ChangeRecord) -> String {
+        switch record.changeKind {
+        case .newGrade: return "checkmark.circle"
+        case .gradeChanged: return "arrow.up.arrow.down.circle"
+        case .newFeedback: return "bubble.left"
+        case .newAnnouncement: return "megaphone"
+        case .newMessage: return "envelope"
+        case .dueSoon: return "clock"
+        case .none: return "bell"
+        }
     }
 
     private func refresh(force: Bool = false) {
-        guard let client = appState.makeClient() else { return }
-        vm.fetch(client: client, force: force)
+        Task { await vm.load(session: session, force: force) }
     }
 }

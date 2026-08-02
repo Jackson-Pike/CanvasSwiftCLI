@@ -2,7 +2,7 @@ import SwiftUI
 import CanvasUI
 
 struct WelcomeView: View {
-    @EnvironmentObject var appState: AppState
+    @Environment(AppSession.self) private var session
 
     var body: some View {
         VStack(spacing: 0) {
@@ -50,7 +50,7 @@ struct WelcomeView: View {
 
             // CTA
             Button {
-                appState.completeIntro()
+                session.completeIntro()
             } label: {
                 Text("Get Started")
                     .font(.headline)

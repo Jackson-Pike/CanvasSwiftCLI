@@ -90,11 +90,10 @@ final class AppSession {
         catch { /* state handler already carries .failed; VMs surface per-section errors */ }
     }
 
-    // NOTE: `CourseDetailViewModel` currently only exposes `init(course:)` (Task
-    // 11-era API). Task 14 changes it to take a `courseId` and load via
-    // `CanvasRepository` instead. Until then this is a placeholder so the
-    // AppSession/Router surfaces Tasks 13-15 depend on can compile and land now.
     func detailViewModel(courseId: Int) -> CourseDetailViewModel {
-        fatalError("CourseDetailViewModel(courseId:) wired in Task 14")
+        if let existing = detailVMs[courseId] { return existing }
+        let vm = CourseDetailViewModel(courseId: courseId)
+        detailVMs[courseId] = vm
+        return vm
     }
 }
