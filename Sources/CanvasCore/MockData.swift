@@ -110,6 +110,10 @@ public enum MockData {
         Submission(id: 1008, userId: studentUserId, assignmentId: 401, score: 85,
                    workflowState: "graded", gradedAt: "2026-03-05T12:00:00Z",
                    submittedAt: "2026-03-01T22:00:00Z", submissionComments: nil),
+        // Final Exam — graded but muted by the instructor before release: score withheld (score nil).
+        Submission(id: 1009, userId: studentUserId, assignmentId: 402, score: nil,
+                   workflowState: "graded", gradedAt: "2026-03-10T12:00:00Z",
+                   submittedAt: nil, submissionComments: nil),
     ]
 
     // MARK: - MATH 112 (Calculus II)

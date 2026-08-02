@@ -26,7 +26,7 @@ final class APIClientDemoTests: XCTestCase {
 
     func testSubmissionsReturnsMockSubmissions() async throws {
         let subs = try await demo.submissions(courseId: MockData.csCourseId)
-        XCTAssertEqual(subs.count, 8)
+        XCTAssertEqual(subs.count, 9)
         let awaiting = subs.filter { $0.workflowState == "submitted" && $0.score == nil }
         XCTAssertEqual(awaiting.count, 1)
     }

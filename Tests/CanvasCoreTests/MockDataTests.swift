@@ -64,7 +64,7 @@ final class MockDataTests: XCTestCase {
 
     func testSubmissionsCountAndStudentId() {
         let submissions = MockData.submissions[MockData.csCourseId]!
-        XCTAssertEqual(submissions.count, 8)
+        XCTAssertEqual(submissions.count, 9)
         XCTAssertTrue(submissions.allSatisfy { $0.userId == MockData.studentUserId })
     }
 
@@ -93,9 +93,12 @@ final class MockDataTests: XCTestCase {
         XCTAssertEqual(midterm.score, 85)
     }
 
-    func testNoSubmissionForFinalExam() {
+    func testFinalExamHasMutedGradeSubmission() {
         let finalSub = MockData.submissions[MockData.csCourseId]!.first { $0.assignmentId == 402 }
-        XCTAssertNil(finalSub)
+        XCTAssertNotNil(finalSub)
+        XCTAssertEqual(finalSub?.workflowState, "graded")
+        XCTAssertNil(finalSub?.score)
+        XCTAssertNil(finalSub?.submittedAt)
     }
 
     // MARK: - Teachers

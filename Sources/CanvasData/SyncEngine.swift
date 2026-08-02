@@ -166,6 +166,172 @@ public actor SyncEngine {
         try await operation()
     }
 
-    // Task 8 fills this in.
-    private func syncCourse(_ courseId: Int, client: APIClient, force: Bool) async throws {}
+    // MARK: - .course
+
+    private func syncCourse(_ courseId: Int, client: APIClient, force: Bool) async throws {
+        let now = Date()
+        async let groupsFetch = fetchWithRetry { try await client.assignmentGroups(courseId: courseId) }
+        async let subsFetch = fetchWithRetry { try await client.submissions(courseId: courseId) }
+
+        var firstError: (any Error)?
+
+        do {
+            let groups = try await groupsFetch
+            upsertGroups(groups, courseId: courseId, now: now)
+            touch(.assignments, scope: "\(courseId)", error: nil, at: now)
+        } catch {
+            firstError = error
+            touch(.assignments, scope: "\(courseId)", error: String(describing: error), at: now)
+        }
+
+        do {
+            let subs = try await subsFetch
+            let old = submissionSnapshots(courseId: courseId)
+            upsertSubmissions(subs, courseId: courseId)
+            let names = assignmentNames(courseId: courseId)
+            insert(ChangeDetector.submissionChanges(courseId: courseId, old: old,
+                                                    new: subs, assignmentNames: names), now: now)
+            if !old.isEmpty {   // baseline suppression applies to dueSoon too
+                insert(dueSoonPending(courseId: courseId, subs: subs, now: now), now: now)
+            }
+            touch(.submissions, scope: "\(courseId)", error: nil, at: now)
+        } catch {
+            if firstError == nil { firstError = error }
+            touch(.submissions, scope: "\(courseId)", error: String(describing: error), at: now)
+        }
+
+        try modelContext.save()
+        // Partial failure is normal (spec §2.5): throw only if *everything* failed.
+        if let firstError, fetchCount(FetchDescriptor<CachedAssignmentGroup>(
+            predicate: #Predicate { $0.courseId == courseId })) == 0 {
+            throw firstError
+        }
+    }
+
+    private func upsertGroups(_ groups: [AssignmentGroup], courseId: Int, now: Date) {
+        let existingGroups = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedAssignmentGroup>(
+                predicate: #Predicate<CachedAssignmentGroup> { $0.courseId == courseId }))) ?? [])
+                .map { ($0.id, $0) })
+        let fetchedGroupIds = Set(groups.map(\.id))
+        for g in groups {
+            let dropLowest = g.rules?.dropLowest ?? 0
+            let dropHighest = g.rules?.dropHighest ?? 0
+            let neverDrop = g.rules?.neverDrop ?? []
+            if let row = existingGroups[g.id] {
+                row.name = g.name; row.groupWeight = g.groupWeight
+                row.dropLowest = dropLowest; row.dropHighest = dropHighest
+                row.neverDrop = neverDrop; row.removedAt = nil
+            } else {
+                modelContext.insert(CachedAssignmentGroup(
+                    id: g.id, courseId: courseId, name: g.name, groupWeight: g.groupWeight,
+                    dropLowest: dropLowest, dropHighest: dropHighest, neverDrop: neverDrop))
+            }
+        }
+        for (id, row) in existingGroups where !fetchedGroupIds.contains(id) && row.removedAt == nil {
+            row.removedAt = now
+        }
+
+        let existingAssignments = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedAssignment>(
+                predicate: #Predicate<CachedAssignment> { $0.courseId == courseId }))) ?? [])
+                .map { ($0.id, $0) })
+        let flattened = groups.flatMap(\.assignments)
+        let fetchedAssignmentIds = Set(flattened.map(\.id))
+        for (i, a) in flattened.enumerated() {
+            let dueAt = CanvasDate.parse(a.dueAt)
+            if let row = existingAssignments[a.id] {
+                row.groupId = a.assignmentGroupId; row.name = a.name
+                row.pointsPossible = a.pointsPossible; row.dueAt = dueAt
+                row.sortIndex = i; row.removedAt = nil
+            } else {
+                modelContext.insert(CachedAssignment(
+                    id: a.id, courseId: courseId, groupId: a.assignmentGroupId, name: a.name,
+                    pointsPossible: a.pointsPossible, dueAt: dueAt, sortIndex: i))
+            }
+        }
+        for (id, row) in existingAssignments where !fetchedAssignmentIds.contains(id) && row.removedAt == nil {
+            row.removedAt = now
+        }
+    }
+
+    private func upsertSubmissions(_ subs: [Submission], courseId: Int) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedSubmission>(
+                predicate: #Predicate<CachedSubmission> { $0.courseId == courseId }))) ?? [])
+                .map { ($0.id, $0) })
+        let existingComments = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedComment>())) ?? []).map { ($0.id, $0) })
+
+        for sub in subs {
+            let gradedAt = CanvasDate.parse(sub.gradedAt)
+            let submittedAt = CanvasDate.parse(sub.submittedAt)
+            if let row = existing[sub.id] {
+                row.score = sub.score; row.workflowState = sub.workflowState
+                row.gradedAt = gradedAt; row.submittedAt = submittedAt
+                row.userId = sub.userId; row.assignmentId = sub.assignmentId
+            } else {
+                modelContext.insert(CachedSubmission(
+                    id: sub.id, assignmentId: sub.assignmentId, courseId: courseId,
+                    userId: sub.userId, score: sub.score, workflowState: sub.workflowState,
+                    gradedAt: gradedAt, submittedAt: submittedAt))
+            }
+
+            for comment in sub.submissionComments ?? [] {
+                guard let cid = comment.id else { continue }
+                let createdAt = CanvasDate.parse(comment.createdAt)
+                if let row = existingComments[cid] {
+                    row.submissionId = sub.id; row.assignmentId = sub.assignmentId
+                    row.authorId = comment.authorId; row.authorName = comment.authorName
+                    row.body = comment.comment; row.createdAt = createdAt
+                } else {
+                    modelContext.insert(CachedComment(
+                        id: cid, submissionId: sub.id, assignmentId: sub.assignmentId,
+                        authorId: comment.authorId, authorName: comment.authorName,
+                        body: comment.comment, createdAt: createdAt))
+                }
+            }
+        }
+    }
+
+    private func submissionSnapshots(courseId: Int) -> [Int: SubmissionSnapshot] {
+        let subs = (try? modelContext.fetch(FetchDescriptor<CachedSubmission>(
+            predicate: #Predicate<CachedSubmission> { $0.courseId == courseId }))) ?? []
+        var result: [Int: SubmissionSnapshot] = [:]
+        for sub in subs {
+            let subId = sub.id
+            let comments = (try? modelContext.fetch(FetchDescriptor<CachedComment>(
+                predicate: #Predicate<CachedComment> { $0.submissionId == subId }))) ?? []
+            let commentIds = Set(comments.map(\.id))
+            result[sub.assignmentId] = SubmissionSnapshot(
+                score: sub.score, workflowState: sub.workflowState, commentIds: commentIds)
+        }
+        return result
+    }
+
+    private func assignmentNames(courseId: Int) -> [Int: String] {
+        let assignments = (try? modelContext.fetch(FetchDescriptor<CachedAssignment>(
+            predicate: #Predicate<CachedAssignment> { $0.courseId == courseId }))) ?? []
+        return Dictionary(uniqueKeysWithValues: assignments.map { ($0.id, $0.name) })
+    }
+
+    private func dueSoonPending(courseId: Int, subs: [Submission], now: Date) -> [PendingChange] {
+        let assignments = ((try? modelContext.fetch(FetchDescriptor<CachedAssignment>(
+            predicate: #Predicate<CachedAssignment> { $0.courseId == courseId }))) ?? [])
+            .filter { $0.removedAt == nil }
+            .map { (id: $0.id, name: $0.name, dueAt: $0.dueAt) }
+        // BYUH never returns workflow_state "submitted" (spec §3.1); treat graded as submitted too.
+        let submitted = Set(subs.filter { $0.submittedAt != nil || $0.workflowState == "graded" }
+            .map(\.assignmentId))
+        let notified = Set((try? modelContext.fetch(FetchDescriptor<ChangeRecord>(
+            predicate: #Predicate<ChangeRecord> { $0.courseId == courseId && $0.kind == "dueSoon" })))
+            ?? []).compactMap(\.subjectId)
+        return ChangeDetector.dueSoonChanges(courseId: courseId, assignments: assignments,
+                                             submittedAssignmentIds: submitted,
+                                             alreadyNotified: Set(notified), now: now)
+    }
+
+    private func fetchCount<T: PersistentModel>(_ d: FetchDescriptor<T>) -> Int {
+        (try? modelContext.fetchCount(d)) ?? 0
+    }
 }
