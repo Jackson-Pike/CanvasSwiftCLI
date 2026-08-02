@@ -15,6 +15,7 @@ struct DashboardView: View {
     let settings: CourseSettingsStore
 
     @State private var vm = DashboardViewModel()
+    @State private var termVM = TermScenarioViewModel()
     /// assignmentId -> courseId, rebuilt after every load. `StreamItem` does not carry a
     /// course id (it's built per-course and merged in `DashboardViewModel`), so this is
     /// reconstructed here by re-walking each visible course's cached assignments.
@@ -23,15 +24,23 @@ struct DashboardView: View {
     @State private var showSettings = false
 
     var body: some View {
-        Group {
-            if vm.error != nil {
-                errorState
-            } else if vm.rows.isEmpty && !vm.isLoading {
-                emptyState
-            } else {
-                dashboardContent
+        HStack(spacing: 0) {
+            Group {
+                if vm.error != nil {
+                    errorState
+                } else if vm.rows.isEmpty && !vm.isLoading {
+                    emptyState
+                } else {
+                    dashboardContent
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            if router.sandboxOpen {
+                TermSandboxRail(vm: termVM)
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
             }
         }
+        .animation(.easeInOut(duration: 0.2), value: router.sandboxOpen)
         .background(Color.canvasBG)
         .sheet(isPresented: $showSettings) {
             SettingsView(isOnboarding: false, vm: coursesVM)
@@ -43,6 +52,20 @@ struct DashboardView: View {
         .onChange(of: coursesVM.courses.count) {
             Task { await reload() }
         }
+        .onChange(of: vm.summaries.count) {
+            syncTermVM()
+        }
+        .onChange(of: vm.rows.count) {
+            syncTermVM()
+        }
+    }
+
+    /// Feeds the term sandbox VM the latest summaries + course-code lookup whenever
+    /// `DashboardViewModel` finishes a read. `CourseGradeSummary` carries no display
+    /// name, so the code map comes from `vm.rows` (built in the same pass).
+    private func syncTermVM() {
+        termVM.summaries = vm.summaries
+        termVM.codes = Dictionary(uniqueKeysWithValues: vm.rows.map { ($0.id, $0.code) })
     }
 
     private func reload(force: Bool = false) async {

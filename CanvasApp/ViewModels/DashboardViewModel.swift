@@ -29,6 +29,7 @@ final class DashboardViewModel {
     var floorGPA: Double?
     var pointsInPlay: Double = 0
     var rows: [CourseLedgerRow] = []
+    private(set) var summaries: [CourseGradeSummary] = []
     var awaitingGrade: [StreamItem] = []
     var recentFeedback: [StreamItem] = []
     var termStart: Date?
@@ -110,6 +111,7 @@ final class DashboardViewModel {
         }
 
         rows = newRows
+        self.summaries = summaries
         termGPA = currentTermGPA(summaries)
         ceilingGPA = ceilingTermGPA(summaries)
         floorGPA = floorTermGPA(summaries)
