@@ -52,10 +52,17 @@ public struct Assignment: Codable {
 }
 
 public struct SubmissionComment: Codable {
+    public let id: Int?
     public let authorId: Int
     public let authorName: String
     public let comment: String
     public let createdAt: String?
+}
+
+public struct Profile: Codable, Sendable {
+    public let id: Int
+    public let name: String
+    public let primaryEmail: String?
 }
 
 public struct Submission: Codable {

@@ -5,6 +5,8 @@ public enum APIError: Error, CustomStringConvertible {
     case unauthorized
     case http(Int)
     case network(String)
+    case rateLimited(retryAfter: TimeInterval)
+    case forbidden
 
     public var description: String {
         switch self {
@@ -12,6 +14,8 @@ public enum APIError: Error, CustomStringConvertible {
         case .unauthorized:     return "Invalid token — update in Settings."
         case .http(let code):   return "Canvas API returned HTTP \(code)."
         case .network(let msg): return "Network error: \(msg)."
+        case .rateLimited:      return "Canvas is rate limiting requests — retrying shortly."
+        case .forbidden:        return "Canvas denied access to this resource."
         }
     }
 }
@@ -39,6 +43,15 @@ public struct APIClient {
             if let http = response as? HTTPURLResponse {
                 print("[APIClient] \(http.statusCode) \(url)")
                 if http.statusCode == 401 { throw APIError.unauthorized }
+                if http.statusCode == 403 {
+                    let bodyText = String(data: data, encoding: .utf8) ?? ""
+                    if bodyText.contains("Rate Limit Exceeded") {
+                        let retryAfter = http.value(forHTTPHeaderField: "Retry-After").flatMap(TimeInterval.init) ?? 10
+                        throw APIError.rateLimited(retryAfter: retryAfter)
+                    } else {
+                        throw APIError.forbidden
+                    }
+                }
                 guard (200..<300).contains(http.statusCode) else {
                     if let body = String(data: data, encoding: .utf8) {
                         print("[APIClient] Error body: \(body.prefix(500))")
@@ -156,5 +169,16 @@ public struct APIClient {
         ])
         let enrollments = try decoder().decode([TeacherEnrollment].self, from: data)
         return enrollments.map { $0.userId }
+    }
+
+    public func profile() async throws -> Profile {
+        #if DEBUG
+        if token == "DEMO" { return MockData.profile }
+        #endif
+        guard let url = URL(string: baseURL + "/users/self/profile") else {
+            throw APIError.network("bad URL /users/self/profile")
+        }
+        let (data, _) = try await getPage(url: url)
+        return try decoder().decode(Profile.self, from: data)
     }
 }

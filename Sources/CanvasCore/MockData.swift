@@ -83,7 +83,7 @@ public enum MockData {
                    workflowState: "graded", gradedAt: "2026-01-16T10:00:00Z",
                    submittedAt: "2026-01-15T22:00:00Z",
                    submissionComments: [
-                       SubmissionComment(authorId: teacherUserId, authorName: "Prof. Demo",
+                       SubmissionComment(id: 9001, authorId: teacherUserId, authorName: "Prof. Demo",
                                          comment: "Great reflection — keep pushing your analysis deeper.",
                                          createdAt: "2026-01-16T10:00:00Z")
                    ]),
@@ -161,7 +161,7 @@ public enum MockData {
                    workflowState: "graded", gradedAt: "2026-01-31T09:00:00Z",
                    submittedAt: "2026-01-30T23:00:00Z",
                    submissionComments: [
-                       SubmissionComment(authorId: teacherUserId, authorName: "Dr. Kekoa",
+                       SubmissionComment(id: 9002, authorId: teacherUserId, authorName: "Dr. Kekoa",
                                          comment: "Watch your algebra on problem 4 — the rest is solid.",
                                          createdAt: "2026-01-31T09:00:00Z")
                    ]),
@@ -232,7 +232,7 @@ public enum MockData {
                    workflowState: "graded", gradedAt: "2026-02-06T14:00:00Z",
                    submittedAt: "2026-02-04T20:00:00Z",
                    submissionComments: [
-                       SubmissionComment(authorId: teacherUserId, authorName: "Dr. Alaimalo",
+                       SubmissionComment(id: 9003, authorId: teacherUserId, authorName: "Dr. Alaimalo",
                                          comment: "Excellent thesis and use of primary sources.",
                                          createdAt: "2026-02-06T14:00:00Z")
                    ]),
@@ -308,5 +308,7 @@ public enum MockData {
     ]
 
     public static let teacherIds: [Int] = [teacherUserId]
+
+    public static let profile = Profile(id: studentUserId, name: "Demo Student", primaryEmail: "demo.student@example.edu")
 }
 #endif
