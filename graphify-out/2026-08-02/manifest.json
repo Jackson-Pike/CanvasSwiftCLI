@@ -1,7 +1,7 @@
 {
   "CanvasApp/App/CanvasApp.swift": {
-    "mtime": 1785700811.755531,
-    "ast_hash": "63afe1040b40b26c6cf9d0a83527fd02",
+    "mtime": 1785714252.7058825,
+    "ast_hash": "486f7c54dbb8de92d92f362fba7bea49",
     "semantic_hash": ""
   },
   "CanvasApp/App/KeychainHelper.swift": {
@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/SettingsView.swift": {
-    "mtime": 1785700811.7595315,
-    "ast_hash": "639332b8d6dca34a0f33b9adc136c606",
+    "mtime": 1785729312.4003828,
+    "ast_hash": "cf248d727b82065bfb5478dbc97da3a6",
     "semantic_hash": ""
   },
   "CanvasApp/Views/WelcomeView.swift": {
@@ -390,7 +390,7 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/CourseWorkspaceView.swift": {
-    "mtime": 1785713492.5165787,
+    "mtime": 1785713601.494343,
     "ast_hash": "a5f9dd31886a320da63d2906946303ce",
     "semantic_hash": ""
   },
@@ -415,13 +415,13 @@
     "semantic_hash": ""
   },
   "CanvasApp/ViewModels/DashboardViewModel.swift": {
-    "mtime": 1785711810.317109,
-    "ast_hash": "17976936858114c4688082d1b661bb1e",
+    "mtime": 1785714035.656278,
+    "ast_hash": "8a9fa48f3c612b446addb52e06ec2a70",
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/DashboardView.swift": {
-    "mtime": 1785713089.439724,
-    "ast_hash": "d2cfa7632f22a009f636ce53a975e25b",
+    "mtime": 1785714035.656201,
+    "ast_hash": "4621fc7beb7c1b0eb394690d2a80d854",
     "semantic_hash": ""
   },
   "Sources/CanvasCore/PointsLedger.swift": {
@@ -450,8 +450,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasUI/SandboxRail.swift": {
-    "mtime": 1785713449.347646,
-    "ast_hash": "31626f164609f1d8c49e0080086daef1",
+    "mtime": 1785713726.779314,
+    "ast_hash": "5234aca6110b0d4b5494223eee2d005c",
     "semantic_hash": ""
   },
   "Sources/CanvasUI/SemesterTimelineStrip.swift": {
@@ -492,6 +492,16 @@
   "docs/superpowers/specs/2026-08-02-phase1a-dashboard-sandbox-handoff.md": {
     "mtime": 1785710367.5904164,
     "ast_hash": "41b61c1c7f9952a21e5f3b194f31c518",
+    "semantic_hash": ""
+  },
+  "CanvasApp/ViewModels/TermScenarioViewModel.swift": {
+    "mtime": 1785714035.656261,
+    "ast_hash": "a2fc83fcd1fa2a9224f73fca0a7f3a48",
+    "semantic_hash": ""
+  },
+  "CanvasApp/Views/Window/TermSandboxRail.swift": {
+    "mtime": 1785714035.656237,
+    "ast_hash": "1179fe6763cdc73cc7541637d4796fc0",
     "semantic_hash": ""
   }
 }

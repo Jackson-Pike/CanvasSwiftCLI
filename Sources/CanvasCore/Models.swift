@@ -18,6 +18,17 @@ public struct Course: Codable {
     public let courseCode: String
     public let applyAssignmentGroupWeights: Bool?
     public let gradingScheme: [GradingSchemeEntry]?
+    public let syllabusBody: String?
+
+    public init(id: Int, name: String, courseCode: String, applyAssignmentGroupWeights: Bool?,
+                gradingScheme: [GradingSchemeEntry]?, syllabusBody: String? = nil) {
+        self.id = id
+        self.name = name
+        self.courseCode = courseCode
+        self.applyAssignmentGroupWeights = applyAssignmentGroupWeights
+        self.gradingScheme = gradingScheme
+        self.syllabusBody = syllabusBody
+    }
 }
 
 public struct Enrollment: Codable {
@@ -44,11 +55,41 @@ public struct AssignmentGroup: Codable {
 }
 
 public struct Assignment: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id, name, pointsPossible, dueAt, assignmentGroupId
+        case descriptionHTML = "description"
+        case submissionTypes, unlockAt, lockAt
+        case htmlURL = "htmlUrl"   // .convertFromSnakeCase turns "html_url" -> "htmlUrl"
+        case rubric
+    }
+
     public let id: Int
     public let name: String
     public let pointsPossible: Double?  // null for ungraded surveys / not-graded types
     public let dueAt: String?
     public let assignmentGroupId: Int
+    public let descriptionHTML: String?
+    public let submissionTypes: [String]?
+    public let unlockAt: String?
+    public let lockAt: String?
+    public let htmlURL: String?
+    public let rubric: [RubricCriterion]?
+
+    public init(id: Int, name: String, pointsPossible: Double?, dueAt: String?, assignmentGroupId: Int,
+                descriptionHTML: String? = nil, submissionTypes: [String]? = nil, unlockAt: String? = nil,
+                lockAt: String? = nil, htmlURL: String? = nil, rubric: [RubricCriterion]? = nil) {
+        self.id = id
+        self.name = name
+        self.pointsPossible = pointsPossible
+        self.dueAt = dueAt
+        self.assignmentGroupId = assignmentGroupId
+        self.descriptionHTML = descriptionHTML
+        self.submissionTypes = submissionTypes
+        self.unlockAt = unlockAt
+        self.lockAt = lockAt
+        self.htmlURL = htmlURL
+        self.rubric = rubric
+    }
 }
 
 public struct SubmissionComment: Codable {
@@ -74,6 +115,42 @@ public struct Submission: Codable {
     public let gradedAt: String?
     public let submittedAt: String?
     public let submissionComments: [SubmissionComment]?
+    public let late: Bool?
+    public let missing: Bool?
+    public let excused: Bool?
+    public let attempt: Int?
+    public let rubricAssessment: [String: RubricAssessmentEntry]?
+
+    public init(id: Int, userId: Int, assignmentId: Int, score: Double?, workflowState: String,
+                gradedAt: String?, submittedAt: String?, submissionComments: [SubmissionComment]?,
+                late: Bool? = nil, missing: Bool? = nil, excused: Bool? = nil, attempt: Int? = nil,
+                rubricAssessment: [String: RubricAssessmentEntry]? = nil) {
+        self.id = id
+        self.userId = userId
+        self.assignmentId = assignmentId
+        self.score = score
+        self.workflowState = workflowState
+        self.gradedAt = gradedAt
+        self.submittedAt = submittedAt
+        self.submissionComments = submissionComments
+        self.late = late
+        self.missing = missing
+        self.excused = excused
+        self.attempt = attempt
+        self.rubricAssessment = rubricAssessment
+    }
+}
+
+public struct DiscussionAuthor: Codable {
+    public let displayName: String?
+}
+
+public struct Announcement: Codable {
+    public let id: Int
+    public let title: String
+    public let message: String?
+    public let postedAt: String?
+    public let author: DiscussionAuthor?
 }
 
 public extension Course {

@@ -158,8 +158,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "canvasapp_app_appsession_appsession_init",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".init()"
     },
     {
@@ -169,8 +169,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "canvasapp_app_appsession_appsession_wireengine",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".wireengine()"
     },
     {
@@ -191,8 +191,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "canvasapp_app_appsession_appsession_acknowledgekeychain",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": ".acknowledgekeychain()"
     },
     {
@@ -380,7 +380,7 @@
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_popovercontent",
       "community": 61,
-      "community_name": "CourseListView",
+      "community_name": "View",
       "norm_label": "popovercontent"
     },
     {
@@ -390,7 +390,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "view",
-      "community": 63,
+      "community": 61,
       "community_name": "View",
       "norm_label": "view"
     },
@@ -402,7 +402,7 @@
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_popovercontent_coursesvm",
       "community": 61,
-      "community_name": "CourseListView",
+      "community_name": "View",
       "norm_label": ".coursesvm"
     },
     {
@@ -412,8 +412,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "canvasapp_app_canvasapp_popovercontent_body",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 61,
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -423,8 +423,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_app_coursesettingsstore",
-      "community": 23,
-      "community_name": "CourseSettingsStore",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "coursesettingsstore.swift"
     },
     {
@@ -566,8 +566,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_app_keychainhelper",
-      "community": 27,
-      "community_name": ".load",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "keychainhelper.swift"
     },
     {
@@ -578,8 +578,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "security",
-      "community": 27,
-      "community_name": ".load",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "security"
     },
     {
@@ -688,8 +688,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hashable",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "hashable"
     },
     {
@@ -809,8 +809,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "caseiterable",
-      "community": 4,
-      "community_name": "CachedCourse",
+      "community": 24,
+      "community_name": "SidebarItem",
       "norm_label": "caseiterable"
     },
     {
@@ -1370,8 +1370,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_coursesviewmodel_coursesviewmodel_markchangesseen",
-      "community": 61,
-      "community_name": "CourseListView",
+      "community": 13,
+      "community_name": "CoursesViewModel",
       "norm_label": ".markchangesseen()"
     },
     {
@@ -1392,8 +1392,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_courseledgerrow",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": "courseledgerrow"
     },
     {
@@ -1414,8 +1414,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_swift_int",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": "int"
     },
     {
@@ -1425,8 +1425,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_swift_string",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": "string"
     },
     {
@@ -1436,8 +1436,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_swift_color",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": "color"
     },
     {
@@ -1447,8 +1447,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_swift_double",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": "double"
     },
     {
@@ -1458,8 +1458,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_dashboardviewmodel",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": "dashboardviewmodel"
     },
     {
@@ -1469,8 +1469,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_swift_date",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": "date"
     },
     {
@@ -1502,8 +1502,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_dashboardviewmodel_readfromstore",
-      "community": 23,
-      "community_name": "CourseSettingsStore",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": ".readfromstore()"
     },
     {
@@ -1513,8 +1513,8 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_dashboardviewmodel_dashboardviewmodel_dotcolor",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": ".dotcolor()"
     },
     {
@@ -1623,8 +1623,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "canvasapp_viewmodels_termscenarioviewmodel_termscenarioviewmodel_reset",
-      "community": 55,
-      "community_name": "CourseGradeSummary",
+      "community": 59,
+      "community_name": "Text",
       "norm_label": ".reset()"
     },
     {
@@ -1701,7 +1701,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview_coursedetailview",
-      "community": 63,
+      "community": 61,
       "community_name": "View",
       "norm_label": "coursedetailview"
     },
@@ -1712,7 +1712,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview_swift_int",
-      "community": 63,
+      "community": 61,
       "community_name": "View",
       "norm_label": "int"
     },
@@ -1723,7 +1723,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview_coursedetailview_body",
-      "community": 63,
+      "community": 61,
       "community_name": "View",
       "norm_label": ".body"
     },
@@ -1734,7 +1734,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "canvasapp_views_coursedetailview_coursedetailbody",
-      "community": 63,
+      "community": 61,
       "community_name": "View",
       "norm_label": "coursedetailbody"
     },
@@ -1767,8 +1767,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview",
-      "community": 61,
-      "community_name": "CourseListView",
+      "community": 13,
+      "community_name": "CoursesViewModel",
       "norm_label": "courselistview"
     },
     {
@@ -1779,7 +1779,7 @@
       "_origin": "ast",
       "id": "navigationpath",
       "community": 61,
-      "community_name": "CourseListView",
+      "community_name": "View",
       "norm_label": "navigationpath"
     },
     {
@@ -1800,8 +1800,8 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview_sinceyoulastlooked",
-      "community": 61,
-      "community_name": "CourseListView",
+      "community": 13,
+      "community_name": "CoursesViewModel",
       "norm_label": ".sinceyoulastlooked"
     },
     {
@@ -1811,8 +1811,8 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_courselistview_icon",
-      "community": 61,
-      "community_name": "CourseListView",
+      "community": 13,
+      "community_name": "CoursesViewModel",
       "norm_label": ".icon()"
     },
     {
@@ -1822,8 +1822,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_courselistview_swift_string",
-      "community": 61,
-      "community_name": "CourseListView",
+      "community": 13,
+      "community_name": "CoursesViewModel",
       "norm_label": "string"
     },
     {
@@ -1866,8 +1866,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview_keychainwarningview",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 61,
+      "community_name": "View",
       "norm_label": "keychainwarningview"
     },
     {
@@ -1877,8 +1877,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_keychainwarningview_keychainwarningview_body",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 61,
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -1999,7 +1999,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_settingsview_normalizedhost",
       "community": 43,
-      "community_name": ".normalizeHost",
+      "community_name": "XCTestCase",
       "norm_label": ".normalizedhost"
     },
     {
@@ -2042,8 +2042,8 @@
       "source_location": "L209",
       "_origin": "ast",
       "id": "canvasapp_views_settingsview_customizationsection",
-      "community": 23,
-      "community_name": "CourseSettingsStore",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "customizationsection"
     },
     {
@@ -2097,8 +2097,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_welcomeview",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 61,
+      "community_name": "View",
       "norm_label": "welcomeview"
     },
     {
@@ -2108,8 +2108,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_welcomeview_body",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 59,
+      "community_name": "Text",
       "norm_label": ".body"
     },
     {
@@ -2119,8 +2119,8 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_disclosurerow",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 59,
+      "community_name": "Text",
       "norm_label": "disclosurerow"
     },
     {
@@ -2130,8 +2130,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_swift_string",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 59,
+      "community_name": "Text",
       "norm_label": "string"
     },
     {
@@ -2141,8 +2141,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_swift_color",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 59,
+      "community_name": "Text",
       "norm_label": "color"
     },
     {
@@ -2152,8 +2152,8 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "canvasapp_views_welcomeview_disclosurerow_body",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 59,
+      "community_name": "Text",
       "norm_label": ".body"
     },
     {
@@ -2163,8 +2163,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview",
-      "community": 63,
-      "community_name": "View",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "courseworkspaceview.swift"
     },
     {
@@ -2174,8 +2174,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_courseworkspaceview",
-      "community": 63,
-      "community_name": "View",
+      "community": 21,
+      "community_name": ".body",
       "norm_label": "courseworkspaceview"
     },
     {
@@ -2185,8 +2185,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_int",
-      "community": 63,
-      "community_name": "View",
+      "community": 21,
+      "community_name": ".body",
       "norm_label": "int"
     },
     {
@@ -2196,8 +2196,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_courseworkspaceview_body",
-      "community": 63,
-      "community_name": "View",
+      "community": 21,
+      "community_name": ".body",
       "norm_label": ".body"
     },
     {
@@ -2207,8 +2207,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_courseworkspacebody",
-      "community": 63,
-      "community_name": "View",
+      "community": 21,
+      "community_name": ".body",
       "norm_label": "courseworkspacebody"
     },
     {
@@ -2229,8 +2229,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradestabview",
-      "community": 63,
-      "community_name": "View",
+      "community": 69,
+      "community_name": "SkeletonList",
       "norm_label": "gradestabview"
     },
     {
@@ -2240,8 +2240,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_void",
-      "community": 63,
-      "community_name": "View",
+      "community": 69,
+      "community_name": "SkeletonList",
       "norm_label": "void"
     },
     {
@@ -2251,8 +2251,8 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradestabview_body",
-      "community": 63,
-      "community_name": "View",
+      "community": 69,
+      "community_name": "SkeletonList",
       "norm_label": ".body"
     },
     {
@@ -2262,8 +2262,8 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradessandboxsplit",
-      "community": 63,
-      "community_name": "View",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": "gradessandboxsplit"
     },
     {
@@ -2273,8 +2273,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_date",
-      "community": 63,
-      "community_name": "View",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": "date"
     },
     {
@@ -2284,8 +2284,8 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradessandboxsplit_init",
-      "community": 63,
-      "community_name": "View",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": ".init()"
     },
     {
@@ -2295,8 +2295,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradessandboxsplit_body",
-      "community": 63,
-      "community_name": "View",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": ".body"
     },
     {
@@ -2306,8 +2306,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_gradecalculator",
-      "community": 63,
-      "community_name": "View",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": "gradecalculator"
     },
     {
@@ -2317,8 +2317,8 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradessandboxsplit_actualcalculator",
-      "community": 63,
-      "community_name": "View",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": ".actualcalculator"
     },
     {
@@ -2328,8 +2328,8 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradessandboxsplit_maincolumn",
-      "community": 21,
-      "community_name": ".body",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": ".maincolumn"
     },
     {
@@ -2351,7 +2351,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradessandboxsplit_groupssection",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": ".groupssection"
     },
     {
@@ -2362,7 +2362,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_gradessandboxsplit_assignmentssection",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": ".assignmentssection"
     },
     {
@@ -2373,7 +2373,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_groupliftrow",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": "groupliftrow"
     },
     {
@@ -2384,7 +2384,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_double",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": "double"
     },
     {
@@ -2395,7 +2395,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_bool",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": "bool"
     },
     {
@@ -2406,7 +2406,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_swift_string",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": "string"
     },
     {
@@ -2417,7 +2417,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_groupliftrow_body",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": ".body"
     },
     {
@@ -2428,7 +2428,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_assignmentrow",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": "assignmentrow"
     },
     {
@@ -2439,7 +2439,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_assignmentrow_ishypothetical",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": ".ishypothetical"
     },
     {
@@ -2450,7 +2450,7 @@
       "_origin": "ast",
       "id": "canvasapp_views_window_courseworkspaceview_assignmentrow_body",
       "community": 63,
-      "community_name": "View",
+      "community_name": "AssignmentRow",
       "norm_label": ".body"
     },
     {
@@ -2603,8 +2603,8 @@
       "source_location": "L175",
       "_origin": "ast",
       "id": "canvasapp_views_window_dashboardview_dashboardview_sentence",
-      "community": 51,
-      "community_name": "DashboardView",
+      "community": 55,
+      "community_name": "CourseGradeSummary",
       "norm_label": ".sentence"
     },
     {
@@ -2801,8 +2801,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 61,
+      "community_name": "View",
       "norm_label": "mainwindowview"
     },
     {
@@ -2812,8 +2812,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowview_body",
-      "community": 31,
-      "community_name": "SettingsView",
+      "community": 61,
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -3165,8 +3165,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "error",
-      "community": 44,
-      "community_name": "SyncEngine",
+      "community": 56,
+      "community_name": "APIError",
       "norm_label": "error"
     },
     {
@@ -3220,8 +3220,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_int",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": "int"
     },
     {
@@ -3242,8 +3242,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_string",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 56,
+      "community_name": "APIError",
       "norm_label": "string"
     },
     {
@@ -3298,7 +3298,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": "apiclient"
     },
     {
@@ -3309,7 +3309,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_urlsession",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": "urlsession"
     },
     {
@@ -3320,7 +3320,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_token",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".token"
     },
     {
@@ -3331,7 +3331,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_baseurl",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".baseurl"
     },
     {
@@ -3342,7 +3342,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_init",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".init()"
     },
     {
@@ -3374,8 +3374,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_data",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 56,
+      "community_name": "APIError",
       "norm_label": "data"
     },
     {
@@ -3396,8 +3396,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "httpurlresponse",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": "httpurlresponse"
     },
     {
@@ -3407,8 +3407,8 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_getpaginated",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".getpaginated()"
     },
     {
@@ -3418,8 +3418,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "urlqueryitem",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": "urlqueryitem"
     },
     {
@@ -3429,8 +3429,8 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_decoder",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".decoder()"
     },
     {
@@ -3440,8 +3440,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_swift_jsondecoder",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": "jsondecoder"
     },
     {
@@ -3451,8 +3451,8 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_courses",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".courses()"
     },
     {
@@ -3462,8 +3462,8 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_enrollments",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".enrollments()"
     },
     {
@@ -3473,8 +3473,8 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_assignmentgroups",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".assignmentgroups()"
     },
     {
@@ -3484,8 +3484,8 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_submissions",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".submissions()"
     },
     {
@@ -3495,8 +3495,8 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "sources_canvascore_apiclient_apiclient_courseteachers",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".courseteachers()"
     },
     {
@@ -3529,7 +3529,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": "credentials"
     },
     {
@@ -3539,8 +3539,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sendable",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 0,
+      "community_name": "SyncEngine",
       "norm_label": "sendable"
     },
     {
@@ -3551,7 +3551,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_swift_string",
       "community": 43,
-      "community_name": ".normalizeHost",
+      "community_name": "XCTestCase",
       "norm_label": "string"
     },
     {
@@ -3562,7 +3562,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials_init",
       "community": 43,
-      "community_name": ".normalizeHost",
+      "community_name": "XCTestCase",
       "norm_label": ".init()"
     },
     {
@@ -3573,7 +3573,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_credentials_credentials_normalizehost",
       "community": 43,
-      "community_name": ".normalizeHost",
+      "community_name": "XCTestCase",
       "norm_label": ".normalizehost()"
     },
     {
@@ -3902,8 +3902,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvascore_mockdata",
-      "community": 25,
-      "community_name": "GradedItem",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "mockdata.swift"
     },
     {
@@ -4050,10 +4050,21 @@
       "norm_label": "bool"
     },
     {
-      "label": "Enrollment",
+      "label": ".init()",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
       "source_location": "L23",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_course_init",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".init()"
+    },
+    {
+      "label": "Enrollment",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "sources_canvascore_models_enrollment",
       "community": 25,
@@ -4064,7 +4075,7 @@
       "label": "Grades",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L27",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "sources_canvascore_models_grades",
       "community": 25,
@@ -4075,7 +4086,7 @@
       "label": "AssignmentGroupRules",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L32",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "sources_canvascore_models_assignmentgrouprules",
       "community": 25,
@@ -4086,7 +4097,7 @@
       "label": "AssignmentGroup",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L38",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "sources_canvascore_models_assignmentgroup",
       "community": 25,
@@ -4097,7 +4108,7 @@
       "label": "Assignment",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L46",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "sources_canvascore_models_assignment",
       "community": 25,
@@ -4105,10 +4116,164 @@
       "norm_label": "assignment"
     },
     {
+      "label": "CodingKeys",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "codingkeys"
+    },
+    {
+      "label": "CodingKey",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "codingkey",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "codingkey"
+    },
+    {
+      "label": "id",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_id",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "id"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_name",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "name"
+    },
+    {
+      "label": "pointsPossible",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_pointspossible",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "pointspossible"
+    },
+    {
+      "label": "dueAt",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_dueat",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "dueat"
+    },
+    {
+      "label": "assignmentGroupId",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_assignmentgroupid",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "assignmentgroupid"
+    },
+    {
+      "label": "descriptionHTML",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_descriptionhtml",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "descriptionhtml"
+    },
+    {
+      "label": "submissionTypes",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_submissiontypes",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "submissiontypes"
+    },
+    {
+      "label": "unlockAt",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_unlockat",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "unlockat"
+    },
+    {
+      "label": "lockAt",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_lockat",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "lockat"
+    },
+    {
+      "label": "htmlURL",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_htmlurl",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "htmlurl"
+    },
+    {
+      "label": "rubric",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_codingkeys_rubric",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "rubric"
+    },
+    {
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_assignment_init",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".init()"
+    },
+    {
       "label": "SubmissionComment",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L54",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "sources_canvascore_models_submissioncomment",
       "community": 25,
@@ -4119,7 +4284,7 @@
       "label": "Profile",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L62",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "sources_canvascore_models_profile",
       "community": 25,
@@ -4130,7 +4295,7 @@
       "label": "Submission",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L68",
+      "source_location": "L109",
       "_origin": "ast",
       "id": "sources_canvascore_models_submission",
       "community": 25,
@@ -4138,10 +4303,43 @@
       "norm_label": "submission"
     },
     {
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_submission_init",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".init()"
+    },
+    {
+      "label": "DiscussionAuthor",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L144",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_discussionauthor",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "discussionauthor"
+    },
+    {
+      "label": "Announcement",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L148",
+      "_origin": "ast",
+      "id": "sources_canvascore_models_announcement",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "announcement"
+    },
+    {
       "label": ".gradingScale",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L80",
+      "source_location": "L157",
       "_origin": "ast",
       "id": "sources_canvascore_models_course_gradingscale",
       "community": 25,
@@ -4152,7 +4350,7 @@
       "label": "TeacherEnrollment",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L87",
+      "source_location": "L164",
       "_origin": "ast",
       "id": "sources_canvascore_models_teacherenrollment",
       "community": 25,
@@ -4174,7 +4372,7 @@
       "label": "GradedItem",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L91",
+      "source_location": "L168",
       "_origin": "ast",
       "id": "sources_canvascore_models_gradeditem",
       "community": 25,
@@ -4185,7 +4383,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L99",
+      "source_location": "L176",
       "_origin": "ast",
       "id": "sources_canvascore_models_gradeditem_init",
       "community": 25,
@@ -4279,6 +4477,138 @@
       "community": 3,
       "community_name": "LedgerRowView",
       "norm_label": ".floorgrade()"
+    },
+    {
+      "label": "Rubric.swift",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "rubric.swift"
+    },
+    {
+      "label": "RubricRating",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubricrating",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "rubricrating"
+    },
+    {
+      "label": "String",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_swift_string",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "string"
+    },
+    {
+      "label": "Double",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_swift_double",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "double"
+    },
+    {
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubricrating_init",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".init()"
+    },
+    {
+      "label": "RubricCriterion",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubriccriterion",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "rubriccriterion"
+    },
+    {
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubriccriterion_init",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".init()"
+    },
+    {
+      "label": "RubricAssessmentEntry",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubricassessmententry",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "rubricassessmententry"
+    },
+    {
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubricassessmententry_init",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".init()"
+    },
+    {
+      "label": "RubricLine",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubricline",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "rubricline"
+    },
+    {
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_rubricline_init",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".init()"
+    },
+    {
+      "label": "formatRubricAssessment()",
+      "file_type": "code",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "sources_canvascore_rubric_formatrubricassessment",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "formatrubricassessment()"
     },
     {
       "label": "TermGPA.swift",
@@ -4430,8 +4760,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate",
-      "community": 64,
-      "community_name": ".parse",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "canvasdate.swift"
     },
     {
@@ -4441,8 +4771,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_canvasdate",
-      "community": 64,
-      "community_name": ".parse",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "canvasdate"
     },
     {
@@ -4452,8 +4782,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "iso8601dateformatter",
-      "community": 64,
-      "community_name": ".parse",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "iso8601dateformatter"
     },
     {
@@ -4463,8 +4793,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_canvasdate_parse",
-      "community": 64,
-      "community_name": ".parse",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": ".parse()"
     },
     {
@@ -4474,8 +4804,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_swift_string",
-      "community": 64,
-      "community_name": ".parse",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "string"
     },
     {
@@ -4485,8 +4815,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_canvasdate_swift_date",
-      "community": 64,
-      "community_name": ".parse",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "date"
     },
     {
@@ -4805,7 +5135,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasstore_canvasstore_container",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".container()"
     },
     {
@@ -4816,7 +5146,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasstore_swift_bool",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": "bool"
     },
     {
@@ -4827,7 +5157,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_canvasstore_swift_modelcontainer",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": "modelcontainer"
     },
     {
@@ -5310,8 +5640,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "legacyhiddencourses.swift"
     },
     {
@@ -5321,8 +5651,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "legacyhiddencourses"
     },
     {
@@ -5332,8 +5662,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses_ids",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": ".ids()"
     },
     {
@@ -5343,8 +5673,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_swift_set",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "set"
     },
     {
@@ -5354,8 +5684,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_swift_int",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "int"
     },
     {
@@ -5365,8 +5695,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "sources_canvasdata_legacyhiddencourses_legacyhiddencourses_clear",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": ".clear()"
     },
     {
@@ -5376,8 +5706,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_models_coursemodels",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "coursemodels.swift"
     },
     {
@@ -5574,8 +5904,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasdata_models_submissionmodels",
-      "community": 33,
-      "community_name": "CanvasCore",
+      "community": 4,
+      "community_name": "CachedCourse",
       "norm_label": "submissionmodels.swift"
     },
     {
@@ -5827,8 +6157,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "syncscope"
     },
     {
@@ -5838,8 +6168,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope_all",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "all"
     },
     {
@@ -5849,8 +6179,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncscope_course",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "course"
     },
     {
@@ -5861,7 +6191,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_int",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "int"
     },
     {
@@ -5871,8 +6201,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "syncstate"
     },
     {
@@ -5882,8 +6212,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_idle",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "idle"
     },
     {
@@ -5893,8 +6223,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_syncing",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "syncing"
     },
     {
@@ -5904,8 +6234,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncstate_failed",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": "failed"
     },
     {
@@ -5916,7 +6246,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_string",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "string"
     },
     {
@@ -5927,7 +6257,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_date",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "date"
     },
     {
@@ -5971,7 +6301,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "entitykind"
     },
     {
@@ -5982,7 +6312,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_courses",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "courses"
     },
     {
@@ -5993,7 +6323,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_enrollments",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "enrollments"
     },
     {
@@ -6004,7 +6334,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_assignments",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "assignments"
     },
     {
@@ -6015,7 +6345,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_entitykind_submissions",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "submissions"
     },
     {
@@ -6025,7 +6355,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine",
-      "community": 44,
+      "community": 0,
       "community_name": "SyncEngine",
       "norm_label": "syncengine"
     },
@@ -6036,7 +6366,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_void",
-      "community": 44,
+      "community": 0,
       "community_name": "SyncEngine",
       "norm_label": "void"
     },
@@ -6048,7 +6378,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_bool",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "bool"
     },
     {
@@ -6058,8 +6388,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "task",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 11,
+      "community_name": "AppSession",
       "norm_label": "task"
     },
     {
@@ -6070,7 +6400,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_configure",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".configure()"
     },
     {
@@ -6080,8 +6410,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_setstatehandler",
-      "community": 57,
-      "community_name": "Sendable",
+      "community": 0,
+      "community_name": "SyncEngine",
       "norm_label": ".setstatehandler()"
     },
     {
@@ -6092,7 +6422,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_setstate",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".setstate()"
     },
     {
@@ -6103,7 +6433,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_refresh",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".refresh()"
     },
     {
@@ -6114,7 +6444,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_perform",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".perform()"
     },
     {
@@ -6125,7 +6455,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_syncall",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".syncall()"
     },
     {
@@ -6136,7 +6466,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertcourses",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".upsertcourses()"
     },
     {
@@ -6147,7 +6477,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_applyenrollment",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".applyenrollment()"
     },
     {
@@ -6158,7 +6488,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_result",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "result"
     },
     {
@@ -6169,7 +6499,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_activecourseids",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".activecourseids()"
     },
     {
@@ -6180,7 +6510,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_fetchone",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".fetchone()"
     },
     {
@@ -6202,7 +6532,7 @@
       "_origin": "ast",
       "id": "t",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": "t"
     },
     {
@@ -6213,7 +6543,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_insert",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".insert()"
     },
     {
@@ -6224,7 +6554,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_touch",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".touch()"
     },
     {
@@ -6234,7 +6564,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_swift_timeinterval",
-      "community": 44,
+      "community": 0,
       "community_name": "SyncEngine",
       "norm_label": "timeinterval"
     },
@@ -6246,7 +6576,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_isfresh",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".isfresh()"
     },
     {
@@ -6257,7 +6587,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_fetchwithretry",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".fetchwithretry()"
     },
     {
@@ -6268,7 +6598,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_synccourse",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".synccourse()"
     },
     {
@@ -6279,7 +6609,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertgroups",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".upsertgroups()"
     },
     {
@@ -6290,7 +6620,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_upsertsubmissions",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".upsertsubmissions()"
     },
     {
@@ -6301,7 +6631,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_submissionsnapshots",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".submissionsnapshots()"
     },
     {
@@ -6312,7 +6642,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_assignmentnames",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".assignmentnames()"
     },
     {
@@ -6323,7 +6653,7 @@
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_duesoonpending",
       "community": 44,
-      "community_name": "SyncEngine",
+      "community_name": ".syncCourse",
       "norm_label": ".duesoonpending()"
     },
     {
@@ -6410,8 +6740,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview",
-      "community": 1,
-      "community_name": "CalculatorViewModel",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "calculatorview.swift"
     },
     {
@@ -6575,8 +6905,8 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "sources_canvasui_calculatorview_whatifrowview_body",
-      "community": 59,
-      "community_name": "Text",
+      "community": 1,
+      "community_name": "CalculatorViewModel",
       "norm_label": ".body"
     },
     {
@@ -7620,8 +7950,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_gradedashboard",
-      "community": 2,
-      "community_name": "GroupInfo",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "gradedashboard.swift"
     },
     {
@@ -7719,8 +8049,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_ledgertable",
-      "community": 3,
-      "community_name": "LedgerRowView",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "ledgertable.swift"
     },
     {
@@ -8038,8 +8368,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail",
-      "community": 49,
-      "community_name": "ScenarioChips",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "sandboxrail.swift"
     },
     {
@@ -8049,8 +8379,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": "sandboxrailview"
     },
     {
@@ -8060,8 +8390,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_init",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".init()"
     },
     {
@@ -8071,8 +8401,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_swift_int",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": "int"
     },
     {
@@ -8082,8 +8412,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_requireditemid",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".requireditemid"
     },
     {
@@ -8104,8 +8434,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_requiredpercent",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".requiredpercent"
     },
     {
@@ -8115,8 +8445,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_body",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".body"
     },
     {
@@ -8126,8 +8456,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_header",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".header"
     },
     {
@@ -8137,8 +8467,8 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_targetsection",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".targetsection"
     },
     {
@@ -8148,8 +8478,8 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_answersentence",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".answersentence"
     },
     {
@@ -8170,8 +8500,8 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_targetphrase",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".targetphrase"
     },
     {
@@ -8214,8 +8544,8 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_scenariossection",
-      "community": 59,
-      "community_name": "Text",
+      "community": 49,
+      "community_name": "ScenarioChips",
       "norm_label": ".scenariossection"
     },
     {
@@ -8225,8 +8555,8 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_footer",
-      "community": 59,
-      "community_name": "Text",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".footer"
     },
     {
@@ -8236,8 +8566,8 @@
       "source_location": "L189",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips",
-      "community": 49,
-      "community_name": "ScenarioChips",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": "targetchips"
     },
     {
@@ -8247,8 +8577,8 @@
       "source_location": "L192",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips_init",
-      "community": 49,
-      "community_name": "ScenarioChips",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".init()"
     },
     {
@@ -8258,8 +8588,8 @@
       "source_location": "L198",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips_body",
-      "community": 49,
-      "community_name": "ScenarioChips",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".body"
     },
     {
@@ -8269,8 +8599,8 @@
       "source_location": "L213",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips_chip",
-      "community": 49,
-      "community_name": "ScenarioChips",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": ".chip()"
     },
     {
@@ -8291,8 +8621,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_swift_bool",
-      "community": 49,
-      "community_name": "ScenarioChips",
+      "community": 64,
+      "community_name": "SandboxRailView",
       "norm_label": "bool"
     },
     {
@@ -8720,8 +9050,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel",
-      "community": 21,
-      "community_name": ".body",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": "stalenesslabel.swift"
     },
     {
@@ -8731,8 +9061,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_stalenesslabel",
-      "community": 21,
-      "community_name": ".body",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": "stalenesslabel"
     },
     {
@@ -8742,8 +9072,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_swift_date",
-      "community": 21,
-      "community_name": ".body",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": "date"
     },
     {
@@ -8753,8 +9083,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_stalenesslabel_init",
-      "community": 21,
-      "community_name": ".body",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": ".init()"
     },
     {
@@ -8764,8 +9094,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "sources_canvasui_stalenesslabel_stalenesslabel_body",
-      "community": 21,
-      "community_name": ".body",
+      "community": 32,
+      "community_name": "StreamItem",
       "norm_label": ".body"
     },
     {
@@ -8775,8 +9105,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "sources_canvasui_streamsection",
-      "community": 32,
-      "community_name": "StreamItem",
+      "community": 33,
+      "community_name": "CanvasCore",
       "norm_label": "streamsection.swift"
     },
     {
@@ -8974,8 +9304,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": "apiclientdemotests"
     },
     {
@@ -8985,7 +9315,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "xctestcase",
-      "community": 17,
+      "community": 43,
       "community_name": "XCTestCase",
       "norm_label": "xctestcase"
     },
@@ -8996,8 +9326,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testcoursesreturnsmockcourses",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".testcoursesreturnsmockcourses()"
     },
     {
@@ -9007,8 +9337,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testenrollmentsreturnsmockenrollment",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".testenrollmentsreturnsmockenrollment()"
     },
     {
@@ -9018,8 +9348,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testassignmentgroupsreturnsmockgroups",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".testassignmentgroupsreturnsmockgroups()"
     },
     {
@@ -9029,8 +9359,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testsubmissionsreturnsmocksubmissions",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".testsubmissionsreturnsmocksubmissions()"
     },
     {
@@ -9040,8 +9370,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientdemotests_apiclientdemotests_testcourseteachersreturnsmockteacherids",
-      "community": 17,
-      "community_name": "XCTestCase",
+      "community": 58,
+      "community_name": ".getPaginated",
       "norm_label": ".testcourseteachersreturnsmockteacherids()"
     },
     {
@@ -9063,7 +9393,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "apiclientmessagingtests"
     },
     {
@@ -9074,7 +9404,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_swift_urlsession",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "urlsession"
     },
     {
@@ -9084,8 +9414,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_setup",
-      "community": 0,
-      "community_name": "APIClient",
+      "community": 17,
+      "community_name": "PaginationStub",
       "norm_label": ".setup()"
     },
     {
@@ -9096,7 +9426,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_testcourseteachersreturnsuserids",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".testcourseteachersreturnsuserids()"
     },
     {
@@ -9107,7 +9437,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientmessagingtests_apiclientmessagingtests_testcourseteachersemptywhennoteachers",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".testcourseteachersemptywhennoteachers()"
     },
     {
@@ -9129,7 +9459,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "paginationstub"
     },
     {
@@ -9151,7 +9481,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_string",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "string"
     },
     {
@@ -9162,7 +9492,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_data",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "data"
     },
     {
@@ -9173,7 +9503,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_caninit",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".caninit()"
     },
     {
@@ -9184,7 +9514,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_urlrequest",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "urlrequest"
     },
     {
@@ -9195,7 +9525,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_bool",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "bool"
     },
     {
@@ -9206,7 +9536,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_canonicalrequest",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".canonicalrequest()"
     },
     {
@@ -9216,8 +9546,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_startloading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": ".startloading()"
     },
     {
@@ -9228,7 +9558,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_paginationstub_stoploading",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".stoploading()"
     },
     {
@@ -9239,7 +9569,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "apiclientpaginationtests"
     },
     {
@@ -9250,7 +9580,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_swift_urlsession",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": "urlsession"
     },
     {
@@ -9260,8 +9590,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_setup",
-      "community": 0,
-      "community_name": "APIClient",
+      "community": 17,
+      "community_name": "PaginationStub",
       "norm_label": ".setup()"
     },
     {
@@ -9272,7 +9602,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_testsubmissionspaginatesacrossmultiplepages",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".testsubmissionspaginatesacrossmultiplepages()"
     },
     {
@@ -9283,7 +9613,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_testsinglepagereturnscorrectly",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".testsinglepagereturnscorrectly()"
     },
     {
@@ -9294,7 +9624,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_apiclientpaginationtests_apiclientpaginationtests_testcoursespaginatesthreepages",
       "community": 17,
-      "community_name": "XCTestCase",
+      "community_name": "PaginationStub",
       "norm_label": ".testcoursespaginatesthreepages()"
     },
     {
@@ -9315,7 +9645,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests",
-      "community": 17,
+      "community": 43,
       "community_name": "XCTestCase",
       "norm_label": "credentialstests"
     },
@@ -9327,7 +9657,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests_testnormalizehost",
       "community": 43,
-      "community_name": ".normalizeHost",
+      "community_name": "XCTestCase",
       "norm_label": ".testnormalizehost()"
     },
     {
@@ -9337,7 +9667,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_credentialstests_testapiclientbuildsurlsfromhost",
-      "community": 17,
+      "community": 43,
       "community_name": "XCTestCase",
       "norm_label": ".testapiclientbuildsurlsfromhost()"
     },
@@ -9414,8 +9744,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "tests_canvascoretests_credentialstests_recordingstub_startloading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": ".startloading()"
     },
     {
@@ -9859,6 +10189,50 @@
       "norm_label": ".testcoursedecodesgradingscheme()"
     },
     {
+      "label": ".testCourseDecodesSyllabusBody()",
+      "file_type": "code",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "tests_canvascoretests_modelstests_modelstests_testcoursedecodessyllabusbody",
+      "community": 41,
+      "community_name": "ModelsTests",
+      "norm_label": ".testcoursedecodessyllabusbody()"
+    },
+    {
+      "label": ".testAssignmentDecodesExtendedFields()",
+      "file_type": "code",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "tests_canvascoretests_modelstests_modelstests_testassignmentdecodesextendedfields",
+      "community": 41,
+      "community_name": "ModelsTests",
+      "norm_label": ".testassignmentdecodesextendedfields()"
+    },
+    {
+      "label": ".testSubmissionDecodesExtendedFields()",
+      "file_type": "code",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "tests_canvascoretests_modelstests_modelstests_testsubmissiondecodesextendedfields",
+      "community": 41,
+      "community_name": "ModelsTests",
+      "norm_label": ".testsubmissiondecodesextendedfields()"
+    },
+    {
+      "label": ".testAnnouncementDecodesNestedAuthor()",
+      "file_type": "code",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L97",
+      "_origin": "ast",
+      "id": "tests_canvascoretests_modelstests_modelstests_testannouncementdecodesnestedauthor",
+      "community": 41,
+      "community_name": "ModelsTests",
+      "norm_label": ".testannouncementdecodesnestedauthor()"
+    },
+    {
       "label": "PointsLedgerTests.swift",
       "file_type": "code",
       "source_file": "Tests/CanvasCoreTests/PointsLedgerTests.swift",
@@ -10020,7 +10394,7 @@
       "_origin": "ast",
       "id": "tests_canvascoretests_profiletests_profiletests_testdemoprofile",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testdemoprofile()"
     },
     {
@@ -10134,6 +10508,39 @@
       "norm_label": ".stoploading()"
     },
     {
+      "label": "RubricTests.swift",
+      "file_type": "code",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_canvascoretests_rubrictests",
+      "community": 33,
+      "community_name": "CanvasCore",
+      "norm_label": "rubrictests.swift"
+    },
+    {
+      "label": "RubricTests",
+      "file_type": "code",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "tests_canvascoretests_rubrictests_rubrictests",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": "rubrictests"
+    },
+    {
+      "label": ".testFormatRubricAssessmentJoinsRatingAndComment()",
+      "file_type": "code",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "tests_canvascoretests_rubrictests_rubrictests_testformatrubricassessmentjoinsratingandcomment",
+      "community": 25,
+      "community_name": "GradedItem",
+      "norm_label": ".testformatrubricassessmentjoinsratingandcomment()"
+    },
+    {
       "label": "SolverTests.swift",
       "file_type": "code",
       "source_file": "Tests/CanvasCoreTests/SolverTests.swift",
@@ -10151,8 +10558,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": "solvertests"
     },
     {
@@ -10162,8 +10569,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests_item",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": ".item()"
     },
     {
@@ -10173,8 +10580,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_swift_int",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": "int"
     },
     {
@@ -10184,8 +10591,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_swift_double",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": "double"
     },
     {
@@ -10195,8 +10602,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests_calcunweighted",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": ".calcunweighted()"
     },
     {
@@ -10206,8 +10613,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_swift_gradecalculator",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": "gradecalculator"
     },
     {
@@ -10217,8 +10624,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests_testalreadyachievedunweighted",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": ".testalreadyachievedunweighted()"
     },
     {
@@ -10228,8 +10635,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests_testneededunweighted",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": ".testneededunweighted()"
     },
     {
@@ -10239,8 +10646,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests_testimpossibleunweighted",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": ".testimpossibleunweighted()"
     },
     {
@@ -10250,8 +10657,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests_testneededweighted",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": ".testneededweighted()"
     },
     {
@@ -10261,8 +10668,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_canvascoretests_solvertests_solvertests_testsolveacrossmultipleassignments",
-      "community": 58,
-      "community_name": "SolverTests",
+      "community": 2,
+      "community_name": "GroupInfo",
       "norm_label": ".testsolveacrossmultipleassignments()"
     },
     {
@@ -10569,7 +10976,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests",
-      "community": 17,
+      "community": 43,
       "community_name": "XCTestCase",
       "norm_label": "concurrencystresstests"
     },
@@ -10581,7 +10988,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_concurrencystresstests_concurrencystresstests_testconcurrentsyncandreads",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testconcurrentsyncandreads()"
     },
     {
@@ -10702,7 +11109,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_derivedreadstests_derivedreadstests_teststreamtoleratesduplicatesubmissionrowsforoneassignment",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".teststreamtoleratesduplicatesubmissionrowsforoneassignment()"
     },
     {
@@ -10822,8 +11229,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_canvasdatatests_schematests_schematests_testcanvasdateparsesiso8601",
-      "community": 64,
-      "community_name": ".parse",
+      "community": 44,
+      "community_name": ".syncCourse",
       "norm_label": ".testcanvasdateparsesiso8601()"
     },
     {
@@ -10889,7 +11296,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": "syncenginealltests"
     },
     {
@@ -10900,7 +11307,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_teardown",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".teardown()"
     },
     {
@@ -10911,7 +11318,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testrefreshallpopulatescoursesandenrollments",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testrefreshallpopulatescoursesandenrollments()"
     },
     {
@@ -10922,7 +11329,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testrefreshallisidempotent",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testrefreshallisidempotent()"
     },
     {
@@ -10933,7 +11340,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testlegacyhiddenidsmigrate",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testlegacyhiddenidsmigrate()"
     },
     {
@@ -10944,7 +11351,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testsnapshotandgradechangedonscoremove",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testsnapshotandgradechangedonscoremove()"
     },
     {
@@ -10955,7 +11362,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginealltests_syncenginealltests_testcoursemissingfromfullfetchissoftdeleted",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testcoursemissingfromfullfetchissoftdeleted()"
     },
     {
@@ -10988,7 +11395,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testcoursesyncpopulatesgroupsassignmentssubmissionscomments",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testcoursesyncpopulatesgroupsassignmentssubmissionscomments()"
     },
     {
@@ -10999,7 +11406,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testcourseresyncisidempotentandbaselinesilent",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testcourseresyncisidempotentandbaselinesilent()"
     },
     {
@@ -11010,7 +11417,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testgradetransitionemitsnewgraderecord",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testgradetransitionemitsnewgraderecord()"
     },
     {
@@ -11021,7 +11428,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testmutedgradeneveremitsnewgrade",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testmutedgradeneveremitsnewgrade()"
     },
     {
@@ -11032,7 +11439,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_syncenginecoursetests_testassignmentmissingfromfetchissoftdeleted",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testassignmentmissingfromfetchissoftdeleted()"
     },
     {
@@ -11130,8 +11537,8 @@
       "source_location": "L230",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_routestub",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": "routestub"
     },
     {
@@ -11141,8 +11548,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_swift_data",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": "data"
     },
     {
@@ -11152,8 +11559,8 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_routestub_caninit",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": ".caninit()"
     },
     {
@@ -11163,8 +11570,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_swift_urlrequest",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": "urlrequest"
     },
     {
@@ -11174,8 +11581,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_swift_bool",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": "bool"
     },
     {
@@ -11185,8 +11592,8 @@
       "source_location": "L234",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_routestub_canonicalrequest",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": ".canonicalrequest()"
     },
     {
@@ -11196,8 +11603,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_routestub_startloading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": ".startloading()"
     },
     {
@@ -11207,8 +11614,8 @@
       "source_location": "L250",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginecoursetests_routestub_stoploading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": ".stoploading()"
     },
     {
@@ -11230,7 +11637,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": "syncenginepolicytests"
     },
     {
@@ -11252,7 +11659,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testttlgateskipsfreshdata",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testttlgateskipsfreshdata()"
     },
     {
@@ -11263,7 +11670,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testforcebypassesttl",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testforcebypassesttl()"
     },
     {
@@ -11274,7 +11681,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testpartialfailureisolation",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testpartialfailureisolation()"
     },
     {
@@ -11285,7 +11692,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_testratelimitedretriesoncethensucceeds",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".testratelimitedretriesoncethensucceeds()"
     },
     {
@@ -11296,7 +11703,7 @@
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncenginepolicytests_syncenginepolicytests_stubbedclient",
       "community": 0,
-      "community_name": "APIClient",
+      "community_name": "SyncEngine",
       "norm_label": ".stubbedclient()"
     },
     {
@@ -11416,8 +11823,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "tests_canvasdatatests_syncstub_syncstub_startloading",
-      "community": 40,
-      "community_name": "SyncStub",
+      "community": 70,
+      "community_name": "RouteStub",
       "norm_label": ".startloading()"
     },
     {
@@ -13209,6 +13616,259 @@
       "community": 54,
       "community_name": "Task Dependency Order",
       "norm_label": "self-review"
+    },
+    {
+      "label": "2026-08-02-phase1b-course-workspace.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "2026-08-02-phase1b-course-workspace.md"
+    },
+    {
+      "label": "Phase 1b \u2014 Assignments, Announcements, Syllabus, Grade Trend Chart Implementation Plan",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "phase 1b \u2014 assignments, announcements, syllabus, grade trend chart implementation plan"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_context",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "context"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_architecture",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "architecture"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_global_constraints",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "File Structure",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_file_structure",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "file structure"
+    },
+    {
+      "label": "Task Dependency Order",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task dependency order"
+    },
+    {
+      "label": "Task 1: Extend Codable models \u2014 Assignment, Submission, Course, Announcement, Rubric (`CanvasCore`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_1_extend_codable_models_assignment_submission_course_announcement_rubric_canvascore",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 1: extend codable models \u2014 assignment, submission, course, announcement, rubric (`canvascore`)"
+    },
+    {
+      "label": "Task 2: Missing-assignment predicate + rich-text render heuristic (`CanvasCore`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L145",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_2_missing_assignment_predicate_rich_text_render_heuristic_canvascore",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 2: missing-assignment predicate + rich-text render heuristic (`canvascore`)"
+    },
+    {
+      "label": "Task 3: APIClient extensions \u2014 richer includes + announcements (`CanvasCore`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L192",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_3_apiclient_extensions_richer_includes_announcements_canvascore",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 3: apiclient extensions \u2014 richer includes + announcements (`canvascore`)"
+    },
+    {
+      "label": "Task 4: CanvasData SwiftData model extensions (`CanvasData`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L233",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_4_canvasdata_swiftdata_model_extensions_canvasdata",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 4: canvasdata swiftdata model extensions (`canvasdata`)"
+    },
+    {
+      "label": "Task 5: SyncEngine \u2014 richer upserts, syllabus write, announcements sync (`CanvasData`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L298",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_5_syncengine_richer_upserts_syllabus_write_announcements_sync_canvasdata",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 5: syncengine \u2014 richer upserts, syllabus write, announcements sync (`canvasdata`)"
+    },
+    {
+      "label": "Task 6: CanvasRepository reads + clearStore (`CanvasData`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L339",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_6_canvasrepository_reads_clearstore_canvasdata",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 6: canvasrepository reads + clearstore (`canvasdata`)"
+    },
+    {
+      "label": "Task 7: `RichTextView` \u2014 AttributedString/WKWebView split (`CanvasUI`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L377",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_7_richtextview_attributedstring_wkwebview_split_canvasui",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 7: `richtextview` \u2014 attributedstring/wkwebview split (`canvasui`)"
+    },
+    {
+      "label": "Task 8: Assignments-tab components (`CanvasUI`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L397",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_8_assignments_tab_components_canvasui",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 8: assignments-tab components (`canvasui`)"
+    },
+    {
+      "label": "Task 9: Announcements-tab components (`CanvasUI`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L425",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_9_announcements_tab_components_canvasui",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 9: announcements-tab components (`canvasui`)"
+    },
+    {
+      "label": "Task 10: Grade trend chart (`CanvasUI`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L443",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_10_grade_trend_chart_canvasui",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 10: grade trend chart (`canvasui`)"
+    },
+    {
+      "label": "Task 11: `AssignmentsViewModel` + `AssignmentsTabView` (`CanvasApp`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L464",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_11_assignmentsviewmodel_assignmentstabview_canvasapp",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 11: `assignmentsviewmodel` + `assignmentstabview` (`canvasapp`)"
+    },
+    {
+      "label": "Task 12: `AnnouncementsViewModel` + `AnnouncementsTabView` (`CanvasApp`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L500",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_12_announcementsviewmodel_announcementstabview_canvasapp",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 12: `announcementsviewmodel` + `announcementstabview` (`canvasapp`)"
+    },
+    {
+      "label": "Task 13: Syllabus tab (`CanvasApp`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L528",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_13_syllabus_tab_canvasapp",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 13: syllabus tab (`canvasapp`)"
+    },
+    {
+      "label": "Task 14: Wire all three tabs + Grades trend chart into `CourseWorkspaceView` (`CanvasApp`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L550",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_14_wire_all_three_tabs_grades_trend_chart_into_courseworkspaceview_canvasapp",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "task 14: wire all three tabs + grades trend chart into `courseworkspaceview` (`canvasapp`)"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L588",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_verification",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "verification"
+    },
+    {
+      "label": "Critical Files for Implementation",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L611",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_critical_files_for_implementation",
+      "community": 57,
+      "community_name": "Task Dependency Order",
+      "norm_label": "critical files for implementation"
     },
     {
       "label": "2026-06-22-phase2-design.md",
@@ -15500,6 +16160,18 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric",
+      "target": "foundation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/TermGPA.swift",
       "source_location": "L1",
       "weight": 1.0,
@@ -16477,6 +17149,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_canvascoretests_profiletests",
+      "target": "canvascore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests",
       "target": "canvascore",
       "confidence_score": 1.0
     },
@@ -26560,7 +27244,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L62",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_profile",
@@ -28386,7 +29070,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L46",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models",
+      "target": "sources_canvascore_models_announcement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28397,7 +29092,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L38",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28408,7 +29103,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L32",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28419,7 +29114,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L79",
+      "source_location": "L156",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28430,7 +29125,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L23",
+      "source_location": "L144",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models",
+      "target": "sources_canvascore_models_discussionauthor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28441,7 +29147,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L91",
+      "source_location": "L168",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28452,7 +29158,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L27",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28474,7 +29180,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L62",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28485,7 +29191,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L68",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28496,7 +29202,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L54",
+      "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28507,7 +29213,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L87",
+      "source_location": "L164",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models",
@@ -28523,6 +29229,18 @@
       "context": "field",
       "_origin": "ast",
       "source": "sources_canvascore_models_course",
+      "target": "sources_canvascore_models_gradingschemeentry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L23",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_course_init",
       "target": "sources_canvascore_models_gradingschemeentry",
       "confidence_score": 1.0
     },
@@ -28576,7 +29294,18 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L46",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_announcement",
+      "target": "codable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_assignment",
@@ -28587,7 +29316,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L38",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_assignmentgroup",
@@ -28598,7 +29327,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L32",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_assignmentgrouprules",
@@ -28620,7 +29349,18 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L23",
+      "source_location": "L144",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_discussionauthor",
+      "target": "codable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_enrollment",
@@ -28631,7 +29371,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L27",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_grades",
@@ -28642,7 +29382,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L62",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_profile",
@@ -28653,7 +29393,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L68",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_submission",
@@ -28664,10 +29404,43 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L54",
+      "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_submissioncomment",
+      "target": "codable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricassessmententry",
+      "target": "codable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion",
+      "target": "codable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricrating",
       "target": "codable",
       "confidence_score": 1.0
     },
@@ -28697,83 +29470,11 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L50",
+      "source_location": "L152",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
-      "source": "sources_canvascore_models_assignment",
-      "target": "sources_canvascore_models_swift_string",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L40",
-      "weight": 1.0,
-      "context": "field",
-      "_origin": "ast",
-      "source": "sources_canvascore_models_assignmentgroup",
-      "target": "sources_canvascore_models_swift_string",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L80",
-      "weight": 1.0,
-      "context": "field",
-      "_origin": "ast",
-      "source": "sources_canvascore_models_course",
-      "target": "sources_canvascore_models_swift_string",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L93",
-      "weight": 1.0,
-      "context": "field",
-      "_origin": "ast",
-      "source": "sources_canvascore_models_gradeditem",
-      "target": "sources_canvascore_models_swift_string",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L99",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "_origin": "ast",
-      "source": "sources_canvascore_models_gradeditem_init",
-      "target": "sources_canvascore_models_swift_string",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L29",
-      "weight": 1.0,
-      "context": "field",
-      "_origin": "ast",
-      "source": "sources_canvascore_models_grades",
-      "target": "sources_canvascore_models_swift_string",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L65",
-      "weight": 1.0,
-      "context": "field",
-      "_origin": "ast",
-      "source": "sources_canvascore_models_profile",
+      "source": "sources_canvascore_models_announcement",
       "target": "sources_canvascore_models_swift_string",
       "confidence_score": 1.0
     },
@@ -28785,6 +29486,137 @@
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
+      "source": "sources_canvascore_models_assignment",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L78",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignment_init",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L51",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignmentgroup",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L157",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_course",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L23",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_course_init",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L145",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_discussionauthor",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L170",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_gradeditem",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L176",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_gradeditem_init",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L40",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_grades",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L106",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_profile",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L122",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
       "source": "sources_canvascore_models_submission",
       "target": "sources_canvascore_models_swift_string",
       "confidence_score": 1.0
@@ -28793,7 +29625,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L59",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission_init",
+      "target": "sources_canvascore_models_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L100",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28805,7 +29649,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L49",
+      "source_location": "L68",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28817,7 +29661,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L41",
+      "source_location": "L78",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignment_init",
+      "target": "sources_canvascore_models_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L52",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28829,7 +29685,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L80",
+      "source_location": "L157",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28841,7 +29697,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L97",
+      "source_location": "L174",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28853,7 +29709,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L99",
+      "source_location": "L176",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -28865,7 +29721,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L28",
+      "source_location": "L39",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28877,11 +29733,23 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L72",
+      "source_location": "L113",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
       "source": "sources_canvascore_models_submission",
+      "target": "sources_canvascore_models_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission_init",
       "target": "sources_canvascore_models_swift_double",
       "confidence_score": 1.0
     },
@@ -28901,11 +29769,22 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L80",
+      "source_location": "L157",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_course",
       "target": "sources_canvascore_models_course_gradingscale",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_course",
+      "target": "sources_canvascore_models_course_init",
       "confidence_score": 1.0
     },
     {
@@ -28948,7 +29827,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L51",
+      "source_location": "L149",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_announcement",
+      "target": "sources_canvascore_models_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L70",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28960,7 +29851,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L39",
+      "source_location": "L78",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignment_init",
+      "target": "sources_canvascore_models_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L50",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28972,7 +29875,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L35",
+      "source_location": "L46",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28984,7 +29887,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L94",
+      "source_location": "L23",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_course_init",
+      "target": "sources_canvascore_models_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L171",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -28996,7 +29911,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L99",
+      "source_location": "L176",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -29008,7 +29923,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L63",
+      "source_location": "L104",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -29020,7 +29935,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L71",
+      "source_location": "L121",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -29032,7 +29947,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L56",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission_init",
+      "target": "sources_canvascore_models_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L97",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -29044,7 +29971,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L88",
+      "source_location": "L165",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -29056,7 +29983,43 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L24",
+      "source_location": "L23",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_course_init",
+      "target": "sources_canvascore_models_swift_bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L120",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission",
+      "target": "sources_canvascore_models_swift_bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission_init",
+      "target": "sources_canvascore_models_swift_bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L35",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -29080,7 +30043,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L42",
+      "source_location": "L53",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -29092,7 +30055,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L43",
+      "source_location": "L54",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -29125,6 +30088,40 @@
       "target": "sources_canvascore_models_assignmentgroup"
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignment",
+      "target": "sources_canvascore_models_assignment_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignment",
+      "target": "sources_canvascore_models_codingkeys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L76",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignment",
+      "target": "sources_canvascore_rubric_rubriccriterion",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "INFERRED",
@@ -29137,15 +30134,194 @@
       "target": "sources_canvascore_models_assignment"
     },
     {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "codingkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_assignmentgroupid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_descriptionhtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_dueat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_htmlurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_lockat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_pointspossible",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_rubric",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_submissiontypes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_codingkeys",
+      "target": "sources_canvascore_models_codingkeys_unlockat",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L76",
+      "source_location": "L78",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_assignment_init",
+      "target": "sources_canvascore_rubric_rubriccriterion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L117",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
       "source": "sources_canvascore_models_submission",
       "target": "sources_canvascore_models_submissioncomment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission_init",
+      "target": "sources_canvascore_models_submissioncomment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L124",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission",
+      "target": "sources_canvascore_models_submission_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L122",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission",
+      "target": "sources_canvascore_rubric_rubricassessmententry",
       "confidence_score": 1.0
     },
     {
@@ -29209,10 +30385,34 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_submission_init",
+      "target": "sources_canvascore_rubric_rubricassessmententry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Models.swift",
+      "source_location": "L153",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_models_announcement",
+      "target": "sources_canvascore_models_discussionauthor",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L87",
+      "source_location": "L164",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_teacherenrollment",
@@ -29223,7 +30423,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "Sources/CanvasCore/Models.swift",
-      "source_location": "L99",
+      "source_location": "L176",
       "weight": 1.0,
       "_origin": "ast",
       "source": "sources_canvascore_models_gradeditem",
@@ -29573,6 +30773,417 @@
       "source": "sources_canvascore_pointsledger_gradecalculator",
       "target": "sources_canvascore_pointsledger_gradecalculator_pointsledger",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric",
+      "target": "sources_canvascore_rubric_formatrubricassessment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric",
+      "target": "sources_canvascore_rubric_rubricassessmententry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric",
+      "target": "sources_canvascore_rubric_rubriccriterion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric",
+      "target": "sources_canvascore_rubric_rubricline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric",
+      "target": "sources_canvascore_rubric_rubricrating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L19",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion",
+      "target": "sources_canvascore_rubric_rubricrating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion_init",
+      "target": "sources_canvascore_rubric_rubricrating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricrating",
+      "target": "sources_canvascore_rubric_rubricrating_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L6",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricrating",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L5",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricrating",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests_rubrictests_testformatrubricassessmentjoinsratingandcomment",
+      "target": "sources_canvascore_rubric_rubricrating"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L57",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_formatrubricassessment",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L32",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricassessmententry",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L34",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricassessmententry_init",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L17",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion_init",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L46",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricline",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L48",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricline_init",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L8",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricrating_init",
+      "target": "sources_canvascore_rubric_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L30",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricassessmententry",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L34",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricassessmententry_init",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L18",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion_init",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L44",
+      "weight": 1.0,
+      "context": "field",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricline",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L48",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricline_init",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L8",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricrating_init",
+      "target": "sources_canvascore_rubric_swift_double",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L57",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_formatrubricassessment",
+      "target": "sources_canvascore_rubric_rubriccriterion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubriccriterion",
+      "target": "sources_canvascore_rubric_rubriccriterion_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests_rubrictests_testformatrubricassessmentjoinsratingandcomment",
+      "target": "sources_canvascore_rubric_rubriccriterion"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L57",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_formatrubricassessment",
+      "target": "sources_canvascore_rubric_rubricassessmententry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricassessmententry",
+      "target": "sources_canvascore_rubric_rubricassessmententry_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests_rubrictests_testformatrubricassessmentjoinsratingandcomment",
+      "target": "sources_canvascore_rubric_rubricassessmententry"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_formatrubricassessment",
+      "target": "sources_canvascore_rubric_rubricline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Sources/CanvasCore/Rubric.swift",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "sources_canvascore_rubric_rubricline",
+      "target": "sources_canvascore_rubric_rubricline_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests_rubrictests_testformatrubricassessmentjoinsratingandcomment",
+      "target": "sources_canvascore_rubric_formatrubricassessment"
     },
     {
       "relation": "contains",
@@ -41323,6 +42934,18 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests",
+      "target": "xctest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "Tests/CanvasCoreTests/SolverTests.swift",
       "source_location": "L1",
       "weight": 1.0,
@@ -41602,6 +43225,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_canvascoretests_profiletests_profiletests",
+      "target": "xctestcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests_rubrictests",
       "target": "xctestcase",
       "confidence_score": 1.0
     },
@@ -42647,6 +44281,28 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L97",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests",
+      "target": "tests_canvascoretests_modelstests_modelstests_testannouncementdecodesnestedauthor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests",
+      "target": "tests_canvascoretests_modelstests_modelstests_testassignmentdecodesextendedfields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
@@ -42680,6 +44336,28 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests",
+      "target": "tests_canvascoretests_modelstests_modelstests_testcoursedecodessyllabusbody",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L80",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests",
+      "target": "tests_canvascoretests_modelstests_modelstests_testsubmissiondecodesextendedfields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
       "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
@@ -42697,6 +44375,30 @@
       "_origin": "ast",
       "source": "tests_canvascoretests_modelstests_modelstests_decoder",
       "target": "tests_canvascoretests_modelstests_swift_jsondecoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests_testannouncementdecodesnestedauthor",
+      "target": "tests_canvascoretests_modelstests_modelstests_decoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests_testassignmentdecodesextendedfields",
+      "target": "tests_canvascoretests_modelstests_modelstests_decoder",
       "confidence_score": 1.0
     },
     {
@@ -42732,6 +44434,30 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "tests_canvascoretests_modelstests_modelstests_testcoursedecodessnakecase",
+      "target": "tests_canvascoretests_modelstests_modelstests_decoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests_testcoursedecodessyllabusbody",
+      "target": "tests_canvascoretests_modelstests_modelstests_decoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/ModelsTests.swift",
+      "source_location": "L86",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_modelstests_modelstests_testsubmissiondecodesextendedfields",
       "target": "tests_canvascoretests_modelstests_modelstests_decoder",
       "confidence_score": 1.0
     },
@@ -43100,6 +44826,28 @@
       "_origin": "ast",
       "source": "tests_canvascoretests_profiletests_fixedresponsestub_canonicalrequest",
       "target": "tests_canvascoretests_profiletests_swift_urlrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests",
+      "target": "tests_canvascoretests_rubrictests_rubrictests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Tests/CanvasCoreTests/RubricTests.swift",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "tests_canvascoretests_rubrictests_rubrictests",
+      "target": "tests_canvascoretests_rubrictests_rubrictests_testformatrubricassessmentjoinsratingandcomment",
       "confidence_score": 1.0
     },
     {
@@ -46570,6 +48318,248 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_file_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L588",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_phase_1b_assignments_announcements_syllabus_grade_trend_chart_implementation_plan",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L443",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_10_grade_trend_chart_canvasui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L464",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_11_assignmentsviewmodel_assignmentstabview_canvasapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L500",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_12_announcementsviewmodel_announcementstabview_canvasapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L528",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_13_syllabus_tab_canvasapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L550",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_14_wire_all_three_tabs_grades_trend_chart_into_courseworkspaceview_canvasapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_1_extend_codable_models_assignment_submission_course_announcement_rubric_canvascore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L145",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_2_missing_assignment_predicate_rich_text_render_heuristic_canvascore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L192",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_3_apiclient_extensions_richer_includes_announcements_canvascore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L233",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_4_canvasdata_swiftdata_model_extensions_canvasdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L298",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_5_syncengine_richer_upserts_syllabus_write_announcements_sync_canvasdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L339",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_6_canvasrepository_reads_clearstore_canvasdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L377",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_7_richtextview_attributedstring_wkwebview_split_canvasui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L397",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_8_assignments_tab_components_canvasui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L425",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_dependency_order",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_task_9_announcements_tab_components_canvasui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-02-phase1b-course-workspace.md",
+      "source_location": "L611",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_verification",
+      "target": "docs_superpowers_plans_2026_08_02_phase1b_course_workspace_critical_files_for_implementation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-06-22-phase2-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -48505,5 +50495,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9b49177092c72b4cdc2bb8bfbbf37657bb1f9744"
+  "built_at_commit": "110785bcef556b04f704a9c1b587d92075263065"
 }
