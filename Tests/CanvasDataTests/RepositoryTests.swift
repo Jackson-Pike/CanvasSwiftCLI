@@ -73,6 +73,64 @@ final class RepositoryTests: XCTestCase {
     }
 
     @MainActor
+    func testAnnouncementsSortedByPostedAtDescendingAndExcludeRemoved() throws {
+        let repo = CanvasRepository(modelContainer: try CanvasStore.container(inMemory: true))
+        let ctx = repo.modelContainer.mainContext
+        let now = Date()
+
+        ctx.insert(CachedAnnouncement(id: 1, courseId: 1, title: "Oldest", message: nil,
+                                      postedAt: now.addingTimeInterval(-300), authorName: "Prof"))
+        ctx.insert(CachedAnnouncement(id: 2, courseId: 1, title: "Newest", message: nil,
+                                      postedAt: now.addingTimeInterval(-10), authorName: "Prof"))
+        ctx.insert(CachedAnnouncement(id: 3, courseId: 1, title: "Middle", message: nil,
+                                      postedAt: now.addingTimeInterval(-100), authorName: "Prof"))
+        ctx.insert(CachedAnnouncement(id: 4, courseId: 1, title: "Removed", message: nil,
+                                      postedAt: now, authorName: "Prof", removedAt: now))
+        ctx.insert(CachedAnnouncement(id: 5, courseId: 2, title: "Other course", message: nil,
+                                      postedAt: now, authorName: "Prof"))
+        try ctx.save()
+
+        let fetched = try repo.announcements(courseId: 1)
+        XCTAssertEqual(fetched.map(\.title), ["Newest", "Middle", "Oldest"])
+    }
+
+    @MainActor
+    func testMarkAnnouncementReadIsIdempotent() throws {
+        let repo = CanvasRepository(modelContainer: try CanvasStore.container(inMemory: true))
+        let ctx = repo.modelContainer.mainContext
+        ctx.insert(CachedAnnouncement(id: 1, courseId: 1, title: "A", message: nil,
+                                      postedAt: .now, authorName: "Prof"))
+        try ctx.save()
+
+        let first = Date(timeIntervalSince1970: 1_000_000)
+        try repo.markAnnouncementRead(1, now: first)
+        XCTAssertEqual(try repo.announcements(courseId: 1).first?.readAt, first)
+
+        // A second call must not move the timestamp forward.
+        try repo.markAnnouncementRead(1, now: first.addingTimeInterval(500))
+        XCTAssertEqual(try repo.announcements(courseId: 1).first?.readAt, first)
+
+        // Unknown id should not throw.
+        XCTAssertNoThrow(try repo.markAnnouncementRead(999))
+    }
+
+    @MainActor
+    func testAssignmentAndSubmissionSingleLookups() throws {
+        let repo = CanvasRepository(modelContainer: try CanvasStore.container(inMemory: true))
+        let ctx = repo.modelContainer.mainContext
+        ctx.insert(CachedAssignment(id: 100, courseId: 1, groupId: 10, name: "Midterm",
+                                    pointsPossible: 100, dueAt: .now, sortIndex: 0))
+        ctx.insert(CachedSubmission(id: 1000, assignmentId: 100, courseId: 1, userId: 7,
+                                    score: 92, workflowState: "graded", gradedAt: .now, submittedAt: nil))
+        try ctx.save()
+
+        XCTAssertEqual(try repo.assignment(id: 100)?.name, "Midterm")
+        XCTAssertEqual(try repo.submission(assignmentId: 100)?.score, 92)
+        XCTAssertNil(try repo.assignment(id: 999))
+        XCTAssertNil(try repo.submission(assignmentId: 999))
+    }
+
+    @MainActor
     func testPurgeExpired() throws {
         let repo = CanvasRepository(modelContainer: try CanvasStore.container(inMemory: true))
         let ctx = repo.modelContainer.mainContext
@@ -134,6 +192,8 @@ final class RepositoryTests: XCTestCase {
         ctx.insert(ChangeRecord(kind: .newGrade, courseId: 1, subjectId: 100,
                                 title: "Midterm", detail: "92 / 100", occurredAt: .now))
         ctx.insert(SyncMetadata(entityKind: "submissions", scopeId: "1"))
+        ctx.insert(CachedAnnouncement(id: 900, courseId: 1, title: "Welcome",
+                                      message: "<p>Hi</p>", postedAt: .now, authorName: "Prof"))
         try ctx.save()
 
         try repo.clearStore()
@@ -147,5 +207,6 @@ final class RepositoryTests: XCTestCase {
         XCTAssertEqual(try ctx.fetch(FetchDescriptor<GradeSnapshot>()).count, 0)
         XCTAssertEqual(try ctx.fetch(FetchDescriptor<ChangeRecord>()).count, 0)
         XCTAssertEqual(try ctx.fetch(FetchDescriptor<SyncMetadata>()).count, 0)
+        XCTAssertEqual(try ctx.fetch(FetchDescriptor<CachedAnnouncement>()).count, 0)
     }
 }

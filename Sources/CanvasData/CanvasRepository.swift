@@ -55,6 +55,24 @@ public final class CanvasRepository {
         return try context.fetch(FetchDescriptor(predicate: predicate))
     }
 
+    public func assignment(id: Int) throws -> CachedAssignment? {
+        let predicate = #Predicate<CachedAssignment> { $0.id == id }
+        return try context.fetch(FetchDescriptor(predicate: predicate)).first
+    }
+
+    public func submission(assignmentId: Int) throws -> CachedSubmission? {
+        let predicate = #Predicate<CachedSubmission> { $0.assignmentId == assignmentId }
+        return try context.fetch(FetchDescriptor(predicate: predicate)).first
+    }
+
+    public func announcements(courseId: Int) throws -> [CachedAnnouncement] {
+        let predicate = #Predicate<CachedAnnouncement> { $0.courseId == courseId }
+        let all = try context.fetch(FetchDescriptor(predicate: predicate))
+        return all
+            .filter { $0.removedAt == nil }
+            .sorted { ($0.postedAt ?? .distantPast) > ($1.postedAt ?? .distantPast) }
+    }
+
     public func comments(assignmentId: Int) throws -> [CachedComment] {
         let predicate = #Predicate<CachedComment> { $0.assignmentId == assignmentId }
         return try context.fetch(FetchDescriptor(predicate: predicate))
@@ -102,6 +120,17 @@ public final class CanvasRepository {
         try context.save()
     }
 
+    /// Device-local read tracking — never round-tripped to Canvas, and never
+    /// overwritten once set, so a re-sync can't resurrect an unread dot.
+    public func markAnnouncementRead(_ id: Int, now: Date = .init()) throws {
+        let predicate = #Predicate<CachedAnnouncement> { $0.id == id }
+        guard let row = try context.fetch(FetchDescriptor(predicate: predicate)).first else { return }
+        if row.readAt == nil {
+            row.readAt = now
+            try context.save()
+        }
+    }
+
     public func setPinned(_ pinned: Bool, courseId: Int) throws {
         guard let course = try course(id: courseId) else { return }
         course.pinned = pinned
@@ -141,6 +170,7 @@ public final class CanvasRepository {
         try context.delete(model: CachedAssignment.self)
         try context.delete(model: CachedSubmission.self)
         try context.delete(model: CachedComment.self)
+        try context.delete(model: CachedAnnouncement.self)
         try context.delete(model: GradeSnapshot.self)
         try context.delete(model: ChangeRecord.self)
         try context.delete(model: SyncMetadata.self)
