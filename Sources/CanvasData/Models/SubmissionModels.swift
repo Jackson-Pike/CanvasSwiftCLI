@@ -12,9 +12,9 @@ public final class CachedSubmission {
     public var workflowState: String
     public var gradedAt: Date?
     public var submittedAt: Date?
-    public var late: Bool
-    public var missing: Bool
-    public var excused: Bool
+    public var late: Bool = false
+    public var missing: Bool = false
+    public var excused: Bool = false
     public var attempt: Int?
     public var rubricAssessmentJSON: Data?
 

@@ -84,7 +84,7 @@ public final class CachedAssignment {
     public var sortIndex: Int
     public var removedAt: Date?
     public var descriptionHTML: String?
-    public var submissionTypes: [String]
+    public var submissionTypes: [String] = []
     public var unlockAt: Date?
     public var lockAt: Date?
     public var htmlURL: String?
