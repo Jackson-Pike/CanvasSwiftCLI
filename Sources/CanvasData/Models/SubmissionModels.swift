@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import CanvasCore
 
 @Model
 public final class CachedSubmission {
@@ -11,12 +12,27 @@ public final class CachedSubmission {
     public var workflowState: String
     public var gradedAt: Date?
     public var submittedAt: Date?
+    public var late: Bool
+    public var missing: Bool
+    public var excused: Bool
+    public var attempt: Int?
+    public var rubricAssessmentJSON: Data?
 
     public init(id: Int, assignmentId: Int, courseId: Int, userId: Int, score: Double?,
-                workflowState: String, gradedAt: Date?, submittedAt: Date?) {
+                workflowState: String, gradedAt: Date?, submittedAt: Date?,
+                late: Bool = false, missing: Bool = false, excused: Bool = false,
+                attempt: Int? = nil, rubricAssessmentJSON: Data? = nil) {
         self.id = id; self.assignmentId = assignmentId; self.courseId = courseId
         self.userId = userId; self.score = score; self.workflowState = workflowState
         self.gradedAt = gradedAt; self.submittedAt = submittedAt
+        self.late = late; self.missing = missing; self.excused = excused
+        self.attempt = attempt; self.rubricAssessmentJSON = rubricAssessmentJSON
+    }
+
+    /// Decoded rubric assessment keyed by criterion id; empty when no JSON is stored or decode fails.
+    public var rubricAssessment: [String: RubricAssessmentEntry] {
+        guard let rubricAssessmentJSON, let a = try? JSONDecoder().decode([String: RubricAssessmentEntry].self, from: rubricAssessmentJSON) else { return [:] }
+        return a
     }
 }
 

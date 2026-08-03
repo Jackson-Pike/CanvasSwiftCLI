@@ -83,11 +83,29 @@ public final class CachedAssignment {
     public var dueAt: Date?
     public var sortIndex: Int
     public var removedAt: Date?
+    public var descriptionHTML: String?
+    public var submissionTypes: [String]
+    public var unlockAt: Date?
+    public var lockAt: Date?
+    public var htmlURL: String?
+    public var rubricJSON: Data?
 
     public init(id: Int, courseId: Int, groupId: Int, name: String,
-                pointsPossible: Double?, dueAt: Date?, sortIndex: Int, removedAt: Date? = nil) {
+                pointsPossible: Double?, dueAt: Date?, sortIndex: Int, removedAt: Date? = nil,
+                descriptionHTML: String? = nil, submissionTypes: [String] = [],
+                unlockAt: Date? = nil, lockAt: Date? = nil, htmlURL: String? = nil,
+                rubricJSON: Data? = nil) {
         self.id = id; self.courseId = courseId; self.groupId = groupId; self.name = name
         self.pointsPossible = pointsPossible; self.dueAt = dueAt
         self.sortIndex = sortIndex; self.removedAt = removedAt
+        self.descriptionHTML = descriptionHTML; self.submissionTypes = submissionTypes
+        self.unlockAt = unlockAt; self.lockAt = lockAt; self.htmlURL = htmlURL
+        self.rubricJSON = rubricJSON
+    }
+
+    /// Decoded rubric criteria; empty when no rubric JSON is stored or decode fails.
+    public var rubric: [RubricCriterion] {
+        guard let rubricJSON, let r = try? JSONDecoder().decode([RubricCriterion].self, from: rubricJSON) else { return [] }
+        return r
     }
 }
