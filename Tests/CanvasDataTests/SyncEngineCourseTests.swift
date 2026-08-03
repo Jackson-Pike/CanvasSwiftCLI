@@ -34,6 +34,20 @@ final class SyncEngineCourseTests: XCTestCase {
         XCTAssertEqual(comments.count, 1)
         let noComments = try await repo.comments(assignmentId: 202)
         XCTAssertEqual(noComments.count, 0)
+
+        let midterm = assignments.first { $0.id == 401 }
+        XCTAssertNotNil(midterm)
+        XCTAssertNotNil(midterm?.descriptionHTML)
+        XCTAssertGreaterThan(midterm?.rubric.count ?? 0, 0)
+
+        let midtermSubmission = submissions.first { $0.assignmentId == 401 }
+        XCTAssertNotNil(midtermSubmission)
+        XCTAssertFalse(midtermSubmission?.rubricAssessment.isEmpty ?? true)
+
+        let mathCourseId = MockData.mathCourseId
+        try await engine.refresh(.course(mathCourseId))
+        let mathSubmissions = try await repo.submissions(courseId: mathCourseId)
+        XCTAssertTrue(mathSubmissions.contains { $0.missing == true })
     }
 
     func testCourseResyncIsIdempotentAndBaselineSilent() async throws {

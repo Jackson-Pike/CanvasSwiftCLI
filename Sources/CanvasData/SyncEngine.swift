@@ -9,7 +9,7 @@ public enum SyncError: Error, CustomStringConvertible {
     // Surfaced to the user via `String(describing:)`, so it must not read as "noClient".
     public var description: String { "Not signed in to Canvas — add a token in Settings." }
 }
-public enum EntityKind: String, Sendable { case courses, enrollments, assignments, submissions }
+public enum EntityKind: String, Sendable { case courses, enrollments, assignments, submissions, announcements }
 
 @ModelActor
 public actor SyncEngine {
@@ -114,13 +114,15 @@ public actor SyncEngine {
                 row.name = c.name; row.courseCode = c.courseCode
                 row.applyGroupWeights = c.applyAssignmentGroupWeights ?? false
                 row.gradingSchemeJSON = schemeJSON
+                row.syllabusBody = c.syllabusBody
                 row.sortIndex = i; row.removedAt = nil
             } else {
                 modelContext.insert(CachedCourse(
                     id: c.id, name: c.name, courseCode: c.courseCode,
                     applyGroupWeights: c.applyAssignmentGroupWeights ?? false,
                     gradingSchemeJSON: schemeJSON,
-                    hidden: legacy.contains(c.id), sortIndex: i))
+                    hidden: legacy.contains(c.id), sortIndex: i,
+                    syllabusBody: c.syllabusBody))
             }
         }
         for (id, row) in existing where !fetchedIds.contains(id) && row.removedAt == nil {
@@ -197,6 +199,7 @@ public actor SyncEngine {
     // spec §2.5 TTL table (seconds)
     private static let ttl: [EntityKind: TimeInterval] = [
         .courses: 300, .enrollments: 300, .assignments: 900, .submissions: 300,
+        .announcements: 1800,
     ]
 
     private func isFresh(_ kind: EntityKind, scope: String, now: Date) -> Bool {
@@ -233,7 +236,8 @@ public actor SyncEngine {
 
         let needAssignments = force || !isFresh(.assignments, scope: "\(courseId)", now: now)
         let needSubmissions = force || !isFresh(.submissions, scope: "\(courseId)", now: now)
-        guard needAssignments || needSubmissions else { return }
+        let needAnnouncements = force || !isFresh(.announcements, scope: "\(courseId)", now: now)
+        guard needAssignments || needSubmissions || needAnnouncements else { return }
 
         async let groupsFetch: [AssignmentGroup] = {
             guard needAssignments else { return [] }
@@ -243,11 +247,16 @@ public actor SyncEngine {
             guard needSubmissions else { return [] }
             return try await fetchWithRetry { try await client.submissions(courseId: courseId) }
         }()
+        async let announcementsFetch: [Announcement] = {
+            guard needAnnouncements else { return [] }
+            return try await fetchWithRetry { try await client.announcements(courseId: courseId) }
+        }()
 
         var firstError: (any Error)?
         // A TTL-skipped fetch is not a failure — only fetches we actually attempted can fail.
         var groupsSucceeded = !needAssignments
         var submissionsSucceeded = !needSubmissions
+        var announcementsSucceeded = !needAnnouncements
 
         if needAssignments {
             do {
@@ -281,11 +290,42 @@ public actor SyncEngine {
             }
         }
 
+        if needAnnouncements {
+            do {
+                let items = try await announcementsFetch
+                upsertAnnouncements(items, courseId: courseId, now: now)
+                touch(.announcements, scope: "\(courseId)", error: nil, at: now)
+                announcementsSucceeded = true
+            } catch {
+                if firstError == nil { firstError = error }
+                touch(.announcements, scope: "\(courseId)", error: String(describing: error), at: now)
+            }
+        }
+
         try modelContext.save()
         // Partial failure is normal (spec §2.5): throw only if *everything* attempted failed.
-        if let firstError, !groupsSucceeded, !submissionsSucceeded {
+        if let firstError, !groupsSucceeded, !submissionsSucceeded, !announcementsSucceeded {
             throw firstError
         }
+    }
+
+    private func upsertAnnouncements(_ items: [Announcement], courseId: Int, now: Date) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedAnnouncement>(
+                predicate: #Predicate<CachedAnnouncement> { $0.courseId == courseId }))) ?? [])
+                .map { ($0.id, $0) })
+        let fetchedIds = Set(items.map(\.id))
+        for a in items {
+            let postedAt = CanvasDate.parse(a.postedAt)
+            if let row = existing[a.id] {
+                row.title = a.title; row.message = a.message; row.postedAt = postedAt
+                row.authorName = a.author?.displayName; row.removedAt = nil
+            } else {
+                modelContext.insert(CachedAnnouncement(id: a.id, courseId: courseId, title: a.title,
+                    message: a.message, postedAt: postedAt, authorName: a.author?.displayName))
+            }
+        }
+        for (id, row) in existing where !fetchedIds.contains(id) && row.removedAt == nil { row.removedAt = now }
     }
 
     private func upsertGroups(_ groups: [AssignmentGroup], courseId: Int, now: Date) {
@@ -320,14 +360,25 @@ public actor SyncEngine {
         let fetchedAssignmentIds = Set(flattened.map(\.id))
         for (i, a) in flattened.enumerated() {
             let dueAt = CanvasDate.parse(a.dueAt)
+            let unlockAt = CanvasDate.parse(a.unlockAt)
+            let lockAt = CanvasDate.parse(a.lockAt)
+            let rubricJSON = a.rubric.flatMap { try? JSONEncoder().encode($0) }
             if let row = existingAssignments[a.id] {
                 row.groupId = a.assignmentGroupId; row.name = a.name
                 row.pointsPossible = a.pointsPossible; row.dueAt = dueAt
                 row.sortIndex = i; row.removedAt = nil
+                row.descriptionHTML = a.descriptionHTML
+                row.submissionTypes = a.submissionTypes ?? []
+                row.unlockAt = unlockAt; row.lockAt = lockAt
+                row.htmlURL = a.htmlURL
+                row.rubricJSON = rubricJSON
             } else {
                 modelContext.insert(CachedAssignment(
                     id: a.id, courseId: courseId, groupId: a.assignmentGroupId, name: a.name,
-                    pointsPossible: a.pointsPossible, dueAt: dueAt, sortIndex: i))
+                    pointsPossible: a.pointsPossible, dueAt: dueAt, sortIndex: i,
+                    descriptionHTML: a.descriptionHTML, submissionTypes: a.submissionTypes ?? [],
+                    unlockAt: unlockAt, lockAt: lockAt, htmlURL: a.htmlURL,
+                    rubricJSON: rubricJSON))
             }
         }
         for (id, row) in existingAssignments where !fetchedAssignmentIds.contains(id) && row.removedAt == nil {
@@ -346,15 +397,22 @@ public actor SyncEngine {
         for sub in subs {
             let gradedAt = CanvasDate.parse(sub.gradedAt)
             let submittedAt = CanvasDate.parse(sub.submittedAt)
+            let rubricAssessmentJSON = sub.rubricAssessment.flatMap { try? JSONEncoder().encode($0) }
             if let row = existing[sub.id] {
                 row.score = sub.score; row.workflowState = sub.workflowState
                 row.gradedAt = gradedAt; row.submittedAt = submittedAt
                 row.userId = sub.userId; row.assignmentId = sub.assignmentId
+                row.late = sub.late ?? false; row.missing = sub.missing ?? false
+                row.excused = sub.excused ?? false; row.attempt = sub.attempt
+                row.rubricAssessmentJSON = rubricAssessmentJSON
             } else {
                 modelContext.insert(CachedSubmission(
                     id: sub.id, assignmentId: sub.assignmentId, courseId: courseId,
                     userId: sub.userId, score: sub.score, workflowState: sub.workflowState,
-                    gradedAt: gradedAt, submittedAt: submittedAt))
+                    gradedAt: gradedAt, submittedAt: submittedAt,
+                    late: sub.late ?? false, missing: sub.missing ?? false,
+                    excused: sub.excused ?? false, attempt: sub.attempt,
+                    rubricAssessmentJSON: rubricAssessmentJSON))
             }
 
             for comment in sub.submissionComments ?? [] {
