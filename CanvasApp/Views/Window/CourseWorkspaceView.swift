@@ -33,7 +33,14 @@ private struct CourseWorkspaceBody: View {
             Divider()
             if router.courseTab == .grades {
                 GradesTabView(vm: vm, onFixCredentials: { showSettings = true })
+            } else if router.courseTab == .assignments {
+                AssignmentsTabView(courseId: courseId).id(courseId)
+            } else if router.courseTab == .announcements {
+                AnnouncementsTabView(courseId: courseId).id(courseId)
+            } else if router.courseTab == .syllabus {
+                SyllabusTabView(courseId: courseId)
             } else {
+                // Discussions/Modules/Files only — Phase 2+.
                 ComingSoonView(title: router.courseTab.rawValue.capitalized, phase: "a later phase")
             }
         }
@@ -60,7 +67,8 @@ struct GradesTabView: View {
     var body: some View {
         Group {
             if let inputs = vm.inputs {
-                GradesSandboxSplit(inputs: inputs, streamItems: vm.streamItems, lastSyncedAt: vm.lastSyncedAt)
+                GradesSandboxSplit(courseId: vm.courseId, inputs: inputs,
+                                   streamItems: vm.streamItems, lastSyncedAt: vm.lastSyncedAt)
             } else if vm.isLoading {
                 SkeletonList()                       // cold, no cache (spec §5.8)
             } else if let error = vm.error {
@@ -88,13 +96,16 @@ struct GradesTabView: View {
 /// `GradesTabView` (which still has to handle the optional/loading/error states).
 private struct GradesSandboxSplit: View {
     @StateObject private var calc: CalculatorViewModel
+    let courseId: Int
     let streamItems: [StreamItem]
     let lastSyncedAt: Date?
     @Environment(Router.self) private var router
+    @Environment(AppSession.self) private var session
 
-    init(inputs: CalculatorInputs, streamItems: [StreamItem], lastSyncedAt: Date?) {
+    init(courseId: Int, inputs: CalculatorInputs, streamItems: [StreamItem], lastSyncedAt: Date?) {
         _calc = StateObject(wrappedValue: CalculatorViewModel(
             items: inputs.items, groupInfo: inputs.groups, gradingScale: inputs.scale, weighted: inputs.weighted))
+        self.courseId = courseId
         self.streamItems = streamItems
         self.lastSyncedAt = lastSyncedAt
     }
@@ -125,6 +136,7 @@ private struct GradesSandboxSplit: View {
         VStack(alignment: .leading, spacing: 16) {
             headline
             groupsSection
+            trendSection
             assignmentsSection
             if !streamItems.isEmpty {
                 StreamSection(items: streamItems)
@@ -189,6 +201,18 @@ private struct GradesSandboxSplit: View {
                 let lifted = (livePercent ?? 0) > (result.percent ?? 0) + 0.05
                 GroupLiftRow(result: result, livePercent: livePercent, lifted: lifted, gradingScale: calc.gradingScale)
             }
+        }
+    }
+
+    /// `GradeSnapshot` rows are only written when a score actually *changes*, so a freshly
+    /// synced course legitimately has too few points to plot — the chart owns that empty state.
+    private var trendSection: some View {
+        let snapshots = (try? session.repository.gradeSnapshots(courseId: courseId)) ?? []
+        let points = snapshots.map { GradeTrendChart.Point(date: $0.capturedAt, percent: $0.percent) }
+        return VStack(alignment: .leading, spacing: 6) {
+            Text("TREND").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+            GradeTrendChart(points: points, gradingScale: calc.gradingScale)
+                .frame(height: 160)
         }
     }
 
