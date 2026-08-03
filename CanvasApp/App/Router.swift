@@ -38,6 +38,10 @@ enum RevealTarget {
     case conversation(id: Int)
 }
 
+enum DashboardDensity: String {
+    case cards, ledger
+}
+
 @MainActor @Observable
 final class Router {
     var sidebar: SidebarItem {
@@ -46,12 +50,21 @@ final class Router {
     var courseTab: CourseTab {
         didSet { UserDefaults.standard.set(courseTab.rawValue, forKey: "router.courseTab") }
     }
+    var dashboardDensity: DashboardDensity {
+        didSet { UserDefaults.standard.set(dashboardDensity.rawValue, forKey: "router.dashboardDensity") }
+    }
+    var sandboxOpen: Bool {
+        didSet { UserDefaults.standard.set(sandboxOpen, forKey: "router.sandboxOpen") }
+    }
     var selectedAssignmentId: Int?
     var selectedConversationId: Int?
 
     init() {
         sidebar = SidebarItem(storageKey: UserDefaults.standard.string(forKey: "router.sidebar") ?? "dashboard")
         courseTab = CourseTab(rawValue: UserDefaults.standard.string(forKey: "router.courseTab") ?? "grades") ?? .grades
+        let densityRaw = UserDefaults.standard.string(forKey: "router.dashboardDensity") ?? DashboardDensity.ledger.rawValue
+        dashboardDensity = DashboardDensity(rawValue: densityRaw) ?? .ledger
+        sandboxOpen = UserDefaults.standard.bool(forKey: "router.sandboxOpen")
     }
 
     func reveal(_ target: RevealTarget) {

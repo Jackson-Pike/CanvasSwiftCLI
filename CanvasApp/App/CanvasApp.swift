@@ -7,6 +7,15 @@ import CanvasUI
 struct CanvasGradesApp: App {
     @State private var session = AppSession()
     @State private var router = Router()
+    @AppStorage("appearance") private var appearance: String = "system"
+
+    private var preferredColorScheme: ColorScheme? {
+        switch appearance {
+        case "light": return .light
+        case "dark": return .dark
+        default: return nil
+        }
+    }
 
     var body: some Scene {
         MenuBarExtra("Canvas", systemImage: "graduationcap.fill") {
@@ -14,6 +23,7 @@ struct CanvasGradesApp: App {
                 .environment(session)
                 .environment(router)
                 .frame(width: 380, height: 520)
+                .preferredColorScheme(preferredColorScheme)
         }
         .menuBarExtraStyle(.window)
 
@@ -21,6 +31,7 @@ struct CanvasGradesApp: App {
             MainWindowView()
                 .environment(session)
                 .environment(router)
+                .preferredColorScheme(preferredColorScheme)
         }
         .defaultSize(width: 1000, height: 700)
     }

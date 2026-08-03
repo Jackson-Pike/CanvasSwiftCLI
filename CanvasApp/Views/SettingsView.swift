@@ -1,6 +1,7 @@
 import SwiftUI
 import CanvasUI
 import CanvasCore
+import CanvasData
 
 struct SettingsView: View {
     let isOnboarding: Bool
@@ -11,6 +12,12 @@ struct SettingsView: View {
     @State private var tokenInput = ""
     @State private var testState: TestState = .idle
     @State private var confirmHostChange = false
+    // UserDefaults-backed, so a locally-owned instance reads/writes the same keys as any other
+    // instance (e.g. the one `MainWindowBody` owns for the sidebar's below-target coloring). A
+    // shared injected instance would be cleaner architecturally, but for Phase 1a the shared
+    // UserDefaults keys make separate instances consistent in practice.
+    @State private var courseSettings = CourseSettingsStore()
+    @AppStorage("appearance") private var appearance: String = "system"
 
     enum TestState: Equatable {
         case idle, testing
@@ -145,6 +152,28 @@ struct SettingsView: View {
                     Button("Cancel", role: .cancel) {}
                 }
 
+                Divider()
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Appearance")
+                        .font(.subheadline).foregroundStyle(.secondary)
+                    Picker("Theme", selection: $appearance) {
+                        Text("System").tag("system")
+                        Text("Light").tag("light")
+                        Text("Dark").tag("dark")
+                    }
+                    .pickerStyle(.segmented)
+                    .labelsHidden()
+                }
+
+                // Router is not guaranteed to be in the environment during onboarding (the
+                // welcome/keychain/settings gate in MainWindowView and PopoverContent presents
+                // SettingsView before the rest of the app — and its Router — is reachable), so
+                // these controls, and any `@Environment(Router.self)` read, stay confined to the
+                // non-onboarding path.
+                if !isOnboarding {
+                    CustomizationSection(vm: vm, session: session, courseSettings: courseSettings)
+                }
+
                 let hidden = vm.hiddenCourses(session: session)
                 if !hidden.isEmpty {
                     Divider()
@@ -168,6 +197,81 @@ struct SettingsView: View {
         .frame(width: 340)
         .onAppear {
             if hostInput.isEmpty { hostInput = session.host }
+        }
+    }
+}
+
+/// The Router-dependent customization controls: default dashboard density and per-course
+/// credit hours / target grades. Split out so `@Environment(Router.self)` is only resolved
+/// when this view is actually built — SettingsView only instantiates it outside onboarding,
+/// where Router is guaranteed to be in the environment (it's injected once at the `Window`
+/// scene in `CanvasGradesApp` and inherited by every view under it, including sheets).
+private struct CustomizationSection: View {
+    @ObservedObject var vm: CoursesViewModel
+    let session: AppSession
+    let courseSettings: CourseSettingsStore
+    @Environment(Router.self) private var router
+
+    static let targetGrades = ["None", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-"]
+
+    var body: some View {
+        @Bindable var router = router
+        Divider()
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Customization")
+                .font(.subheadline).foregroundStyle(.secondary)
+
+            Picker("Default Dashboard View", selection: $router.dashboardDensity) {
+                Text("Cards").tag(DashboardDensity.cards)
+                Text("Ledger").tag(DashboardDensity.ledger)
+            }
+            .pickerStyle(.segmented)
+
+            if !vm.courses.isEmpty {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Courses")
+                        .font(.caption).foregroundStyle(.tertiary)
+                    ForEach(vm.courses, id: \.id) { course in
+                        CourseSettingsRow(course: course, courseSettings: courseSettings)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/// One course's credit-hours stepper and target-grade picker, backed by `CourseSettingsStore`.
+private struct CourseSettingsRow: View {
+    let course: CachedCourse
+    let courseSettings: CourseSettingsStore
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(course.courseCode).font(.subheadline)
+            HStack {
+                Stepper(
+                    "\(courseSettings.credits(for: course.id), specifier: "%.1f") credits",
+                    value: Binding(
+                        get: { courseSettings.credits(for: course.id) },
+                        set: { courseSettings.setCredits($0, for: course.id) }
+                    ),
+                    in: 0.5...6, step: 0.5
+                )
+                .font(.caption)
+
+                Spacer()
+
+                Picker("Target", selection: Binding(
+                    get: { courseSettings.targetGrade(for: course.id) ?? "None" },
+                    set: { courseSettings.setTargetGrade($0 == "None" ? nil : $0, for: course.id) }
+                )) {
+                    ForEach(CustomizationSection.targetGrades, id: \.self) { grade in
+                        Text(grade).tag(grade)
+                    }
+                }
+                .labelsHidden()
+                .frame(width: 90)
+            }
         }
     }
 }

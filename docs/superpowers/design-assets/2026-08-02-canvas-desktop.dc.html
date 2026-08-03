@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"><style>
+body{margin:0;background:#eceae5;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+a{color:#5A4FCF;text-decoration:none}a:hover{color:#3d34a8}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.10);overflow:hidden}
+.dv-opt:target .dv-oid{background:#5A4FCF;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.dv-note{max-width:860px;font:13px/1.65 system-ui,sans-serif;color:#3a3842;margin:0 0 24px}
+.dv-note b{color:#17161a}
+</style></helmet>
+
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">The direction: <a class="dv-oid" href="#1c">1c</a>'s ledger in <a class="dv-oid" href="#1d">1d</a>'s palette</span></div>
+
+<p class="dv-note"><b>Locked:</b> ledger dashboard, dark ink-and-hatch, indigo <code>#7A6EFF</code> for anything hypothetical. The chip row at the bottom of <a class="dv-oid" href="#1c">1c</a> is replaced by <a class="dv-oid" href="#1b">1b</a>'s two real panels — <b>Awaiting grade</b> (with how long it's been sitting, straight from <code>StreamItem.awaitingGrade</code> + <code>submittedAt</code>) and <b>Recent feedback</b> (<code>SubmissionComment</code> author, assignment, body). <a class="dv-oid" href="#3b">3b</a> is the same screen in daylight, since a menu-bar-adjacent app gets opened at noon too — it's a theme swap, not a second design.</p>
+
+<div class="dv-opts">
+
+<div class="dv-opt" id="3a"><div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>Dashboard — ledger, dark</div>
+<div class="dv-card" style="width:1040px;border-color:rgba(0,0,0,.4)">
+<div style="display:flex;height:730px;background:#17161A;color:#EDEBF2;font-family:'Instrument Sans',-apple-system,system-ui,sans-serif">
+  <div style="width:214px;background:#131217;border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px"><div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div></div>
+    <div style="padding:8px 12px;display:flex;flex-direction:column;gap:1px">
+      <div style="font-size:13px;font-weight:700;color:#fff;background:rgba(255,255,255,.07);border-radius:6px;padding:8px 11px">Dashboard</div>
+      <div style="display:flex;align-items:center;padding:8px 11px"><span style="font-size:13px;color:#9C98A8;flex:1">Inbox</span><span style="font-size:11px;font-weight:700;color:#0F0E12;background:#7A6EFF;padding:2px 6px;border-radius:99px">2</span></div>
+      <div style="font-size:13px;color:#9C98A8;padding:8px 11px">Calendar</div>
+      <div style="font-size:13px;color:#9C98A8;padding:8px 11px">To-Do</div>
+    </div>
+    <div style="padding:18px 23px 6px;font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#6B6878">COURSES</div>
+    <div style="padding:0 12px;display:flex;flex-direction:column;gap:1px">
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#14B8A6"></div><span style="font-size:13px;color:#C6C2D2;flex:1">CS 101</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#9C98A8">89.4</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#3B82F6"></div><span style="font-size:13px;color:#C6C2D2;flex:1">MATH 112</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#E2703A">71.1</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:13px;color:#C6C2D2;flex:1">HIST 201</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#9C98A8">95.3</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#EF4444"></div><span style="font-size:13px;color:#C6C2D2;flex:1">REL 225</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#9C98A8">96.9</span></div>
+    </div>
+    <div style="margin-top:auto;padding:14px;border-top:1px solid rgba(255,255,255,.07);font-size:10.5px;color:#6B6878;line-height:1.5">Winter 2026 · 12 credits<br>Synced 2 min ago</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+    <div style="padding:24px 30px 12px;display:flex;align-items:flex-end;gap:24px">
+      <div><div style="font-size:10.5px;font-weight:700;letter-spacing:.12em;color:#6B6878">TERM GPA</div><div style="font:700 58px/0.9 'Instrument Sans',sans-serif;letter-spacing:-.03em;color:#fff;margin-top:8px">3.25</div></div>
+      <div style="flex:1;padding-bottom:6px;font-size:14.5px;line-height:1.45;color:#C6C2D2;max-width:420px;text-wrap:pretty"><b style="color:#fff">2,140 points</b> are still unawarded. Enough to reach <b style="color:#7A6EFF">3.70</b> — or fall to <b>2.60</b>.</div>
+      <div style="padding-bottom:6px;font-size:12.5px;font-weight:600;color:#0F0E12;background:#7A6EFF;border-radius:7px;padding:9px 15px;white-space:nowrap">Play it out →</div>
+    </div>
+
+    <div style="padding:0 30px 4px">
+      <div style="position:relative;height:32px;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:61%;background:rgba(255,255,255,.035)"></div>
+        <div style="position:absolute;left:61%;top:-6px;bottom:-6px;width:2px;background:#EDEBF2"></div>
+        <div style="position:absolute;left:14%;top:12px;width:7px;height:7px;border-radius:50%;background:#4A4757"></div>
+        <div style="position:absolute;left:31%;top:12px;width:7px;height:7px;border-radius:50%;background:#4A4757"></div>
+        <div style="position:absolute;left:47%;top:12px;width:7px;height:7px;border-radius:50%;background:#4A4757"></div>
+        <div style="position:absolute;left:66%;top:11px;width:9px;height:9px;border-radius:50%;background:#E2703A"></div>
+        <div style="position:absolute;left:78%;top:11px;width:9px;height:9px;border-radius:50%;background:#EDEBF2"></div>
+        <div style="position:absolute;left:94.5%;top:10px;width:12px;height:12px;border-radius:50%;background:#EDEBF2"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;color:#6B6878"><span>Week 1</span><span>today</span><span>Finals · Aug 16</span></div>
+    </div>
+
+    <div style="padding:14px 30px 0;display:flex;flex-direction:column">
+      <div style="display:flex;font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#6B6878;padding-bottom:7px"><span style="width:184px">COURSE</span><span style="flex:1">EARNED / LOST / IN PLAY</span><span style="width:86px;text-align:right">CEILING</span><span style="width:70px;text-align:right">FLOOR</span></div>
+
+      <div style="display:flex;align-items:center;padding:11px 0;border-top:1px solid rgba(255,255,255,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#fff">CS 101</div><div style="font-size:10.5px;color:#6B6878;margin-top:2px">Intro to Software Eng.</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.06)"><div style="width:38%;background:#EDEBF2"></div><div style="width:4%;background:#E2703A"></div><div style="width:58%;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 5px,rgba(255,255,255,.04) 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#9C98A8;margin-top:5px">now 89.4% · 240 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#fff">96.2</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#E2703A">54.2</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:11px 8px;border-top:1px solid rgba(255,255,255,.09);background:rgba(226,112,58,.09)">
+        <div style="width:176px"><div style="font-size:14px;font-weight:600;color:#fff">MATH 112</div><div style="font-size:10.5px;color:#E2703A;margin-top:2px">1 missing quiz</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.06)"><div style="width:24%;background:#EDEBF2"></div><div style="width:11%;background:#E2703A"></div><div style="width:65%;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 5px,rgba(255,255,255,.04) 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#9C98A8;margin-top:5px">now 71.1% · 120 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#fff">85.5</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">B</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#E2703A">35.5</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:11px 0;border-top:1px solid rgba(255,255,255,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#fff">HIST 201</div><div style="font-size:10.5px;color:#6B6878;margin-top:2px">World Civilizations</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.06)"><div style="width:41%;background:#EDEBF2"></div><div style="width:2%;background:#E2703A"></div><div style="width:57%;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 5px,rgba(255,255,255,.04) 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#9C98A8;margin-top:5px">now 95.3% · 150 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#fff">98.1</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#E2703A">55.3</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:11px 0;border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#fff">REL 225</div><div style="font-size:10.5px;color:#6B6878;margin-top:2px">Book of Mormon</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.06)"><div style="width:62%;background:#EDEBF2"></div><div style="width:2%;background:#E2703A"></div><div style="width:36%;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 5px,rgba(255,255,255,.04) 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#9C98A8;margin-top:5px">now 96.9% · 40 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#fff">98.2</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#E2703A">62.9</div><div style="font-size:9.5px;color:#6B6878;margin-top:3px">D-</div></div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-height:0;padding:18px 30px 24px;display:grid;grid-template-columns:1fr 1.15fr;gap:26px">
+      <div style="display:flex;flex-direction:column;gap:9px;min-width:0">
+        <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#6B6878">AWAITING GRADE</span><span style="font:600 10.5px/1 'JetBrains Mono',monospace;color:#6B6878">3</span></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(255,255,255,.07)">
+          <div style="width:7px;height:7px;border-radius:50%;background:#14B8A6;flex:none"></div>
+          <div style="flex:1;min-width:0"><div style="font-size:12.5px;color:#EDEBF2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Quiz 3 — Objects</div><div style="font-size:10.5px;color:#6B6878;margin-top:2px">submitted Feb 24 · 25 pts</div></div>
+          <span style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#E2703A;background:rgba(226,112,58,.14);padding:5px 8px;border-radius:99px;white-space:nowrap">6d</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(255,255,255,.07)">
+          <div style="width:7px;height:7px;border-radius:50%;background:#3B82F6;flex:none"></div>
+          <div style="flex:1;min-width:0"><div style="font-size:12.5px;color:#EDEBF2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Problem Set 3 — Polar Coordinates</div><div style="font-size:10.5px;color:#6B6878;margin-top:2px">submitted Feb 13 · 30 pts</div></div>
+          <span style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#9C98A8;background:rgba(255,255,255,.06);padding:5px 8px;border-radius:99px;white-space:nowrap">3d</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)">
+          <div style="width:7px;height:7px;border-radius:50%;background:#EF4444;flex:none"></div>
+          <div style="flex:1;min-width:0"><div style="font-size:12.5px;color:#EDEBF2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Quiz — Words of Mormon through Alma</div><div style="font-size:10.5px;color:#6B6878;margin-top:2px">submitted Feb 20 · 25 pts</div></div>
+          <span style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#9C98A8;background:rgba(255,255,255,.06);padding:5px 8px;border-radius:99px;white-space:nowrap">1d</span>
+        </div>
+        <div style="font-size:10.5px;color:#6B6878;line-height:1.5;margin-top:2px">Held back by the instructor: <span style="color:#9C98A8">CS 101 Final Exam</span> — graded but not released.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:9px;min-width:0">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#6B6878">RECENT FEEDBACK</div>
+        <div style="display:flex;gap:11px;padding:9px 0;border-top:1px solid rgba(255,255,255,.07)">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(139,92,246,.20);color:#B99BFF;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">DA</div>
+          <div style="min-width:0"><div style="font-size:12px;color:#EDEBF2"><b>Dr. Alaimalo</b> <span style="color:#6B6878">· Paper 1 — Ancient Empires · 48/50</span></div><div style="font-size:12px;color:#9C98A8;line-height:1.45;margin-top:3px;text-wrap:pretty">"Excellent thesis and use of primary sources."</div></div>
+        </div>
+        <div style="display:flex;gap:11px;padding:9px 0;border-top:1px solid rgba(255,255,255,.07)">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(59,130,246,.20);color:#8FB6FF;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">DK</div>
+          <div style="min-width:0"><div style="font-size:12px;color:#EDEBF2"><b>Dr. Kekoa</b> <span style="color:#6B6878">· Problem Set 2 — Series · 21/30</span></div><div style="font-size:12px;color:#9C98A8;line-height:1.45;margin-top:3px;text-wrap:pretty">"Watch your algebra on problem 4 — the rest is solid."</div></div>
+        </div>
+        <div style="display:flex;gap:11px;padding:9px 0;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(20,184,166,.20);color:#5EE0CD;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">PD</div>
+          <div style="min-width:0"><div style="font-size:12px;color:#EDEBF2"><b>Prof. Demo</b> <span style="color:#6B6878">· Week 1 Reflection · 18/20</span></div><div style="font-size:12px;color:#9C98A8;line-height:1.45;margin-top:3px;text-wrap:pretty">"Great reflection — keep pushing your analysis deeper."</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="3b"><div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a>Same screen, light theme</div>
+<div class="dv-card" style="width:1040px">
+<div style="display:flex;height:730px;background:#FBFAF8;color:#17161A;font-family:'Instrument Sans',-apple-system,system-ui,sans-serif">
+  <div style="width:214px;background:#F1EFEB;border-right:1px solid rgba(0,0,0,.09);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px"><div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div></div>
+    <div style="padding:8px 12px;display:flex;flex-direction:column;gap:1px">
+      <div style="font-size:13px;font-weight:700;color:#17161A;background:rgba(0,0,0,.06);border-radius:6px;padding:8px 11px">Dashboard</div>
+      <div style="display:flex;align-items:center;padding:8px 11px"><span style="font-size:13px;color:#57545E;flex:1">Inbox</span><span style="font-size:11px;font-weight:700;color:#fff;background:#5A4FCF;padding:2px 6px;border-radius:99px">2</span></div>
+      <div style="font-size:13px;color:#57545E;padding:8px 11px">Calendar</div>
+      <div style="font-size:13px;color:#57545E;padding:8px 11px">To-Do</div>
+    </div>
+    <div style="padding:18px 23px 6px;font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#8b8894">COURSES</div>
+    <div style="padding:0 12px;display:flex;flex-direction:column;gap:1px">
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#14B8A6"></div><span style="font-size:13px;color:#17161A;flex:1">CS 101</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#57545E">89.4</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#3B82F6"></div><span style="font-size:13px;color:#17161A;flex:1">MATH 112</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#C2410C">71.1</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:13px;color:#17161A;flex:1">HIST 201</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#57545E">95.3</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 11px"><div style="width:7px;height:7px;border-radius:50%;background:#EF4444"></div><span style="font-size:13px;color:#17161A;flex:1">REL 225</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#57545E">96.9</span></div>
+    </div>
+    <div style="margin-top:auto;padding:14px;border-top:1px solid rgba(0,0,0,.08);font-size:10.5px;color:#8b8894;line-height:1.5">Winter 2026 · 12 credits<br>Synced 2 min ago</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+    <div style="padding:24px 30px 12px;display:flex;align-items:flex-end;gap:24px">
+      <div><div style="font-size:10.5px;font-weight:700;letter-spacing:.12em;color:#8b8894">TERM GPA</div><div style="font:700 58px/0.9 'Instrument Sans',sans-serif;letter-spacing:-.03em;color:#17161A;margin-top:8px">3.25</div></div>
+      <div style="flex:1;padding-bottom:6px;font-size:14.5px;line-height:1.45;color:#3a3842;max-width:420px;text-wrap:pretty"><b style="color:#17161A">2,140 points</b> are still unawarded. Enough to reach <b style="color:#5A4FCF">3.70</b> — or fall to <b>2.60</b>.</div>
+      <div style="padding-bottom:6px;font-size:12.5px;font-weight:600;color:#fff;background:#5A4FCF;border-radius:7px;padding:9px 15px;white-space:nowrap">Play it out →</div>
+    </div>
+
+    <div style="padding:0 30px 4px">
+      <div style="position:relative;height:32px;border-top:1px solid rgba(0,0,0,.13);border-bottom:1px solid rgba(0,0,0,.13)">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:61%;background:rgba(0,0,0,.035)"></div>
+        <div style="position:absolute;left:61%;top:-6px;bottom:-6px;width:2px;background:#17161A"></div>
+        <div style="position:absolute;left:14%;top:12px;width:7px;height:7px;border-radius:50%;background:#C7C2B8"></div>
+        <div style="position:absolute;left:31%;top:12px;width:7px;height:7px;border-radius:50%;background:#C7C2B8"></div>
+        <div style="position:absolute;left:47%;top:12px;width:7px;height:7px;border-radius:50%;background:#C7C2B8"></div>
+        <div style="position:absolute;left:66%;top:11px;width:9px;height:9px;border-radius:50%;background:#C2410C"></div>
+        <div style="position:absolute;left:78%;top:11px;width:9px;height:9px;border-radius:50%;background:#17161A"></div>
+        <div style="position:absolute;left:94.5%;top:10px;width:12px;height:12px;border-radius:50%;background:#17161A"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;color:#8b8894"><span>Week 1</span><span>today</span><span>Finals · Aug 16</span></div>
+    </div>
+
+    <div style="padding:14px 30px 0;display:flex;flex-direction:column">
+      <div style="display:flex;font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#8b8894;padding-bottom:7px"><span style="width:184px">COURSE</span><span style="flex:1">EARNED / LOST / IN PLAY</span><span style="width:86px;text-align:right">CEILING</span><span style="width:70px;text-align:right">FLOOR</span></div>
+
+      <div style="display:flex;align-items:center;padding:11px 0;border-top:1px solid rgba(0,0,0,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#17161A">CS 101</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">Intro to Software Eng.</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:#ECE9E3"><div style="width:38%;background:#2B2833"></div><div style="width:4%;background:#C2410C"></div><div style="width:58%;background:repeating-linear-gradient(135deg,#D9D5CC 0 5px,#F3F1EC 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#57545E;margin-top:5px">now 89.4% · 240 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161A">96.2</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">54.2</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:11px 8px;border-top:1px solid rgba(0,0,0,.09);background:rgba(194,65,12,.06)">
+        <div style="width:176px"><div style="font-size:14px;font-weight:600;color:#17161A">MATH 112</div><div style="font-size:10.5px;color:#C2410C;margin-top:2px">1 missing quiz</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:#ECE9E3"><div style="width:24%;background:#2B2833"></div><div style="width:11%;background:#C2410C"></div><div style="width:65%;background:repeating-linear-gradient(135deg,#D9D5CC 0 5px,#F3F1EC 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#57545E;margin-top:5px">now 71.1% · 120 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161A">85.5</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">B</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">35.5</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:11px 0;border-top:1px solid rgba(0,0,0,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#17161A">HIST 201</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">World Civilizations</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:#ECE9E3"><div style="width:41%;background:#2B2833"></div><div style="width:2%;background:#C2410C"></div><div style="width:57%;background:repeating-linear-gradient(135deg,#D9D5CC 0 5px,#F3F1EC 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#57545E;margin-top:5px">now 95.3% · 150 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161A">98.1</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">55.3</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:11px 0;border-top:1px solid rgba(0,0,0,.09);border-bottom:1px solid rgba(0,0,0,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#17161A">REL 225</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">Book of Mormon</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:15px;border-radius:3px;overflow:hidden;background:#ECE9E3"><div style="width:62%;background:#2B2833"></div><div style="width:2%;background:#C2410C"></div><div style="width:36%;background:repeating-linear-gradient(135deg,#D9D5CC 0 5px,#F3F1EC 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#57545E;margin-top:5px">now 96.9% · 40 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161A">98.2</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">62.9</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">D-</div></div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-height:0;padding:18px 30px 24px;display:grid;grid-template-columns:1fr 1.15fr;gap:26px">
+      <div style="display:flex;flex-direction:column;gap:9px;min-width:0">
+        <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#8b8894">AWAITING GRADE</span><span style="font:600 10.5px/1 'JetBrains Mono',monospace;color:#8b8894">3</span></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(0,0,0,.07)">
+          <div style="width:7px;height:7px;border-radius:50%;background:#14B8A6;flex:none"></div>
+          <div style="flex:1;min-width:0"><div style="font-size:12.5px;color:#17161A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Quiz 3 — Objects</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">submitted Feb 24 · 25 pts</div></div>
+          <span style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#C2410C;background:rgba(194,65,12,.10);padding:5px 8px;border-radius:99px;white-space:nowrap">6d</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(0,0,0,.07)">
+          <div style="width:7px;height:7px;border-radius:50%;background:#3B82F6;flex:none"></div>
+          <div style="flex:1;min-width:0"><div style="font-size:12.5px;color:#17161A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Problem Set 3 — Polar Coordinates</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">submitted Feb 13 · 30 pts</div></div>
+          <span style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#57545E;background:rgba(0,0,0,.05);padding:5px 8px;border-radius:99px;white-space:nowrap">3d</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07)">
+          <div style="width:7px;height:7px;border-radius:50%;background:#EF4444;flex:none"></div>
+          <div style="flex:1;min-width:0"><div style="font-size:12.5px;color:#17161A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Quiz — Words of Mormon through Alma</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">submitted Feb 20 · 25 pts</div></div>
+          <span style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#57545E;background:rgba(0,0,0,.05);padding:5px 8px;border-radius:99px;white-space:nowrap">1d</span>
+        </div>
+        <div style="font-size:10.5px;color:#8b8894;line-height:1.5;margin-top:2px">Held back by the instructor: <span style="color:#57545E">CS 101 Final Exam</span> — graded but not released.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:9px;min-width:0">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#8b8894">RECENT FEEDBACK</div>
+        <div style="display:flex;gap:11px;padding:9px 0;border-top:1px solid rgba(0,0,0,.07)">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(139,92,246,.16);color:#6D3FD4;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">DA</div>
+          <div style="min-width:0"><div style="font-size:12px;color:#17161A"><b>Dr. Alaimalo</b> <span style="color:#8b8894">· Paper 1 — Ancient Empires · 48/50</span></div><div style="font-size:12px;color:#57545E;line-height:1.45;margin-top:3px;text-wrap:pretty">"Excellent thesis and use of primary sources."</div></div>
+        </div>
+        <div style="display:flex;gap:11px;padding:9px 0;border-top:1px solid rgba(0,0,0,.07)">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(59,130,246,.16);color:#1D5FCC;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">DK</div>
+          <div style="min-width:0"><div style="font-size:12px;color:#17161A"><b>Dr. Kekoa</b> <span style="color:#8b8894">· Problem Set 2 — Series · 21/30</span></div><div style="font-size:12px;color:#57545E;line-height:1.45;margin-top:3px;text-wrap:pretty">"Watch your algebra on problem 4 — the rest is solid."</div></div>
+        </div>
+        <div style="display:flex;gap:11px;padding:9px 0;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07)">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(20,184,166,.16);color:#0C7A6D;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">PD</div>
+          <div style="min-width:0"><div style="font-size:12px;color:#17161A"><b>Prof. Demo</b> <span style="color:#8b8894">· Week 1 Reflection · 18/20</span></div><div style="font-size:12px;color:#57545E;line-height:1.45;margin-top:3px;text-wrap:pretty">"Great reflection — keep pushing your analysis deeper."</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "now the course workspace in this exact palette" · "the menu-bar popover in this language" · "show what an empty / first-run dashboard looks like"</p>
+</section>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">All three, reconciled</span></div>
+
+<p class="dv-note"><b>They aren't three apps — they're one app with a switch and a rail.</b> <a class="dv-oid" href="#1b">1b</a> and <a class="dv-oid" href="#1c">1c</a> are the same data at two densities, so they become a <b>Cards / Ledger</b> toggle in the toolbar (persist it in <b>Router</b> next to <code>sidebar</code>, and it doubles as the "not customizable" fix). <a class="dv-oid" href="#1d">1d</a>'s Sandbox stops being a per-course inspector and becomes a <b>rail that follows you</b>: on the Dashboard it solves for your <i>term GPA</i>, inside a course it solves for that course — same <b>CalculatorViewModel</b>, one scope parameter. And 1d's dark treatment becomes the app's dark mode rather than a separate direction. Everything below is light/native chrome carrying 1c's ink-and-hatch grade language.</p>
+
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Cards view + Sandbox rail (the default landing)</div>
+<div class="dv-card" style="width:1040px">
+<div style="display:flex;height:700px;background:#fff">
+  <div style="width:214px;background:#f0efec;border-right:1px solid rgba(0,0,0,.10);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px"><div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div></div>
+    <div style="padding:6px 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:7px;background:#5A4FCF"><svg width="15" height="15" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="1" y="9" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="9" width="6" height="6" rx="1.4" fill="#fff"/></svg><span style="font-size:13.5px;font-weight:600;color:#fff">Dashboard</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px"><svg width="16" height="15" viewBox="0 0 17 16" fill="none"><path d="M1.5 9.5V4a2 2 0 012-2h10a2 2 0 012 2v5.5" stroke="#5A4FCF" stroke-width="1.3"/><path d="M1.5 9.5h4l1 1.6h4l1-1.6h4v2.6a2 2 0 01-2 2h-10a2 2 0 01-2-2V9.5z" stroke="#5A4FCF" stroke-width="1.3" stroke-linejoin="round"/></svg><span style="font-size:13.5px;color:#17161a">Inbox</span><span style="margin-left:auto;font-size:11px;font-weight:700;color:#fff;background:#5A4FCF;padding:2px 6px;border-radius:99px">2</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px"><svg width="16" height="15" viewBox="0 0 16 15"><rect x="0.7" y="1.7" width="14.6" height="12.6" rx="2.2" fill="none" stroke="#5A4FCF" stroke-width="1.3"/><rect x="0.7" y="1.7" width="14.6" height="3.4" rx="1.6" fill="#5A4FCF"/><g fill="#5A4FCF"><rect x="3" y="7.4" width="2" height="2" rx="0.5"/><rect x="7" y="7.4" width="2" height="2" rx="0.5"/><rect x="11" y="7.4" width="2" height="2" rx="0.5"/></g></svg><span style="font-size:13.5px;color:#17161a">Calendar</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px"><svg width="16" height="15" viewBox="0 0 16 15" fill="none" stroke="#5A4FCF" stroke-width="1.3"><path d="M1 3.6l1.6 1.6L5.4 2.2"/><path d="M1 10.4L2.6 12l2.8-3"/><line x1="7.4" y1="3.8" x2="15" y2="3.8"/><line x1="7.4" y1="10.6" x2="15" y2="10.6"/></svg><span style="font-size:13.5px;color:#17161a">To-Do</span></div>
+    </div>
+    <div style="padding:16px 20px 4px;font-size:11.5px;font-weight:600;color:#8b8894">Courses</div>
+    <div style="padding:0 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#14B8A6"></div><span style="font-size:13.5px;color:#17161a">CS 101</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#4285F4;padding:4px 7px;border-radius:99px">B+</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#3B82F6"></div><span style="font-size:13.5px;color:#17161a">MATH 112</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#FBBC04;padding:4px 7px;border-radius:99px">C-</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:13.5px;color:#17161a">HIST 201</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#EF4444"></div><span style="font-size:13.5px;color:#17161a">REL 225</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A</span></div>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;background:#faf9f7;min-width:0">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px;gap:10px;border-bottom:1px solid rgba(0,0,0,.07);background:#f6f5f3">
+      <span style="font-size:15px;font-weight:600;color:#17161a">Dashboard</span>
+      <div style="display:flex;background:rgba(0,0,0,.06);border-radius:7px;padding:2px;margin-left:8px">
+        <span style="font-size:12px;font-weight:600;color:#17161a;background:#fff;border-radius:5px;padding:5px 12px;box-shadow:0 1px 2px rgba(0,0,0,.14)">Cards</span>
+        <span style="font-size:12px;color:#6E6B76;padding:5px 12px">Ledger</span>
+      </div>
+      <span style="margin:0 auto;white-space:nowrap;font-size:12px;color:#6E6B76;border:1px solid rgba(0,0,0,.12);border-radius:99px;padding:5px 12px">Updated 2 min ago</span>
+      <div style="font-size:12px;font-weight:600;color:#5A4FCF;background:rgba(90,79,207,.10);border:1px solid rgba(90,79,207,.32);border-radius:7px;padding:6px 11px">Sandbox</div>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><path d="M13.5 8a5.5 5.5 0 11-1.7-4"/><path d="M13.6 1.4v3h-3"/></svg></div>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="6.2" stroke-dasharray="2.2 1.9"/></svg></div>
+    </div>
+
+    <div style="flex:1;display:flex;min-height:0">
+      <div style="flex:1;min-width:0;padding:16px 18px;display:flex;flex-direction:column;gap:13px;overflow:hidden">
+        <div style="display:flex;align-items:center;gap:18px;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:12px 16px">
+          <div style="flex:none;white-space:nowrap"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#8b8894">TERM GPA</div><div style="font:700 26px/1.05 'JetBrains Mono',monospace;color:#17161a;margin-top:4px">3.25</div></div>
+          <div style="width:1px;height:32px;background:rgba(0,0,0,.09)"></div>
+          <div style="flex:none;white-space:nowrap"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#8b8894">IN PLAY</div><div style="font:700 26px/1.05 'JetBrains Mono',monospace;color:#17161a;margin-top:4px">2,140<span style="font-size:12px;color:#8b8894"> pts</span></div></div>
+          <div style="width:1px;height:32px;background:rgba(0,0,0,.09)"></div>
+          <div style="flex:none;white-space:nowrap"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#8b8894">FINALS IN</div><div style="font:700 26px/1.05 'JetBrains Mono',monospace;color:#17161a;margin-top:4px">14d</div></div>
+          <div style="margin-left:auto;font-size:12.5px;color:#3a3842;line-height:1.45;max-width:250px;text-wrap:pretty">Still reachable this term: <b>3.70</b>. Worst case: <b>2.60</b>.</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+          <div style="background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column">
+            <div style="display:flex"><div style="flex:1;padding:12px 14px"><div style="font-size:14px;font-weight:700;color:#17161a">Intro to Software Eng.</div><div style="font-size:11px;color:#6E6B76;margin-top:2px">CS 101 · 89.4%</div></div><div style="width:64px;background:rgba(66,133,244,.15);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#4285F4">B+</div></div>
+            <div style="padding:0 14px 11px"><div style="display:flex;height:9px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:38%;background:#2B2833"></div><div style="width:4%;background:#C2410C"></div><div style="width:58%;background:repeating-linear-gradient(135deg,#d9d5cc 0 4px,#f1efea 4px 8px)"></div></div><div style="display:flex;justify-content:space-between;gap:6px;margin-top:5px;white-space:nowrap;font:500 9.5px/1 'JetBrains Mono',monospace;color:#8b8894"><span>240 in play</span><span>96.2 ↔ 54.2</span></div></div>
+          </div>
+          <div style="background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column;outline:1.5px solid rgba(194,65,12,.35)">
+            <div style="display:flex"><div style="flex:1;padding:12px 14px"><div style="font-size:14px;font-weight:700;color:#17161a">Calculus II</div><div style="font-size:11px;color:#C2410C;margin-top:2px">MATH 112 · 71.1% · 1 missing</div></div><div style="width:64px;background:rgba(251,188,4,.18);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#C58A00">C-</div></div>
+            <div style="padding:0 14px 11px"><div style="display:flex;height:9px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:24%;background:#2B2833"></div><div style="width:11%;background:#C2410C"></div><div style="width:65%;background:repeating-linear-gradient(135deg,#d9d5cc 0 4px,#f1efea 4px 8px)"></div></div><div style="display:flex;justify-content:space-between;gap:6px;margin-top:5px;white-space:nowrap;font:500 9.5px/1 'JetBrains Mono',monospace;color:#8b8894"><span>120 in play</span><span>85.5 ↔ 35.5</span></div></div>
+          </div>
+          <div style="background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column">
+            <div style="display:flex"><div style="flex:1;padding:12px 14px"><div style="font-size:14px;font-weight:700;color:#17161a">World Civilizations</div><div style="font-size:11px;color:#6E6B76;margin-top:2px">HIST 201 · 95.3%</div></div><div style="width:64px;background:rgba(52,168,83,.15);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#34A853">A</div></div>
+            <div style="padding:0 14px 11px"><div style="display:flex;height:9px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:41%;background:#2B2833"></div><div style="width:2%;background:#C2410C"></div><div style="width:57%;background:repeating-linear-gradient(135deg,#d9d5cc 0 4px,#f1efea 4px 8px)"></div></div><div style="display:flex;justify-content:space-between;gap:6px;margin-top:5px;white-space:nowrap;font:500 9.5px/1 'JetBrains Mono',monospace;color:#8b8894"><span>150 in play</span><span>98.1 ↔ 55.3</span></div></div>
+          </div>
+          <div style="background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column">
+            <div style="display:flex"><div style="flex:1;padding:12px 14px"><div style="font-size:14px;font-weight:700;color:#17161a">Book of Mormon</div><div style="font-size:11px;color:#6E6B76;margin-top:2px">REL 225 · 96.9%</div></div><div style="width:64px;background:rgba(52,168,83,.15);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#34A853">A</div></div>
+            <div style="padding:0 14px 11px"><div style="display:flex;height:9px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:62%;background:#2B2833"></div><div style="width:2%;background:#C2410C"></div><div style="width:36%;background:repeating-linear-gradient(135deg,#d9d5cc 0 4px,#f1efea 4px 8px)"></div></div><div style="display:flex;justify-content:space-between;gap:6px;margin-top:5px;white-space:nowrap;font:500 9.5px/1 'JetBrains Mono',monospace;color:#8b8894"><span>40 in play</span><span>98.2 ↔ 62.9</span></div></div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:11px 14px;flex:1;min-height:0;display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:12px;font-weight:700;color:#17161a">Due this week</span><span style="font-size:11px;color:#8b8894">3 awaiting grade · 2 new comments</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid rgba(0,0,0,.05)"><div style="width:7px;height:7px;border-radius:50%;background:#EF4444"></div><span style="font-size:12.5px;color:#17161a;flex:1">Journal — Helaman</span><span style="font:500 11px/1 'JetBrains Mono',monospace;color:#D2453F">tonight 11:59</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid rgba(0,0,0,.05)"><div style="width:7px;height:7px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:12.5px;color:#17161a;flex:1">Paper 2 — Age of Exploration</span><span style="font:500 11px/1 'JetBrains Mono',monospace;color:#6E6B76">Thu</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid rgba(0,0,0,.05)"><div style="width:7px;height:7px;border-radius:50%;background:#3B82F6"></div><span style="font-size:12.5px;color:#17161a;flex:1">Quiz 3 — Taylor Series</span><span style="font-size:10.5px;font-weight:600;color:#fff;background:#D2453F;padding:3px 7px;border-radius:99px">missing</span></div>
+        </div>
+      </div>
+
+      <div style="width:296px;border-left:1px solid rgba(0,0,0,.09);background:#f6f5f3;display:flex;flex-direction:column;min-height:0">
+        <div style="padding:14px 16px 11px;border-bottom:1px solid rgba(0,0,0,.07)">
+          <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700;color:#17161a">Sandbox</span><span style="font-size:10.5px;color:#8b8894;background:rgba(0,0,0,.06);padding:2px 7px;border-radius:99px">TERM</span></div>
+          <div style="font-size:11.5px;color:#6E6B76;margin-top:3px;line-height:1.45">Hypothetical only. Never written back to Canvas.</div>
+        </div>
+        <div style="padding:13px 16px;border-bottom:1px solid rgba(0,0,0,.07)">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#8b8894;margin-bottom:8px">I WANT TO FINISH THE TERM AT</div>
+          <div style="display:flex;gap:6px"><span style="font-size:12.5px;font-weight:700;color:#fff;background:#5A4FCF;border-radius:6px;padding:6px 12px">3.5</span><span style="font-size:12.5px;color:#3a3842;border:1px solid rgba(0,0,0,.14);border-radius:6px;padding:6px 12px">3.7</span><span style="font-size:12.5px;color:#3a3842;border:1px solid rgba(0,0,0,.14);border-radius:6px;padding:6px 12px">4.0</span></div>
+          <div style="margin-top:11px;font-size:13.5px;line-height:1.5;color:#17161a;text-wrap:pretty">Pull <b>MATH 112</b> to a <b style="color:#5A4FCF">B-</b> and hold everything else. That's <b>78%</b> on the final.</div>
+          <div style="margin-top:5px;font-size:11px;color:#8b8894">4.0 is out of reach — MATH caps at 85.5%.</div>
+        </div>
+        <div style="padding:13px 16px;display:flex;flex-direction:column;gap:13px;min-height:0">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#8b8894">DRAG A COURSE</div>
+          <div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:12.5px;color:#3a3842">MATH 112 remaining</span><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#5A4FCF">78%</span></div>
+            <div style="position:relative;height:20px;margin-top:6px"><div style="position:absolute;top:8px;left:0;right:0;height:4px;border-radius:99px;background:rgba(0,0,0,.10)"></div><div style="position:absolute;top:8px;left:0;width:78%;height:4px;border-radius:99px;background:#5A4FCF"></div><div style="position:absolute;top:2px;left:calc(78% - 8px);width:16px;height:16px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,.18);box-shadow:0 1px 3px rgba(0,0,0,.22)"></div></div>
+            <div style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#8b8894;margin-top:1px">71.1 → 79.4 · C- → B-</div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:12.5px;color:#3a3842">CS 101 remaining</span><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#5A4FCF">88%</span></div>
+            <div style="position:relative;height:20px;margin-top:6px"><div style="position:absolute;top:8px;left:0;right:0;height:4px;border-radius:99px;background:rgba(0,0,0,.10)"></div><div style="position:absolute;top:8px;left:0;width:88%;height:4px;border-radius:99px;background:#5A4FCF"></div><div style="position:absolute;top:2px;left:calc(88% - 8px);width:16px;height:16px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,.18);box-shadow:0 1px 3px rgba(0,0,0,.22)"></div></div>
+            <div style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#8b8894;margin-top:1px">89.4 → 89.1 · B+ holds</div>
+          </div>
+          <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:11px 12px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:11.5px;color:#6E6B76">Projected GPA</span><span style="font:700 22px/1 'JetBrains Mono',monospace;color:#5A4FCF">3.50</span></div>
+            <div style="font-size:10.5px;color:#8b8894;margin-top:4px">from 3.25 · +0.25</div>
+          </div>
+          <div style="margin-top:auto;display:flex;gap:8px"><span style="flex:1;text-align:center;font-size:12px;font-weight:600;color:#fff;background:#5A4FCF;border-radius:7px;padding:8px">Save scenario</span><span style="flex:1;text-align:center;font-size:12px;font-weight:600;color:#3a3842;border:1px solid rgba(0,0,0,.14);background:#fff;border-radius:7px;padding:8px">Pin to menu bar</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2b"><div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Same window, Ledger toggled — <a class="dv-oid" href="#1c">1c</a>'s density in native chrome</div>
+<div class="dv-card" style="width:1040px">
+<div style="display:flex;height:700px;background:#fff">
+  <div style="width:214px;background:#f0efec;border-right:1px solid rgba(0,0,0,.10);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px"><div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div></div>
+    <div style="padding:6px 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:7px;background:#5A4FCF"><svg width="15" height="15" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="1" y="9" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="9" width="6" height="6" rx="1.4" fill="#fff"/></svg><span style="font-size:13.5px;font-weight:600;color:#fff">Dashboard</span></div>
+      <div style="font-size:13.5px;color:#17161a;padding:7px 10px 7px 36px">Inbox</div>
+      <div style="font-size:13.5px;color:#17161a;padding:7px 10px 7px 36px">Calendar</div>
+      <div style="font-size:13.5px;color:#17161a;padding:7px 10px 7px 36px">To-Do</div>
+    </div>
+    <div style="padding:16px 20px 4px;font-size:11.5px;font-weight:600;color:#8b8894">Courses</div>
+    <div style="padding:0 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#14B8A6"></div><span style="font-size:13.5px;color:#17161a">CS 101</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#4285F4;padding:4px 7px;border-radius:99px">B+</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#3B82F6"></div><span style="font-size:13.5px;color:#17161a">MATH 112</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#FBBC04;padding:4px 7px;border-radius:99px">C-</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:13.5px;color:#17161a">HIST 201</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#EF4444"></div><span style="font-size:13.5px;color:#17161a">REL 225</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A</span></div>
+    </div>
+    <div style="margin-top:auto;padding:13px 16px;border-top:1px solid rgba(0,0,0,.08);font-size:10.5px;color:#8b8894;line-height:1.5">Winter 2026 · 12 credits<br>Synced 2 min ago</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;background:#faf9f7;min-width:0">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px;gap:10px;border-bottom:1px solid rgba(0,0,0,.07);background:#f6f5f3">
+      <span style="font-size:15px;font-weight:600;color:#17161a">Dashboard</span>
+      <div style="display:flex;background:rgba(0,0,0,.06);border-radius:7px;padding:2px;margin-left:8px">
+        <span style="font-size:12px;color:#6E6B76;padding:5px 12px">Cards</span>
+        <span style="font-size:12px;font-weight:600;color:#17161a;background:#fff;border-radius:5px;padding:5px 12px;box-shadow:0 1px 2px rgba(0,0,0,.14)">Ledger</span>
+      </div>
+      <span style="margin:0 auto;white-space:nowrap;font-size:12px;color:#6E6B76;border:1px solid rgba(0,0,0,.12);border-radius:99px;padding:5px 12px">Updated 2 min ago</span>
+      <div style="font-size:12px;font-weight:600;color:#6E6B76;border:1px solid rgba(0,0,0,.13);border-radius:7px;padding:6px 11px">Sandbox</div>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><path d="M13.5 8a5.5 5.5 0 11-1.7-4"/><path d="M13.6 1.4v3h-3"/></svg></div>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="6.2" stroke-dasharray="2.2 1.9"/></svg></div>
+    </div>
+
+    <div style="flex:1;padding:20px 24px;display:flex;flex-direction:column;min-height:0;font-family:'Instrument Sans',-apple-system,system-ui,sans-serif">
+      <div style="display:flex;align-items:flex-end;gap:22px;padding-bottom:16px">
+        <div><div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#8b8894">TERM GPA</div><div style="font:700 48px/0.9 'Instrument Sans',sans-serif;letter-spacing:-.03em;color:#17161a;margin-top:8px">3.25</div></div>
+        <div style="flex:1;padding-bottom:4px;font-size:14px;line-height:1.45;color:#3a3842;max-width:420px;text-wrap:pretty"><b>2,140 points</b> unawarded. Enough to reach <b>3.70</b> — or fall to <b>2.60</b>.</div>
+        <div style="padding-bottom:4px;font-size:12.5px;font-weight:600;color:#fff;background:#5A4FCF;border-radius:7px;padding:9px 14px">Play it out →</div>
+      </div>
+
+      <div style="position:relative;height:34px;border-top:1px solid rgba(0,0,0,.13);border-bottom:1px solid rgba(0,0,0,.13);margin-bottom:6px">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:61%;background:rgba(0,0,0,.04)"></div>
+        <div style="position:absolute;left:61%;top:-6px;bottom:-6px;width:2px;background:#17161a"></div>
+        <div style="position:absolute;left:14%;top:13px;width:7px;height:7px;border-radius:50%;background:#c4c0b8"></div>
+        <div style="position:absolute;left:31%;top:13px;width:7px;height:7px;border-radius:50%;background:#c4c0b8"></div>
+        <div style="position:absolute;left:47%;top:13px;width:7px;height:7px;border-radius:50%;background:#c4c0b8"></div>
+        <div style="position:absolute;left:66%;top:12px;width:9px;height:9px;border-radius:50%;background:#C2410C"></div>
+        <div style="position:absolute;left:78%;top:12px;width:9px;height:9px;border-radius:50%;background:#17161a"></div>
+        <div style="position:absolute;left:94.5%;top:11px;width:12px;height:12px;border-radius:50%;background:#17161a"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#8b8894;padding-bottom:14px"><span>Week 1</span><span>today</span><span>Finals · Aug 16</span></div>
+
+      <div style="display:flex;font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#8b8894;padding-bottom:7px"><span style="width:184px">COURSE</span><span style="flex:1">EARNED / LOST / IN PLAY</span><span style="width:86px;text-align:right">CEILING</span><span style="width:70px;text-align:right">FLOOR</span></div>
+
+      <div style="display:flex;align-items:center;padding:12px 0;border-top:1px solid rgba(0,0,0,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#17161a">CS 101</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">Intro to Software Eng.</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:16px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:38%;background:#2B2833"></div><div style="width:4%;background:#C2410C"></div><div style="width:58%;background:repeating-linear-gradient(135deg,#d9d5cc 0 5px,#f1efea 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:5px">now 89.4% · 240 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161a">96.2</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">54.2</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">F</div></div>
+      </div>
+      <div style="display:flex;align-items:center;padding:12px 8px;border-top:1px solid rgba(0,0,0,.09);background:rgba(194,65,12,.05)">
+        <div style="width:176px"><div style="font-size:14px;font-weight:600;color:#17161a">MATH 112</div><div style="font-size:10.5px;color:#C2410C;margin-top:2px">1 missing quiz</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:16px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:24%;background:#2B2833"></div><div style="width:11%;background:#C2410C"></div><div style="width:65%;background:repeating-linear-gradient(135deg,#d9d5cc 0 5px,#f1efea 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:5px">now 71.1% · 120 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161a">85.5</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">B</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">35.5</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">F</div></div>
+      </div>
+      <div style="display:flex;align-items:center;padding:12px 0;border-top:1px solid rgba(0,0,0,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#17161a">HIST 201</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">World Civilizations</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:16px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:41%;background:#2B2833"></div><div style="width:2%;background:#C2410C"></div><div style="width:57%;background:repeating-linear-gradient(135deg,#d9d5cc 0 5px,#f1efea 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:5px">now 95.3% · 150 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161a">98.1</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">55.3</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">F</div></div>
+      </div>
+      <div style="display:flex;align-items:center;padding:12px 0;border-top:1px solid rgba(0,0,0,.09);border-bottom:1px solid rgba(0,0,0,.09)">
+        <div style="width:184px"><div style="font-size:14px;font-weight:600;color:#17161a">REL 225</div><div style="font-size:10.5px;color:#8b8894;margin-top:2px">Book of Mormon</div></div>
+        <div style="flex:1;padding-right:20px"><div style="display:flex;height:16px;border-radius:3px;overflow:hidden;background:#ece9e3"><div style="width:62%;background:#2B2833"></div><div style="width:2%;background:#C2410C"></div><div style="width:36%;background:repeating-linear-gradient(135deg,#d9d5cc 0 5px,#f1efea 5px 10px)"></div></div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:5px">now 96.9% · 40 pts in play</div></div>
+        <div style="width:86px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#17161a">98.2</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">A</div></div>
+        <div style="width:70px;text-align:right"><div style="font:700 16px/1 'JetBrains Mono',monospace;color:#C2410C">62.9</div><div style="font-size:9.5px;color:#8b8894;margin-top:3px">D-</div></div>
+      </div>
+
+      <div style="margin-top:auto;display:flex;gap:9px;flex-wrap:wrap;padding-top:16px">
+        <span style="font-size:11.5px;color:#3a3842;background:#f0efec;border-radius:99px;padding:7px 13px">Due tonight · <b>Journal — Helaman</b></span>
+        <span style="font-size:11.5px;color:#3a3842;background:#f0efec;border-radius:99px;padding:7px 13px">3 awaiting grade</span>
+        <span style="font-size:11.5px;color:#3a3842;background:#f0efec;border-radius:99px;padding:7px 13px">Dr. Kekoa: "Watch your algebra on problem 4."</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "show what the course-level Sandbox looks like in <a class="dv-oid" href="#2a">2a</a>'s light chrome" · "give me the dark mode of <a class="dv-oid" href="#2a">2a</a>" · "redo the menu-bar popover so it shares this language"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Dashboard + What-If — first directions</span></div>
+
+<p class="dv-note"><b>Assumptions from the code.</b> Read <b>MainWindowView</b> (NavigationSplitView, 900×600 min, toolbar = staleness + refresh + gear), <b>CourseWorkspaceView</b> (segmented tabs, calculator as an <i>inspector</i>), <b>CourseCard</b> (16pt radius, 90pt letter block at 15% tint), <b>LetterBadge</b>, <b>GradeDashboard</b>, <b>StreamSection</b>, <b>CalculatorViewModel</b> (what-if entries + solve-for-target), <b>MockData</b> (all numbers below are computed from it). Dropping BYUH red for a product identity: warm neutrals + one indigo accent; letter-grade greens/blues/yellows kept from <b>BrandColors.letterGradeColor</b> since they carry meaning. <a class="dv-oid" href="#1a">1a</a> is the shell as it exists today, for comparison — everything else is new.</p>
+
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Today's shell, recreated (baseline)</div>
+<div class="dv-card" style="width:1040px">
+<div style="display:flex;height:660px;background:#fff">
+  <div style="width:242px;background:#f0efec;border-right:1px solid rgba(0,0,0,.10);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;gap:8px;padding:0 14px">
+      <div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div>
+      <div style="margin-left:auto;width:30px;height:26px;border:1px solid rgba(0,0,0,.14);border-radius:7px;background:#fbfaf8;display:flex;align-items:center;justify-content:center"><svg width="15" height="12" viewBox="0 0 15 12" fill="none"><rect x="0.6" y="0.6" width="13.8" height="10.8" rx="2.4" stroke="#3c3a42" stroke-width="1.2"/><line x1="5.2" y1="0.8" x2="5.2" y2="11.2" stroke="#3c3a42" stroke-width="1.2"/></svg></div>
+    </div>
+    <div style="padding:6px 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:7px;background:#0a7cf0"><svg width="15" height="15" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="1" y="9" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="9" width="6" height="6" rx="1.4" fill="#fff"/></svg><span style="font-size:13.5px;font-weight:600;color:#fff">Dashboard</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:7px"><svg width="16" height="15" viewBox="0 0 17 16" fill="none"><path d="M1.5 9.5V4a2 2 0 012-2h10a2 2 0 012 2v5.5" stroke="#0a7cf0" stroke-width="1.3"/><path d="M1.5 9.5h4l1 1.6h4l1-1.6h4v2.6a2 2 0 01-2 2h-10a2 2 0 01-2-2V9.5z" stroke="#0a7cf0" stroke-width="1.3" stroke-linejoin="round"/></svg><span style="font-size:13.5px;color:#17161a">Inbox</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:7px"><svg width="16" height="15" viewBox="0 0 16 15"><rect x="0.7" y="1.7" width="14.6" height="12.6" rx="2.2" fill="none" stroke="#0a7cf0" stroke-width="1.3"/><rect x="0.7" y="1.7" width="14.6" height="3.4" rx="1.6" fill="#0a7cf0"/><g fill="#0a7cf0"><rect x="3" y="7.4" width="2" height="2" rx="0.5"/><rect x="7" y="7.4" width="2" height="2" rx="0.5"/><rect x="11" y="7.4" width="2" height="2" rx="0.5"/><rect x="3" y="10.8" width="2" height="2" rx="0.5"/><rect x="7" y="10.8" width="2" height="2" rx="0.5"/></g></svg><span style="font-size:13.5px;color:#17161a">Calendar</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:7px"><svg width="16" height="15" viewBox="0 0 16 15" fill="none" stroke="#0a7cf0" stroke-width="1.3"><path d="M1 3.6l1.6 1.6L5.4 2.2"/><path d="M1 10.4L2.6 12l2.8-3"/><line x1="7.4" y1="3.8" x2="15" y2="3.8"/><line x1="7.4" y1="10.6" x2="15" y2="10.6"/></svg><span style="font-size:13.5px;color:#17161a">To-Do</span></div>
+    </div>
+    <div style="padding:16px 20px 4px;font-size:11.5px;font-weight:600;color:#8b8894">Courses</div>
+    <div style="padding:0 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#14B8A6"></div><span style="font-size:13.5px;color:#17161a">CS 101</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#4285F4;padding:4px 7px;border-radius:99px">B+</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#3B82F6"></div><span style="font-size:13.5px;color:#17161a">MATH 112</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#FBBC04;padding:4px 7px;border-radius:99px">C-</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:13.5px;color:#17161a">HIST 201</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#EF4444"></div><span style="font-size:13.5px;color:#17161a">REL 225</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A-</span></div>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 16px;gap:12px">
+      <span style="font-size:15px;font-weight:600;color:#17161a">Canvas</span>
+      <span style="margin:0 auto;white-space:nowrap;font-size:12px;color:#6E6B76;border:1px solid rgba(0,0,0,.12);border-radius:99px;padding:5px 12px">Updated in 0 seconds</span>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><path d="M13.5 8a5.5 5.5 0 11-1.7-4"/><path d="M13.6 1.4v3h-3"/></svg></div>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="6.2" stroke-dasharray="2.2 1.9"/></svg></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
+      <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#9A97A2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l8.5-8.5"/><path d="M11 8.5l3-3 2.2 2.2 3.3-3.3 1.8 1.8-3.3 3.3L20.2 11l-3 3z"/></svg>
+      <div style="font-size:15px;font-weight:700;color:#6E6B76">Dashboard</div>
+      <div style="font-size:14px;color:#6E6B76;margin-top:-8px">Coming in Phase 1.</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Dashboard — stock-Mac, balanced density</div>
+<div class="dv-card" style="width:1040px">
+<div style="display:flex;height:700px;background:#fff">
+  <div style="width:242px;background:#f0efec;border-right:1px solid rgba(0,0,0,.10);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px"><div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div></div>
+    <div style="padding:6px 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:7px;background:#5A4FCF"><svg width="15" height="15" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="1" width="6" height="6" rx="1.4" fill="#fff"/><rect x="1" y="9" width="6" height="6" rx="1.4" fill="#fff"/><rect x="9" y="9" width="6" height="6" rx="1.4" fill="#fff"/></svg><span style="font-size:13.5px;font-weight:600;color:#fff">Dashboard</span><span style="margin-left:auto;font-size:11px;font-weight:700;color:#fff;background:rgba(255,255,255,.24);padding:2px 7px;border-radius:99px">3</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px"><svg width="16" height="15" viewBox="0 0 17 16" fill="none"><path d="M1.5 9.5V4a2 2 0 012-2h10a2 2 0 012 2v5.5" stroke="#5A4FCF" stroke-width="1.3"/><path d="M1.5 9.5h4l1 1.6h4l1-1.6h4v2.6a2 2 0 01-2 2h-10a2 2 0 01-2-2V9.5z" stroke="#5A4FCF" stroke-width="1.3" stroke-linejoin="round"/></svg><span style="font-size:13.5px;color:#17161a">Inbox</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px"><svg width="16" height="15" viewBox="0 0 16 15"><rect x="0.7" y="1.7" width="14.6" height="12.6" rx="2.2" fill="none" stroke="#5A4FCF" stroke-width="1.3"/><rect x="0.7" y="1.7" width="14.6" height="3.4" rx="1.6" fill="#5A4FCF"/><g fill="#5A4FCF"><rect x="3" y="7.4" width="2" height="2" rx="0.5"/><rect x="7" y="7.4" width="2" height="2" rx="0.5"/><rect x="11" y="7.4" width="2" height="2" rx="0.5"/></g></svg><span style="font-size:13.5px;color:#17161a">Calendar</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 10px"><svg width="16" height="15" viewBox="0 0 16 15" fill="none" stroke="#5A4FCF" stroke-width="1.3"><path d="M1 3.6l1.6 1.6L5.4 2.2"/><path d="M1 10.4L2.6 12l2.8-3"/><line x1="7.4" y1="3.8" x2="15" y2="3.8"/><line x1="7.4" y1="10.6" x2="15" y2="10.6"/></svg><span style="font-size:13.5px;color:#17161a">To-Do</span></div>
+    </div>
+    <div style="padding:16px 20px 4px;font-size:11.5px;font-weight:600;color:#8b8894">Courses</div>
+    <div style="padding:0 10px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#14B8A6"></div><span style="font-size:13.5px;color:#17161a">CS 101</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#4285F4;padding:4px 7px;border-radius:99px">B+</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#3B82F6"></div><span style="font-size:13.5px;color:#17161a">MATH 112</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#FBBC04;padding:4px 7px;border-radius:99px">C-</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:13.5px;color:#17161a">HIST 201</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 10px"><div style="width:8px;height:8px;border-radius:50%;background:#EF4444"></div><span style="font-size:13.5px;color:#17161a">REL 225</span><span style="margin-left:auto;font:700 11px/1 -apple-system,system-ui;color:#fff;background:#34A853;padding:4px 7px;border-radius:99px">A</span></div>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;background:#faf9f7;overflow:hidden">
+    <div style="height:52px;display:flex;align-items:center;padding:0 16px;gap:12px;border-bottom:1px solid rgba(0,0,0,.07);background:#f6f5f3">
+      <span style="font-size:15px;font-weight:600;color:#17161a">Dashboard</span>
+      <span style="margin:0 auto;white-space:nowrap;font-size:12px;color:#6E6B76;border:1px solid rgba(0,0,0,.12);border-radius:99px;padding:5px 12px">Updated 2 min ago</span>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><path d="M13.5 8a5.5 5.5 0 11-1.7-4"/><path d="M13.6 1.4v3h-3"/></svg></div>
+      <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#3c3a42" stroke-width="1.3"><circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="6.2" stroke-dasharray="2.2 1.9"/></svg></div>
+    </div>
+
+    <div style="flex:1;overflow:hidden;padding:18px 20px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:14px 18px">
+        <div><div style="font-size:11px;font-weight:600;color:#8b8894;letter-spacing:.04em">TERM GPA</div><div style="font:700 30px/1.05 'JetBrains Mono',ui-monospace,monospace;color:#17161a;margin-top:4px">3.25</div></div>
+        <div style="width:1px;height:38px;background:rgba(0,0,0,.09)"></div>
+        <div><div style="font-size:11px;font-weight:600;color:#8b8894;letter-spacing:.04em">GRADED</div><div style="font:700 30px/1.05 'JetBrains Mono',ui-monospace,monospace;color:#17161a;margin-top:4px">61%</div></div>
+        <div style="width:1px;height:38px;background:rgba(0,0,0,.09)"></div>
+        <div><div style="font-size:11px;font-weight:600;color:#8b8894;letter-spacing:.04em">FINALS IN</div><div style="font:700 30px/1.05 'JetBrains Mono',ui-monospace,monospace;color:#17161a;margin-top:4px">14d</div></div>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <div style="font-size:12.5px;font-weight:600;color:#5A4FCF;border:1px solid rgba(90,79,207,.35);background:rgba(90,79,207,.07);border-radius:8px;padding:8px 13px;white-space:nowrap">Open What-If</div>
+          <div style="font-size:12.5px;font-weight:600;color:#3c3a42;border:1px solid rgba(0,0,0,.13);border-radius:8px;padding:8px 13px">Customize…</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="display:flex;background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden">
+          <div style="flex:1;padding:14px 16px"><div style="font-size:15px;font-weight:700;color:#17161a">Intro to Software Engineering</div><div style="font-size:11.5px;color:#6E6B76;margin-top:3px">CS 101</div><div style="font:600 14px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:8px">89.4%</div></div>
+          <div style="width:86px;background:rgba(66,133,244,.15);display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700;color:#4285F4">B+</div>
+        </div>
+        <div style="display:flex;background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden">
+          <div style="flex:1;padding:14px 16px"><div style="font-size:15px;font-weight:700;color:#17161a">Calculus II</div><div style="font-size:11.5px;color:#6E6B76;margin-top:3px">MATH 112</div><div style="font:600 14px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:8px">71.1%</div></div>
+          <div style="width:86px;background:rgba(251,188,4,.18);display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700;color:#C58A00">C-</div>
+        </div>
+        <div style="display:flex;background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden">
+          <div style="flex:1;padding:14px 16px"><div style="font-size:15px;font-weight:700;color:#17161a">World Civilizations</div><div style="font-size:11.5px;color:#6E6B76;margin-top:3px">HIST 201</div><div style="font:600 14px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:8px">95.3%</div></div>
+          <div style="width:86px;background:rgba(52,168,83,.15);display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700;color:#34A853">A</div>
+        </div>
+        <div style="display:flex;background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden">
+          <div style="flex:1;padding:14px 16px"><div style="font-size:15px;font-weight:700;color:#17161a">Teachings of the Book of Mormon</div><div style="font-size:11.5px;color:#6E6B76;margin-top:3px">REL 225</div><div style="font:600 14px/1 'JetBrains Mono',monospace;color:#6E6B76;margin-top:8px">96.9%</div></div>
+          <div style="width:86px;background:rgba(52,168,83,.15);display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700;color:#34A853">A</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:12px;flex:1;min-height:0">
+        <div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:700;color:#17161a">Due this week</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.05)"><div style="width:8px;height:8px;border-radius:50%;background:#EF4444"></div><span style="font-size:12.5px;color:#17161a;flex:1">Journal — Helaman</span><span style="font:500 11.5px/1 'JetBrains Mono',monospace;color:#D2453F">tonight 11:59</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.05)"><div style="width:8px;height:8px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:12.5px;color:#17161a;flex:1">Paper 2 — Age of Exploration</span><span style="font:500 11.5px/1 'JetBrains Mono',monospace;color:#6E6B76">Thu</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.05)"><div style="width:8px;height:8px;border-radius:50%;background:#14B8A6"></div><span style="font-size:12.5px;color:#17161a;flex:1">Final Exam</span><span style="font:500 11.5px/1 'JetBrains Mono',monospace;color:#6E6B76">in 14d</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:7px 0"><div style="width:8px;height:8px;border-radius:50%;background:#3B82F6"></div><span style="font-size:12.5px;color:#17161a;flex:1">Quiz 3 — Taylor Series</span><span style="font:600 11px/1 -apple-system,system-ui;color:#fff;background:#D2453F;padding:4px 7px;border-radius:99px">missing</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+          <div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:12px 14px">
+            <div style="font-size:12px;font-weight:700;color:#17161a;margin-bottom:6px">Awaiting grade · 3</div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:#17161a;flex:1">Quiz 3 — Objects</span><span style="font-size:10.5px;color:#B4700A;background:rgba(251,188,4,.16);padding:3px 7px;border-radius:99px">6 days</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:#17161a;flex:1">Problem Set 3 — Polar Coords</span><span style="font-size:10.5px;color:#B4700A;background:rgba(251,188,4,.16);padding:3px 7px;border-radius:99px">3 days</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:#17161a;flex:1">Quiz — Words of Mormon…</span><span style="font-size:10.5px;color:#B4700A;background:rgba(251,188,4,.16);padding:3px 7px;border-radius:99px">1 day</span></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:12px 14px;flex:1;min-height:0">
+            <div style="font-size:12px;font-weight:700;color:#17161a;margin-bottom:7px">Recent feedback</div>
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <div><div style="font-size:11.5px;font-weight:600;color:#17161a">Dr. Alaimalo · Paper 1</div><div style="font-size:11.5px;color:#6E6B76;line-height:1.4;text-wrap:pretty">Excellent thesis and use of primary sources.</div></div>
+              <div><div style="font-size:11.5px;font-weight:600;color:#17161a">Dr. Kekoa · Problem Set 2</div><div style="font-size:11.5px;color:#6E6B76;line-height:1.4;text-wrap:pretty">Watch your algebra on problem 4 — the rest is solid.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Dashboard — "points still in play" (editorial, opinionated)</div>
+<div class="dv-card" style="width:1040px">
+<div style="display:flex;height:700px;background:#F7F4EE;font-family:'Instrument Sans',system-ui,sans-serif">
+  <div style="width:214px;background:#EFEBE1;border-right:1px solid rgba(26,24,21,.09);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px"><div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div></div>
+    <div style="padding:8px 12px;display:flex;flex-direction:column;gap:1px">
+      <div style="font-size:13px;font-weight:700;color:#1A1815;background:#E4DECF;border-radius:6px;padding:8px 11px">Dashboard</div>
+      <div style="font-size:13px;color:#57534A;padding:8px 11px">Inbox</div>
+      <div style="font-size:13px;color:#57534A;padding:8px 11px">Calendar</div>
+      <div style="font-size:13px;color:#57534A;padding:8px 11px">To-Do</div>
+    </div>
+    <div style="padding:18px 23px 6px;font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#9A9384">COURSES</div>
+    <div style="padding:0 12px;display:flex;flex-direction:column;gap:1px">
+      <div style="display:flex;align-items:baseline;gap:9px;padding:7px 11px"><span style="font-size:13px;color:#1A1815;flex:1">CS 101</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#57534A">89.4</span></div>
+      <div style="display:flex;align-items:baseline;gap:9px;padding:7px 11px"><span style="font-size:13px;color:#1A1815;flex:1">MATH 112</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#B4451F">71.1</span></div>
+      <div style="display:flex;align-items:baseline;gap:9px;padding:7px 11px"><span style="font-size:13px;color:#1A1815;flex:1">HIST 201</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#57534A">95.3</span></div>
+      <div style="display:flex;align-items:baseline;gap:9px;padding:7px 11px"><span style="font-size:13px;color:#1A1815;flex:1">REL 225</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#57534A">96.9</span></div>
+    </div>
+    <div style="margin-top:auto;padding:14px;border-top:1px solid rgba(26,24,21,.08)"><div style="font-size:10.5px;color:#9A9384;line-height:1.5">Synced 2 min ago<br>Winter 2026 · 12 credits</div></div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+    <div style="padding:26px 30px 14px">
+      <div style="display:flex;align-items:flex-end;gap:26px">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:#9A9384">TERM GPA</div>
+          <div style="font:700 62px/0.9 'Instrument Sans',sans-serif;color:#1A1815;letter-spacing:-.03em;margin-top:8px">3.25</div>
+        </div>
+        <div style="flex:1;padding-bottom:6px">
+          <div style="font-size:15px;color:#1A1815;line-height:1.45;max-width:430px;text-wrap:pretty"><b>2,140 points</b> are still unawarded this term. Enough to move you from a 3.25 to a <b>3.7</b> — or a 2.6.</div>
+        </div>
+        <div style="padding-bottom:6px;display:flex;gap:8px">
+          <div style="font-size:12.5px;font-weight:600;color:#F7F4EE;background:#1A1815;border-radius:7px;padding:9px 14px">Play it out →</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:0 30px 16px">
+      <div style="display:flex;align-items:center;gap:0;height:34px;border-top:1px solid rgba(26,24,21,.12);border-bottom:1px solid rgba(26,24,21,.12);position:relative">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:61%;background:rgba(26,24,21,.05)"></div>
+        <div style="position:absolute;left:61%;top:-6px;bottom:-6px;width:2px;background:#1A1815"></div>
+        <div style="position:absolute;left:61%;top:-22px;font-size:10px;font-weight:700;letter-spacing:.08em;color:#1A1815;transform:translateX(-50%)">TODAY</div>
+        <div style="position:absolute;left:14%;top:9px;width:7px;height:7px;border-radius:50%;background:#B8B2A3"></div>
+        <div style="position:absolute;left:31%;top:9px;width:7px;height:7px;border-radius:50%;background:#B8B2A3"></div>
+        <div style="position:absolute;left:47%;top:9px;width:7px;height:7px;border-radius:50%;background:#B8B2A3"></div>
+        <div style="position:absolute;left:66%;top:8px;width:9px;height:9px;border-radius:50%;background:#C2410C"></div>
+        <div style="position:absolute;left:78%;top:8px;width:9px;height:9px;border-radius:50%;background:#1A1815"></div>
+        <div style="position:absolute;left:95%;top:6px;width:12px;height:12px;border-radius:50%;background:#1A1815;transform:translateX(-50%)"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:7px;font-size:10.5px;color:#9A9384"><span>Week 1</span><span style="margin-left:12%">Journal · tonight</span><span>Finals · Aug 16</span></div>
+    </div>
+
+    <div style="flex:1;padding:4px 30px 22px;display:flex;flex-direction:column;gap:2px;overflow:hidden">
+      <div style="display:flex;font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#9A9384;padding:0 0 8px"><span style="width:196px">COURSE</span><span style="flex:1">EARNED / LOST / IN PLAY</span><span style="width:96px;text-align:right">CEILING</span><span style="width:74px;text-align:right">FLOOR</span></div>
+
+      <div style="display:flex;align-items:center;padding:13px 0;border-top:1px solid rgba(26,24,21,.09)">
+        <div style="width:196px"><div style="font-size:14.5px;font-weight:600;color:#1A1815">CS 101</div><div style="font-size:11px;color:#9A9384;margin-top:2px">Intro to Software Eng.</div></div>
+        <div style="flex:1;padding-right:22px"><div style="display:flex;height:18px;border-radius:3px;overflow:hidden;background:#E4DECF"><div style="width:38%;background:#1A1815"></div><div style="width:4%;background:#C2410C"></div><div style="width:58%;background:repeating-linear-gradient(135deg,#D8D1BF 0 5px,#EFEBE1 5px 10px)"></div></div><div style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#57534A;margin-top:6px">now 89.4% · 240 pts in play</div></div>
+        <div style="width:96px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#1A1815">96.2</div><div style="font-size:10px;color:#9A9384;margin-top:3px">A</div></div>
+        <div style="width:74px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#B4451F">54.2</div><div style="font-size:10px;color:#9A9384;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:13px 0;border-top:1px solid rgba(26,24,21,.09);background:rgba(194,65,12,.05)">
+        <div style="width:196px;padding-left:8px"><div style="font-size:14.5px;font-weight:600;color:#1A1815">MATH 112</div><div style="font-size:11px;color:#B4451F;margin-top:2px">1 missing quiz</div></div>
+        <div style="flex:1;padding-right:22px"><div style="display:flex;height:18px;border-radius:3px;overflow:hidden;background:#E4DECF"><div style="width:24%;background:#1A1815"></div><div style="width:11%;background:#C2410C"></div><div style="width:65%;background:repeating-linear-gradient(135deg,#D8D1BF 0 5px,#EFEBE1 5px 10px)"></div></div><div style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#57534A;margin-top:6px">now 71.1% · 120 pts in play</div></div>
+        <div style="width:96px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#1A1815">85.5</div><div style="font-size:10px;color:#9A9384;margin-top:3px">B</div></div>
+        <div style="width:74px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#B4451F">35.5</div><div style="font-size:10px;color:#9A9384;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:13px 0;border-top:1px solid rgba(26,24,21,.09)">
+        <div style="width:196px"><div style="font-size:14.5px;font-weight:600;color:#1A1815">HIST 201</div><div style="font-size:11px;color:#9A9384;margin-top:2px">World Civilizations</div></div>
+        <div style="flex:1;padding-right:22px"><div style="display:flex;height:18px;border-radius:3px;overflow:hidden;background:#E4DECF"><div style="width:41%;background:#1A1815"></div><div style="width:2%;background:#C2410C"></div><div style="width:57%;background:repeating-linear-gradient(135deg,#D8D1BF 0 5px,#EFEBE1 5px 10px)"></div></div><div style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#57534A;margin-top:6px">now 95.3% · 150 pts in play</div></div>
+        <div style="width:96px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#1A1815">98.1</div><div style="font-size:10px;color:#9A9384;margin-top:3px">A</div></div>
+        <div style="width:74px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#B4451F">55.3</div><div style="font-size:10px;color:#9A9384;margin-top:3px">F</div></div>
+      </div>
+
+      <div style="display:flex;align-items:center;padding:13px 0;border-top:1px solid rgba(26,24,21,.09);border-bottom:1px solid rgba(26,24,21,.09)">
+        <div style="width:196px"><div style="font-size:14.5px;font-weight:600;color:#1A1815">REL 225</div><div style="font-size:11px;color:#9A9384;margin-top:2px">Book of Mormon</div></div>
+        <div style="flex:1;padding-right:22px"><div style="display:flex;height:18px;border-radius:3px;overflow:hidden;background:#E4DECF"><div style="width:62%;background:#1A1815"></div><div style="width:2%;background:#C2410C"></div><div style="width:36%;background:repeating-linear-gradient(135deg,#D8D1BF 0 5px,#EFEBE1 5px 10px)"></div></div><div style="font:500 10.5px/1 'JetBrains Mono',monospace;color:#57534A;margin-top:6px">now 96.9% · 40 pts in play</div></div>
+        <div style="width:96px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#1A1815">98.2</div><div style="font-size:10px;color:#9A9384;margin-top:3px">A</div></div>
+        <div style="width:74px;text-align:right"><div style="font:700 17px/1 'JetBrains Mono',monospace;color:#B4451F">62.9</div><div style="font-size:10px;color:#9A9384;margin-top:3px">D-</div></div>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+        <div style="font-size:11.5px;color:#57534A;background:#EFEBE1;border-radius:99px;padding:7px 13px">Dr. Kekoa on <b>Problem Set 2</b> — "Watch your algebra on problem 4 — the rest is solid."</div>
+        <div style="font-size:11.5px;color:#57534A;background:#EFEBE1;border-radius:99px;padding:7px 13px">3 awaiting grade</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>What-If as the hero — course workspace with a live Sandbox</div>
+<div class="dv-card" style="width:1040px">
+<div style="display:flex;height:700px;background:#17161A;color:#EDEBF2">
+  <div style="width:204px;background:#131217;border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column">
+    <div style="height:52px;display:flex;align-items:center;padding:0 14px"><div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div></div>
+    <div style="padding:6px 10px;display:flex;flex-direction:column;gap:1px">
+      <div style="font-size:13px;color:#9C98A8;padding:7px 10px">Dashboard</div>
+      <div style="font-size:13px;color:#9C98A8;padding:7px 10px">Inbox</div>
+      <div style="font-size:13px;color:#9C98A8;padding:7px 10px">Calendar</div>
+      <div style="font-size:13px;color:#9C98A8;padding:7px 10px">To-Do</div>
+    </div>
+    <div style="padding:16px 20px 5px;font-size:11px;font-weight:600;letter-spacing:.06em;color:#6B6878">COURSES</div>
+    <div style="padding:0 10px;display:flex;flex-direction:column;gap:1px">
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:7px;background:rgba(122,110,255,.18);border:1px solid rgba(122,110,255,.35)"><div style="width:7px;height:7px;border-radius:50%;background:#14B8A6"></div><span style="font-size:13px;font-weight:600;color:#fff;flex:1">CS 101</span><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#7A6EFF">B+</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 10px"><div style="width:7px;height:7px;border-radius:50%;background:#3B82F6"></div><span style="font-size:13px;color:#C6C2D2;flex:1">MATH 112</span><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6B6878">C-</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 10px"><div style="width:7px;height:7px;border-radius:50%;background:#8B5CF6"></div><span style="font-size:13px;color:#C6C2D2;flex:1">HIST 201</span><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6B6878">A</span></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:7px 10px"><div style="width:7px;height:7px;border-radius:50%;background:#EF4444"></div><span style="font-size:13px;color:#C6C2D2;flex:1">REL 225</span><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6B6878">A</span></div>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+    <div style="height:52px;display:flex;align-items:center;padding:0 16px;gap:10px;border-bottom:1px solid rgba(255,255,255,.07)">
+      <span style="font-size:15px;font-weight:600;color:#fff">CS 101</span>
+      <div style="display:flex;background:rgba(255,255,255,.06);border-radius:7px;padding:2px;margin-left:10px">
+        <span style="font-size:12px;font-weight:600;color:#17161A;background:#EDEBF2;border-radius:5px;padding:5px 11px">Grades</span>
+        <span style="font-size:12px;color:#9C98A8;padding:5px 11px">Assignments</span>
+        <span style="font-size:12px;color:#9C98A8;padding:5px 11px">Modules</span>
+        <span style="font-size:12px;color:#9C98A8;padding:5px 11px">Syllabus</span>
+      </div>
+      <span style="margin-left:auto;font-size:11.5px;color:#6B6878">Synced 2 min ago</span>
+    </div>
+
+    <div style="flex:1;display:flex;min-height:0">
+      <div style="flex:1;padding:20px 22px;display:flex;flex-direction:column;gap:16px;min-width:0">
+        <div style="display:flex;align-items:flex-end;gap:18px">
+          <div><div style="font-size:10.5px;font-weight:600;letter-spacing:.1em;color:#6B6878">ACTUAL</div><div style="font:700 40px/1 'JetBrains Mono',monospace;color:#EDEBF2;margin-top:6px">89.4</div></div>
+          <div style="font-size:22px;color:#4A4757;padding-bottom:6px">→</div>
+          <div><div style="font-size:10.5px;font-weight:600;letter-spacing:.1em;color:#7A6EFF">PROJECTED</div><div style="font:700 40px/1 'JetBrains Mono',monospace;color:#7A6EFF;margin-top:6px">92.6</div></div>
+          <div style="padding-bottom:9px"><span style="font-size:13px;font-weight:700;color:#fff;background:#34A853;border-radius:99px;padding:5px 11px">A-</span></div>
+          <div style="margin-left:auto;padding-bottom:6px;font-size:11.5px;color:#9C98A8;text-align:right;line-height:1.5">2 hypotheticals active<br><span style="color:#7A6EFF">Reset sandbox</span></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.08em;color:#6B6878">GROUPS</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:92px;font-size:12.5px;color:#C6C2D2">Homework</span><span style="width:34px;font:500 11px/1 'JetBrains Mono',monospace;color:#6B6878">30%</span><div style="flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden"><div style="width:92.5%;height:100%;background:#34A853"></div></div><span style="width:52px;text-align:right;font:500 12px/1 'JetBrains Mono',monospace;color:#EDEBF2">92.5%</span></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:92px;font-size:12.5px;color:#C6C2D2">Quizzes</span><span style="width:34px;font:500 11px/1 'JetBrains Mono',monospace;color:#6B6878">30%</span><div style="flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;position:relative"><div style="width:92%;height:100%;background:#34A853"></div><div style="position:absolute;left:92%;top:0;bottom:0;width:4%;background:#7A6EFF"></div></div><span style="width:52px;text-align:right;font:500 12px/1 'JetBrains Mono',monospace;color:#7A6EFF">96.0%</span></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:92px;font-size:12.5px;color:#C6C2D2">Exams</span><span style="width:34px;font:500 11px/1 'JetBrains Mono',monospace;color:#6B6878">40%</span><div style="flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;position:relative"><div style="width:85%;height:100%;background:#4285F4"></div><div style="position:absolute;left:85%;top:0;bottom:0;width:6%;background:#7A6EFF"></div></div><span style="width:52px;text-align:right;font:500 12px/1 'JetBrains Mono',monospace;color:#7A6EFF">91.0%</span></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:7px;min-height:0">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.08em;color:#6B6878">ASSIGNMENTS</div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12.5px;color:#C6C2D2;flex:1">Week 4 Reflection</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#9C98A8">20 / 20</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.03)"><span style="font-size:12.5px;color:#C6C2D2;flex:1">Midterm Exam</span><span style="font:500 12px/1 'JetBrains Mono',monospace;color:#9C98A8">85 / 100</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:rgba(122,110,255,.10);border:1px solid rgba(122,110,255,.3)"><span style="font-size:12.5px;color:#fff;flex:1">Quiz 3 — Objects</span><span style="font-size:10.5px;color:#0F0E12;background:#7A6EFF;padding:3px 7px;border-radius:99px;font-weight:700">what-if 25/25</span></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:rgba(122,110,255,.10);border:1px solid rgba(122,110,255,.3)"><span style="font-size:12.5px;color:#fff;flex:1">Final Exam</span><span style="font-size:10.5px;color:#0F0E12;background:#7A6EFF;padding:3px 7px;border-radius:99px;font-weight:700">what-if 91/100</span></div>
+        </div>
+      </div>
+
+      <div style="width:330px;border-left:1px solid rgba(255,255,255,.07);background:#131217;display:flex;flex-direction:column;min-height:0">
+        <div style="padding:16px 18px 12px;border-bottom:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:13px;font-weight:700;color:#fff">Sandbox</div>
+          <div style="font-size:11.5px;color:#6B6878;margin-top:3px;line-height:1.45">Drag any ungraded item. Nothing here is sent to Canvas.</div>
+        </div>
+
+        <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:.09em;color:#6B6878;margin-bottom:9px">I WANT TO FINISH WITH</div>
+          <div style="display:flex;gap:6px">
+            <span style="font-size:12.5px;font-weight:700;color:#0F0E12;background:#EDEBF2;border-radius:6px;padding:6px 12px">A-</span>
+            <span style="font-size:12.5px;color:#9C98A8;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:6px 12px">A</span>
+            <span style="font-size:12.5px;color:#9C98A8;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:6px 12px">B+</span>
+            <span style="font-size:12.5px;color:#9C98A8;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:6px 12px">90%</span>
+          </div>
+          <div style="margin-top:12px;font-size:14px;line-height:1.5;color:#EDEBF2;text-wrap:pretty">Score <b style="color:#7A6EFF">84%</b> or better on the <b>Final Exam</b> and you land an <b>A-</b>.</div>
+          <div style="margin-top:6px;font-size:11.5px;color:#6B6878">= 84 / 100 pts · you're averaging 88% on exams</div>
+        </div>
+
+        <div style="padding:14px 18px;display:flex;flex-direction:column;gap:14px;min-height:0">
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:.09em;color:#6B6878">HYPOTHETICALS</div>
+          <div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:12.5px;color:#C6C2D2">Quiz 3 — Objects</span><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#7A6EFF">100%</span></div>
+            <div style="position:relative;height:22px;margin-top:6px"><div style="position:absolute;top:9px;left:0;right:0;height:4px;border-radius:99px;background:rgba(255,255,255,.09)"></div><div style="position:absolute;top:9px;left:0;width:100%;height:4px;border-radius:99px;background:#7A6EFF"></div><div style="position:absolute;top:3px;left:calc(100% - 8px);width:16px;height:16px;border-radius:50%;background:#EDEBF2;box-shadow:0 1px 4px rgba(0,0,0,.5)"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:12.5px;color:#C6C2D2">Final Exam</span><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#7A6EFF">91%</span></div>
+            <div style="position:relative;height:22px;margin-top:6px"><div style="position:absolute;top:9px;left:0;right:0;height:4px;border-radius:99px;background:rgba(255,255,255,.09)"></div><div style="position:absolute;top:9px;left:0;width:91%;height:4px;border-radius:99px;background:#7A6EFF"></div><div style="position:absolute;top:0;left:84%;bottom:0;width:2px;background:#34A853"></div><div style="position:absolute;top:3px;left:calc(91% - 8px);width:16px;height:16px;border-radius:50%;background:#EDEBF2;box-shadow:0 1px 4px rgba(0,0,0,.5)"></div></div>
+            <div style="font-size:10.5px;color:#34A853;margin-top:2px">green line = the 84% you need</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:2px">
+            <div style="font-size:10.5px;font-weight:600;letter-spacing:.09em;color:#6B6878">SCENARIOS</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <span style="font-size:11.5px;color:#C6C2D2;background:rgba(255,255,255,.06);border-radius:99px;padding:6px 11px">Everything 100% → 96.2 A</span>
+              <span style="font-size:11.5px;color:#C6C2D2;background:rgba(255,255,255,.06);border-radius:99px;padding:6px 11px">Keep my average → 91.8 A-</span>
+              <span style="font-size:11.5px;color:#C6C2D2;background:rgba(255,255,255,.06);border-radius:99px;padding:6px 11px">Bomb the final → 66.6 D</span>
+            </div>
+          </div>
+          <div style="margin-top:auto;display:flex;gap:8px"><span style="flex:1;text-align:center;font-size:12px;font-weight:600;color:#0F0E12;background:#7A6EFF;border-radius:7px;padding:9px">Save scenario</span><span style="flex:1;text-align:center;font-size:12px;font-weight:600;color:#C6C2D2;border:1px solid rgba(255,255,255,.14);border-radius:7px;padding:9px">Pin to menu bar</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "take <a class="dv-oid" href="#1c">1c</a>'s in-play bars into <a class="dv-oid" href="#1b">1b</a>'s layout" · "make <a class="dv-oid" href="#1d">1d</a> light-mode and native" · "now design the menu-bar popover to match <a class="dv-oid" href="#1c">1c</a>"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}"></script>
+</body>
+</html>
