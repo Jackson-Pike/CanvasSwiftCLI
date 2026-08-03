@@ -211,11 +211,11 @@ final class SyncEngineCourseTests: XCTestCase {
     // MARK: - Stub helpers
 
     private func groupsURL(_ courseId: Int) -> String {
-        "https://byuh.instructure.com/api/v1/courses/\(courseId)/assignment_groups?include%5B%5D=assignments&per_page=100"
+        "https://byuh.instructure.com/api/v1/courses/\(courseId)/assignment_groups?include%5B%5D=assignments&include%5B%5D=rubric&per_page=100"
     }
 
     private func submissionsURL(_ courseId: Int) -> String {
-        "https://byuh.instructure.com/api/v1/courses/\(courseId)/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&per_page=100"
+        "https://byuh.instructure.com/api/v1/courses/\(courseId)/students/submissions?student_ids%5B%5D=self&include%5B%5D=submission_comments&include%5B%5D=rubric_assessment&per_page=100"
     }
 
     private func stubbedClient() -> APIClient {

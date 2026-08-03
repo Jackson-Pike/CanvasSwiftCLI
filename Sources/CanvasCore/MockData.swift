@@ -15,13 +15,17 @@ public enum MockData {
 
     public static let courses: [Course] = [
         Course(id: csCourseId, name: "Intro to Software Engineering", courseCode: "CS 101",
-               applyAssignmentGroupWeights: true, gradingScheme: nil),
+               applyAssignmentGroupWeights: true, gradingScheme: nil,
+               syllabusBody: "<p>Welcome to <strong>CS 101</strong>. We meet MWF and cover programming fundamentals, culminating in a midterm and final exam. Late work is accepted up to 3 days late for a 10% penalty per day.</p>"),
         Course(id: mathCourseId, name: "Calculus II", courseCode: "MATH 112",
-               applyAssignmentGroupWeights: true, gradingScheme: nil),
+               applyAssignmentGroupWeights: true, gradingScheme: nil,
+               syllabusBody: "<p><strong>MATH 112 — Calculus II</strong> covers integration techniques, series, and polar coordinates. Weekly problem sets and quizzes count for half the grade; midterm and final exams count for the other half.</p>"),
         Course(id: histCourseId, name: "World Civilizations", courseCode: "HIST 201",
-               applyAssignmentGroupWeights: true, gradingScheme: nil),
+               applyAssignmentGroupWeights: true, gradingScheme: nil,
+               syllabusBody: "<p><strong>HIST 201</strong> surveys world civilizations from antiquity through the age of exploration. Grades are based on discussion participation, two research papers, and two exams.</p>"),
         Course(id: relCourseId, name: "Teachings of the Book of Mormon", courseCode: "REL 225",
-               applyAssignmentGroupWeights: true, gradingScheme: nil),
+               applyAssignmentGroupWeights: true, gradingScheme: nil,
+               syllabusBody: "<p><strong>REL 225</strong> studies the Book of Mormon through weekly reading journals and quizzes. There is no final exam; the reading journal and quiz grades are weighted equally.</p>"),
     ]
 
     public static let enrollments: [Int: Enrollment] = [
@@ -41,14 +45,39 @@ public enum MockData {
     private static let qzId = 1002
     private static let exId = 1003
 
+    // Rubric on the CS 101 Midterm Exam — the one demo assignment exercising the rubric UI end to end.
+    private static let midtermRubric: [RubricCriterion] = [
+        RubricCriterion(id: "crit_correctness", description: "Correctness of solutions", points: 50,
+                         ratings: [
+                            RubricRating(id: "r_full", description: "Fully correct", points: 50),
+                            RubricRating(id: "r_partial", description: "Partially correct", points: 30),
+                            RubricRating(id: "r_none", description: "Incorrect", points: 0),
+                         ]),
+        RubricCriterion(id: "crit_style", description: "Code style & readability", points: 30,
+                         ratings: [
+                            RubricRating(id: "s_clean", description: "Clean and idiomatic", points: 30),
+                            RubricRating(id: "s_messy", description: "Works but messy", points: 15),
+                         ]),
+        RubricCriterion(id: "crit_docs", description: "Comments & documentation", points: 20,
+                         ratings: [
+                            RubricRating(id: "d_thorough", description: "Thorough", points: 20),
+                            RubricRating(id: "d_sparse", description: "Sparse", points: 10),
+                            RubricRating(id: "d_missing", description: "Missing", points: 0),
+                         ]),
+    ]
+
     private static let csAssignmentGroups: [AssignmentGroup] = [
         AssignmentGroup(
             id: hwId, name: "Homework", groupWeight: 30, rules: nil,
             assignments: [
                 Assignment(id: 201, name: "Week 1 Reflection", pointsPossible: 20,
-                           dueAt: "2026-01-15T23:59:00Z", assignmentGroupId: hwId),
+                           dueAt: "2026-01-15T23:59:00Z", assignmentGroupId: hwId,
+                           descriptionHTML: "<p>Write a one-page reflection on this week's reading covering variables, types, and control flow.</p>",
+                           submissionTypes: ["online_text_entry"]),
                 Assignment(id: 202, name: "Week 2 Reflection", pointsPossible: 20,
-                           dueAt: "2026-01-22T23:59:00Z", assignmentGroupId: hwId),
+                           dueAt: "2026-01-22T23:59:00Z", assignmentGroupId: hwId,
+                           descriptionHTML: "<p>Reflect on functions, scope, and recursion from this week's lectures.</p>",
+                           submissionTypes: ["online_text_entry"]),
                 Assignment(id: 203, name: "Week 3 Reflection", pointsPossible: 20,
                            dueAt: "2026-01-29T23:59:00Z", assignmentGroupId: hwId),
                 Assignment(id: 204, name: "Week 4 Reflection", pointsPossible: 20,
@@ -59,7 +88,9 @@ public enum MockData {
             id: qzId, name: "Quizzes", groupWeight: 30, rules: nil,
             assignments: [
                 Assignment(id: 301, name: "Quiz 1 — Variables", pointsPossible: 25,
-                           dueAt: "2026-01-20T23:59:00Z", assignmentGroupId: qzId),
+                           dueAt: "2026-01-20T23:59:00Z", assignmentGroupId: qzId,
+                           descriptionHTML: "<p>Timed quiz covering variable declarations, types, and scope.</p>",
+                           submissionTypes: ["online_quiz"]),
                 Assignment(id: 302, name: "Quiz 2 — Functions", pointsPossible: 25,
                            dueAt: "2026-02-10T23:59:00Z", assignmentGroupId: qzId),
                 Assignment(id: 303, name: "Quiz 3 — Objects",   pointsPossible: 25,
@@ -70,9 +101,13 @@ public enum MockData {
             id: exId, name: "Exams", groupWeight: 40, rules: nil,
             assignments: [
                 Assignment(id: 401, name: "Midterm Exam", pointsPossible: 100,
-                           dueAt: "2026-03-01T23:59:00Z", assignmentGroupId: exId),
+                           dueAt: "2026-03-01T23:59:00Z", assignmentGroupId: exId,
+                           descriptionHTML: "<p>Closed-book midterm covering everything through Week 6, graded with the attached rubric.</p>",
+                           submissionTypes: ["online_upload"], rubric: midtermRubric),
                 Assignment(id: 402, name: "Final Exam",   pointsPossible: 100,
-                           dueAt: finalExamDueAt,          assignmentGroupId: exId),
+                           dueAt: finalExamDueAt,          assignmentGroupId: exId,
+                           descriptionHTML: "<p>Comprehensive final exam covering the full semester.</p>",
+                           submissionTypes: ["online_upload"]),
             ]
         ),
     ]
@@ -107,9 +142,15 @@ public enum MockData {
                    workflowState: "submitted", gradedAt: nil,
                    submittedAt: "2026-02-24T21:00:00Z", submissionComments: nil),
         // Exams — midterm graded (→ Recently Graded); no submission for final (→ Upcoming)
+        // Midterm carries a full rubric assessment, keyed by the criterion ids on assignment 401's rubric.
         Submission(id: 1008, userId: studentUserId, assignmentId: 401, score: 85,
                    workflowState: "graded", gradedAt: "2026-03-05T12:00:00Z",
-                   submittedAt: "2026-03-01T22:00:00Z", submissionComments: nil),
+                   submittedAt: "2026-03-01T22:00:00Z", submissionComments: nil,
+                   rubricAssessment: [
+                       "crit_correctness": RubricAssessmentEntry(points: 45, comments: "Minor logic error in problem 3.", ratingId: "r_partial"),
+                       "crit_style": RubricAssessmentEntry(points: 25, comments: nil, ratingId: "s_messy"),
+                       "crit_docs": RubricAssessmentEntry(points: 15, comments: "Add more inline comments next time.", ratingId: "d_sparse"),
+                   ]),
         // Final Exam — graded but muted by the instructor before release: score withheld (score nil).
         Submission(id: 1009, userId: studentUserId, assignmentId: 402, score: nil,
                    workflowState: "graded", gradedAt: "2026-03-10T12:00:00Z",
@@ -127,7 +168,9 @@ public enum MockData {
             id: mathPsId, name: "Problem Sets", groupWeight: 25, rules: nil,
             assignments: [
                 Assignment(id: 2201, name: "Problem Set 1 — Integration Techniques", pointsPossible: 30,
-                           dueAt: "2026-01-16T23:59:00Z", assignmentGroupId: mathPsId),
+                           dueAt: "2026-01-16T23:59:00Z", assignmentGroupId: mathPsId,
+                           descriptionHTML: "<p>Problems 1–12 from Chapter 7 covering u-substitution and integration by parts.</p>",
+                           submissionTypes: ["online_upload"]),
                 Assignment(id: 2202, name: "Problem Set 2 — Series & Sequences", pointsPossible: 30,
                            dueAt: "2026-01-30T23:59:00Z", assignmentGroupId: mathPsId),
                 Assignment(id: 2203, name: "Problem Set 3 — Polar Coordinates", pointsPossible: 30,
@@ -143,7 +186,9 @@ public enum MockData {
                            dueAt: "2026-02-06T23:59:00Z", assignmentGroupId: mathQzId),
                 // Past due, never submitted → shows as Missing
                 Assignment(id: 2303, name: "Quiz 3 — Taylor Series", pointsPossible: 20,
-                           dueAt: "2026-02-20T23:59:00Z", assignmentGroupId: mathQzId),
+                           dueAt: "2026-02-20T23:59:00Z", assignmentGroupId: mathQzId,
+                           descriptionHTML: "<p>Covers Taylor and Maclaurin series expansions.</p>",
+                           submissionTypes: ["online_quiz"]),
             ]
         ),
         AssignmentGroup(
@@ -178,10 +223,14 @@ public enum MockData {
         Submission(id: 2005, userId: studentUserId, assignmentId: 2302, score: 13,
                    workflowState: "graded", gradedAt: "2026-02-07T08:00:00Z",
                    submittedAt: "2026-02-06T23:00:00Z", submissionComments: nil),
-        // Quiz 3 has no submission at all — appears as Missing since due date has passed
         Submission(id: 2006, userId: studentUserId, assignmentId: 2401, score: 68,
                    workflowState: "graded", gradedAt: "2026-03-02T12:00:00Z",
                    submittedAt: "2026-02-27T21:00:00Z", submissionComments: nil),
+        // Quiz 3 was never submitted; explicit missing row exercises the "absent-row" Missing case
+        // (grade-neutral: score is nil here exactly as it was when no row existed at all).
+        Submission(id: 2007, userId: studentUserId, assignmentId: 2303, score: nil,
+                   workflowState: "unsubmitted", gradedAt: nil,
+                   submittedAt: nil, submissionComments: nil, missing: true),
     ]
 
     // MARK: - HIST 201 (World Civilizations)
@@ -206,9 +255,13 @@ public enum MockData {
             id: histPaperId, name: "Papers", groupWeight: 40, rules: nil,
             assignments: [
                 Assignment(id: 3301, name: "Paper 1 — Ancient Empires", pointsPossible: 50,
-                           dueAt: "2026-02-04T23:59:00Z", assignmentGroupId: histPaperId),
+                           dueAt: "2026-02-04T23:59:00Z", assignmentGroupId: histPaperId,
+                           descriptionHTML: "<p>5-page research paper analyzing the rise and fall of one ancient empire, with at least three primary sources.</p>",
+                           submissionTypes: ["online_upload"]),
                 Assignment(id: 3302, name: "Paper 2 — Age of Exploration", pointsPossible: 50,
-                           dueAt: "2026-03-11T23:59:00Z", assignmentGroupId: histPaperId),
+                           dueAt: "2026-03-11T23:59:00Z", assignmentGroupId: histPaperId,
+                           descriptionHTML: "<p>5-page research paper on a topic from the Age of Exploration.</p>",
+                           submissionTypes: ["online_upload"]),
             ]
         ),
         AssignmentGroup(
@@ -256,7 +309,9 @@ public enum MockData {
             id: relJournalId, name: "Reading Journals", groupWeight: 50, rules: nil,
             assignments: [
                 Assignment(id: 4201, name: "Journal — 1 Nephi", pointsPossible: 15,
-                           dueAt: "2026-01-16T23:59:00Z", assignmentGroupId: relJournalId),
+                           dueAt: "2026-01-16T23:59:00Z", assignmentGroupId: relJournalId,
+                           descriptionHTML: "<p>Reading journal entry reflecting on 1 Nephi 1–22.</p>",
+                           submissionTypes: ["online_text_entry"]),
                 Assignment(id: 4202, name: "Journal — Mosiah", pointsPossible: 15,
                            dueAt: "2026-01-30T23:59:00Z", assignmentGroupId: relJournalId),
                 Assignment(id: 4203, name: "Journal — Alma", pointsPossible: 15,
@@ -312,6 +367,55 @@ public enum MockData {
     ]
 
     public static let teacherIds: [Int] = [teacherUserId]
+
+    // MARK: - Announcements
+
+    private static func announcementDate(daysAgo: Double) -> String {
+        ISO8601DateFormatter().string(from: Date().addingTimeInterval(-daysAgo * 24 * 60 * 60))
+    }
+
+    public static let announcements: [Int: [Announcement]] = [
+        csCourseId: [
+            Announcement(id: 5001, title: "Midterm grading complete",
+                         message: "Midterm exams have been graded and returned with rubric feedback. Check your submission for details.",
+                         postedAt: announcementDate(daysAgo: 3),
+                         author: DiscussionAuthor(displayName: "Prof. Demo")),
+            Announcement(id: 5002, title: "Office hours moved this week",
+                         message: "Office hours are moved to Thursday 2-4pm this week only due to a conference.",
+                         postedAt: announcementDate(daysAgo: 10),
+                         author: DiscussionAuthor(displayName: "Prof. Demo")),
+        ],
+        mathCourseId: [
+            Announcement(id: 5101, title: "Quiz 3 solutions posted",
+                         message: "Solutions for Quiz 3 — Taylor Series are posted. Please review before the next problem set.",
+                         postedAt: announcementDate(daysAgo: 2),
+                         author: DiscussionAuthor(displayName: "Dr. Kekoa")),
+            Announcement(id: 5102, title: "Final exam review session",
+                         message: "A review session for the final exam will be held the week before the exam. Location TBD.",
+                         postedAt: announcementDate(daysAgo: 8),
+                         author: DiscussionAuthor(displayName: "Dr. Kekoa")),
+        ],
+        histCourseId: [
+            Announcement(id: 5201, title: "Paper 2 topic list available",
+                         message: "A list of suggested topics for Paper 2 — Age of Exploration is now available.",
+                         postedAt: announcementDate(daysAgo: 4),
+                         author: DiscussionAuthor(displayName: "Dr. Alaimalo")),
+            Announcement(id: 5202, title: "Discussion 3 extended",
+                         message: "Discussion 3 — Silk Road Trade has been extended by two days due to popular request.",
+                         postedAt: announcementDate(daysAgo: 12),
+                         author: DiscussionAuthor(displayName: "Dr. Alaimalo")),
+        ],
+        relCourseId: [
+            Announcement(id: 5301, title: "Reading schedule reminder",
+                         message: "Reminder to keep pace with the reading schedule — Helaman journal is due soon.",
+                         postedAt: announcementDate(daysAgo: 5),
+                         author: DiscussionAuthor(displayName: "Instructor")),
+            Announcement(id: 5302, title: "No class Friday",
+                         message: "There will be no class this Friday; use the time to work on your reading journal.",
+                         postedAt: announcementDate(daysAgo: 15),
+                         author: DiscussionAuthor(displayName: "Instructor")),
+        ],
+    ]
 
     public static let profile = Profile(id: studentUserId, name: "Demo Student", primaryEmail: "demo.student@example.edu")
 }

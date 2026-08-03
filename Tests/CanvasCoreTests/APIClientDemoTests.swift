@@ -35,5 +35,13 @@ final class APIClientDemoTests: XCTestCase {
         let ids = try await demo.courseTeachers(courseId: MockData.csCourseId)
         XCTAssertEqual(ids, [MockData.teacherUserId])
     }
+
+    func testDemoAnnouncementsReturnsMockData() async throws {
+        let announcements = try await demo.announcements(courseId: MockData.csCourseId)
+        let expected = MockData.announcements[MockData.csCourseId] ?? []
+        XCTAssertEqual(announcements.count, 2)
+        XCTAssertEqual(announcements.map { $0.id }, expected.map { $0.id })
+        XCTAssertEqual(announcements.map { $0.title }, expected.map { $0.title })
+    }
 }
 #endif

@@ -120,7 +120,8 @@ public struct APIClient {
         #endif
         let data = try await getPaginated("/courses", query: [
             URLQueryItem(name: "enrollment_state", value: "active"),
-            URLQueryItem(name: "per_page", value: "50")
+            URLQueryItem(name: "per_page", value: "50"),
+            URLQueryItem(name: "include[]", value: "syllabus_body")
         ])
         return try decoder().decode([Course].self, from: data)
     }
@@ -142,6 +143,7 @@ public struct APIClient {
         #endif
         let data = try await getPaginated("/courses/\(courseId)/assignment_groups", query: [
             URLQueryItem(name: "include[]", value: "assignments"),
+            URLQueryItem(name: "include[]", value: "rubric"),
             URLQueryItem(name: "per_page", value: "100")
         ])
         return try decoder().decode([AssignmentGroup].self, from: data)
@@ -154,9 +156,21 @@ public struct APIClient {
         let data = try await getPaginated("/courses/\(courseId)/students/submissions", query: [
             URLQueryItem(name: "student_ids[]", value: "self"),
             URLQueryItem(name: "include[]", value: "submission_comments"),
+            URLQueryItem(name: "include[]", value: "rubric_assessment"),
             URLQueryItem(name: "per_page", value: "100")
         ])
         return try decoder().decode([Submission].self, from: data)
+    }
+
+    public func announcements(courseId: Int) async throws -> [Announcement] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.announcements[courseId] ?? [] }
+        #endif
+        let data = try await getPaginated("/courses/\(courseId)/discussion_topics", query: [
+            URLQueryItem(name: "only_announcements", value: "true"),
+            URLQueryItem(name: "per_page", value: "50"),
+        ])
+        return try decoder().decode([Announcement].self, from: data)
     }
 
     public func courseTeachers(courseId: Int) async throws -> [Int] {
