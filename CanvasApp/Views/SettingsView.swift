@@ -172,6 +172,7 @@ struct SettingsView: View {
                 // non-onboarding path.
                 if !isOnboarding {
                     CustomizationSection(vm: vm, session: session, courseSettings: courseSettings)
+                    NotificationSettingsSection(session: session)
                 }
 
                 let hidden = vm.hiddenCourses(session: session)
@@ -272,6 +273,60 @@ private struct CourseSettingsRow: View {
                 .labelsHidden()
                 .frame(width: 90)
             }
+        }
+    }
+}
+
+/// Notification categories, quiet hours, and background-refresh interval (spec §6).
+/// Requesting permission is lazy — deferred until the first category is switched on.
+private struct NotificationSettingsSection: View {
+    let session: AppSession
+    @State private var store: NotificationSettingsStore
+
+    init(session: AppSession) {
+        self.session = session
+        _store = State(initialValue: session.notificationSettings)
+    }
+
+    var body: some View {
+        @Bindable var store = store
+        Divider()
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Notifications").font(.subheadline).foregroundStyle(.secondary)
+
+            categoryToggle("New grades", isOn: $store.settings.newGrades)
+            categoryToggle("New feedback", isOn: $store.settings.newFeedback)
+            categoryToggle("New inbox messages", isOn: $store.settings.newMessages)
+            categoryToggle("Assignment due soon", isOn: $store.settings.dueSoon)
+
+            Toggle("Quiet hours", isOn: $store.settings.quietHoursEnabled).font(.caption)
+            if store.settings.quietHoursEnabled {
+                HStack {
+                    Picker("From", selection: $store.settings.quietStartHour) { hourOptions }.frame(width: 110)
+                    Picker("To", selection: $store.settings.quietEndHour) { hourOptions }.frame(width: 110)
+                }
+                .font(.caption)
+            }
+
+            Stepper("Background refresh: every \(store.settings.backgroundIntervalMinutes) min",
+                    value: $store.settings.backgroundIntervalMinutes, in: 15...240, step: 15)
+                .font(.caption)
+        }
+    }
+
+    private func categoryToggle(_ title: String, isOn: Binding<Bool>) -> some View {
+        Toggle(title, isOn: Binding(
+            get: { isOn.wrappedValue },
+            set: { newValue in
+                isOn.wrappedValue = newValue
+                if newValue { Task { await session.scheduler.requestAuthorizationIfNeeded() } }
+            }))
+            .font(.caption)
+    }
+
+    private var hourOptions: some View {
+        ForEach(0..<24, id: \.self) { h in
+            Text(String(format: "%02d:00", h)).tag(h)
         }
     }
 }
