@@ -226,6 +226,14 @@ public final class CanvasRepository {
         where change.occurredAt < changeThreshold {
             context.delete(change)
         }
+        for convo in try context.fetch(FetchDescriptor<CachedConversation>())
+        where convo.removedAt.map({ $0 < courseThreshold }) ?? false {
+            context.delete(convo)
+        }
+        for topic in try context.fetch(FetchDescriptor<CachedDiscussionTopic>())
+        where topic.removedAt.map({ $0 < courseThreshold }) ?? false {
+            context.delete(topic)
+        }
 
         try context.save()
     }

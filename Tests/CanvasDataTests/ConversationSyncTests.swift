@@ -49,6 +49,20 @@ final class ConversationSyncTests: XCTestCase {
         XCTAssertEqual(count, 2)   // demo inbox = unread + read (archived excluded)
     }
 
+    func testPurgeRemovesLongDeadConversation() async throws {
+        let container = try CanvasStore.container(inMemory: true)
+        try await MainActor.run {
+            let ctx = container.mainContext
+            let old = CachedConversation(id: 1, subject: "old", lastMessageAt: Date(), lastMessageSnippet: nil,
+                                         workflowState: "read", participantsJSON: nil, contextName: nil, messageCount: 1)
+            old.removedAt = Date().addingTimeInterval(-100 * 86400)   // 100 days ago > 90-day threshold
+            ctx.insert(old); try ctx.save()
+            let repo = CanvasRepository(modelContainer: container)
+            try repo.purgeExpired()
+            XCTAssertNil(try repo.conversation(id: 1))
+        }
+    }
+
     func testInboxResyncIsIdempotent() async throws {
         let container = try CanvasStore.container(inMemory: true)
         let engine = SyncEngine(modelContainer: container)
