@@ -2,14 +2,23 @@ import Foundation
 import SwiftData
 import CanvasCore
 
-public enum SyncScope: Hashable, Sendable { case all; case course(Int) }
+public enum SyncScope: Hashable, Sendable {
+    case all
+    case course(Int)
+    case inbox
+    case conversation(Int)
+    case discussion(courseId: Int, topicId: Int)
+}
 public enum SyncState: Equatable, Sendable { case idle; case syncing(SyncScope); case failed(String, Date) }
 public enum SyncError: Error, CustomStringConvertible {
     case noClient
     // Surfaced to the user via `String(describing:)`, so it must not read as "noClient".
     public var description: String { "Not signed in to Canvas — add a token in Settings." }
 }
-public enum EntityKind: String, Sendable { case courses, enrollments, assignments, submissions, announcements }
+public enum EntityKind: String, Sendable {
+    case courses, enrollments, assignments, submissions, announcements
+    case conversations, messages, discussionTopics, discussionEntries
+}
 
 @ModelActor
 public actor SyncEngine {
@@ -59,6 +68,12 @@ public actor SyncEngine {
             switch scope {
             case .all:             try await syncAll(client: client, force: force)
             case .course(let id):  try await syncCourse(id, client: client, force: force)
+            case .inbox:
+                try await syncInbox(client: client, force: force)
+            case .conversation(let id):
+                try await syncConversation(id, client: client, force: force)
+            case .discussion(let courseId, let topicId):
+                try await syncDiscussionEntries(courseId: courseId, topicId: topicId, client: client, force: force)
             }
             setState(.idle)
         } catch {
@@ -200,6 +215,7 @@ public actor SyncEngine {
     private static let ttl: [EntityKind: TimeInterval] = [
         .courses: 300, .enrollments: 300, .assignments: 900, .submissions: 300,
         .announcements: 1800,
+        .conversations: 300, .messages: 300, .discussionTopics: 1800, .discussionEntries: 1800,
     ]
 
     private func isFresh(_ kind: EntityKind, scope: String, now: Date) -> Bool {
@@ -467,5 +483,94 @@ public actor SyncEngine {
         return ChangeDetector.dueSoonChanges(courseId: courseId, assignments: assignments,
                                              submittedAssignmentIds: submitted,
                                              alreadyNotified: Set(notified), now: now)
+    }
+
+    // Implemented in Group B (discussions).
+    private func syncDiscussionEntries(courseId: Int, topicId: Int, client: APIClient, force: Bool) async throws {}
+
+    // MARK: - .inbox
+
+    private func syncInbox(client: APIClient, force: Bool) async throws {
+        let now = Date()
+        guard force || !isFresh(.conversations, scope: "inbox", now: now) else { return }
+        let inboxMetaKey = "conversations:inbox"
+        let hadPrior = fetchOne(FetchDescriptor<SyncMetadata>(
+            predicate: #Predicate<SyncMetadata> { $0.key == inboxMetaKey }))?.lastSyncedAt != nil
+
+        let fetched = try await fetchWithRetry { try await client.conversations(scope: .inbox) }
+        let old = conversationLastMessageDates()
+        upsertConversations(fetched, now: now)
+        insert(ChangeDetector.conversationChanges(old: old, new: fetched, isBaseline: !hadPrior), now: now)
+        touch(.conversations, scope: "inbox", error: nil, at: now)
+        try modelContext.save()
+    }
+
+    private func conversationLastMessageDates() -> [Int: Date?] {
+        let rows = (try? modelContext.fetch(FetchDescriptor<CachedConversation>())) ?? []
+        return Dictionary(uniqueKeysWithValues: rows.map { ($0.id, $0.lastMessageAt) })
+    }
+
+    private func upsertConversations(_ items: [Conversation], now: Date) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedConversation>())) ?? []).map { ($0.id, $0) })
+        let fetchedIds = Set(items.map(\.id))
+        for c in items {
+            let participantsJSON = c.participants.flatMap { try? JSONEncoder().encode($0) }
+            let lastAt = CanvasDate.parse(c.lastMessageAt)
+            if let row = existing[c.id] {
+                row.subject = c.subject; row.lastMessageAt = lastAt
+                row.lastMessageSnippet = c.lastMessage; row.workflowState = c.workflowState
+                row.contextName = c.contextName; row.messageCount = c.messageCount ?? row.messageCount
+                if let participantsJSON { row.participantsJSON = participantsJSON }
+                row.removedAt = nil
+            } else {
+                modelContext.insert(CachedConversation(
+                    id: c.id, subject: c.subject, lastMessageAt: lastAt, lastMessageSnippet: c.lastMessage,
+                    workflowState: c.workflowState, participantsJSON: participantsJSON,
+                    contextName: c.contextName, messageCount: c.messageCount ?? 0))
+            }
+        }
+        // Soft-delete conversations that dropped out of the inbox scope (e.g. archived elsewhere).
+        for (id, row) in existing where !fetchedIds.contains(id) && row.workflowState != "archived" && row.removedAt == nil {
+            row.removedAt = now
+        }
+    }
+
+    // MARK: - .conversation
+
+    private func syncConversation(_ id: Int, client: APIClient, force: Bool) async throws {
+        let now = Date()
+        guard force || !isFresh(.messages, scope: "\(id)", now: now) else { return }
+        let detail = try await fetchWithRetry { try await client.conversation(id: id) }
+        // Reconcile parent row (adopt Canvas's authoritative workflow_state).
+        upsertConversations([detail], now: now)
+        upsertMessages(detail, now: now)
+        touch(.messages, scope: "\(id)", error: nil, at: now)
+        try modelContext.save()
+    }
+
+    private func upsertMessages(_ detail: Conversation, now: Date) {
+        let names = Dictionary(uniqueKeysWithValues: (detail.participants ?? []).map { ($0.id, $0.name) })
+        let convId = detail.id
+        // Drop reconciled pending rows: real messages have arrived.
+        let priorPending = (try? modelContext.fetch(FetchDescriptor<CachedMessage>(
+            predicate: #Predicate<CachedMessage> { $0.conversationId == convId && $0.pending }))) ?? []
+        for row in priorPending { modelContext.delete(row) }
+
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedMessage>(
+                predicate: #Predicate<CachedMessage> { $0.conversationId == convId }))) ?? [])
+                .map { ($0.id, $0) })
+        for m in detail.messages ?? [] {
+            let created = CanvasDate.parse(m.createdAt)
+            if let row = existing[m.id] {
+                row.authorId = m.authorId; row.authorName = names[m.authorId]
+                row.body = m.body; row.createdAt = created; row.pending = false
+            } else {
+                modelContext.insert(CachedMessage(id: m.id, conversationId: convId, authorId: m.authorId,
+                                                  authorName: names[m.authorId], body: m.body,
+                                                  createdAt: created, pending: false))
+            }
+        }
     }
 }

@@ -82,4 +82,27 @@ public enum ChangeDetector {
             return PendingChange(kind: .dueSoon, courseId: courseId, subjectId: a.id, title: a.name, detail: nil)
         }
     }
+
+    /// .newMessage — fires when a conversation is `unread` and its `lastMessageAt` has advanced
+    /// beyond the stored value (or it is newly seen). `courseId` is 0: conversations are not
+    /// course-scoped in this model; `subjectId` is the conversationId so a notification tap can
+    /// reveal the thread. Baseline-suppressed on the first inbox sync (spec deviation, §3.1).
+    public static func conversationChanges(old: [Int: Date?], new: [Conversation],
+                                           isBaseline: Bool) -> [PendingChange] {
+        guard !isBaseline else { return [] }
+        var changes: [PendingChange] = []
+        for c in new where c.workflowState == "unread" {
+            let newDate = CanvasDate.parse(c.lastMessageAt)
+            let priorDate = old[c.id] ?? nil
+            let advanced: Bool
+            if let newDate, let priorDate { advanced = newDate > priorDate }
+            else if newDate != nil, old[c.id] == nil { advanced = true }   // brand new
+            else { advanced = false }
+            guard advanced else { continue }
+            changes.append(PendingChange(kind: .newMessage, courseId: 0, subjectId: c.id,
+                                         title: c.subject ?? "New message",
+                                         detail: c.lastMessage))
+        }
+        return changes
+    }
 }

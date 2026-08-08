@@ -195,4 +195,90 @@ public struct APIClient {
         let (data, _) = try await getPage(url: url)
         return try decoder().decode(Profile.self, from: data)
     }
+
+    // MARK: - Writes (form-encoded POST/PUT)
+
+    /// URL-form-encodes `fields` and sends them as the body. Repeated keys (e.g. recipients[])
+    /// are preserved by passing them as separate tuples.
+    private func sendForm(path: String, method: String, fields: [(String, String)]) async throws -> Data {
+        guard let url = URL(string: baseURL + path) else { throw APIError.network("bad URL \(path)") }
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        var allowed = CharacterSet.alphanumerics
+        allowed.insert(charactersIn: "-._~")   // RFC 3986 unreserved; everything else is percent-encoded
+        func enc(_ s: String) -> String { s.addingPercentEncoding(withAllowedCharacters: allowed) ?? s }
+        request.httpBody = Data(fields.map { "\(enc($0.0))=\(enc($0.1))" }.joined(separator: "&").utf8)
+        print("[APIClient] \(method) \(url)")
+        do {
+            let (data, response) = try await session.data(for: request)
+            if let http = response as? HTTPURLResponse {
+                if http.statusCode == 401 { throw APIError.unauthorized }
+                if http.statusCode == 403 { throw APIError.forbidden }
+                guard (200..<300).contains(http.statusCode) else { throw APIError.http(http.statusCode) }
+            }
+            return data
+        } catch let error as APIError { throw error }
+        catch { throw APIError.network(error.localizedDescription) }
+    }
+
+    // MARK: - Conversations
+
+    public func conversations(scope: ConversationScope) async throws -> [Conversation] {
+        #if DEBUG
+        if token == "DEMO" {
+            switch scope {
+            case .inbox:    return MockData.conversations.filter { $0.workflowState != "archived" }
+            case .unread:   return MockData.conversations.filter { $0.workflowState == "unread" }
+            case .archived: return MockData.conversations.filter { $0.workflowState == "archived" }
+            }
+        }
+        #endif
+        let data = try await getPaginated("/conversations", query: [
+            URLQueryItem(name: "scope", value: scope.rawValue),
+            URLQueryItem(name: "per_page", value: "50"),
+        ])
+        return try decoder().decode([Conversation].self, from: data)
+    }
+
+    public func conversation(id: Int) async throws -> Conversation {
+        #if DEBUG
+        if token == "DEMO" { return MockData.conversationDetails[id] ?? MockData.conversations.first { $0.id == id }! }
+        #endif
+        guard let url = URL(string: baseURL + "/conversations/\(id)") else {
+            throw APIError.network("bad URL /conversations/\(id)")
+        }
+        let (data, _) = try await getPage(url: url)
+        return try decoder().decode(Conversation.self, from: data)
+    }
+
+    public func createConversation(recipientIds: [Int], subject: String, body: String) async throws -> Conversation {
+        #if DEBUG
+        if token == "DEMO" { return MockData.demoCreateConversation(recipientIds: recipientIds, subject: subject, body: body) }
+        #endif
+        var fields: [(String, String)] = recipientIds.map { ("recipients[]", String($0)) }
+        fields.append(("subject", subject))
+        fields.append(("body", body))
+        let data = try await sendForm(path: "/conversations", method: "POST", fields: fields)
+        // Canvas returns an array of conversations (one per recipient batch); take the first.
+        if let list = try? decoder().decode([Conversation].self, from: data), let first = list.first { return first }
+        return try decoder().decode(Conversation.self, from: data)
+    }
+
+    public func replyToConversation(id: Int, body: String) async throws -> Conversation {
+        #if DEBUG
+        if token == "DEMO" { return MockData.demoAppendReply(id: id, body: body) }
+        #endif
+        let data = try await sendForm(path: "/conversations/\(id)/add_message", method: "POST", fields: [("body", body)])
+        return try decoder().decode(Conversation.self, from: data)
+    }
+
+    public func markConversationRead(id: Int) async throws {
+        #if DEBUG
+        if token == "DEMO" { MockData.demoMarkRead(id: id); return }
+        #endif
+        _ = try await sendForm(path: "/conversations/\(id)", method: "PUT",
+                               fields: [("conversation[workflow_state]", "read")])
+    }
 }

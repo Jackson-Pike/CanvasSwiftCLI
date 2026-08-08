@@ -418,5 +418,102 @@ public enum MockData {
     ]
 
     public static let profile = Profile(id: studentUserId, name: "Demo Student", primaryEmail: "demo.student@example.edu")
+
+    // MARK: - Phase 2 demo store (conversations)
+
+    /// Mutable so demo writes (compose/reply/mark-read) persist for the session.
+    public static var conversations: [Conversation] = [
+        Conversation(id: 5001, subject: "Lab 3 feedback", workflowState: "unread",
+                     lastMessage: "Nice work — see my note on part 2.",
+                     lastMessageAt: "2026-08-06T18:30:00Z", messageCount: 2, contextName: "BIOL 100",
+                     participants: [ConversationParticipant(id: teacherUserId, name: "Dr. Reed"),
+                                    ConversationParticipant(id: studentUserId, name: "Demo Student")],
+                     messages: nil),
+        Conversation(id: 5002, subject: "Office hours", workflowState: "read",
+                     lastMessage: "Thursday 2–4 works.",
+                     lastMessageAt: "2026-08-04T09:00:00Z", messageCount: 3, contextName: "CS 220",
+                     participants: [ConversationParticipant(id: teacherUserId, name: "Prof. Lang"),
+                                    ConversationParticipant(id: studentUserId, name: "Demo Student")],
+                     messages: nil),
+        Conversation(id: 5003, subject: "Withdrawn section", workflowState: "archived",
+                     lastMessage: "Archived thread.",
+                     lastMessageAt: "2026-07-20T12:00:00Z", messageCount: 1, contextName: "ENGL 101",
+                     participants: [ConversationParticipant(id: teacherUserId, name: "Ms. Ová"),
+                                    ConversationParticipant(id: studentUserId, name: "Demo Student")],
+                     messages: nil),
+    ]
+
+    public static var conversationDetails: [Int: Conversation] = [
+        5001: Conversation(id: 5001, subject: "Lab 3 feedback", workflowState: "unread",
+                           lastMessage: nil, lastMessageAt: "2026-08-06T18:30:00Z", messageCount: 2,
+                           contextName: "BIOL 100",
+                           participants: [ConversationParticipant(id: teacherUserId, name: "Dr. Reed"),
+                                          ConversationParticipant(id: studentUserId, name: "Demo Student")],
+                           messages: [
+                            ConversationMessage(id: 6001, authorId: studentUserId,
+                                                body: "I submitted Lab 3 — anything to fix?",
+                                                createdAt: "2026-08-06T17:00:00Z"),
+                            ConversationMessage(id: 6002, authorId: teacherUserId,
+                                                body: "Nice work — see my note on part 2.",
+                                                createdAt: "2026-08-06T18:30:00Z"),
+                           ]),
+        5002: Conversation(id: 5002, subject: "Office hours", workflowState: "read",
+                           lastMessage: nil, lastMessageAt: "2026-08-04T09:00:00Z", messageCount: 3,
+                           contextName: "CS 220",
+                           participants: [ConversationParticipant(id: teacherUserId, name: "Prof. Lang"),
+                                          ConversationParticipant(id: studentUserId, name: "Demo Student")],
+                           messages: [
+                            ConversationMessage(id: 6010, authorId: studentUserId,
+                                                body: "Are office hours on this week?", createdAt: "2026-08-03T08:00:00Z"),
+                            ConversationMessage(id: 6011, authorId: teacherUserId,
+                                                body: "Thursday 2–4 works.", createdAt: "2026-08-04T09:00:00Z"),
+                           ]),
+        5003: Conversation(id: 5003, subject: "Withdrawn section", workflowState: "archived",
+                           lastMessage: nil, lastMessageAt: "2026-07-20T12:00:00Z", messageCount: 1,
+                           contextName: "ENGL 101",
+                           participants: [ConversationParticipant(id: teacherUserId, name: "Ms. Ová"),
+                                          ConversationParticipant(id: studentUserId, name: "Demo Student")],
+                           messages: [ConversationMessage(id: 6020, authorId: teacherUserId,
+                                                          body: "Archived thread.", createdAt: "2026-07-20T12:00:00Z")]),
+    ]
+
+    private static var demoNextId = 7000
+
+    public static func demoCreateConversation(recipientIds: [Int], subject: String, body: String) -> Conversation {
+        demoNextId += 1
+        let id = demoNextId
+        let now = ISO8601DateFormatter().string(from: Date())
+        let detail = Conversation(id: id, subject: subject, workflowState: "read", lastMessage: body,
+                                  lastMessageAt: now, messageCount: 1, contextName: "New Message",
+                                  participants: [ConversationParticipant(id: studentUserId, name: "Demo Student"),
+                                                 ConversationParticipant(id: recipientIds.first ?? teacherUserId, name: "Dr. Reed")],
+                                  messages: [ConversationMessage(id: demoNextId + 100000, authorId: studentUserId,
+                                                                 body: body, createdAt: now)])
+        conversationDetails[id] = detail
+        conversations.insert(detail, at: 0)
+        return detail
+    }
+
+    public static func demoAppendReply(id: Int, body: String) -> Conversation {
+        let now = ISO8601DateFormatter().string(from: Date())
+        guard var detail = conversationDetails[id] else { return conversations.first! }
+        var msgs = detail.messages ?? []
+        demoNextId += 1
+        msgs.append(ConversationMessage(id: demoNextId + 200000, authorId: studentUserId, body: body, createdAt: now))
+        detail = Conversation(id: detail.id, subject: detail.subject, workflowState: "read", lastMessage: body,
+                              lastMessageAt: now, messageCount: msgs.count, contextName: detail.contextName,
+                              participants: detail.participants, messages: msgs)
+        conversationDetails[id] = detail
+        return detail
+    }
+
+    public static func demoMarkRead(id: Int) {
+        guard let idx = conversations.firstIndex(where: { $0.id == id }) else { return }
+        let c = conversations[idx]
+        conversations[idx] = Conversation(id: c.id, subject: c.subject, workflowState: "read",
+                                          lastMessage: c.lastMessage, lastMessageAt: c.lastMessageAt,
+                                          messageCount: c.messageCount, contextName: c.contextName,
+                                          participants: c.participants, messages: c.messages)
+    }
 }
 #endif

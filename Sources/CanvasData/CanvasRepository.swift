@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import CanvasCore
 
 /// Main-actor read/flag/purge layer over the SwiftData store. Views never call
 /// APIClient directly; all reads route through this repository.
@@ -71,6 +72,34 @@ public final class CanvasRepository {
         return all
             .filter { $0.removedAt == nil }
             .sorted { ($0.postedAt ?? .distantPast) > ($1.postedAt ?? .distantPast) }
+    }
+
+    public func conversations(scope: ConversationScope) throws -> [CachedConversation] {
+        let all = try context.fetch(FetchDescriptor<CachedConversation>())
+            .filter { $0.removedAt == nil }
+        let scoped: [CachedConversation]
+        switch scope {
+        case .inbox:    scoped = all.filter { $0.workflowState != "archived" }
+        case .unread:   scoped = all.filter { $0.workflowState == "unread" }
+        case .archived: scoped = all.filter { $0.workflowState == "archived" }
+        }
+        return scoped.sorted { ($0.lastMessageAt ?? .distantPast) > ($1.lastMessageAt ?? .distantPast) }
+    }
+
+    public func conversation(id: Int) throws -> CachedConversation? {
+        let predicate = #Predicate<CachedConversation> { $0.id == id }
+        return try context.fetch(FetchDescriptor(predicate: predicate)).first
+    }
+
+    public func messages(conversationId: Int) throws -> [CachedMessage] {
+        let predicate = #Predicate<CachedMessage> { $0.conversationId == conversationId }
+        return try context.fetch(FetchDescriptor(predicate: predicate))
+            .sorted { ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast) }
+    }
+
+    public func unseenConversationCount() throws -> Int {
+        try context.fetch(FetchDescriptor<CachedConversation>())
+            .filter { $0.removedAt == nil && $0.workflowState == "unread" }.count
     }
 
     public func comments(assignmentId: Int) throws -> [CachedComment] {
@@ -171,6 +200,8 @@ public final class CanvasRepository {
         try context.delete(model: CachedSubmission.self)
         try context.delete(model: CachedComment.self)
         try context.delete(model: CachedAnnouncement.self)
+        try context.delete(model: CachedConversation.self)
+        try context.delete(model: CachedMessage.self)
         try context.delete(model: GradeSnapshot.self)
         try context.delete(model: ChangeRecord.self)
         try context.delete(model: SyncMetadata.self)
