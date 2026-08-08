@@ -102,6 +102,32 @@ public final class CanvasRepository {
             .filter { $0.removedAt == nil && $0.workflowState == "unread" }.count
     }
 
+    // MARK: - Conversation writes (optimistic-local)
+
+    /// Inserts an optimistic outgoing message and returns its temporary negative id
+    /// (negative so it never collides with a real Canvas id). Reconciled away on next detail sync.
+    @discardableResult
+    public func insertPendingMessage(conversationId: Int, body: String, authorId: Int,
+                                     authorName: String?, now: Date = .init()) throws -> Int {
+        let tempId = -Int(Date().timeIntervalSince1970 * 1000)
+        context.insert(CachedMessage(id: tempId, conversationId: conversationId, authorId: authorId,
+                                     authorName: authorName, body: body, createdAt: now, pending: true))
+        try context.save()
+        return tempId
+    }
+
+    public func removePendingMessages(conversationId: Int) throws {
+        let predicate = #Predicate<CachedMessage> { $0.conversationId == conversationId && $0.pending }
+        for row in try context.fetch(FetchDescriptor(predicate: predicate)) { context.delete(row) }
+        try context.save()
+    }
+
+    public func markConversationReadLocal(id: Int) throws {
+        guard let row = try conversation(id: id) else { return }
+        row.workflowState = "read"
+        try context.save()
+    }
+
     public func comments(assignmentId: Int) throws -> [CachedComment] {
         let predicate = #Predicate<CachedComment> { $0.assignmentId == assignmentId }
         return try context.fetch(FetchDescriptor(predicate: predicate))

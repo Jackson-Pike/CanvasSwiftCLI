@@ -573,4 +573,36 @@ public actor SyncEngine {
             }
         }
     }
+
+    // MARK: - Writes
+
+    public func markConversationRead(_ id: Int) async throws {
+        guard let client else { throw SyncError.noClient }
+        try await client.markConversationRead(id: id)
+        if let row = fetchOne(FetchDescriptor<CachedConversation>(
+            predicate: #Predicate<CachedConversation> { $0.id == id })) {
+            row.workflowState = "read"
+            try modelContext.save()
+        }
+    }
+
+    /// The caller inserts the optimistic pending row (via the repository) before calling this;
+    /// on success we re-fetch the thread, which deletes pending rows and installs the real ones.
+    public func sendReply(conversationId: Int, body: String) async throws {
+        guard let client else { throw SyncError.noClient }
+        let detail = try await client.replyToConversation(id: conversationId, body: body)
+        upsertConversations([detail], now: Date())
+        upsertMessages(detail, now: Date())
+        try modelContext.save()
+    }
+
+    public func compose(recipientIds: [Int], subject: String, body: String) async throws -> Int {
+        guard let client else { throw SyncError.noClient }
+        let created = try await client.createConversation(recipientIds: recipientIds, subject: subject, body: body)
+        let now = Date()
+        upsertConversations([created], now: now)
+        upsertMessages(created, now: now)   // detail from compose may include the first message
+        try modelContext.save()
+        return created.id
+    }
 }
