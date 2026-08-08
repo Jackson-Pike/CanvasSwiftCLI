@@ -7,6 +7,7 @@ import CanvasUI
 struct CanvasGradesApp: App {
     @State private var session = AppSession()
     @State private var router = Router()
+    @State private var background: BackgroundRefreshController?
     @AppStorage("appearance") private var appearance: String = "system"
 
     private var preferredColorScheme: ColorScheme? {
@@ -32,6 +33,13 @@ struct CanvasGradesApp: App {
                 .environment(session)
                 .environment(router)
                 .preferredColorScheme(preferredColorScheme)
+                .task {
+                    if background == nil {
+                        let controller = BackgroundRefreshController(session: session, router: router)
+                        background = controller
+                        controller.start()
+                    }
+                }
         }
         .defaultSize(width: 1000, height: 700)
     }
