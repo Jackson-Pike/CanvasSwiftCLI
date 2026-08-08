@@ -15,6 +15,9 @@ final class AppSession {
     let repository: CanvasRepository
     let syncEngine: SyncEngine
 
+    let notificationSettings = NotificationSettingsStore()
+    let scheduler = NotificationScheduler()
+
     /// Single course list shared by both scenes. Two independent `@StateObject`s desynced on
     /// every hide/restore/credential change — the popover updated and the window did not.
     let coursesVM = CoursesViewModel()
@@ -118,6 +121,15 @@ final class AppSession {
     func compose(recipientIds: [Int], subject: String, body: String) async -> Result<Int, Error> {
         do { return .success(try await syncEngine.compose(recipientIds: recipientIds, subject: subject, body: body)) }
         catch { return .failure(error) }
+    }
+
+    /// Reads unseen changes, posts notifications for enabled categories outside quiet hours,
+    /// and badges the dock with the unseen count. Quiet-suppressed changes stay unseen (in the feed).
+    func processUnseenChanges(now: Date = .init()) {
+        let unseen = (try? repository.unseenChanges()) ?? []
+        let result = NotificationPlanner.plan(changes: unseen, settings: notificationSettings.settings, now: now)
+        scheduler.post(result.post)
+        scheduler.setBadge(unseen.count)
     }
 
     func detailViewModel(courseId: Int) -> CourseDetailViewModel {
