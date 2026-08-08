@@ -33,6 +33,8 @@ private struct MainWindowBody: View {
     /// below-target coloring too.
     @State private var settings = CourseSettingsStore()
 
+    private var inboxUnread: Int { (try? session.repository.unseenConversationCount()) ?? 0 }
+
     var body: some View {
         @Bindable var router = router
         NavigationSplitView {
@@ -41,6 +43,7 @@ private struct MainWindowBody: View {
                 Section {
                     Label("Dashboard", systemImage: "square.grid.2x2").tag(SidebarItem.dashboard)
                     Label("Inbox", systemImage: "tray").tag(SidebarItem.inbox)
+                        .badge(inboxUnread)
                     Label("Calendar", systemImage: "calendar").tag(SidebarItem.calendar)
                     Label("To-Do", systemImage: "checklist").tag(SidebarItem.todo)
                 }
@@ -77,7 +80,7 @@ private struct MainWindowBody: View {
         } detail: {
             switch router.sidebar {
             case .dashboard: DashboardView(coursesVM: coursesVM, settings: settings)
-            case .inbox:     ComingSoonView(title: "Inbox", phase: "Phase 2")
+            case .inbox:     InboxView()
             case .calendar:  ComingSoonView(title: "Calendar", phase: "Phase 3")
             case .todo:      ComingSoonView(title: "To-Do", phase: "Phase 3")
             case .course(let id): CourseWorkspaceView(courseId: id)

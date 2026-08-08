@@ -103,6 +103,23 @@ final class AppSession {
         catch { return String(describing: error) }
     }
 
+    @discardableResult
+    func markConversationRead(_ id: Int) async -> String? {
+        do { try await syncEngine.markConversationRead(id); return nil }
+        catch { return String(describing: error) }
+    }
+
+    @discardableResult
+    func sendReply(conversationId: Int, body: String) async -> String? {
+        do { try await syncEngine.sendReply(conversationId: conversationId, body: body); return nil }
+        catch { return String(describing: error) }
+    }
+
+    func compose(recipientIds: [Int], subject: String, body: String) async -> Result<Int, Error> {
+        do { return .success(try await syncEngine.compose(recipientIds: recipientIds, subject: subject, body: body)) }
+        catch { return .failure(error) }
+    }
+
     func detailViewModel(courseId: Int) -> CourseDetailViewModel {
         if let existing = detailVMs[courseId] { return existing }
         let vm = CourseDetailViewModel(courseId: courseId)
