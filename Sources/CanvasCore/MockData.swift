@@ -515,5 +515,41 @@ public enum MockData {
                                           messageCount: c.messageCount, contextName: c.contextName,
                                           participants: c.participants, messages: c.messages)
     }
+
+    // MARK: - Phase 2 demo store (discussions)
+
+    public static let discussionTopics: [Int: [DiscussionTopic]] = [
+        csCourseId: [
+            DiscussionTopic(id: 3001, title: "Week 1 — Introductions",
+                            message: "<p>Post a short intro about yourself.</p>",
+                            postedAt: "2026-08-01T00:00:00Z", discussionSubentryCount: 3,
+                            htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/discussion_topics/3001"),
+            DiscussionTopic(id: 3002, title: "Project ideas",
+                            message: "<p>Share your project proposal here.</p>",
+                            postedAt: "2026-08-05T00:00:00Z", discussionSubentryCount: 0,
+                            htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/discussion_topics/3002"),
+        ],
+    ]
+
+    public static let discussionViews: [Int: DiscussionView] = [
+        3001: DiscussionView(
+            view: [
+                DiscussionEntryNode(id: 4001, userId: teacherUserId, parentId: nil,
+                                    message: "<p>Welcome! Tell us your major.</p>", createdAt: "2026-08-01T01:00:00Z",
+                                    replies: [
+                                        DiscussionEntryNode(id: 4002, userId: studentUserId, parentId: 4001,
+                                                            message: "<p>CS major, second year.</p>",
+                                                            createdAt: "2026-08-01T02:00:00Z", replies: nil),
+                                    ]),
+                DiscussionEntryNode(id: 4003, userId: studentUserId, parentId: nil,
+                                    message: "<p>Excited for this course.</p>", createdAt: "2026-08-01T03:00:00Z",
+                                    replies: nil),
+            ],
+            participants: [
+                DiscussionParticipant(id: teacherUserId, displayName: "Prof. Lang"),
+                DiscussionParticipant(id: studentUserId, displayName: "Demo Student"),
+            ]),
+        3002: DiscussionView(view: [], participants: []),
+    ]
 }
 #endif

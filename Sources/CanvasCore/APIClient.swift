@@ -281,4 +281,27 @@ public struct APIClient {
         _ = try await sendForm(path: "/conversations/\(id)", method: "PUT",
                                fields: [("conversation[workflow_state]", "read")])
     }
+
+    // MARK: - Discussions
+
+    public func discussionTopics(courseId: Int) async throws -> [DiscussionTopic] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.discussionTopics[courseId] ?? [] }
+        #endif
+        let data = try await getPaginated("/courses/\(courseId)/discussion_topics", query: [
+            URLQueryItem(name: "per_page", value: "50"),
+        ])
+        return try decoder().decode([DiscussionTopic].self, from: data)
+    }
+
+    public func discussionView(courseId: Int, topicId: Int) async throws -> DiscussionView {
+        #if DEBUG
+        if token == "DEMO" { return MockData.discussionViews[topicId] ?? DiscussionView(view: [], participants: []) }
+        #endif
+        guard let url = URL(string: baseURL + "/courses/\(courseId)/discussion_topics/\(topicId)/view") else {
+            throw APIError.network("bad URL discussion view")
+        }
+        let (data, _) = try await getPage(url: url)
+        return try decoder().decode(DiscussionView.self, from: data)
+    }
 }

@@ -102,6 +102,18 @@ public final class CanvasRepository {
             .filter { $0.removedAt == nil && $0.workflowState == "unread" }.count
     }
 
+    public func discussionTopics(courseId: Int) throws -> [CachedDiscussionTopic] {
+        let predicate = #Predicate<CachedDiscussionTopic> { $0.courseId == courseId }
+        return try context.fetch(FetchDescriptor(predicate: predicate))
+            .filter { $0.removedAt == nil }
+            .sorted { ($0.postedAt ?? .distantPast) > ($1.postedAt ?? .distantPast) }
+    }
+
+    public func discussionEntries(topicId: Int) throws -> [CachedDiscussionEntry] {
+        let predicate = #Predicate<CachedDiscussionEntry> { $0.topicId == topicId }
+        return try context.fetch(FetchDescriptor(predicate: predicate)).sorted { $0.sortIndex < $1.sortIndex }
+    }
+
     // MARK: - Conversation writes (optimistic-local)
 
     /// Inserts an optimistic outgoing message and returns its temporary negative id
@@ -228,6 +240,8 @@ public final class CanvasRepository {
         try context.delete(model: CachedAnnouncement.self)
         try context.delete(model: CachedConversation.self)
         try context.delete(model: CachedMessage.self)
+        try context.delete(model: CachedDiscussionTopic.self)
+        try context.delete(model: CachedDiscussionEntry.self)
         try context.delete(model: GradeSnapshot.self)
         try context.delete(model: ChangeRecord.self)
         try context.delete(model: SyncMetadata.self)

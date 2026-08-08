@@ -253,7 +253,8 @@ public actor SyncEngine {
         let needAssignments = force || !isFresh(.assignments, scope: "\(courseId)", now: now)
         let needSubmissions = force || !isFresh(.submissions, scope: "\(courseId)", now: now)
         let needAnnouncements = force || !isFresh(.announcements, scope: "\(courseId)", now: now)
-        guard needAssignments || needSubmissions || needAnnouncements else { return }
+        let needDiscussions = force || !isFresh(.discussionTopics, scope: "\(courseId)", now: now)
+        guard needAssignments || needSubmissions || needAnnouncements || needDiscussions else { return }
 
         async let groupsFetch: [AssignmentGroup] = {
             guard needAssignments else { return [] }
@@ -267,12 +268,17 @@ public actor SyncEngine {
             guard needAnnouncements else { return [] }
             return try await fetchWithRetry { try await client.announcements(courseId: courseId) }
         }()
+        async let discussionsFetch: [DiscussionTopic] = {
+            guard needDiscussions else { return [] }
+            return try await fetchWithRetry { try await client.discussionTopics(courseId: courseId) }
+        }()
 
         var firstError: (any Error)?
         // A TTL-skipped fetch is not a failure — only fetches we actually attempted can fail.
         var groupsSucceeded = !needAssignments
         var submissionsSucceeded = !needSubmissions
         var announcementsSucceeded = !needAnnouncements
+        var discussionsSucceeded = !needDiscussions
 
         if needAssignments {
             do {
@@ -318,11 +324,43 @@ public actor SyncEngine {
             }
         }
 
+        if needDiscussions {
+            do {
+                let topics = try await discussionsFetch
+                upsertDiscussionTopics(topics, courseId: courseId, now: now)
+                touch(.discussionTopics, scope: "\(courseId)", error: nil, at: now)
+                discussionsSucceeded = true
+            } catch {
+                if firstError == nil { firstError = error }
+                touch(.discussionTopics, scope: "\(courseId)", error: String(describing: error), at: now)
+            }
+        }
+
         try modelContext.save()
         // Partial failure is normal (spec §2.5): throw only if *everything* attempted failed.
-        if let firstError, !groupsSucceeded, !submissionsSucceeded, !announcementsSucceeded {
+        if let firstError, !groupsSucceeded, !submissionsSucceeded, !announcementsSucceeded, !discussionsSucceeded {
             throw firstError
         }
+    }
+
+    private func upsertDiscussionTopics(_ items: [DiscussionTopic], courseId: Int, now: Date) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedDiscussionTopic>(
+                predicate: #Predicate<CachedDiscussionTopic> { $0.courseId == courseId }))) ?? [])
+                .map { ($0.id, $0) })
+        let fetchedIds = Set(items.map(\.id))
+        for t in items {
+            let postedAt = CanvasDate.parse(t.postedAt)
+            if let row = existing[t.id] {
+                row.title = t.title; row.message = t.message; row.postedAt = postedAt
+                row.replyCount = t.discussionSubentryCount ?? 0; row.htmlURL = t.htmlUrl; row.removedAt = nil
+            } else {
+                modelContext.insert(CachedDiscussionTopic(
+                    id: t.id, courseId: courseId, title: t.title, message: t.message, postedAt: postedAt,
+                    replyCount: t.discussionSubentryCount ?? 0, htmlURL: t.htmlUrl))
+            }
+        }
+        for (id, row) in existing where !fetchedIds.contains(id) && row.removedAt == nil { row.removedAt = now }
     }
 
     private func upsertAnnouncements(_ items: [Announcement], courseId: Int, now: Date) {
@@ -485,8 +523,34 @@ public actor SyncEngine {
                                              alreadyNotified: Set(notified), now: now)
     }
 
-    // Implemented in Group B (discussions).
-    private func syncDiscussionEntries(courseId: Int, topicId: Int, client: APIClient, force: Bool) async throws {}
+    // MARK: - .discussion
+
+    private func syncDiscussionEntries(courseId: Int, topicId: Int, client: APIClient, force: Bool) async throws {
+        let now = Date()
+        guard force || !isFresh(.discussionEntries, scope: "\(topicId)", now: now) else { return }
+        let view = try await fetchWithRetry { try await client.discussionView(courseId: courseId, topicId: topicId) }
+        let flat = flattenDiscussion(view)
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedDiscussionEntry>(
+                predicate: #Predicate<CachedDiscussionEntry> { $0.topicId == topicId }))) ?? [])
+                .map { ($0.id, $0) })
+        let fetchedIds = Set(flat.map(\.id))
+        for e in flat {
+            let created = CanvasDate.parse(e.createdAt)
+            if let row = existing[e.id] {
+                row.parentId = e.parentId; row.depth = e.depth; row.sortIndex = e.sortIndex
+                row.authorName = e.authorName; row.message = e.message; row.createdAt = created
+            } else {
+                modelContext.insert(CachedDiscussionEntry(
+                    id: e.id, topicId: topicId, parentId: e.parentId, depth: e.depth, sortIndex: e.sortIndex,
+                    authorName: e.authorName, message: e.message, createdAt: created))
+            }
+        }
+        // Hard-delete entries removed upstream (a deleted reply should vanish; no history value here).
+        for (id, row) in existing where !fetchedIds.contains(id) { modelContext.delete(row) }
+        touch(.discussionEntries, scope: "\(topicId)", error: nil, at: now)
+        try modelContext.save()
+    }
 
     // MARK: - .inbox
 

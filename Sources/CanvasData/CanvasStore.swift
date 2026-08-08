@@ -8,6 +8,7 @@ public enum CanvasStore {
         GradeSnapshot.self, ChangeRecord.self, SyncMetadata.self,
         CachedAnnouncement.self,
         CachedConversation.self, CachedMessage.self,
+        CachedDiscussionTopic.self, CachedDiscussionEntry.self,
     ])
 
     public static func container(inMemory: Bool = false) throws -> ModelContainer {
