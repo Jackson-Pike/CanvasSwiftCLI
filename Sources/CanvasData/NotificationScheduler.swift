@@ -17,6 +17,7 @@ public final class NotificationScheduler {
     @discardableResult
     public func requestAuthorizationIfNeeded() async -> Bool {
         #if canImport(UserNotifications)
+        guard Bundle.main.bundleIdentifier != nil else { return false }
         let center = UNUserNotificationCenter.current()
         let settings = await center.notificationSettings()
         if settings.authorizationStatus == .notDetermined {
@@ -31,6 +32,7 @@ public final class NotificationScheduler {
 
     public func post(_ specs: [NotificationRequestSpec]) {
         #if canImport(UserNotifications)
+        guard Bundle.main.bundleIdentifier != nil else { return }
         let center = UNUserNotificationCenter.current()
         for spec in specs {
             let content = UNMutableNotificationContent()

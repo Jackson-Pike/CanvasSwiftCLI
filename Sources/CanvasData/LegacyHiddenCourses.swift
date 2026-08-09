@@ -2,8 +2,8 @@ import Foundation
 
 enum LegacyHiddenCourses {
     private static let key = "hiddenCourseIDs"
-    static func ids() -> Set<Int> {
-        Set(UserDefaults.standard.array(forKey: key) as? [Int] ?? [])
+    static func ids(userDefaults: UserDefaults = .standard) -> Set<Int> {
+        Set(userDefaults.array(forKey: key) as? [Int] ?? [])
     }
-    static func clear() { UserDefaults.standard.removeObject(forKey: key) }
+    static func clear(userDefaults: UserDefaults = .standard) { userDefaults.removeObject(forKey: key) }
 }

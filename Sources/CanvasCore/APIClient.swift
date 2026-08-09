@@ -235,10 +235,11 @@ public struct APIClient {
             }
         }
         #endif
-        let data = try await getPaginated("/conversations", query: [
-            URLQueryItem(name: "scope", value: scope.rawValue),
-            URLQueryItem(name: "per_page", value: "50"),
-        ])
+        var query: [URLQueryItem] = [URLQueryItem(name: "per_page", value: "50")]
+        if scope != .inbox {
+            query.append(URLQueryItem(name: "scope", value: scope.rawValue))
+        }
+        let data = try await getPaginated("/conversations", query: query)
         return try decoder().decode([Conversation].self, from: data)
     }
 

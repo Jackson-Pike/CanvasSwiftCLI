@@ -49,10 +49,14 @@ final class SyncEngineAllTests: XCTestCase {
     }
 
     func testLegacyHiddenIdsMigrate() async throws {
-        UserDefaults.standard.set([MockData.mathCourseId], forKey: "hiddenCourseIDs")
+        let suiteName = "testLegacyHiddenIdsMigrate_\(UUID().uuidString)"
+        let userDefaults = UserDefaults(suiteName: suiteName)!
+        userDefaults.set([MockData.mathCourseId], forKey: "hiddenCourseIDs")
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
 
         let container = try CanvasStore.container(inMemory: true)
         let engine = SyncEngine(modelContainer: container)
+        await engine.setUserDefaults(userDefaults)
         let client = APIClient(credentials: Credentials(host: "byuh.instructure.com", token: "DEMO"))
         await engine.configure(client: client)
 
@@ -65,7 +69,7 @@ final class SyncEngineAllTests: XCTestCase {
             XCTAssertEqual(cached?.hidden, expectedHidden, "course \(course.id) hidden mismatch")
         }
 
-        XCTAssertNil(UserDefaults.standard.array(forKey: "hiddenCourseIDs"))
+        XCTAssertNil(userDefaults.array(forKey: "hiddenCourseIDs"))
     }
 
     func testSnapshotAndGradeChangedOnScoreMove() async throws {

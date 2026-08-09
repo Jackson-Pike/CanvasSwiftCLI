@@ -45,7 +45,9 @@ struct InboxView: View {
         var seen = Set<Int>(); var out: [(id: Int, name: String)] = []
         for convo in vm.conversations {
             for p in convo.participants where p.id != MockData.studentUserId && seen.insert(p.id).inserted {
-                out.append((id: p.id, name: p.name))
+                if let name = p.name {
+                    out.append((id: p.id, name: name))
+                }
             }
         }
         return out.isEmpty ? [(id: MockData.teacherUserId, name: "Instructor")] : out
@@ -55,6 +57,15 @@ struct InboxView: View {
         VStack(spacing: 0) {
             if vm.conversations.isEmpty && vm.isLoading {
                 SkeletonList()
+            } else if let error = vm.error, vm.conversations.isEmpty {
+                ContentUnavailableView {
+                    Label("Couldn't Load Inbox", systemImage: "exclamationmark.triangle")
+                } description: {
+                    Text(error)
+                } actions: {
+                    Button("Retry") { Task { await vm.load(session: session, force: true) } }
+                        .buttonStyle(.bordered)
+                }
             } else if vm.conversations.isEmpty {
                 ContentUnavailableView("No Conversations", systemImage: "tray",
                                        description: Text("Your Canvas inbox is empty."))

@@ -23,11 +23,13 @@ public enum EntityKind: String, Sendable {
 @ModelActor
 public actor SyncEngine {
     private var client: APIClient?
+    private var userDefaults: UserDefaults = .standard
     private var stateHandler: (@Sendable (SyncState) -> Void)?
     private var inFlight: [SyncScope: (force: Bool, task: Task<Void, any Error>)] = [:]
     public private(set) var state: SyncState = .idle
 
     public func configure(client: APIClient?) { self.client = client }
+    public func setUserDefaults(_ ud: UserDefaults) { self.userDefaults = ud }
     public func setStateHandler(_ handler: @escaping @Sendable (SyncState) -> Void) {
         self.stateHandler = handler
     }
@@ -91,7 +93,7 @@ public actor SyncEngine {
             upsertCourses(fetched, now: now)
             touch(.courses, scope: "all", error: nil, at: now)
             try modelContext.save()
-            LegacyHiddenCourses.clear()
+            LegacyHiddenCourses.clear(userDefaults: userDefaults)
         }
 
         let ids = activeCourseIds().filter { force || !isFresh(.enrollments, scope: "\($0)", now: now) }
@@ -117,7 +119,7 @@ public actor SyncEngine {
     }
 
     private func upsertCourses(_ fetched: [Course], now: Date) {
-        let legacy = LegacyHiddenCourses.ids()
+        let legacy = LegacyHiddenCourses.ids(userDefaults: userDefaults)
         let existing = Dictionary(uniqueKeysWithValues:
             ((try? modelContext.fetch(FetchDescriptor<CachedCourse>())) ?? []).map { ($0.id, $0) })
         let fetchedIds = Set(fetched.map(\.id))
@@ -581,16 +583,17 @@ public actor SyncEngine {
         for c in items {
             let participantsJSON = c.participants.flatMap { try? JSONEncoder().encode($0) }
             let lastAt = CanvasDate.parse(c.lastMessageAt)
+            let state = c.workflowState ?? "read"
             if let row = existing[c.id] {
                 row.subject = c.subject; row.lastMessageAt = lastAt
-                row.lastMessageSnippet = c.lastMessage; row.workflowState = c.workflowState
+                row.lastMessageSnippet = c.lastMessage; row.workflowState = state
                 row.contextName = c.contextName; row.messageCount = c.messageCount ?? row.messageCount
                 if let participantsJSON { row.participantsJSON = participantsJSON }
                 row.removedAt = nil
             } else {
                 modelContext.insert(CachedConversation(
                     id: c.id, subject: c.subject, lastMessageAt: lastAt, lastMessageSnippet: c.lastMessage,
-                    workflowState: c.workflowState, participantsJSON: participantsJSON,
+                    workflowState: state, participantsJSON: participantsJSON,
                     contextName: c.contextName, messageCount: c.messageCount ?? 0))
             }
         }
@@ -614,7 +617,9 @@ public actor SyncEngine {
     }
 
     private func upsertMessages(_ detail: Conversation, now: Date) {
-        let names = Dictionary(uniqueKeysWithValues: (detail.participants ?? []).map { ($0.id, $0.name) })
+        let names: [Int: String] = Dictionary(uniqueKeysWithValues: (detail.participants ?? []).compactMap { p in
+            p.name.map { (p.id, $0) }
+        })
         let convId = detail.id
         // Drop reconciled pending rows: real messages have arrived.
         let priorPending = (try? modelContext.fetch(FetchDescriptor<CachedMessage>(
@@ -627,12 +632,14 @@ public actor SyncEngine {
                 .map { ($0.id, $0) })
         for m in detail.messages ?? [] {
             let created = CanvasDate.parse(m.createdAt)
+            let authorId = m.authorId ?? 0
+            let authorName = names[authorId]
             if let row = existing[m.id] {
-                row.authorId = m.authorId; row.authorName = names[m.authorId]
+                row.authorId = authorId; row.authorName = authorName
                 row.body = m.body; row.createdAt = created; row.pending = false
             } else {
-                modelContext.insert(CachedMessage(id: m.id, conversationId: convId, authorId: m.authorId,
-                                                  authorName: names[m.authorId], body: m.body,
+                modelContext.insert(CachedMessage(id: m.id, conversationId: convId, authorId: authorId,
+                                                  authorName: authorName, body: m.body,
                                                   createdAt: created, pending: false))
             }
         }

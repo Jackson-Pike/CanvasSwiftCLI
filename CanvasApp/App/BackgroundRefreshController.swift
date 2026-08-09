@@ -31,7 +31,9 @@ final class BackgroundRefreshController: NSObject {
 
     func start() {
         #if canImport(UserNotifications)
-        UNUserNotificationCenter.current().delegate = self
+        if Bundle.main.bundleIdentifier != nil {
+            UNUserNotificationCenter.current().delegate = self
+        }
         #endif
         observeSleepWake()
         observeReachability()

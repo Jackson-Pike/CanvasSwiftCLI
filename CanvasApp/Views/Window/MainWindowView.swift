@@ -42,8 +42,9 @@ private struct MainWindowBody: View {
                                     set: { router.sidebar = $0 ?? .dashboard })) {
                 Section {
                     Label("Dashboard", systemImage: "square.grid.2x2").tag(SidebarItem.dashboard)
-                    Label("Inbox", systemImage: "tray").tag(SidebarItem.inbox)
+                    Label("Inbox", systemImage: "tray")
                         .badge(inboxUnread)
+                        .tag(SidebarItem.inbox)
                     Label("Calendar", systemImage: "calendar").tag(SidebarItem.calendar)
                     Label("To-Do", systemImage: "checklist").tag(SidebarItem.todo)
                 }
