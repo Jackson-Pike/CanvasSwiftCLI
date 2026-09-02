@@ -35,85 +35,112 @@ public extension Color {
     /// Surface / background tokens
     static let canvasBG = dynamic(
         light: NSColor(hex: "#FBFAF8"),
-        dark: NSColor(hex: "#17161A")
+        dark: NSColor(hex: "#1A1917")
     )
 
     static let canvasPanel = dynamic(
-        light: NSColor(hex: "#F1EFEB"),
-        dark: NSColor(hex: "#131217")
+        light: NSColor(hex: "#F2EFEA"),
+        dark: NSColor(hex: "#141311")
     )
 
-    /// Hairline / rule tokens (rgba-alpha based)
+    /// Raised surface — one step up from the ground, for row separation without cards.
+    static let canvasRaised = dynamic(
+        light: NSColor(hex: "#FFFFFF"),
+        dark: NSColor(hex: "#232120")
+    )
+
+    /// Hairline / rule tokens (warm-tinted, rgba-alpha based)
     static let canvasHairline = dynamic(
-        light: NSColor(hex: "#000000", alpha: 0.07),
-        dark: NSColor(hex: "#FFFFFF", alpha: 0.07)
+        light: NSColor(hex: "#28221A", alpha: 0.11),
+        dark: NSColor(hex: "#F5F0E9", alpha: 0.10)
     )
 
     static let canvasHairlineStrong = dynamic(
-        light: NSColor(hex: "#000000", alpha: 0.09),
-        dark: NSColor(hex: "#FFFFFF", alpha: 0.09)
+        light: NSColor(hex: "#28221A", alpha: 0.18),
+        dark: NSColor(hex: "#F5F0E9", alpha: 0.18)
     )
 
     static let canvasRule = dynamic(
-        light: NSColor(hex: "#000000", alpha: 0.13),
-        dark: NSColor(hex: "#FFFFFF", alpha: 0.12)
+        light: NSColor(hex: "#28221A", alpha: 0.22),
+        dark: NSColor(hex: "#F5F0E9", alpha: 0.24)
     )
 
-    /// Ink (text) tokens
+    /// Ink (text) tokens — warm-neutral; the lavender tint is retired so orchid is the only chroma.
     static let inkPrimary = dynamic(
-        light: NSColor(hex: "#17161A"),
-        dark: NSColor(hex: "#EDEBF2")
+        light: NSColor(hex: "#1B1A17"),
+        dark: NSColor(hex: "#EDEBE6")
     )
 
     static let inkSecondary = dynamic(
-        light: NSColor(hex: "#57545E"),
-        dark: NSColor(hex: "#C6C2D2")
+        light: NSColor(hex: "#5A554E"),
+        dark: NSColor(hex: "#B7B1A8")
     )
 
     static let inkTertiary = dynamic(
-        light: NSColor(hex: "#8B8894"),
-        dark: NSColor(hex: "#9C98A8")
+        light: NSColor(hex: "#8E887E"),
+        dark: NSColor(hex: "#857F76")
     )
 
     static let inkQuaternary = dynamic(
-        light: NSColor(hex: "#8B8894"),
-        dark: NSColor(hex: "#6B6878")
+        light: NSColor(hex: "#A7A196"),
+        dark: NSColor(hex: "#6E6960")
     )
 
     /// Accent / semantic tokens
     static let accentHypothetical = dynamic(
-        light: NSColor(hex: "#5A4FCF"),
-        dark: NSColor(hex: "#7A6EFF")
+        light: NSColor(hex: "#8C43B0"),
+        dark: NSColor(hex: "#C089E0")
     )
 
     static let onAccent = dynamic(
         light: NSColor(hex: "#FFFFFF"),
-        dark: NSColor(hex: "#0F0E12")
+        dark: NSColor(hex: "#100F14")
+    )
+
+    /// Letter-grade spectrum — muted / warm, replacing Google Material.
+    static let gradeA = dynamic(
+        light: NSColor(hex: "#3F7A5C"),
+        dark: NSColor(hex: "#6FB58F")
+    )
+
+    static let gradeB = dynamic(
+        light: NSColor(hex: "#4E7CA8"),
+        dark: NSColor(hex: "#7FA9CE")
+    )
+
+    static let gradeC = dynamic(
+        light: NSColor(hex: "#B08324"),
+        dark: NSColor(hex: "#D6A544")
+    )
+
+    static let gradeDF = dynamic(
+        light: NSColor(hex: "#B23A2A"),
+        dark: NSColor(hex: "#E0705A")
     )
 
     static let lostMissing = dynamic(
-        light: NSColor(hex: "#C2410C"),
-        dark: NSColor(hex: "#E2703A")
+        light: NSColor(hex: "#B23A2A"),
+        dark: NSColor(hex: "#E0705A")
     )
 
     static let earnedBar = dynamic(
-        light: NSColor(hex: "#2B2833"),
-        dark: NSColor(hex: "#EDEBF2")
+        light: NSColor(hex: "#2A2723"),
+        dark: NSColor(hex: "#EDEBE6")
     )
 
     static let barTrack = dynamic(
-        light: NSColor(hex: "#ECE9E3"),
-        dark: NSColor(hex: "#2A2833")
+        light: NSColor(hex: "#ECE7DF"),
+        dark: NSColor(hex: "#26231F")
     )
 
     static let rowHighlightMissing = dynamic(
-        light: NSColor(hex: "#C2410C", alpha: 0.06),
-        dark: NSColor(hex: "#E2703A", alpha: 0.09)
+        light: NSColor(hex: "#B23A2A", alpha: 0.06),
+        dark: NSColor(hex: "#E0705A", alpha: 0.09)
     )
 
     /// Course codes / big GPA numeral — pure white on dark, near-black on light.
     static let gpaCodeWhite = dynamic(
-        light: NSColor(hex: "#17161A"),
+        light: NSColor(hex: "#1B1A17"),
         dark: .white
     )
 }
@@ -168,9 +195,9 @@ public struct InPlayHatch: View {
 // MARK: - Typography
 
 public extension Font {
-    /// Large numeral / headline display type. Callers apply `.tracking(-0.03 * size)`.
+    /// Large numeral / headline display type — New York (serif). Callers apply `.tracking(-0.03 * size)`.
     static func display(_ size: CGFloat) -> Font {
-        .system(size: size, weight: .bold)
+        .system(size: size, weight: .semibold, design: .serif)
     }
 
     /// Monospaced-digit numeral type for tabular figures (scores, percentages).
@@ -178,10 +205,26 @@ public extension Font {
         .system(size: size, weight: weight).monospacedDigit()
     }
 
-    /// Small uppercase section label type. Callers apply `.tracking(...)` and
-    /// `.textCase(.uppercase)`.
+    /// Section-label / eyebrow type — New York (serif) small-caps. Feed it title-case text
+    /// (e.g. `"Term GPA"`); small-caps renders the editorial caps and acronyms stay full-cap.
+    /// No `.textCase(.uppercase)` or heavy `.tracking(...)` needed at call sites.
     static var sectionLabel: Font {
-        .system(size: 10.5, weight: .bold)
+        .system(size: 11.5, weight: .semibold, design: .serif).smallCaps()
+    }
+}
+
+// MARK: - Layout helpers
+
+public extension View {
+    /// Flat list row: content sits on the ground and is separated by a single bottom
+    /// hairline instead of a bordered card. Selection paints a subtle orchid wash.
+    /// "Paper & Signal" prefers hairlines over per-row cards.
+    func hairlineRow(selected: Bool = false) -> some View {
+        self
+            .background(selected ? Color.accentHypothetical.opacity(0.10) : Color.clear)
+            .overlay(alignment: .bottom) {
+                Rectangle().fill(Color.canvasHairline).frame(height: 1)
+            }
     }
 }
 
@@ -212,9 +255,8 @@ private struct SwatchRow: View {
 private struct DesignTokenSwatches: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("DESIGN TOKENS")
+            Text("Design Tokens")
                 .font(.sectionLabel)
-                .tracking(0.6)
                 .foregroundStyle(Color.inkSecondary)
 
             SwatchRow(name: "canvasBG", color: .canvasBG)

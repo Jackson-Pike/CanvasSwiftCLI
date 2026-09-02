@@ -142,7 +142,7 @@ struct AssignmentsTabView: View {
     private func metadataItem(_ label: String, date: Date?) -> some View {
         if let date {
             VStack(alignment: .leading, spacing: 1) {
-                Text(label.uppercased())
+                Text(label)
                     .font(.sectionLabel)
                     .foregroundStyle(Color.inkTertiary)
                 Text(date.formatted(date: .abbreviated, time: .shortened))
@@ -163,7 +163,7 @@ struct AssignmentsTabView: View {
         let criteria = row.assignment.rubric
         if !criteria.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
-                Text("RUBRIC").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+                Text("Rubric").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
                 RubricTable(lines: formatRubricAssessment(
                     criteria: criteria,
                     assessment: row.submission?.rubricAssessment ?? [:]))
@@ -176,7 +176,7 @@ struct AssignmentsTabView: View {
         let comments = vm.instructorComments
         if !comments.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
-                Text("FEEDBACK").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+                Text("Feedback").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
                 ForEach(comments, id: \.id) { comment in
                     InstructorCommentRow(authorName: comment.authorName,
                                          comment: comment.body,

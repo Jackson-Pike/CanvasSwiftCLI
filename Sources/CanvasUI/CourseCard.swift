@@ -49,9 +49,12 @@ public struct CourseCard: View {
             }
             .frame(width: 90)
         }
-        .background(Color.systemBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(color: .black.opacity(0.08), radius: 4, y: 2)
+        .background(Color.canvasRaised)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.canvasHairline, lineWidth: 1)
+        )
     }
 }
 

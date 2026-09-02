@@ -138,7 +138,7 @@ struct SettingsView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.byuhRed)
+                .tint(Color.accentHypothetical)
                 .disabled(!canSave)
                 .confirmationDialog(
                     "Switching schools clears the local cache. Your data re-syncs from \(hostInput).",

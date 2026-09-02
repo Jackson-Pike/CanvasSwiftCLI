@@ -18,7 +18,7 @@ struct CourseListView: View {
                 Spacer()
                 Text("Canvas")
                     .font(.headline.bold())
-                    .foregroundStyle(Color.byuhRed)
+                    .foregroundStyle(Color.accentHypothetical)
                 Spacer()
                 HStack(spacing: 4) {
                     Button { refresh(force: true) } label: {
@@ -64,7 +64,7 @@ struct CourseListView: View {
                             if error.contains("Invalid token") || error.contains("unauthorized") {
                                 Button("Update Token…") { path.append("settings") }
                                     .buttonStyle(.borderedProminent)
-                                    .tint(.byuhRed)
+                                    .tint(Color.accentHypothetical)
                             }
                         }
                     )

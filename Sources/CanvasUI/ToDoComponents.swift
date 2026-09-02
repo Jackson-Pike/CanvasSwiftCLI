@@ -75,7 +75,7 @@ public struct ToDoItemRow: View {
 
     public init(
         item: ToDoItem,
-        courseColor: Color = .accentColor,
+        courseColor: Color = Color.accentHypothetical,
         onItemClick: ((ToDoItem) -> Void)? = nil
     ) {
         self.item = item
@@ -119,12 +119,7 @@ public struct ToDoItemRow: View {
                     .foregroundColor(.inkTertiary)
             }
             .padding(10)
-            .background(Color.canvasPanel)
-            .cornerRadius(8)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.canvasHairline, lineWidth: 1)
-            )
+            .hairlineRow()
         }
         .buttonStyle(.plain)
     }

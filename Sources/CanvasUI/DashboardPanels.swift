@@ -99,9 +99,8 @@ public struct AwaitingGradePanel: View {
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 6) {
-                Text("AWAITING GRADE")
+                Text("Awaiting Grade")
                     .font(.sectionLabel)
-                    .textCase(.uppercase)
                     .foregroundStyle(Color.inkTertiary)
                 Text("\(rows.count)")
                     .font(.mono(10.5))

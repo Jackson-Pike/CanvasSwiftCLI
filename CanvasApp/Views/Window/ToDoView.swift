@@ -95,11 +95,11 @@ struct ToDoView: View {
                                 ToDoSectionHeader(
                                     title: "Awaiting Grade",
                                     iconName: "hourglass",
-                                    iconColor: .accentColor,
+                                    iconColor: Color.accentHypothetical,
                                     count: viewModel.awaitingGradeItems.count
                                 )
                                 ForEach(viewModel.awaitingGradeItems) { item in
-                                    let color = item.courseId.flatMap { viewModel.courseColors[$0] } ?? .accentColor
+                                    let color = item.courseId.flatMap { viewModel.courseColors[$0] } ?? Color.accentHypothetical
                                     ToDoItemRow(item: item, courseColor: color, onItemClick: handleItemClick)
                                 }
                             }

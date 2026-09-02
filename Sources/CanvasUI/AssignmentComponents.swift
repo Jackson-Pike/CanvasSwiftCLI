@@ -208,10 +208,8 @@ public struct RubricTable: View {
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("RUBRIC")
+            Text("Rubric")
                 .font(.sectionLabel)
-                .tracking(0.9)
-                .textCase(.uppercase)
                 .foregroundStyle(Color.inkTertiary)
                 .padding(.bottom, 6)
 

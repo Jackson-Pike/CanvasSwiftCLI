@@ -42,7 +42,7 @@ public struct CalendarEventPill: View {
 
     public init(
         item: UnifiedCalendarItem,
-        courseColor: Color = .blue,
+        courseColor: Color = Color.accentHypothetical,
         onItemClick: ((UnifiedCalendarItem) -> Void)? = nil
     ) {
         self.item = item
@@ -153,7 +153,7 @@ public struct CalendarMonthView: View {
                                 Text("\(calendar.component(.day, from: date))")
                                     .font(.caption.weight(isToday ? .bold : .regular))
                                     .padding(4)
-                                    .background(isToday ? Color.accentColor : Color.clear)
+                                    .background(isToday ? Color.accentHypothetical : Color.clear)
                                     .foregroundColor(isToday ? .white : .inkPrimary)
                                     .clipShape(Circle())
                                 Spacer()
@@ -162,7 +162,7 @@ public struct CalendarMonthView: View {
                             ScrollView(.vertical, showsIndicators: false) {
                                 VStack(alignment: .leading, spacing: 2) {
                                     ForEach(dayItems) { item in
-                                        let color = item.courseId.flatMap { courseColors[$0] } ?? .accentColor
+                                        let color = item.courseId.flatMap { courseColors[$0] } ?? Color.accentHypothetical
                                         CalendarEventPill(item: item, courseColor: color, onItemClick: onItemClick)
                                     }
                                 }
@@ -170,10 +170,9 @@ public struct CalendarMonthView: View {
                         }
                         .padding(6)
                         .frame(height: 90)
-                        .background(Color.canvasPanel)
-                        .cornerRadius(8)
+                        .background(isToday ? Color.accentHypothetical.opacity(0.06) : Color.clear)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 8)
+                            RoundedRectangle(cornerRadius: 6)
                                 .stroke(Color.canvasHairline, lineWidth: 1)
                         )
                     } else {
@@ -236,7 +235,7 @@ public struct CalendarWeekView: View {
                         Text("\(calendar.component(.day, from: date))")
                             .font(.subheadline.weight(isToday ? .bold : .semibold))
                             .padding(6)
-                            .background(isToday ? Color.accentColor : Color.clear)
+                            .background(isToday ? Color.accentHypothetical : Color.clear)
                             .foregroundColor(isToday ? .white : .inkPrimary)
                             .clipShape(Circle())
                     }
@@ -248,7 +247,7 @@ public struct CalendarWeekView: View {
                     ScrollView {
                         VStack(spacing: 4) {
                             ForEach(dayItems) { item in
-                                let color = item.courseId.flatMap { courseColors[$0] } ?? .accentColor
+                                let color = item.courseId.flatMap { courseColors[$0] } ?? Color.accentHypothetical
                                 CalendarEventPill(item: item, courseColor: color, onItemClick: onItemClick)
                             }
                         }
@@ -256,10 +255,9 @@ public struct CalendarWeekView: View {
                 }
                 .padding(6)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.canvasPanel)
-                .cornerRadius(8)
+                .background(isToday ? Color.accentHypothetical.opacity(0.06) : Color.clear)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 8)
+                    RoundedRectangle(cornerRadius: 6)
                         .stroke(Color.canvasHairline, lineWidth: 1)
                 )
             }
@@ -317,7 +315,7 @@ public struct CalendarAgendaView: View {
                                         .font(.caption.weight(.bold))
                                         .padding(.horizontal, 6)
                                         .padding(.vertical, 2)
-                                        .background(Color.accentColor)
+                                        .background(Color.accentHypothetical)
                                         .foregroundColor(.white)
                                         .cornerRadius(4)
                                 }
@@ -325,7 +323,7 @@ public struct CalendarAgendaView: View {
 
                             VStack(spacing: 6) {
                                 ForEach(dayItems) { item in
-                                    let color = item.courseId.flatMap { courseColors[$0] } ?? .accentColor
+                                    let color = item.courseId.flatMap { courseColors[$0] } ?? Color.accentHypothetical
                                     Button {
                                         onItemClick?(item)
                                     } label: {
@@ -355,8 +353,7 @@ public struct CalendarAgendaView: View {
                                                 .foregroundColor(.inkTertiary)
                                         }
                                         .padding(10)
-                                        .background(Color.canvasPanel)
-                                        .cornerRadius(8)
+                                        .hairlineRow()
                                     }
                                     .buttonStyle(.plain)
                                 }

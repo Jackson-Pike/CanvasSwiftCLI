@@ -15,7 +15,7 @@ public struct FolderRow: View {
             HStack(spacing: 12) {
                 Image(systemName: "folder.fill")
                     .font(.system(size: 16))
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(Color.accentHypothetical)
 
                 Text(folder.name)
                     .font(.system(size: 13, weight: .medium))
@@ -30,11 +30,7 @@ public struct FolderRow: View {
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 10)
-            .background(Color.inkPrimary.opacity(0.02), in: RoundedRectangle(cornerRadius: 8))
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.inkPrimary.opacity(0.06), lineWidth: 1)
-            )
+            .hairlineRow()
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -112,19 +108,12 @@ public struct FileRow: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
-                .tint(.accentColor)
+                .tint(Color.accentHypothetical)
             }
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 10)
-        .background(
-            isSelected ? Color.accentColor.opacity(0.1) : Color.inkPrimary.opacity(0.02),
-            in: RoundedRectangle(cornerRadius: 8)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(isSelected ? Color.accentColor : Color.inkPrimary.opacity(0.06), lineWidth: 1)
-        )
+        .hairlineRow(selected: isSelected)
         .contentShape(Rectangle())
         .onTapGesture {
             onSelect()
@@ -153,6 +142,6 @@ public struct FileRow: View {
         if type.contains("pdf") { return .red }
         if type.contains("image") { return .purple }
         if type.contains("video") { return .orange }
-        return .blue
+        return Color.accentHypothetical
     }
 }

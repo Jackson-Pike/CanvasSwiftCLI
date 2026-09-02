@@ -114,7 +114,7 @@ struct DashboardView: View {
             if let error = vm.error, error.contains("Invalid token") || error.contains("unauthorized") {
                 Button("Update Token…") { showSettings = true }
                     .buttonStyle(.borderedProminent)
-                    .tint(.byuhRed)
+                    .tint(Color.accentHypothetical)
             }
         }
     }
@@ -159,9 +159,8 @@ struct DashboardView: View {
     private var header: some View {
         HStack(alignment: .bottom, spacing: 24) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("TERM GPA")
+                Text("Term GPA")
                     .font(.sectionLabel)
-                    .tracking(1.26)
                     .foregroundStyle(Color.inkTertiary)
                 Group {
                     if let gpa = vm.termGPA {

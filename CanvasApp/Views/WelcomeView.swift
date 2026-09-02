@@ -10,7 +10,7 @@ struct WelcomeView: View {
             VStack(spacing: 12) {
                 Image(systemName: "graduationcap.fill")
                     .font(.system(size: 48))
-                    .foregroundStyle(Color.byuhRed)
+                    .foregroundStyle(Color.accentHypothetical)
                 Text("Canvas Grades")
                     .font(.title2.bold())
                 Text("Quick grade access from your menu bar.")
@@ -57,7 +57,7 @@ struct WelcomeView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
-            .tint(Color.byuhRed)
+            .tint(Color.accentHypothetical)
             .controlSize(.large)
             .padding(.horizontal, 24)
             .padding(.bottom, 28)

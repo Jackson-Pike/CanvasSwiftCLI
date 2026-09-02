@@ -38,45 +38,32 @@ private struct MainWindowBody: View {
     var body: some View {
         @Bindable var router = router
         NavigationSplitView {
-            List(selection: Binding(get: { Optional(router.sidebar) },
-                                    set: { router.sidebar = $0 ?? .dashboard })) {
+            List {
                 Section {
-                    Label("Dashboard", systemImage: "square.grid.2x2").tag(SidebarItem.dashboard)
-                    Label("Inbox", systemImage: "tray")
-                        .badge(inboxUnread)
-                        .tag(SidebarItem.inbox)
-                    Label("Calendar", systemImage: "calendar").tag(SidebarItem.calendar)
-                    Label("To-Do", systemImage: "checklist").tag(SidebarItem.todo)
+                    navRow(.dashboard, "Dashboard", "square.grid.2x2")
+                    navRow(.inbox, "Inbox", "tray", badge: inboxUnread)
+                    navRow(.calendar, "Calendar", "calendar")
+                    navRow(.todo, "To-Do", "checklist")
                 }
                 Section("Courses") {
+                    // §1.5: the ledger shows numbers, so the sidebar does too.
                     ForEach(coursesVM.courses, id: \.id) { course in
-                        HStack {
-                            Circle().fill(accentColor(for: course.courseCode)).frame(width: 8, height: 8)
-                            Text(course.courseCode)
-                            Spacer()
-                            // §1.5: the ledger shows numbers, so the sidebar does too — this
-                            // replaces the sidebar's `LetterBadge`; `LetterBadge` stays in use
-                            // on the course workspace itself.
-                            if let score = coursesVM.currentScore(for: course.id) {
-                                Text(String(format: "%.1f", score))
-                                    .font(.mono(12))
-                                    .foregroundStyle(isBelowTarget(score, courseId: course.id) ? Color.lostMissing : Color.inkSecondary)
-                            }
-                        }
-                        .tag(SidebarItem.course(course.id))
+                        courseRow(id: course.id, code: course.courseCode)
                     }
                 }
             }
+            .listStyle(.sidebar)
             .navigationSplitViewColumnWidth(min: 180, ideal: 220)
-            // §1.5: staleness moves into the sidebar footer on the Dashboard. The toolbar
-            // StalenessLabel is left in place (it covers every other section, and duplicating
-            // it here is additive rather than a risk to existing wiring).
+            // §1.5: staleness lives in the sidebar footer for every section — a quiet
+            // bottom-left caption rather than a heavy centered toolbar pill.
             .safeAreaInset(edge: .bottom) {
-                if router.sidebar == .dashboard {
-                    StalenessLabel(lastSyncedAt: coursesVM.lastSyncedAt)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                }
+                StalenessLabel(lastSyncedAt: coursesVM.lastSyncedAt)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .overlay(alignment: .top) {
+                        Rectangle().fill(Color.canvasHairline).frame(height: 1)
+                    }
             }
         } detail: {
             switch router.sidebar {
@@ -89,9 +76,6 @@ private struct MainWindowBody: View {
         }
         .frame(minWidth: 900, minHeight: 600)   // spec §5.1
         .toolbar {
-            ToolbarItem(placement: .status) {
-                StalenessLabel(lastSyncedAt: coursesVM.lastSyncedAt)
-            }
             ToolbarItem {
                 Button {
                     router.quickOpenOpen = true
@@ -139,10 +123,79 @@ private struct MainWindowBody: View {
         }
     }
 
+    /// Sidebar nav row with app-native selection (orchid wash + orchid icon), since the
+    /// system `List` sidebar selection follows `controlAccentColor` and ignores `.tint`.
+    @ViewBuilder
+    private func navRow(_ item: SidebarItem, _ title: String, _ systemImage: String, badge: Int = 0) -> some View {
+        let selected = router.sidebar == item
+        Button {
+            router.sidebar = item
+        } label: {
+            HStack(spacing: 10) {
+                Image(systemName: systemImage)
+                    .font(.system(size: 15))
+                    .foregroundStyle(selected ? Color.accentHypothetical : Color.inkSecondary)
+                    .frame(width: 22)
+                Text(title)
+                    .font(.system(size: 14, weight: selected ? .semibold : .regular))
+                    .foregroundStyle(Color.inkPrimary)
+                Spacer(minLength: 4)
+                if badge > 0 {
+                    Text("\(badge)")
+                        .font(.mono(11))
+                        .foregroundStyle(Color.onAccent)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 1)
+                        .background(Color.accentHypothetical, in: Capsule())
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(selected ? Color.accentHypothetical.opacity(0.14) : Color.clear,
+                        in: RoundedRectangle(cornerRadius: 7))
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .listRowInsets(EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6))
+        .listRowSeparator(.hidden)
+    }
+
+    @ViewBuilder
+    private func courseRow(id: Int, code: String) -> some View {
+        let item = SidebarItem.course(id)
+        let selected = router.sidebar == item
+        Button {
+            router.sidebar = item
+        } label: {
+            HStack(spacing: 8) {
+                Circle().fill(accentColor(for: code)).frame(width: 8, height: 8)
+                Text(code)
+                    .font(.system(size: 13, weight: selected ? .semibold : .regular))
+                    .foregroundStyle(Color.inkPrimary)
+                Spacer(minLength: 4)
+                if let score = coursesVM.currentScore(for: id) {
+                    Text(String(format: "%.1f", score))
+                        .font(.mono(12))
+                        .foregroundStyle(isBelowTarget(score, courseId: id) ? Color.lostMissing : Color.inkSecondary)
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(selected ? Color.accentHypothetical.opacity(0.14) : Color.clear,
+                        in: RoundedRectangle(cornerRadius: 7))
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .listRowInsets(EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6))
+        .listRowSeparator(.hidden)
+    }
+
     /// Phase 0 accent: stable hash of the course code (spec §5.1 fallback;
     /// /users/self/colors arrives in Phase 1).
     private func accentColor(for code: String) -> Color {
-        let hues: [Color] = [.blue, .green, .orange, .purple, .pink, .teal, .indigo, .red]
+        let hues = Color.courseAccentPalette
         return hues[abs(code.hashValue) % hues.count]
     }
 

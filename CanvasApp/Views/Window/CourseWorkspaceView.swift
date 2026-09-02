@@ -23,14 +23,32 @@ private struct CourseWorkspaceBody: View {
     var body: some View {
         @Bindable var router = router
         VStack(spacing: 0) {
-            Picker("Tab", selection: $router.courseTab) {
-                ForEach(CourseTab.allCases, id: \.self) { tab in
-                    Text(tab.rawValue.capitalized).tag(tab)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 22) {
+                    ForEach(CourseTab.allCases, id: \.self) { tab in
+                        let selected = router.courseTab == tab
+                        Button {
+                            router.courseTab = tab
+                        } label: {
+                            Text(tab.rawValue.capitalized)
+                                .font(.system(size: 13, weight: selected ? .semibold : .regular))
+                                .foregroundStyle(selected ? Color.accentHypothetical : Color.inkSecondary)
+                                .padding(.vertical, 10)
+                                .overlay(alignment: .bottom) {
+                                    Rectangle()
+                                        .fill(selected ? Color.accentHypothetical : Color.clear)
+                                        .frame(height: 2)
+                                }
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
+                .padding(.horizontal)
             }
-            .pickerStyle(.segmented)
-            .padding()
-            Divider()
+            .overlay(alignment: .bottom) {
+                Rectangle().fill(Color.canvasHairline).frame(height: 1)
+            }
             if router.courseTab == .grades {
                 GradesTabView(vm: vm, onFixCredentials: { showSettings = true })
             } else if router.courseTab == .assignments {
@@ -83,7 +101,7 @@ struct GradesTabView: View {
                     if error.contains("Invalid token") {
                         Button("Update Token…", action: onFixCredentials)
                             .buttonStyle(.borderedProminent)
-                            .tint(.byuhRed)
+                            .tint(Color.accentHypothetical)
                     }
                 }
             } else {
@@ -156,18 +174,15 @@ private struct GradesSandboxSplit: View {
         let projectedLetter = projected.map { letterGrade(for: $0, scale: calc.gradingScale) }
         let activeCount = calc.whatIfEntries.values.filter { $0.isActive }.count
 
-        return HStack(alignment: .firstTextBaseline, spacing: 10) {
+        return HStack(alignment: .firstTextBaseline, spacing: 28) {
             VStack(alignment: .leading, spacing: 2) {
-                Text("ACTUAL").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
+                Text("Actual").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
                 Text(actual.map { String(format: "%.1f", $0) } ?? "—")
                     .font(.mono(40, weight: .bold))
                     .foregroundStyle(Color.inkPrimary)
             }
-            Text("→")
-                .font(.system(size: 22))
-                .foregroundStyle(Color.inkTertiary)
             VStack(alignment: .leading, spacing: 2) {
-                Text("PROJECTED").font(.sectionLabel).foregroundStyle(Color.accentHypothetical)
+                Text("Projected").font(.sectionLabel).foregroundStyle(Color.accentHypothetical)
                 HStack(spacing: 8) {
                     Text(projected.map { String(format: "%.1f", $0) } ?? "—")
                         .font(.mono(40, weight: .bold))
@@ -198,7 +213,7 @@ private struct GradesSandboxSplit: View {
         let liveByGroup = Dictionary(uniqueKeysWithValues: calc.liveBreakdown.map { ($0.groupId, $0) })
 
         return VStack(alignment: .leading, spacing: 6) {
-            Text("GROUPS").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+            Text("Groups").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
             ForEach(actualBreakdown, id: \.groupId) { result in
                 let livePercent = liveByGroup[result.groupId]?.percent
                 let lifted = (livePercent ?? 0) > (result.percent ?? 0) + 0.05
@@ -213,7 +228,7 @@ private struct GradesSandboxSplit: View {
         let snapshots = (try? session.repository.gradeSnapshots(courseId: courseId)) ?? []
         let points = snapshots.map { GradeTrendChart.Point(date: $0.capturedAt, percent: $0.percent) }
         return VStack(alignment: .leading, spacing: 6) {
-            Text("TREND").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+            Text("Trend").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
             GradeTrendChart(points: points, gradingScale: calc.gradingScale)
                 .frame(height: 160)
         }
@@ -221,7 +236,7 @@ private struct GradesSandboxSplit: View {
 
     private var assignmentsSection: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("ASSIGNMENTS").font(.sectionLabel).tracking(0.6).foregroundStyle(Color.inkSecondary)
+            Text("Assignments").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
             ForEach(calc.baseItems, id: \.assignmentId) { item in
                 AssignmentRow(item: item, entry: calc.whatIfEntries[item.assignmentId], gradingScale: calc.gradingScale)
             }

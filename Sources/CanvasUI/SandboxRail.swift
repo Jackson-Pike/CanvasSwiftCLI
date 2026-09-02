@@ -62,9 +62,8 @@ public struct SandboxRailView: View {
 
     private var targetSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("I WANT TO FINISH WITH")
+            Text("I Want to Finish With")
                 .font(.sectionLabel)
-                .tracking(0.6)
                 .foregroundStyle(Color.inkSecondary)
             TargetChips(vm: vm)
             answerSentence
@@ -110,9 +109,8 @@ public struct SandboxRailView: View {
 
     private var hypotheticalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("HYPOTHETICALS")
+            Text("Hypotheticals")
                 .font(.sectionLabel)
-                .tracking(0.6)
                 .foregroundStyle(Color.inkSecondary)
             if vm.ungradedItems.isEmpty {
                 Text("No ungraded items yet.")
@@ -149,9 +147,8 @@ public struct SandboxRailView: View {
 
     private var scenariosSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("SCENARIOS")
+            Text("Scenarios")
                 .font(.sectionLabel)
-                .tracking(0.6)
                 .foregroundStyle(Color.inkSecondary)
             ScenarioChips(vm: vm)
         }

@@ -39,7 +39,7 @@ private struct CourseDetailBody: View {
                         if error.contains("Invalid token") {
                             NavigationLink("Update Token…", value: "settings")
                                 .buttonStyle(.borderedProminent)
-                                .tint(.byuhRed)
+                                .tint(Color.accentHypothetical)
                         }
                     }
                 )

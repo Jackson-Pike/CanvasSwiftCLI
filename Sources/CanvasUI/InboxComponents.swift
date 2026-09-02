@@ -18,28 +18,29 @@ public struct ConversationRow: View {
 
     public var body: some View {
         Button(action: onTap) {
-            HStack(alignment: .top, spacing: 8) {
-                Circle().fill(isUnread ? Color.byuhRed : .clear).frame(width: 7, height: 7).padding(.top, 5)
-                VStack(alignment: .leading, spacing: 2) {
-                    HStack {
-                        Text(subject).font(.system(size: 13, weight: isUnread ? .semibold : .regular))
+            HStack(alignment: .top, spacing: 9) {
+                Circle().fill(isUnread ? Color.accentHypothetical : .clear).frame(width: 7, height: 7).padding(.top, 6)
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(subject).font(.system(size: 14, weight: isUnread ? .semibold : .regular))
                             .foregroundStyle(Color.inkPrimary).lineLimit(1)
-                        Spacer()
+                        Spacer(minLength: 6)
                         if let date {
                             Text(date.formatted(date: .abbreviated, time: .omitted))
-                                .font(.system(size: 10)).foregroundStyle(Color.inkTertiary)
+                                .font(.system(size: 11)).foregroundStyle(Color.inkTertiary)
                         }
                     }
                     if let contextName {
-                        Text(contextName).font(.system(size: 10)).foregroundStyle(Color.inkTertiary)
+                        Text(contextName).font(.system(size: 11)).foregroundStyle(Color.inkTertiary).lineLimit(1)
                     }
                     if let snippet {
-                        Text(snippet).font(.system(size: 11)).foregroundStyle(Color.inkSecondary).lineLimit(1)
+                        Text(snippet).font(.system(size: 12)).foregroundStyle(Color.inkSecondary).lineLimit(2)
                     }
                 }
             }
-            .padding(.horizontal, 12).padding(.vertical, 8)
-            .background(isSelected ? Color.inkPrimary.opacity(0.06) : .clear)
+            .padding(.horizontal, 14).padding(.vertical, 11)
+            .background(isSelected ? Color.accentHypothetical.opacity(0.10) : .clear)
+            .overlay(alignment: .bottom) { Rectangle().fill(Color.canvasHairline).frame(height: 1) }
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -60,32 +61,32 @@ public struct MessageBubble: View {
     }
 
     public var body: some View {
-        HStack {
-            if isMine { Spacer(minLength: 40) }
-            VStack(alignment: isMine ? .trailing : .leading, spacing: 3) {
-                HStack(spacing: 5) {
-                    Text(authorName).font(.system(size: 10, weight: .semibold)).foregroundStyle(Color.inkSecondary)
-                    if let date {
-                        Text(date.formatted(date: .abbreviated, time: .shortened))
-                            .font(.system(size: 9)).foregroundStyle(Color.inkTertiary)
-                    }
-                    if isPending {
-                        Text("sending…").font(.system(size: 9)).foregroundStyle(Color.inkTertiary)
-                    }
-                    if isDemo {
-                        Text("Demo").font(.system(size: 8, weight: .bold)).foregroundStyle(Color.onAccent)
-                            .padding(.horizontal, 4).padding(.vertical, 1)
-                            .background(Color.inkTertiary, in: Capsule())
-                    }
+        // Desktop mail layout: full-width chronological messages with an author header,
+        // separated by a hairline — not iMessage-style left/right bubbles.
+        VStack(alignment: .leading, spacing: 7) {
+            HStack(spacing: 6) {
+                Text(authorName).font(.system(size: 13, weight: .semibold)).foregroundStyle(Color.inkPrimary)
+                if isMine {
+                    Text("You").font(.system(size: 10, weight: .semibold)).foregroundStyle(Color.accentHypothetical)
                 }
-                RichTextView(html: messageBody)
-                    .padding(.horizontal, 10).padding(.vertical, 7)
-                    .background(isMine ? Color.byuhRed.opacity(0.12) : Color.inkPrimary.opacity(0.04),
-                                in: RoundedRectangle(cornerRadius: 10))
-                    .opacity(isPending ? 0.6 : 1)
+                Spacer(minLength: 8)
+                if isPending {
+                    Text("sending…").font(.system(size: 11)).foregroundStyle(Color.inkTertiary)
+                }
+                if isDemo {
+                    Text("Demo").font(.system(size: 9, weight: .bold)).foregroundStyle(Color.onAccent)
+                        .padding(.horizontal, 5).padding(.vertical, 1)
+                        .background(Color.inkTertiary, in: Capsule())
+                }
+                if let date {
+                    Text(date.formatted(date: .abbreviated, time: .shortened))
+                        .font(.system(size: 11)).foregroundStyle(Color.inkTertiary)
+                }
             }
-            if !isMine { Spacer(minLength: 40) }
+            RichTextView(html: messageBody)
+                .opacity(isPending ? 0.6 : 1)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -106,7 +107,7 @@ public struct ReplyComposer: View {
                 if isSending { ProgressView().controlSize(.small) }
                 else { Image(systemName: "paperplane.fill") }
             }
-            .buttonStyle(.borderedProminent).tint(.byuhRed)
+            .buttonStyle(.borderedProminent).tint(Color.accentHypothetical)
             .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isSending)
         }
         .padding(10)
@@ -150,7 +151,7 @@ public struct ComposeSheet: View {
                 Button("Send") {
                     if let id = selectedRecipientId { onSend([id], subject, bodyText) }
                 }
-                .buttonStyle(.borderedProminent).tint(.byuhRed).disabled(!canSend)
+                .buttonStyle(.borderedProminent).tint(Color.accentHypothetical).disabled(!canSend)
             }
         }
         .padding(20).frame(width: 420)

@@ -46,18 +46,16 @@ public struct LedgerHeaderRow: View {
 
     public var body: some View {
         HStack(spacing: 0) {
-            Text("COURSE")
+            Text("Course")
                 .frame(width: 184, alignment: .leading)
-            Text("EARNED / LOST / IN PLAY")
+            Text("Earned / Lost / In Play")
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text("CEILING")
+            Text("Ceiling")
                 .frame(width: 86, alignment: .trailing)
-            Text("FLOOR")
+            Text("Floor")
                 .frame(width: 70, alignment: .trailing)
         }
         .font(.sectionLabel)
-        .tracking(0.9)
-        .textCase(.uppercase)
         .foregroundStyle(Color.inkTertiary)
     }
 }

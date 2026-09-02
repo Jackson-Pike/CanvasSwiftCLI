@@ -118,10 +118,8 @@ private struct AnnouncementComponentsPreview: View {
                 Image(systemName: "megaphone")
                     .font(.system(size: 10.5, weight: .bold))
                     .foregroundStyle(Color.inkTertiary)
-                Text("ANNOUNCEMENTS")
+                Text("Announcements")
                     .font(.sectionLabel)
-                    .tracking(0.9)
-                    .textCase(.uppercase)
                     .foregroundStyle(Color.inkTertiary)
             }
             .padding(.bottom, 6)

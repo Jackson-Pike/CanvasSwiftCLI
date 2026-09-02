@@ -24,6 +24,7 @@ struct CanvasGradesApp: App {
                 .environment(session)
                 .environment(router)
                 .frame(width: 380, height: 520)
+                .tint(Color.accentHypothetical)
                 .preferredColorScheme(preferredColorScheme)
         }
         .menuBarExtraStyle(.window)
@@ -32,6 +33,7 @@ struct CanvasGradesApp: App {
             MainWindowView()
                 .environment(session)
                 .environment(router)
+                .tint(Color.accentHypothetical)
                 .preferredColorScheme(preferredColorScheme)
                 .task {
                     if background == nil {

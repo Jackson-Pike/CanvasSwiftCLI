@@ -67,7 +67,7 @@ struct FilesTabView: View {
                 .font(.system(size: 12, weight: .medium))
             }
             .buttonStyle(.plain)
-            .foregroundStyle(Color.accentColor)
+            .foregroundStyle(Color.accentHypothetical)
 
             Image(systemName: "chevron.right")
                 .font(.system(size: 10))

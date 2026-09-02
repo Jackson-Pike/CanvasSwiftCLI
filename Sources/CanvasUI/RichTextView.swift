@@ -67,7 +67,7 @@ private struct AttributedHTMLText: View {
 
     var body: some View {
         Text(attributed)
-            .font(.system(size: 13))
+            .font(.system(size: 15))
             .foregroundStyle(Color.inkPrimary)
             .textSelection(.enabled)
             .fixedSize(horizontal: false, vertical: true)
@@ -281,19 +281,19 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
             <style>
               :root {
                 color-scheme: light dark;
-                --panel: #F1EFEB;
-                --ink: #17161A;
-                --ink-secondary: #57545E;
-                --hairline: rgba(0, 0, 0, 0.13);
-                --link: #BA0C2F;
+                --panel: #F2EFEA;
+                --ink: #1B1A17;
+                --ink-secondary: #5A554E;
+                --hairline: rgba(40, 34, 26, 0.11);
+                --link: #8C43B0;
               }
               @media (prefers-color-scheme: dark) {
                 :root {
-                  --panel: #131217;
-                  --ink: #EDEBF2;
-                  --ink-secondary: #C6C2D2;
-                  --hairline: rgba(255, 255, 255, 0.12);
-                  --link: #E2703A;
+                  --panel: #141311;
+                  --ink: #EDEBE6;
+                  --ink-secondary: #B7B1A8;
+                  --hairline: rgba(245, 240, 233, 0.10);
+                  --link: #C089E0;
                 }
               }
               html, body {
@@ -303,8 +303,8 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
                 color: var(--ink);
               }
               body {
-                font: 13px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-                line-height: 1.55;
+                font: 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+                line-height: 1.6;
                 overflow-x: auto;
                 -webkit-text-size-adjust: 100%;
               }
@@ -318,7 +318,7 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
                 border-collapse: collapse;
                 width: 100%;
                 margin: 0 0 1em;
-                font-size: 12.5px;
+                font-size: 13.5px;
               }
               th, td {
                 border: 1px solid var(--hairline);
@@ -329,7 +329,7 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
               th { font-weight: 600; }
               code, pre {
                 font-family: ui-monospace, "SF Mono", Menlo, monospace;
-                font-size: 12px;
+                font-size: 13px;
               }
               pre {
                 overflow-x: auto;

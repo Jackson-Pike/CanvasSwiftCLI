@@ -75,9 +75,8 @@ struct TermSandboxRail: View {
 
     private var targetSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("I WANT TO FINISH WITH")
+            Text("I Want to Finish With")
                 .font(.sectionLabel)
-                .tracking(0.6)
                 .foregroundStyle(Color.inkSecondary)
             HStack(spacing: 6) {
                 ForEach(targetOptions, id: \.self) { target in
@@ -124,9 +123,8 @@ struct TermSandboxRail: View {
 
     private var slidersSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("REMAINING WORK")
+            Text("Remaining Work")
                 .font(.sectionLabel)
-                .tracking(0.6)
                 .foregroundStyle(Color.inkSecondary)
             let candidates = vm.summaries.filter { $0.nowPercent != nil }
             if candidates.isEmpty {
@@ -182,7 +180,6 @@ struct TermSandboxRail: View {
         return VStack(alignment: .leading, spacing: 6) {
             Text("Projected GPA")
                 .font(.sectionLabel)
-                .tracking(0.6)
                 .foregroundStyle(Color.inkSecondary)
             (Text(projected).font(.mono(22, weight: .bold)).foregroundStyle(Color.accentHypothetical)
                 + Text("  ·  from \(current)  ·  \(liftText)")

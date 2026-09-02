@@ -17,9 +17,9 @@ public struct SearchResultRow: View {
             HStack(spacing: 12) {
                 Image(systemName: iconName(for: item.category))
                     .font(.system(size: 14))
-                    .foregroundStyle(isSelected ? Color.white : Color.accentColor)
+                    .foregroundStyle(isSelected ? Color.white : Color.accentHypothetical)
                     .frame(width: 24, height: 24)
-                    .background(isSelected ? Color.white.opacity(0.2) : Color.accentColor.opacity(0.1), in: RoundedRectangle(cornerRadius: 6))
+                    .background(isSelected ? Color.white.opacity(0.2) : Color.accentHypothetical.opacity(0.1), in: RoundedRectangle(cornerRadius: 6))
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.title)
@@ -46,7 +46,7 @@ public struct SearchResultRow: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(isSelected ? Color.accentColor : Color.clear, in: RoundedRectangle(cornerRadius: 8))
+            .background(isSelected ? Color.accentHypothetical : Color.clear, in: RoundedRectangle(cornerRadius: 8))
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)

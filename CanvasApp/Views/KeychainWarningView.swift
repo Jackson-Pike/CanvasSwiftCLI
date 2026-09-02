@@ -42,7 +42,7 @@ struct KeychainWarningView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(Color.byuhRed)
+                .tint(Color.accentHypothetical)
                 .controlSize(.large)
                 .padding(.horizontal, 24)
             }

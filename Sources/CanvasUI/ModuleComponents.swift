@@ -79,7 +79,7 @@ public struct ModuleSectionView: View {
         case "completed": return .green
         case "started": return .orange
         case "locked": return .secondary
-        default: return .blue
+        default: return Color.accentHypothetical
         }
     }
 }

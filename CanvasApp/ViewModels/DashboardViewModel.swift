@@ -138,11 +138,11 @@ final class DashboardViewModel {
     /// anything outside the demo set (mirrors `MainWindowView.accentColor(for:)`).
     private static func dotColor(for code: String) -> Color {
         let upper = code.uppercased()
-        if upper.hasPrefix("CS")   { return Color(red: 0x14 / 255, green: 0xB8 / 255, blue: 0xA6 / 255) }
-        if upper.hasPrefix("MATH") { return Color(red: 0x3B / 255, green: 0x82 / 255, blue: 0xF6 / 255) }
-        if upper.hasPrefix("HIST") { return Color(red: 0x8B / 255, green: 0x5C / 255, blue: 0xF6 / 255) }
-        if upper.hasPrefix("REL")  { return Color(red: 0xEF / 255, green: 0x44 / 255, blue: 0x44 / 255) }
-        let hues: [Color] = [.blue, .green, .orange, .purple, .pink, .teal, .indigo, .red]
+        if upper.hasPrefix("CS")   { return Color(red: 0x3E / 255, green: 0x8A / 255, blue: 0x86 / 255) } // teal
+        if upper.hasPrefix("MATH") { return Color(red: 0x4E / 255, green: 0x7C / 255, blue: 0xA8 / 255) } // muted blue
+        if upper.hasPrefix("HIST") { return Color(red: 0x7A / 255, green: 0x4E / 255, blue: 0x86 / 255) } // muted purple
+        if upper.hasPrefix("REL")  { return Color(red: 0xB4 / 255, green: 0x55 / 255, blue: 0x3A / 255) } // clay
+        let hues = Color.courseAccentPalette
         return hues[abs(code.hashValue) % hues.count]
     }
 }
