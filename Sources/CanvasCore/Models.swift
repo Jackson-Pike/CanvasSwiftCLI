@@ -182,3 +182,36 @@ public struct GradedItem {
         self.whatIfPoints = whatIfPoints
     }
 }
+
+public enum SearchResultTarget: Sendable, Equatable {
+    case course(id: Int, tab: String)
+    case assignment(courseId: Int, assignmentId: Int)
+    case conversation(id: Int)
+    case external(url: String)
+}
+
+public struct SearchResultItem: Identifiable, Sendable, Equatable {
+    public enum Category: String, Sendable, CaseIterable {
+        case course = "Course"
+        case assignment = "Assignment"
+        case announcement = "Announcement"
+        case discussion = "Discussion"
+        case file = "File"
+        case moduleItem = "Module Item"
+    }
+
+    public let id: String
+    public let title: String
+    public let subtitle: String?
+    public let category: Category
+    public let target: SearchResultTarget?
+
+    public init(id: String, title: String, subtitle: String? = nil, category: Category, target: SearchResultTarget? = nil) {
+        self.id = id
+        self.title = title
+        self.subtitle = subtitle
+        self.category = category
+        self.target = target
+    }
+}
+

@@ -179,6 +179,58 @@ public final class CanvasRepository {
         return try context.fetch(FetchDescriptor(predicate: predicate)).first?.lastSyncedAt
     }
 
+    // MARK: - Time & To-Do Queries
+
+    public func plannerItems(start: Date? = nil, end: Date? = nil) throws -> [CachedPlannerItem] {
+        let all = try context.fetch(FetchDescriptor<CachedPlannerItem>())
+        return all.filter { item in
+            guard let date = item.plannableDate else { return true }
+            if let start = start, date < start { return false }
+            if let end = end, date > end { return false }
+            return true
+        }.sorted { ($0.plannableDate ?? .distantFuture) < ($1.plannableDate ?? .distantFuture) }
+    }
+
+    public func calendarEvents(start: Date? = nil, end: Date? = nil) throws -> [CachedCalendarEvent] {
+        let all = try context.fetch(FetchDescriptor<CachedCalendarEvent>())
+        return all.filter { event in
+            guard let date = event.startAt else { return true }
+            if let start = start, date < start { return false }
+            if let end = end, date > end { return false }
+            return true
+        }.sorted { ($0.startAt ?? .distantFuture) < ($1.startAt ?? .distantFuture) }
+    }
+
+    public func toDoMissing(now: Date = Date()) throws -> [CachedPlannerItem] {
+        let all = try context.fetch(FetchDescriptor<CachedPlannerItem>())
+        return all.filter { item in
+            if item.isCompleted { return false }
+            if item.isMissing { return true }
+            if let date = item.plannableDate, date < now, !item.isSubmitted { return true }
+            return false
+        }.sorted { ($0.plannableDate ?? .distantPast) > ($1.plannableDate ?? .distantPast) }
+    }
+
+    public func toDoDueThisWeek(now: Date = Date()) throws -> [CachedPlannerItem] {
+        let weekEnd = now.addingTimeInterval(7 * 86400)
+        let all = try context.fetch(FetchDescriptor<CachedPlannerItem>())
+        return all.filter { item in
+            guard let date = item.plannableDate else { return false }
+            if item.isCompleted || item.isSubmitted { return false }
+            return date >= now && date <= weekEnd
+        }.sorted { ($0.plannableDate ?? .distantFuture) < ($1.plannableDate ?? .distantFuture) }
+    }
+
+    public func toDoAwaitingGrade() throws -> [CachedSubmission] {
+        let all = try context.fetch(FetchDescriptor<CachedSubmission>())
+        return all.filter { sub in
+            if sub.score != nil { return false }
+            if sub.workflowState == "graded" && sub.score == nil { return true }
+            if sub.submittedAt != nil || sub.workflowState == "submitted" || sub.workflowState == "pending_review" { return true }
+            return false
+        }.sorted { ($0.submittedAt ?? .distantPast) > ($1.submittedAt ?? .distantPast) }
+    }
+
     // MARK: - Flags
 
     public func setHidden(_ hidden: Bool, courseId: Int) throws {
@@ -250,9 +302,174 @@ public final class CanvasRepository {
         try context.delete(model: CachedMessage.self)
         try context.delete(model: CachedDiscussionTopic.self)
         try context.delete(model: CachedDiscussionEntry.self)
+        try context.delete(model: CachedPlannerItem.self)
+        try context.delete(model: CachedCalendarEvent.self)
+        try context.delete(model: CachedModule.self)
+        try context.delete(model: CachedModuleItem.self)
+        try context.delete(model: CachedFolder.self)
+        try context.delete(model: CachedFile.self)
         try context.delete(model: GradeSnapshot.self)
         try context.delete(model: ChangeRecord.self)
         try context.delete(model: SyncMetadata.self)
         try context.save()
     }
+
+    // MARK: - Modules & Files Queries
+
+    public func modules(courseId: Int) throws -> [CachedModule] {
+        let predicate = #Predicate<CachedModule> { $0.courseId == courseId }
+        let all = try context.fetch(FetchDescriptor(predicate: predicate))
+        return all
+            .filter { $0.removedAt == nil }
+            .sorted { $0.position < $1.position }
+    }
+
+    public func moduleItems(moduleId: Int) throws -> [CachedModuleItem] {
+        let predicate = #Predicate<CachedModuleItem> { $0.moduleId == moduleId }
+        let all = try context.fetch(FetchDescriptor(predicate: predicate))
+        return all
+            .filter { $0.removedAt == nil }
+            .sorted { $0.position < $1.position }
+    }
+
+    public func folders(courseId: Int) throws -> [CachedFolder] {
+        let predicate = #Predicate<CachedFolder> { $0.courseId == courseId }
+        let all = try context.fetch(FetchDescriptor(predicate: predicate))
+        return all
+            .filter { $0.removedAt == nil }
+            .sorted { $0.name < $1.name }
+    }
+
+    public func files(courseId: Int) throws -> [CachedFile] {
+        let predicate = #Predicate<CachedFile> { $0.courseId == courseId }
+        let all = try context.fetch(FetchDescriptor(predicate: predicate))
+        return all
+            .filter { $0.removedAt == nil }
+            .sorted { $0.displayName < $1.displayName }
+    }
+
+    public func filesInFolder(folderId: Int) throws -> [CachedFile] {
+        let predicate = #Predicate<CachedFile> { $0.folderId == folderId }
+        let all = try context.fetch(FetchDescriptor(predicate: predicate))
+        return all
+            .filter { $0.removedAt == nil }
+            .sorted { $0.displayName < $1.displayName }
+    }
+
+    public func updateLocalPath(fileId: Int, localPath: String?) throws {
+        let predicate = #Predicate<CachedFile> { $0.id == fileId }
+        if let file = try context.fetch(FetchDescriptor(predicate: predicate)).first {
+            file.localPath = localPath
+            try context.save()
+        }
+    }
+
+    // MARK: - Global Search (⌘K)
+
+    public func search(query: String) throws -> [SearchResultItem] {
+        let q = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        guard !q.isEmpty else { return [] }
+
+        var results: [SearchResultItem] = []
+
+        // Courses
+        let courses = try context.fetch(FetchDescriptor<CachedCourse>())
+        for c in courses where c.removedAt == nil {
+            if c.name.lowercased().contains(q) || c.courseCode.lowercased().contains(q) {
+                results.append(SearchResultItem(
+                    id: "course_\(c.id)",
+                    title: c.name,
+                    subtitle: c.courseCode,
+                    category: .course,
+                    target: .course(id: c.id, tab: "grades")
+                ))
+            }
+        }
+
+        // Assignments
+        let assignments = try context.fetch(FetchDescriptor<CachedAssignment>())
+        for a in assignments where a.removedAt == nil {
+            if a.name.lowercased().contains(q) || (a.descriptionHTML?.lowercased().contains(q) == true) {
+                let courseName = (try? course(id: a.courseId))?.courseCode ?? "Course"
+                results.append(SearchResultItem(
+                    id: "assignment_\(a.id)",
+                    title: a.name,
+                    subtitle: "\(courseName) Assignment",
+                    category: .assignment,
+                    target: .assignment(courseId: a.courseId, assignmentId: a.id)
+                ))
+            }
+        }
+
+        // Announcements
+        let announcements = try context.fetch(FetchDescriptor<CachedAnnouncement>())
+        for ann in announcements where ann.removedAt == nil {
+            if ann.title.lowercased().contains(q) || (ann.message?.lowercased().contains(q) == true) {
+                let courseName = (try? course(id: ann.courseId))?.courseCode ?? "Course"
+                results.append(SearchResultItem(
+                    id: "announcement_\(ann.id)",
+                    title: ann.title,
+                    subtitle: "\(courseName) Announcement",
+                    category: .announcement,
+                    target: .course(id: ann.courseId, tab: "announcements")
+                ))
+            }
+        }
+
+        // Discussions
+        let topics = try context.fetch(FetchDescriptor<CachedDiscussionTopic>())
+        for t in topics where t.removedAt == nil {
+            if t.title.lowercased().contains(q) || (t.message?.lowercased().contains(q) == true) {
+                let courseName = (try? course(id: t.courseId))?.courseCode ?? "Course"
+                results.append(SearchResultItem(
+                    id: "discussion_\(t.id)",
+                    title: t.title,
+                    subtitle: "\(courseName) Discussion",
+                    category: .discussion,
+                    target: .course(id: t.courseId, tab: "discussions")
+                ))
+            }
+        }
+
+        // Files
+        let files = try context.fetch(FetchDescriptor<CachedFile>())
+        for f in files where f.removedAt == nil {
+            if f.displayName.lowercased().contains(q) {
+                let courseName = (try? course(id: f.courseId))?.courseCode ?? "Course"
+                results.append(SearchResultItem(
+                    id: "file_\(f.id)",
+                    title: f.displayName,
+                    subtitle: "\(courseName) File",
+                    category: .file,
+                    target: .course(id: f.courseId, tab: "files")
+                ))
+            }
+        }
+
+        // Module Items
+        let items = try context.fetch(FetchDescriptor<CachedModuleItem>())
+        for item in items where item.removedAt == nil {
+            if item.title.lowercased().contains(q) {
+                let courseName = (try? course(id: item.courseId))?.courseCode ?? "Course"
+                let target: SearchResultTarget?
+                if item.itemType == "Assignment", let contentId = item.contentId {
+                    target = .assignment(courseId: item.courseId, assignmentId: contentId)
+                } else if let extUrl = item.externalUrl {
+                    target = .external(url: extUrl)
+                } else {
+                    target = .course(id: item.courseId, tab: "modules")
+                }
+                results.append(SearchResultItem(
+                    id: "module_item_\(item.id)",
+                    title: item.title,
+                    subtitle: "\(courseName) Module Item (\(item.itemType))",
+                    category: .moduleItem,
+                    target: target
+                ))
+            }
+        }
+
+        return results
+    }
 }
+

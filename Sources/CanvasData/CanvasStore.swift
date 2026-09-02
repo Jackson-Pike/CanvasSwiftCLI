@@ -9,6 +9,9 @@ public enum CanvasStore {
         CachedAnnouncement.self,
         CachedConversation.self, CachedMessage.self,
         CachedDiscussionTopic.self, CachedDiscussionEntry.self,
+        CachedPlannerItem.self, CachedCalendarEvent.self,
+        CachedModule.self, CachedModuleItem.self,
+        CachedFolder.self, CachedFile.self,
     ])
 
     public static func container(inMemory: Bool = false) throws -> ModelContainer {

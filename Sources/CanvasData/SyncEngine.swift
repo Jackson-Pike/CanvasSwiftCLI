@@ -8,6 +8,9 @@ public enum SyncScope: Hashable, Sendable {
     case inbox
     case conversation(Int)
     case discussion(courseId: Int, topicId: Int)
+    case planner(start: Date, end: Date)
+    case modules(courseId: Int)
+    case files(courseId: Int)
 }
 public enum SyncState: Equatable, Sendable { case idle; case syncing(SyncScope); case failed(String, Date) }
 public enum SyncError: Error, CustomStringConvertible {
@@ -18,6 +21,8 @@ public enum SyncError: Error, CustomStringConvertible {
 public enum EntityKind: String, Sendable {
     case courses, enrollments, assignments, submissions, announcements
     case conversations, messages, discussionTopics, discussionEntries
+    case plannerItems, calendarEvents
+    case modules, moduleItems, folders, files
 }
 
 @ModelActor
@@ -76,6 +81,12 @@ public actor SyncEngine {
                 try await syncConversation(id, client: client, force: force)
             case .discussion(let courseId, let topicId):
                 try await syncDiscussionEntries(courseId: courseId, topicId: topicId, client: client, force: force)
+            case .planner(let start, let end):
+                try await syncPlanner(start: start, end: end, client: client, force: force)
+            case .modules(let courseId):
+                try await syncModules(courseId: courseId, client: client, force: force)
+            case .files(let courseId):
+                try await syncFiles(courseId: courseId, client: client, force: force)
             }
             setState(.idle)
         } catch {
@@ -218,6 +229,8 @@ public actor SyncEngine {
         .courses: 300, .enrollments: 300, .assignments: 900, .submissions: 300,
         .announcements: 1800,
         .conversations: 300, .messages: 300, .discussionTopics: 1800, .discussionEntries: 1800,
+        .plannerItems: 900, .calendarEvents: 900,
+        .modules: 21600, .moduleItems: 21600, .folders: 21600, .files: 21600,
     ]
 
     private func isFresh(_ kind: EntityKind, scope: String, now: Date) -> Bool {
@@ -642,6 +655,249 @@ public actor SyncEngine {
                                                   authorName: authorName, body: m.body,
                                                   createdAt: created, pending: false))
             }
+        }
+    }
+
+    // MARK: - .planner
+
+    private func syncPlanner(start: Date, end: Date, client: APIClient, force: Bool) async throws {
+        let now = Date()
+        let scopeKey = "\(Int(start.timeIntervalSince1970))_\(Int(end.timeIntervalSince1970))"
+        guard force || !isFresh(.plannerItems, scope: scopeKey, now: now) else { return }
+
+        let items = try await fetchWithRetry { try await client.plannerItems(start: start, end: end) }
+        let events = try await fetchWithRetry { try await client.calendarEvents(contextCodes: nil, start: start, end: end) }
+
+        upsertPlannerItems(items, now: now)
+        upsertCalendarEvents(events, now: now)
+
+        touch(.plannerItems, scope: scopeKey, error: nil, at: now)
+        touch(.calendarEvents, scope: scopeKey, error: nil, at: now)
+        try modelContext.save()
+    }
+
+    private func upsertPlannerItems(_ items: [PlannerItem], now: Date) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedPlannerItem>())) ?? []).map { ($0.id, $0) })
+        for item in items {
+            let isSubmitted = item.submissions?.submitted ?? false
+            let isMissing = item.submissions?.missing ?? false
+            let isCompleted = item.plannerOverride?.markedComplete ?? false
+            if let row = existing[item.id] {
+                row.title = item.title
+                row.courseId = item.courseId
+                row.plannableId = item.plannableId
+                row.plannableType = item.plannableType
+                row.plannableDate = item.plannableDate
+                row.htmlUrl = item.htmlUrl
+                row.isSubmitted = isSubmitted
+                row.isMissing = isMissing
+                row.isCompleted = isCompleted
+                row.updatedAt = now
+            } else {
+                modelContext.insert(CachedPlannerItem(
+                    id: item.id,
+                    title: item.title,
+                    courseId: item.courseId,
+                    plannableId: item.plannableId,
+                    plannableType: item.plannableType,
+                    plannableDate: item.plannableDate,
+                    htmlUrl: item.htmlUrl,
+                    isSubmitted: isSubmitted,
+                    isMissing: isMissing,
+                    isCompleted: isCompleted,
+                    updatedAt: now
+                ))
+            }
+        }
+    }
+
+    private func upsertCalendarEvents(_ events: [CalendarEvent], now: Date) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedCalendarEvent>())) ?? []).map { ($0.id, $0) })
+        for event in events {
+            if let row = existing[event.id] {
+                row.title = event.title
+                row.contextCode = event.contextCode
+                row.courseId = event.courseId
+                row.startAt = event.startAt
+                row.endAt = event.endAt
+                row.locationName = event.locationName
+                row.eventDescription = event.description
+                row.htmlUrl = event.htmlUrl
+                row.updatedAt = now
+            } else {
+                modelContext.insert(CachedCalendarEvent(
+                    id: event.id,
+                    title: event.title,
+                    contextCode: event.contextCode,
+                    courseId: event.courseId,
+                    startAt: event.startAt,
+                    endAt: event.endAt,
+                    locationName: event.locationName,
+                    eventDescription: event.description,
+                    htmlUrl: event.htmlUrl,
+                    updatedAt: now
+                ))
+            }
+        }
+    }
+
+    // MARK: - .modules
+
+    private func syncModules(courseId: Int, client: APIClient, force: Bool) async throws {
+        let now = Date()
+        guard force || !isFresh(.modules, scope: "\(courseId)", now: now) else { return }
+        let fetched = try await fetchWithRetry { try await client.modules(courseId: courseId) }
+        upsertModules(fetched, courseId: courseId, now: now)
+        touch(.modules, scope: "\(courseId)", error: nil, at: now)
+        try modelContext.save()
+    }
+
+    private func upsertModules(_ fetched: [Module], courseId: Int, now: Date) {
+        let existingModules = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedModule>(
+                predicate: #Predicate<CachedModule> { $0.courseId == courseId }))) ?? []).map { ($0.id, $0) })
+        let existingItems = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedModuleItem>(
+                predicate: #Predicate<CachedModuleItem> { $0.courseId == courseId }))) ?? []).map { ($0.id, $0) })
+
+        let fetchedModuleIds = Set(fetched.map(\.id))
+        var fetchedItemIds: Set<Int> = []
+
+        for (mIndex, m) in fetched.enumerated() {
+            let mPos = m.position ?? (mIndex + 1)
+            if let row = existingModules[m.id] {
+                row.name = m.name
+                row.position = mPos
+                row.state = m.state
+                row.unlockAt = m.unlockAt
+                row.removedAt = nil
+            } else {
+                modelContext.insert(CachedModule(
+                    id: m.id, courseId: courseId, name: m.name, position: mPos, state: m.state, unlockAt: m.unlockAt
+                ))
+            }
+
+            if let items = m.items {
+                for (iIndex, item) in items.enumerated() {
+                    fetchedItemIds.insert(item.id)
+                    let itemPos = item.position ?? (iIndex + 1)
+                    if let row = existingItems[item.id] {
+                        row.moduleId = m.id
+                        row.title = item.title
+                        row.position = itemPos
+                        row.itemType = item.type
+                        row.indent = item.indent ?? 0
+                        row.contentId = item.contentId
+                        row.htmlURL = item.htmlUrl
+                        row.url = item.url
+                        row.pageUrl = item.pageUrl
+                        row.externalUrl = item.externalUrl
+                        row.completionRequirementType = item.completionRequirement?.type
+                        row.completionRequirementCompleted = item.completionRequirement?.completed
+                        row.removedAt = nil
+                    } else {
+                        modelContext.insert(CachedModuleItem(
+                            id: item.id,
+                            moduleId: m.id,
+                            courseId: courseId,
+                            title: item.title,
+                            position: itemPos,
+                            itemType: item.type,
+                            indent: item.indent ?? 0,
+                            contentId: item.contentId,
+                            htmlURL: item.htmlUrl,
+                            url: item.url,
+                            pageUrl: item.pageUrl,
+                            externalUrl: item.externalUrl,
+                            completionRequirementType: item.completionRequirement?.type,
+                            completionRequirementCompleted: item.completionRequirement?.completed
+                        ))
+                    }
+                }
+            }
+        }
+
+        for (id, row) in existingModules where !fetchedModuleIds.contains(id) && row.removedAt == nil {
+            row.removedAt = now
+        }
+        for (id, row) in existingItems where !fetchedItemIds.contains(id) && row.removedAt == nil {
+            row.removedAt = now
+        }
+    }
+
+    // MARK: - .files
+
+    private func syncFiles(courseId: Int, client: APIClient, force: Bool) async throws {
+        let now = Date()
+        guard force || !isFresh(.files, scope: "\(courseId)", now: now) else { return }
+        async let foldersFetch = fetchWithRetry { try await client.folders(courseId: courseId) }
+        async let filesFetch = fetchWithRetry { try await client.files(courseId: courseId) }
+        let (folders, files) = try await (foldersFetch, filesFetch)
+
+        upsertFolders(folders, courseId: courseId, now: now)
+        upsertFiles(files, courseId: courseId, now: now)
+
+        touch(.folders, scope: "\(courseId)", error: nil, at: now)
+        touch(.files, scope: "\(courseId)", error: nil, at: now)
+        try modelContext.save()
+    }
+
+    private func upsertFolders(_ fetched: [CanvasFolder], courseId: Int, now: Date) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedFolder>(
+                predicate: #Predicate<CachedFolder> { $0.courseId == courseId }))) ?? []).map { ($0.id, $0) })
+        let fetchedIds = Set(fetched.map(\.id))
+
+        for f in fetched {
+            if let row = existing[f.id] {
+                row.name = f.name
+                row.parentFolderId = f.parentFolderId
+                row.fullName = f.fullName
+                row.removedAt = nil
+            } else {
+                modelContext.insert(CachedFolder(
+                    id: f.id, courseId: courseId, parentFolderId: f.parentFolderId, name: f.name, fullName: f.fullName
+                ))
+            }
+        }
+        for (id, row) in existing where !fetchedIds.contains(id) && row.removedAt == nil {
+            row.removedAt = now
+        }
+    }
+
+    private func upsertFiles(_ fetched: [CanvasFile], courseId: Int, now: Date) {
+        let existing = Dictionary(uniqueKeysWithValues:
+            ((try? modelContext.fetch(FetchDescriptor<CachedFile>(
+                predicate: #Predicate<CachedFile> { $0.courseId == courseId }))) ?? []).map { ($0.id, $0) })
+        let fetchedIds = Set(fetched.map(\.id))
+
+        for file in fetched {
+            if let row = existing[file.id] {
+                row.folderId = file.folderId
+                row.displayName = file.displayName
+                row.contentType = file.contentType
+                row.size = file.size ?? 0
+                row.url = file.url
+                row.updatedAt = file.updatedAt
+                row.removedAt = nil
+                // localPath is preserved!
+            } else {
+                modelContext.insert(CachedFile(
+                    id: file.id,
+                    courseId: courseId,
+                    folderId: file.folderId,
+                    displayName: file.displayName,
+                    contentType: file.contentType,
+                    size: file.size ?? 0,
+                    url: file.url,
+                    updatedAt: file.updatedAt
+                ))
+            }
+        }
+        for (id, row) in existing where !fetchedIds.contains(id) && row.removedAt == nil {
+            row.removedAt = now
         }
     }
 

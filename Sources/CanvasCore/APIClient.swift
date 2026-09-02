@@ -305,4 +305,97 @@ public struct APIClient {
         let (data, _) = try await getPage(url: url)
         return try decoder().decode(DiscussionView.self, from: data)
     }
+
+    // MARK: - Planner & Calendar
+
+    public func plannerItems(start: Date? = nil, end: Date? = nil) async throws -> [PlannerItem] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.plannerItems }
+        #endif
+        var query: [URLQueryItem] = [URLQueryItem(name: "per_page", value: "50")]
+        let formatter = ISO8601DateFormatter()
+        if let start = start {
+            query.append(URLQueryItem(name: "start_date", value: formatter.string(from: start)))
+        }
+        if let end = end {
+            query.append(URLQueryItem(name: "end_date", value: formatter.string(from: end)))
+        }
+        let data = try await getPaginated("/planner/items", query: query)
+        return try decoder().decode([PlannerItem].self, from: data)
+    }
+
+    public func calendarEvents(contextCodes: [String]? = nil, start: Date? = nil, end: Date? = nil) async throws -> [CalendarEvent] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.calendarEvents }
+        #endif
+        var query: [URLQueryItem] = [URLQueryItem(name: "per_page", value: "50")]
+        let formatter = ISO8601DateFormatter()
+        if let start = start {
+            query.append(URLQueryItem(name: "start_date", value: formatter.string(from: start)))
+        }
+        if let end = end {
+            query.append(URLQueryItem(name: "end_date", value: formatter.string(from: end)))
+        }
+        if let codes = contextCodes {
+            for code in codes {
+                query.append(URLQueryItem(name: "context_codes[]", value: code))
+            }
+        }
+        let data = try await getPaginated("/calendar_events", query: query)
+        return try decoder().decode([CalendarEvent].self, from: data)
+    }
+
+    // MARK: - Modules & Content
+
+    public func modules(courseId: Int) async throws -> [Module] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.modules[courseId] ?? MockData.modules[MockData.csCourseId] ?? [] }
+        #endif
+        let data = try await getPaginated("/courses/\(courseId)/modules", query: [
+            URLQueryItem(name: "include[]", value: "items"),
+            URLQueryItem(name: "per_page", value: "100"),
+        ])
+        return try decoder().decode([Module].self, from: data)
+    }
+
+    // MARK: - Files & Folders
+
+    public func folders(courseId: Int) async throws -> [CanvasFolder] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.folders[courseId] ?? MockData.folders[MockData.csCourseId] ?? [] }
+        #endif
+        let data = try await getPaginated("/courses/\(courseId)/folders", query: [
+            URLQueryItem(name: "per_page", value: "100"),
+        ])
+        return try decoder().decode([CanvasFolder].self, from: data)
+    }
+
+    public func files(courseId: Int) async throws -> [CanvasFile] {
+        #if DEBUG
+        if token == "DEMO" { return MockData.files[courseId] ?? MockData.files[MockData.csCourseId] ?? [] }
+        #endif
+        let data = try await getPaginated("/courses/\(courseId)/files", query: [
+            URLQueryItem(name: "per_page", value: "100"),
+        ])
+        return try decoder().decode([CanvasFile].self, from: data)
+    }
+
+    public func downloadFile(url: String, to destinationURL: URL) async throws {
+        #if DEBUG
+        if token == "DEMO" || url.contains("demo.canvas") {
+            let sampleContent = "%PDF-1.4 Demo PDF Content for Canvas Grades app Quick Look preview test."
+            try sampleContent.write(to: destinationURL, atomically: true, encoding: .utf8)
+            return
+        }
+        #endif
+        guard let requestURL = URL(string: url) else {
+            throw APIError.network("invalid file download URL: \(url)")
+        }
+        let (data, response) = try await session.data(from: requestURL)
+        if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+            throw APIError.http(http.statusCode)
+        }
+        try data.write(to: destinationURL)
+    }
 }
+

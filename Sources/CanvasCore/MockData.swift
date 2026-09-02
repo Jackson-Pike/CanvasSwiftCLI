@@ -551,5 +551,227 @@ public enum MockData {
             ]),
         3002: DiscussionView(view: [], participants: []),
     ]
+
+    // MARK: - Phase 3 demo store (planner items & calendar events)
+
+    public static let plannerItems: [PlannerItem] = [
+        PlannerItem(
+            id: "assignment_201",
+            title: "Week 1 Reflection",
+            courseId: csCourseId,
+            plannableId: 201,
+            plannableType: "assignment",
+            plannableDate: Date().addingTimeInterval(-7 * 86400),
+            htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/assignments/201",
+            submissions: PlannerSubmissionSummary(submitted: true, graded: true, missing: false),
+            plannerOverride: nil
+        ),
+        PlannerItem(
+            id: "assignment_202",
+            title: "Missing Lab Report",
+            courseId: csCourseId,
+            plannableId: 202,
+            plannableType: "assignment",
+            plannableDate: Date().addingTimeInterval(-2 * 86400),
+            htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/assignments/202",
+            submissions: PlannerSubmissionSummary(submitted: false, graded: false, missing: true),
+            plannerOverride: nil
+        ),
+        PlannerItem(
+            id: "assignment_203",
+            title: "Midterm Essay",
+            courseId: csCourseId,
+            plannableId: 203,
+            plannableType: "assignment",
+            plannableDate: Date().addingTimeInterval(2 * 86400),
+            htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/assignments/203",
+            submissions: PlannerSubmissionSummary(submitted: false, graded: false, missing: false),
+            plannerOverride: nil
+        ),
+        PlannerItem(
+            id: "assignment_204",
+            title: "Problem Set 3",
+            courseId: mathCourseId,
+            plannableId: 204,
+            plannableType: "assignment",
+            plannableDate: Date().addingTimeInterval(12 * 3600),
+            htmlUrl: "https://byuh.instructure.com/courses/\(mathCourseId)/assignments/204",
+            submissions: PlannerSubmissionSummary(submitted: false, graded: false, missing: false),
+            plannerOverride: nil
+        ),
+        PlannerItem(
+            id: "assignment_205",
+            title: "Awaiting Grade Homework",
+            courseId: histCourseId,
+            plannableId: 205,
+            plannableType: "assignment",
+            plannableDate: Date().addingTimeInterval(-1 * 86400),
+            htmlUrl: "https://byuh.instructure.com/courses/\(histCourseId)/assignments/205",
+            submissions: PlannerSubmissionSummary(submitted: true, graded: false, missing: false),
+            plannerOverride: nil
+        )
+    ]
+
+    public static let calendarEvents: [CalendarEvent] = [
+        CalendarEvent(
+            id: 9001,
+            title: "CS 101 Study Group",
+            contextCode: "course_\(csCourseId)",
+            startAt: Date().addingTimeInterval(24 * 3600),
+            endAt: Date().addingTimeInterval(25.5 * 3600),
+            locationName: "Library Room 204",
+            description: "<p>Reviewing midterm materials.</p>",
+            htmlUrl: "https://byuh.instructure.com/calendar?event_id=9001"
+        ),
+        CalendarEvent(
+            id: 9002,
+            title: "Math Office Hours",
+            contextCode: "course_\(mathCourseId)",
+            startAt: Date().addingTimeInterval(48 * 3600),
+            endAt: Date().addingTimeInterval(49 * 3600),
+            locationName: "McKay 120",
+            description: "<p>Calculus help session.</p>",
+            htmlUrl: "https://byuh.instructure.com/calendar?event_id=9002"
+        )
+    ]
+
+    // MARK: - Phase 4 demo store (modules, folders, files)
+
+    public static let modules: [Int: [Module]] = [
+        csCourseId: [
+            Module(
+                id: 10101,
+                name: "Module 1: Getting Started & Setup",
+                position: 1,
+                state: "completed",
+                unlockAt: nil,
+                itemsCount: 3,
+                items: [
+                    ModuleItem(
+                        id: 1001,
+                        moduleId: 10101,
+                        title: "Course Orientation & Syllabus",
+                        position: 1,
+                        type: "Page",
+                        indent: 0,
+                        htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/modules/items/1001",
+                        pageUrl: "course-orientation",
+                        completionRequirement: CompletionRequirement(type: "must_view", completed: true)
+                    ),
+                    ModuleItem(
+                        id: 1002,
+                        moduleId: 10101,
+                        title: "Week 1 Reflection",
+                        position: 2,
+                        type: "Assignment",
+                        indent: 1,
+                        contentId: 201,
+                        htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/modules/items/1002",
+                        completionRequirement: CompletionRequirement(type: "must_submit", completed: true)
+                    ),
+                    ModuleItem(
+                        id: 1003,
+                        moduleId: 10101,
+                        title: "Development Environment Setup Guide",
+                        position: 3,
+                        type: "File",
+                        indent: 1,
+                        contentId: 8001,
+                        htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/modules/items/1003",
+                        completionRequirement: CompletionRequirement(type: "must_view", completed: true)
+                    )
+                ]
+            ),
+            Module(
+                id: 10102,
+                name: "Module 2: Core Concepts & Data Structures",
+                position: 2,
+                state: "started",
+                unlockAt: nil,
+                itemsCount: 2,
+                items: [
+                    ModuleItem(
+                        id: 1004,
+                        moduleId: 10102,
+                        title: "Quiz 1 — Variables & Types",
+                        position: 1,
+                        type: "Quiz",
+                        indent: 0,
+                        contentId: 301,
+                        htmlUrl: "https://byuh.instructure.com/courses/\(csCourseId)/modules/items/1004",
+                        completionRequirement: CompletionRequirement(type: "min_score", minScore: 20.0, completed: true)
+                    ),
+                    ModuleItem(
+                        id: 1005,
+                        moduleId: 10102,
+                        title: "Official Swift Language Documentation",
+                        position: 2,
+                        type: "ExternalUrl",
+                        indent: 0,
+                        htmlUrl: "https://swift.org/documentation/",
+                        externalUrl: "https://swift.org/documentation/",
+                        completionRequirement: CompletionRequirement(type: "must_view", completed: false)
+                    )
+                ]
+            )
+        ]
+    ]
+
+    public static let folders: [Int: [CanvasFolder]] = [
+        csCourseId: [
+            CanvasFolder(
+                id: 5001,
+                name: "Course Documents",
+                fullName: "course files/Course Documents",
+                parentFolderId: nil,
+                contextId: csCourseId,
+                contextType: "Course",
+                filesCount: 2,
+                foldersCount: 1,
+                updatedAt: Date().addingTimeInterval(-10 * 86400)
+            ),
+            CanvasFolder(
+                id: 5002,
+                name: "Lecture Notes",
+                fullName: "course files/Course Documents/Lecture Notes",
+                parentFolderId: 5001,
+                contextId: csCourseId,
+                contextType: "Course",
+                filesCount: 1,
+                foldersCount: 0,
+                updatedAt: Date().addingTimeInterval(-5 * 86400)
+            )
+        ]
+    ]
+
+    public static let files: [Int: [CanvasFile]] = [
+        csCourseId: [
+            CanvasFile(
+                id: 8001,
+                folderId: 5001,
+                displayName: "CS101_Syllabus.pdf",
+                filename: "CS101_Syllabus.pdf",
+                contentType: "application/pdf",
+                url: "https://demo.canvas/CS101_Syllabus.pdf",
+                size: 245000,
+                createdAt: Date().addingTimeInterval(-20 * 86400),
+                updatedAt: Date().addingTimeInterval(-15 * 86400),
+                locked: false
+            ),
+            CanvasFile(
+                id: 8002,
+                folderId: 5002,
+                displayName: "Lecture_01_Overview.pdf",
+                filename: "Lecture_01_Overview.pdf",
+                contentType: "application/pdf",
+                url: "https://demo.canvas/Lecture_01_Overview.pdf",
+                size: 1540000,
+                createdAt: Date().addingTimeInterval(-10 * 86400),
+                updatedAt: Date().addingTimeInterval(-10 * 86400),
+                locked: false
+            )
+        ]
+    ]
 }
 #endif
+
