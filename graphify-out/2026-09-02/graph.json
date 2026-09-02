@@ -3565,7 +3565,7 @@
       "_origin": "ast",
       "id": "equatable",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "equatable"
     },
     {
@@ -4125,8 +4125,8 @@
       "source_location": "L174",
       "_origin": "ast",
       "id": "canvasapp_views_window_assignmentstabview_assignmentstabview_commentssection",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 77,
+      "community_name": "AssignmentListRow",
       "norm_label": ".commentssection"
     },
     {
@@ -5104,8 +5104,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowbody",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "mainwindowbody"
     },
     {
@@ -5115,8 +5115,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_swift_int",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "int"
     },
     {
@@ -5126,8 +5126,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowbody_inboxunread",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".inboxunread"
     },
     {
@@ -5137,19 +5137,19 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
       "label": ".navRow()",
       "file_type": "code",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L128",
+      "source_location": "L130",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowbody_navrow",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".navrow()"
     },
     {
@@ -5159,30 +5159,30 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_swift_string",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "string"
     },
     {
       "label": ".courseRow()",
       "file_type": "code",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L164",
+      "source_location": "L166",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowbody_courserow",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".courserow()"
     },
     {
       "label": ".accentColor()",
       "file_type": "code",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L197",
+      "source_location": "L199",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowbody_accentcolor",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".accentcolor()"
     },
     {
@@ -5192,19 +5192,19 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_swift_color",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "color"
     },
     {
       "label": ".isBelowTarget()",
       "file_type": "code",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L205",
+      "source_location": "L207",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_mainwindowbody_isbelowtarget",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".isbelowtarget()"
     },
     {
@@ -5214,8 +5214,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_swift_double",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "double"
     },
     {
@@ -5225,30 +5225,30 @@
       "source_location": "",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_swift_bool",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "bool"
     },
     {
       "label": "ComingSoonView",
       "file_type": "code",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L214",
+      "source_location": "L216",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_comingsoonview",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "comingsoonview"
     },
     {
       "label": ".body",
       "file_type": "code",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L217",
+      "source_location": "L219",
       "_origin": "ast",
       "id": "canvasapp_views_window_mainwindowview_comingsoonview_body",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".body"
     },
     {
@@ -5610,8 +5610,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "canvasapp_views_window_todoview_todoview",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": "todoview"
     },
     {
@@ -5621,8 +5621,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "canvasapp_views_window_todoview_todoview_init",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".init()"
     },
     {
@@ -5643,8 +5643,8 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "canvasapp_views_window_todoview_todoview_handleitemclick",
-      "community": 125,
-      "community_name": ".body",
+      "community": 105,
+      "community_name": "View",
       "norm_label": ".handleitemclick()"
     },
     {
@@ -6381,7 +6381,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sendable",
-      "community": 112,
+      "community": 91,
       "community_name": "Sendable",
       "norm_label": "sendable"
     },
@@ -6646,7 +6646,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "canvascore/discussionmodels.swift"
     },
     {
@@ -6657,7 +6657,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussiontopic",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "discussiontopic"
     },
     {
@@ -6668,7 +6668,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_swift_int",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "int"
     },
     {
@@ -6679,7 +6679,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_swift_string",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "string"
     },
     {
@@ -6690,7 +6690,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussiontopic_init",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -6701,7 +6701,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussionparticipant",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "discussionparticipant"
     },
     {
@@ -6712,7 +6712,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussionparticipant_init",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -6723,7 +6723,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussionentrynode",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "discussionentrynode"
     },
     {
@@ -6734,7 +6734,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussionentrynode_init",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -6745,7 +6745,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussionview",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "discussionview"
     },
     {
@@ -6756,7 +6756,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_discussionview_init",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": ".init()"
     },
     {
@@ -6767,7 +6767,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_flatdiscussionentry",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "flatdiscussionentry"
     },
     {
@@ -6778,7 +6778,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_discussionmodels_flattendiscussion",
       "community": 91,
-      "community_name": "Equatable",
+      "community_name": "Sendable",
       "norm_label": "flattendiscussion()"
     },
     {
@@ -8043,7 +8043,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "canvascore/plannermodels.swift"
     },
     {
@@ -8054,7 +8054,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_plannersubmissionsummary",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "plannersubmissionsummary"
     },
     {
@@ -8065,7 +8065,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_swift_bool",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "bool"
     },
     {
@@ -8076,7 +8076,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_plannersubmissionsummary_init",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": ".init()"
     },
     {
@@ -8087,7 +8087,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_planneroverride",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "planneroverride"
     },
     {
@@ -8098,7 +8098,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_swift_int",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "int"
     },
     {
@@ -8109,7 +8109,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_planneroverride_init",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": ".init()"
     },
     {
@@ -8120,7 +8120,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_planneritem",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "planneritem"
     },
     {
@@ -8131,7 +8131,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_swift_string",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "string"
     },
     {
@@ -8142,7 +8142,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_swift_date",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": "date"
     },
     {
@@ -8153,7 +8153,7 @@
       "_origin": "ast",
       "id": "sources_canvascore_plannermodels_planneritem_init",
       "community": 112,
-      "community_name": "Sendable",
+      "community_name": "PlannerItem",
       "norm_label": ".init()"
     },
     {
@@ -11672,7 +11672,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "sources_canvasdata_syncengine_syncengine_setstatehandler",
-      "community": 112,
+      "community": 91,
       "community_name": "Sendable",
       "norm_label": ".setstatehandler()"
     },
@@ -12311,7 +12311,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentfilterchips",
       "community": 82,
-      "community_name": "AssignmentFilterChips",
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": "assignmentfilterchips"
     },
     {
@@ -12322,7 +12322,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentfilterchips_init",
       "community": 82,
-      "community_name": "AssignmentFilterChips",
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": ".init()"
     },
     {
@@ -12333,7 +12333,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_swift_binding",
       "community": 82,
-      "community_name": "AssignmentFilterChips",
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": "binding"
     },
     {
@@ -12344,7 +12344,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentfilterchips_body",
       "community": 82,
-      "community_name": "AssignmentFilterChips",
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": ".body"
     },
     {
@@ -12355,7 +12355,7 @@
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentfilterchips_chip",
       "community": 82,
-      "community_name": "AssignmentFilterChips",
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": ".chip()"
     },
     {
@@ -12387,8 +12387,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_swift_date",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 77,
+      "community_name": "AssignmentListRow",
       "norm_label": "date"
     },
     {
@@ -12585,8 +12585,8 @@
       "source_location": "L272",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_instructorcommentrow",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 77,
+      "community_name": "AssignmentListRow",
       "norm_label": "instructorcommentrow"
     },
     {
@@ -12596,8 +12596,8 @@
       "source_location": "L277",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_instructorcommentrow_init",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 77,
+      "community_name": "AssignmentListRow",
       "norm_label": ".init()"
     },
     {
@@ -12607,8 +12607,8 @@
       "source_location": "L283",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_instructorcommentrow_body",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 77,
+      "community_name": "AssignmentListRow",
       "norm_label": ".body"
     },
     {
@@ -12618,8 +12618,8 @@
       "source_location": "L318",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_instructorcommentrow_initials",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 77,
+      "community_name": "AssignmentListRow",
       "norm_label": ".initials"
     },
     {
@@ -12662,8 +12662,8 @@
       "source_location": "L348",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentcomponentspreview",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 82,
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": "assignmentcomponentspreview"
     },
     {
@@ -12673,8 +12673,8 @@
       "source_location": "L351",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentcomponentspreview_due",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 82,
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": ".due"
     },
     {
@@ -12684,8 +12684,8 @@
       "source_location": "L353",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentcomponentspreview_rubriclines",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 82,
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": ".rubriclines"
     },
     {
@@ -12695,8 +12695,8 @@
       "source_location": "L386",
       "_origin": "ast",
       "id": "sources_canvasui_assignmentcomponents_assignmentcomponentspreview_body",
-      "community": 128,
-      "community_name": "InstructorCommentRow",
+      "community": 82,
+      "community_name": "AssignmentComponentsPreview",
       "norm_label": ".body"
     },
     {
@@ -16294,8 +16294,8 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_sandboxrailview_targetsection",
-      "community": 59,
-      "community_name": "Text",
+      "community": 49,
+      "community_name": "ScenarioChips",
       "norm_label": ".targetsection"
     },
     {
@@ -16393,8 +16393,8 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips",
-      "community": 105,
-      "community_name": "View",
+      "community": 49,
+      "community_name": "ScenarioChips",
       "norm_label": "targetchips"
     },
     {
@@ -16404,8 +16404,8 @@
       "source_location": "L189",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips_init",
-      "community": 76,
-      "community_name": "CalculatorViewModel",
+      "community": 49,
+      "community_name": "ScenarioChips",
       "norm_label": ".init()"
     },
     {
@@ -16415,8 +16415,8 @@
       "source_location": "L195",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips_body",
-      "community": 105,
-      "community_name": "View",
+      "community": 49,
+      "community_name": "ScenarioChips",
       "norm_label": ".body"
     },
     {
@@ -16426,8 +16426,8 @@
       "source_location": "L210",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_targetchips_chip",
-      "community": 105,
-      "community_name": "View",
+      "community": 49,
+      "community_name": "ScenarioChips",
       "norm_label": ".chip()"
     },
     {
@@ -16448,8 +16448,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "sources_canvasui_sandboxrail_swift_bool",
-      "community": 105,
-      "community_name": "View",
+      "community": 49,
+      "community_name": "ScenarioChips",
       "norm_label": "bool"
     },
     {
@@ -33932,7 +33932,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L206",
+      "source_location": "L208",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_isbelowtarget",
@@ -35022,7 +35022,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L166",
+      "source_location": "L168",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_courserow",
@@ -35032,7 +35032,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L128",
+      "source_location": "L130",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -37397,7 +37397,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L91",
+      "source_location": "L93",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -37445,7 +37445,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L177",
+      "source_location": "L179",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_courserow",
@@ -40389,7 +40389,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L107",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -42096,7 +42096,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L72",
+      "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -42281,7 +42281,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L74",
+      "source_location": "L73",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -43457,7 +43457,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L70",
+      "source_location": "L69",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -44344,7 +44344,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L71",
+      "source_location": "L70",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -44486,7 +44486,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L214",
+      "source_location": "L216",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview",
@@ -44554,7 +44554,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L197",
+      "source_location": "L199",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody",
@@ -44576,7 +44576,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L164",
+      "source_location": "L166",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody",
@@ -44598,7 +44598,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L205",
+      "source_location": "L207",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody",
@@ -44609,7 +44609,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L128",
+      "source_location": "L130",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody",
@@ -44644,7 +44644,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L164",
+      "source_location": "L166",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -44656,7 +44656,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L205",
+      "source_location": "L207",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -44668,7 +44668,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L128",
+      "source_location": "L130",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -44706,7 +44706,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L111",
+      "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -44718,7 +44718,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L73",
+      "source_location": "L72",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -44730,7 +44730,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L60",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -44742,7 +44742,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L91",
+      "source_location": "L93",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_body",
@@ -44752,7 +44752,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L128",
+      "source_location": "L130",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -44764,7 +44764,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L128",
+      "source_location": "L130",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -44778,7 +44778,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L139",
+      "source_location": "L141",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_navrow",
@@ -44788,7 +44788,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L216",
+      "source_location": "L218",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -44800,7 +44800,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L197",
+      "source_location": "L199",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -44812,7 +44812,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L164",
+      "source_location": "L166",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -44825,7 +44825,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L172",
+      "source_location": "L174",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_courserow",
@@ -44837,7 +44837,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L180",
+      "source_location": "L182",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_courserow",
@@ -44848,7 +44848,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L164",
+      "source_location": "L166",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -44862,7 +44862,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L173",
+      "source_location": "L175",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_mainwindowbody_courserow",
@@ -44872,7 +44872,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L197",
+      "source_location": "L199",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -44884,7 +44884,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L205",
+      "source_location": "L207",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -44896,7 +44896,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L205",
+      "source_location": "L207",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -44908,7 +44908,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L217",
+      "source_location": "L219",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_comingsoonview",
@@ -44919,7 +44919,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L217",
+      "source_location": "L219",
       "weight": 1.0,
       "_origin": "ast",
       "context": "field",
@@ -44933,7 +44933,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "CanvasApp/Views/Window/MainWindowView.swift",
-      "source_location": "L219",
+      "source_location": "L221",
       "weight": 1.0,
       "_origin": "ast",
       "source": "canvasapp_views_window_mainwindowview_comingsoonview_body",

@@ -1,11 +1,11 @@
 # Graph Report - CanvasCLISwift  (2026-09-02)
 
 ## Corpus Check
-- 185 files · ~148,808 words
+- 185 files · ~148,824 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2476 nodes · 5587 edges · 129 communities (116 shown, 13 thin omitted)
+- 2476 nodes · 5587 edges · 127 communities (114 shown, 13 thin omitted)
 - Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 767 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -97,7 +97,7 @@
 - .client
 - RubricCriterion
 - Color
-- AssignmentFilterChips
+- AssignmentComponentsPreview
 - GROUP A — INBOX
 - ComposeSheet
 - Identifiable
@@ -106,7 +106,7 @@
 - MockData
 - AnnouncementsViewModel
 - CachedConversation
-- Equatable
+- Sendable
 - SidebarItem
 - Conversation
 - ChangeKind
@@ -127,7 +127,7 @@
 - CachedPlannerItem
 - CachedAnnouncement
 - QuickOpenViewModel
-- Sendable
+- PlannerItem
 - SkeletonList
 - CalendarEvent
 - GradesSandboxSplit
@@ -140,10 +140,8 @@
 - FileModelsTests
 - ModuleModelsTests
 - DiscussionModelsTests
-- .body
 - .ids
 - SyncState
-- InstructorCommentRow
 
 ## God Nodes (most connected - your core abstractions)
 1. `CanvasCore` - 100 edges
@@ -172,7 +170,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (129 total, 13 thin omitted)
+## Communities (127 total, 13 thin omitted)
 
 ### Community 0 - "Credentials"
 Cohesion: 0.15
@@ -355,8 +353,8 @@ Cohesion: 0.18
 Nodes (12): CourseDetailViewModel, .calculator, Bool, Date, GradeCalculator, Int, String, CourseDetailBody (+4 more)
 
 ### Community 49 - "ScenarioChips"
-Cohesion: 0.20
-Nodes (11): HypotheticalSlider, .body, .hypotheticalsSection, .scenariosSection, ScenarioChips, .actualPercent, .body, Binding (+3 more)
+Cohesion: 0.14
+Nodes (15): HypotheticalSlider, .body, .hypotheticalsSection, .scenariosSection, .targetSection, ScenarioChips, .actualPercent, .body (+7 more)
 
 ### Community 50 - "LedgerRowView"
 Cohesion: 0.09
@@ -392,7 +390,7 @@ Nodes (21): APIClient, .baseURL, .token, APIError, .description, forbidden, http
 
 ### Community 59 - "Text"
 Cohesion: 0.11
-Nodes (25): Bool, Double, String, Void, TermSandboxRail, .body, .footer, .header (+17 more)
+Nodes (24): Bool, Double, String, Void, TermSandboxRail, .body, .footer, .header (+16 more)
 
 ### Community 60 - "AssignmentPredicatesTests"
 Cohesion: 0.11
@@ -455,8 +453,8 @@ Cohesion: 0.06
 Nodes (42): CalculatorView, .body, SolveForMeTabView, .body, .gradeLetters, SolveResultView, .body, Binding (+34 more)
 
 ### Community 77 - "AssignmentListRow"
-Cohesion: 0.17
-Nodes (16): AssignmentComponentFormat, AssignmentListRow, .body, .content, .percent, .stateLabel, .subtitle, .trailingBadge (+8 more)
+Cohesion: 0.13
+Nodes (21): .commentsSection, AssignmentComponentFormat, AssignmentListRow, .body, .content, .percent, .stateLabel, .subtitle (+13 more)
 
 ### Community 78 - "StreamItem"
 Cohesion: 0.16
@@ -474,9 +472,9 @@ Nodes (10): formatRubricAssessment(), RubricAssessmentEntry, RubricCriterion, Ru
 Cohesion: 0.22
 Nodes (6): Color, .secondaryLabel, .systemBackground, .systemGroupedBackground, Int, String
 
-### Community 82 - "AssignmentFilterChips"
-Cohesion: 0.50
-Nodes (3): AssignmentFilterChips, .body, Binding
+### Community 82 - "AssignmentComponentsPreview"
+Cohesion: 0.25
+Nodes (7): AssignmentComponentsPreview, .body, .due, .rubricLines, AssignmentFilterChips, .body, Binding
 
 ### Community 83 - "GROUP A — INBOX"
 Cohesion: 0.06
@@ -510,9 +508,9 @@ Nodes (13): AnnouncementsViewModel, .selected, Bool, Date, Int, String, Announce
 Cohesion: 0.36
 Nodes (9): .selected, CachedConversation, .participants, CachedMessage, Bool, Data, Date, Int (+1 more)
 
-### Community 91 - "Equatable"
-Cohesion: 0.38
-Nodes (9): Equatable, DiscussionEntryNode, DiscussionParticipant, DiscussionTopic, DiscussionView, FlatDiscussionEntry, flattenDiscussion(), Int (+1 more)
+### Community 91 - "Sendable"
+Cohesion: 0.34
+Nodes (10): Equatable, Sendable, DiscussionEntryNode, DiscussionParticipant, DiscussionTopic, DiscussionView, FlatDiscussionEntry, flattenDiscussion() (+2 more)
 
 ### Community 92 - "SidebarItem"
 Cohesion: 0.11
@@ -567,8 +565,8 @@ Cohesion: 0.20
 Nodes (8): ISO8601DateFormatter, CanvasDate, Date, String, Bool, ConversationChangeTests, Int, String
 
 ### Community 105 - "View"
-Cohesion: 0.11
-Nodes (23): PopoverContent, .body, .coursesVM, KeychainWarningView, .body, DisclosureRow, .body, Color (+15 more)
+Cohesion: 0.08
+Nodes (31): PopoverContent, .body, .coursesVM, KeychainWarningView, .body, DisclosureRow, .body, Color (+23 more)
 
 ### Community 106 - "SyncScope"
 Cohesion: 0.22
@@ -590,9 +588,9 @@ Nodes (5): CachedAnnouncement, Date, Int, String, RepositoryTests
 Cohesion: 0.22
 Nodes (10): QuickOpenViewModel, .query, Bool, Int, String, QuickOpenOverlay, .body, .headerSearchField (+2 more)
 
-### Community 112 - "Sendable"
-Cohesion: 0.33
-Nodes (8): Sendable, PlannerItem, PlannerOverride, PlannerSubmissionSummary, Bool, Date, Int, String
+### Community 112 - "PlannerItem"
+Cohesion: 0.40
+Nodes (7): PlannerItem, PlannerOverride, PlannerSubmissionSummary, Bool, Date, Int, String
 
 ### Community 113 - "SkeletonList"
 Cohesion: 0.13
@@ -622,10 +620,6 @@ Nodes (7): CanvasFile, CanvasFolder, Bool, Date, Int, Int64, String
 Cohesion: 0.33
 Nodes (5): Kind, awaitingGrade, feedback, recentlyGraded, upcoming
 
-### Community 125 - ".body"
-Cohesion: 0.18
-Nodes (11): ComingSoonView, .body, MainWindowBody, .body, .inboxUnread, Bool, Color, Double (+3 more)
-
 ### Community 126 - ".ids"
 Cohesion: 0.33
 Nodes (4): LegacyHiddenCourses, Int, Set, UserDefaults
@@ -633,10 +627,6 @@ Nodes (4): LegacyHiddenCourses, Int, Set, UserDefaults
 ### Community 127 - "SyncState"
 Cohesion: 0.18
 Nodes (9): CustomStringConvertible, String, SyncError, .description, noClient, SyncState, failed, idle (+1 more)
-
-### Community 128 - "InstructorCommentRow"
-Cohesion: 0.24
-Nodes (9): .commentsSection, AssignmentComponentsPreview, .body, .due, .rubricLines, InstructorCommentRow, .body, .initials (+1 more)
 
 ## Knowledge Gaps
 - **523 isolated node(s):** `.isDemo`, `.hasCredentials`, `IOKit.ps`, `Network`, `.coursesVM` (+518 more)
@@ -646,11 +636,11 @@ Nodes (9): .commentsSection, AssignmentComponentsPreview, .body, .due, .rubricLi
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `View` connect `View` to `InstructorCommentRow`, `DashboardView`, `DesignTokens.swift`, `.refresh`, `CoursesViewModel`, `StalenessLabel`, `CachedFile`, `SettingsView`, `CourseCard`, `CourseDetailViewModel`, `ScenarioChips`, `LedgerRowView`, `CourseGradeSummary`, `Text`, `AssignmentRow`, `UnifiedCalendarItem`, `RichTextView`, `AnnouncementListRow`, `ToDoItem`, `CachedModuleItem`, `AssignmentsViewModel`, `CalculatorViewModel`, `AssignmentListRow`, `StreamItem`, `RubricCriterion`, `AssignmentFilterChips`, `ComposeSheet`, `DiscussionsViewModel`, `GradeTrendChart`, `AnnouncementsViewModel`, `SearchResultItem`, `AppSession`, `GroupInfo`, `QuickOpenViewModel`, `SkeletonList`, `GradesSandboxSplit`, `.body`?**
+- **Why does `View` connect `View` to `DashboardView`, `DesignTokens.swift`, `.refresh`, `CoursesViewModel`, `StalenessLabel`, `CachedFile`, `SettingsView`, `CourseCard`, `CourseDetailViewModel`, `ScenarioChips`, `LedgerRowView`, `CourseGradeSummary`, `Text`, `AssignmentRow`, `UnifiedCalendarItem`, `RichTextView`, `AnnouncementListRow`, `ToDoItem`, `CachedModuleItem`, `AssignmentsViewModel`, `CalculatorViewModel`, `AssignmentListRow`, `StreamItem`, `RubricCriterion`, `AssignmentComponentsPreview`, `ComposeSheet`, `DiscussionsViewModel`, `GradeTrendChart`, `AnnouncementsViewModel`, `SearchResultItem`, `AppSession`, `GroupInfo`, `QuickOpenViewModel`, `SkeletonList`, `GradesSandboxSplit`?**
   _High betweenness centrality (0.137) - this node is a cross-community bridge._
 - **Why does `CanvasCore` connect `CanvasCore` to `CalculatorInputs`, `CachedCourse`, `UnifiedCalendarItem`, `RichTextView`, `ToDoItem`, `BackgroundRefreshController.swift`, `GroupInfo`, `SwiftUI`, `Foundation`, `.submissionChanges`, `CanvasData`, `ComposeSheet`, `.plan`, `GradeTrendChart`?**
   _High betweenness centrality (0.098) - this node is a cross-community bridge._
-- **Why does `SyncEngine` connect `SyncEngine` to `Credentials`, `EntityKind`, `AppSession`, `SyncScope`, `Foundation`, `XCTestCase`, `.makeRepo`, `Sendable`, `SyncEngineCourseTests`, `APIClient`, `SyncState`?**
+- **Why does `SyncEngine` connect `SyncEngine` to `Credentials`, `EntityKind`, `AppSession`, `SyncScope`, `Foundation`, `XCTestCase`, `.makeRepo`, `SyncEngineCourseTests`, `APIClient`, `Sendable`, `SyncState`?**
   _High betweenness centrality (0.063) - this node is a cross-community bridge._
 - **Are the 109 inferred relationships involving `Text` (e.g. with `.body` and `.body`) actually correct?**
   _`Text` has 109 INFERRED edges - model-reasoned connections that need verification._

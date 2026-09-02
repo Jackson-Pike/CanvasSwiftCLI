@@ -81,7 +81,7 @@
   "79": ".client",
   "80": "RubricCriterion",
   "81": "Color",
-  "82": "AssignmentFilterChips",
+  "82": "AssignmentComponentsPreview",
   "83": "GROUP A — INBOX",
   "84": "ComposeSheet",
   "85": "Identifiable",
@@ -90,7 +90,7 @@
   "88": "MockData",
   "89": "AnnouncementsViewModel",
   "90": "CachedConversation",
-  "91": "Equatable",
+  "91": "Sendable",
   "92": "SidebarItem",
   "93": "Conversation",
   "94": "ChangeKind",
@@ -111,7 +111,7 @@
   "109": "CachedPlannerItem",
   "110": "CachedAnnouncement",
   "111": "QuickOpenViewModel",
-  "112": "Sendable",
+  "112": "PlannerItem",
   "113": "SkeletonList",
   "114": "CalendarEvent",
   "115": "GradesSandboxSplit",
@@ -124,8 +124,6 @@
   "122": "FileModelsTests",
   "123": "ModuleModelsTests",
   "124": "DiscussionModelsTests",
-  "125": ".body",
   "126": ".ids",
-  "127": "SyncState",
-  "128": "InstructorCommentRow"
+  "127": "SyncState"
 }

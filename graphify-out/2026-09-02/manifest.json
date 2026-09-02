@@ -395,8 +395,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/MainWindowView.swift": {
-    "mtime": 1788375447.105071,
-    "ast_hash": "d9f9cd695d3737477bfaf8b610e0e636",
+    "mtime": 1788375093.1700032,
+    "ast_hash": "7848cac8906b4059c10b1a0973b02ca2",
     "semantic_hash": ""
   },
   "Tests/CanvasDataTests/ConcurrencyStressTests.swift": {
