@@ -22,6 +22,7 @@ struct DashboardView: View {
     @State private var assignmentCourseLookup: [Int: Int] = [:]
     @State private var panelsWidth: CGFloat = 0
     @State private var showSettings = false
+    @State private var dueSoonItems: [ToDoItem] = []
 
     var body: some View {
         HStack(spacing: 0) {
@@ -71,6 +72,22 @@ struct DashboardView: View {
     private func reload(force: Bool = false) async {
         await vm.load(session: session, coursesVM: coursesVM, settings: settings, force: force)
         rebuildAssignmentLookup()
+
+        let now = Date()
+        let upcoming = (try? session.repository.toDoDueThisWeek(now: now)) ?? []
+        dueSoonItems = upcoming.filter { item in
+            guard let date = item.plannableDate else { return false }
+            return date > now && date <= now.addingTimeInterval(86400)
+        }.map { item in
+            ToDoItem(
+                id: item.id,
+                title: item.title,
+                courseId: item.courseId,
+                date: item.plannableDate,
+                statusText: "Due soon",
+                htmlUrl: item.htmlUrl
+            )
+        }
     }
 
     private func rebuildAssignmentLookup() {
@@ -121,6 +138,15 @@ struct DashboardView: View {
                     SemesterTimelineStrip(termStart: start, termEnd: end, ticks: timelineTicks)
                         .padding(.horizontal, 30)
                         .padding(.bottom, 4)
+                }
+                if !dueSoonItems.isEmpty {
+                    DueSoonStrip(items: dueSoonItems, onItemClick: { item in
+                        if let urlString = item.htmlUrl, let url = URL(string: urlString) {
+                            NSWorkspace.shared.open(url)
+                        }
+                    })
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 16)
                 }
                 ledgerSection
                 bottomPanels

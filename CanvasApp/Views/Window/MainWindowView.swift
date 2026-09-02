@@ -82,8 +82,8 @@ private struct MainWindowBody: View {
             switch router.sidebar {
             case .dashboard: DashboardView(coursesVM: coursesVM, settings: settings)
             case .inbox:     InboxView()
-            case .calendar:  ComingSoonView(title: "Calendar", phase: "Phase 3")
-            case .todo:      ComingSoonView(title: "To-Do", phase: "Phase 3")
+            case .calendar:  CalendarView()
+            case .todo:      ToDoView()
             case .course(let id): CourseWorkspaceView(courseId: id)
             }
         }
@@ -91,6 +91,16 @@ private struct MainWindowBody: View {
         .toolbar {
             ToolbarItem(placement: .status) {
                 StalenessLabel(lastSyncedAt: coursesVM.lastSyncedAt)
+            }
+            ToolbarItem {
+                Button {
+                    router.quickOpenOpen = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+                .help("Quick-Open (⌘K)")
+                .accessibilityLabel("Quick-Open")
+                .keyboardShortcut("k", modifiers: .command)
             }
             ToolbarItem {
                 Button {
@@ -112,6 +122,9 @@ private struct MainWindowBody: View {
         .sheet(isPresented: $showSettings) {
             SettingsView(isOnboarding: false, vm: coursesVM)
                 .frame(minHeight: 420)   // SettingsView sets its own 340pt width
+        }
+        .sheet(isPresented: $router.quickOpenOpen) {
+            QuickOpenOverlay()
         }
         // Keyed on host: switching hosts from this window's own Settings sheet must re-run
         // the stale-selection check, or the sidebar keeps pointing at the old host's course.

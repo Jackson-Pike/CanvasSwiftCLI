@@ -28,6 +28,7 @@ final class AppSession {
 
     var isDemo: Bool { credentials?.token == "DEMO" }
     var hasCredentials: Bool { credentials != nil }
+    var apiClient: APIClient? { credentials.map { APIClient(credentials: $0) } }
 
     init() {
         let container: ModelContainer

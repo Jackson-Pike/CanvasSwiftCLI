@@ -41,9 +41,10 @@ private struct CourseWorkspaceBody: View {
                 SyllabusTabView(courseId: courseId)
             } else if router.courseTab == .discussions {
                 DiscussionsTabView(courseId: courseId).id(courseId)
-            } else {
-                // Modules/Files only — Phase 4.
-                ComingSoonView(title: router.courseTab.rawValue.capitalized, phase: "a later phase")
+            } else if router.courseTab == .modules {
+                ModulesTabView(courseId: courseId).id(courseId)
+            } else if router.courseTab == .files {
+                FilesTabView(courseId: courseId).id(courseId)
             }
         }
         .navigationTitle(vm.courseCode ?? "Course")

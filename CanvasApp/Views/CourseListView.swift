@@ -10,6 +10,7 @@ struct CourseListView: View {
     @Environment(\.openWindow) private var openWindow
     @ObservedObject var vm: CoursesViewModel
     @Binding var path: NavigationPath
+    @State private var dueSoonItems: [ToDoItem] = []
 
     var body: some View {
         VStack(spacing: 0) {
@@ -81,6 +82,14 @@ struct CourseListView: View {
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 12) {
+                            if !dueSoonItems.isEmpty {
+                                DueSoonStrip(items: dueSoonItems, onItemClick: { item in
+                                    if let urlString = item.htmlUrl, let url = URL(string: urlString) {
+                                        NSWorkspace.shared.open(url)
+                                    }
+                                })
+                                .padding(.horizontal, 12)
+                            }
                             if !vm.unseenChanges.isEmpty {
                                 sinceYouLastLooked
                             }
@@ -172,6 +181,27 @@ struct CourseListView: View {
     }
 
     private func refresh(force: Bool = false) {
-        Task { await vm.load(session: session, force: force) }
+        Task {
+            await vm.load(session: session, force: force)
+            loadDueSoon()
+        }
+    }
+
+    private func loadDueSoon() {
+        let now = Date()
+        let upcoming = (try? session.repository.toDoDueThisWeek(now: now)) ?? []
+        dueSoonItems = upcoming.filter { item in
+            guard let date = item.plannableDate else { return false }
+            return date > now && date <= now.addingTimeInterval(86400)
+        }.map { item in
+            ToDoItem(
+                id: item.id,
+                title: item.title,
+                courseId: item.courseId,
+                date: item.plannableDate,
+                statusText: "Due soon",
+                htmlUrl: item.htmlUrl
+            )
+        }
     }
 }

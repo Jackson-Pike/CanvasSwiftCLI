@@ -13,6 +13,19 @@ extension Color {
         }
     }
 
+    /// Ordered accent palette used to distinguish courses on the Calendar and To-Do surfaces.
+    public static let courseAccentPalette: [Color] = [.blue, .purple, .orange, .green, .indigo, .pink]
+
+    /// Builds a stable `courseId → accent color` map by enumeration order, matching the palette
+    /// shared across the Calendar and To-Do surfaces. Pass course IDs in display order.
+    public static func courseAccentMap(courseIDs: [Int]) -> [Int: Color] {
+        var map: [Int: Color] = [:]
+        for (index, id) in courseIDs.enumerated() {
+            map[id] = courseAccentPalette[index % courseAccentPalette.count]
+        }
+        return map
+    }
+
     // Platform-appropriate system colors
     public static var secondaryLabel: Color {
         #if os(macOS)

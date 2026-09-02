@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import CanvasCore
 
 enum SidebarItem: Hashable {
     case dashboard, inbox, calendar, todo
@@ -58,6 +59,7 @@ final class Router {
     }
     var selectedAssignmentId: Int?
     var selectedConversationId: Int?
+    var quickOpenOpen: Bool = false
 
     init() {
         sidebar = SidebarItem(storageKey: UserDefaults.standard.string(forKey: "router.sidebar") ?? "dashboard")
@@ -79,4 +81,22 @@ final class Router {
             sidebar = .inbox; selectedConversationId = id
         }
     }
+
+    func revealSearchTarget(_ target: SearchResultTarget) {
+        switch target {
+        case .course(let id, let tabStr):
+            let tab = CourseTab(rawValue: tabStr) ?? .grades
+            reveal(.course(id: id, tab: tab))
+        case .assignment(let courseId, let assignmentId):
+            reveal(.assignment(courseId: courseId, assignmentId: assignmentId))
+        case .conversation(let id):
+            reveal(.conversation(id: id))
+        case .external(let url):
+            if let targetURL = URL(string: url) {
+                NSWorkspace.shared.open(targetURL)
+            }
+        }
+        quickOpenOpen = false
+    }
 }
+
