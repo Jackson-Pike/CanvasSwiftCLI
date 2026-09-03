@@ -62,31 +62,42 @@ public struct MessageBubble: View {
 
     public var body: some View {
         // Desktop mail layout: full-width chronological messages with an author header,
-        // separated by a hairline — not iMessage-style left/right bubbles.
-        VStack(alignment: .leading, spacing: 7) {
-            HStack(spacing: 6) {
-                Text(authorName).font(.system(size: 13, weight: .semibold)).foregroundStyle(Color.inkPrimary)
-                if isMine {
-                    Text("You").font(.system(size: 10, weight: .semibold)).foregroundStyle(Color.accentHypothetical)
+        // separated by a hairline — not iMessage-style left/right bubbles. The body
+        // renders "bare" (no card chrome), so short replies read as flush text rather
+        // than tiny floating boxes.
+        HStack(alignment: .top, spacing: 12) {
+            // Orchid rail flags your own messages without a box or right-alignment.
+            RoundedRectangle(cornerRadius: 1.5)
+                .fill(isMine ? Color.accentHypothetical : Color.clear)
+                .frame(width: 3)
+
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(spacing: 7) {
+                    Text(authorName)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(isMine ? Color.accentHypothetical : Color.inkPrimary)
+                    if isDemo {
+                        Text("Demo").font(.system(size: 9, weight: .bold)).foregroundStyle(Color.onAccent)
+                            .padding(.horizontal, 5).padding(.vertical, 1)
+                            .background(Color.inkTertiary, in: Capsule())
+                    }
+                    Spacer(minLength: 8)
+                    if isPending {
+                        Text("sending…").font(.system(size: 12)).foregroundStyle(Color.inkTertiary)
+                    } else if let date {
+                        Text(date.formatted(date: .abbreviated, time: .shortened))
+                            .font(.system(size: 12)).foregroundStyle(Color.inkTertiary)
+                    }
                 }
-                Spacer(minLength: 8)
-                if isPending {
-                    Text("sending…").font(.system(size: 11)).foregroundStyle(Color.inkTertiary)
-                }
-                if isDemo {
-                    Text("Demo").font(.system(size: 9, weight: .bold)).foregroundStyle(Color.onAccent)
-                        .padding(.horizontal, 5).padding(.vertical, 1)
-                        .background(Color.inkTertiary, in: Capsule())
-                }
-                if let date {
-                    Text(date.formatted(date: .abbreviated, time: .shortened))
-                        .font(.system(size: 11)).foregroundStyle(Color.inkTertiary)
-                }
+                RichTextView(html: messageBody, chrome: .bare, fontSize: 18)
+                    .opacity(isPending ? 0.55 : 1)
             }
-            RichTextView(html: messageBody)
-                .opacity(isPending ? 0.6 : 1)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 16)
+        .overlay(alignment: .bottom) {
+            Rectangle().fill(Color.canvasHairline).frame(height: 1)
+        }
     }
 }
 
@@ -99,18 +110,43 @@ public struct ReplyComposer: View {
         self._text = text; self.isSending = isSending; self.onSend = onSend
     }
 
+    private var canSend: Bool {
+        !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !isSending
+    }
+
     public var body: some View {
-        HStack(alignment: .bottom, spacing: 8) {
-            TextField("Reply…", text: $text, axis: .vertical)
-                .textFieldStyle(.roundedBorder).lineLimit(1...5)
-            Button(action: onSend) {
-                if isSending { ProgressView().controlSize(.small) }
-                else { Image(systemName: "paperplane.fill") }
+        VStack(spacing: 0) {
+            Rectangle().fill(Color.canvasHairline).frame(height: 1)
+            HStack(alignment: .bottom, spacing: 10) {
+                TextField("Reply…", text: $text, axis: .vertical)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 15))
+                    .foregroundStyle(Color.inkPrimary)
+                    .lineLimit(1...6)
+                    .padding(.horizontal, 14).padding(.vertical, 10)
+                    .background(Color.canvasPanel, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            .strokeBorder(Color.canvasHairline, lineWidth: 1)
+                    )
+
+                Button(action: onSend) {
+                    Group {
+                        if isSending {
+                            ProgressView().controlSize(.small)
+                        } else {
+                            Image(systemName: "arrow.up").font(.system(size: 16, weight: .bold))
+                        }
+                    }
+                    .frame(width: 36, height: 36)
+                    .background(canSend ? Color.accentHypothetical : Color.inkQuaternary.opacity(0.4), in: Circle())
+                    .foregroundStyle(Color.onAccent)
+                }
+                .buttonStyle(.plain)
+                .disabled(!canSend)
             }
-            .buttonStyle(.borderedProminent).tint(Color.accentHypothetical)
-            .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isSending)
+            .padding(.horizontal, 16).padding(.vertical, 12)
         }
-        .padding(10)
         .background(Color.canvasBG)
     }
 }

@@ -89,17 +89,31 @@ struct InboxView: View {
     private var threadColumn: some View {
         if let convo = vm.selected {
             VStack(spacing: 0) {
+                // Thread header — fills the top of the pane so short threads don't read as empty.
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(convo.subject ?? "(no subject)")
+                        .font(.display(21)).tracking(-0.63)
+                        .foregroundStyle(Color.inkPrimary)
+                        .lineLimit(2)
+                    if let contextName = convo.contextName {
+                        Text(contextName)
+                            .font(.system(size: 12.5)).foregroundStyle(Color.inkTertiary)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 24).padding(.top, 20).padding(.bottom, 14)
+                Divider().overlay(Color.canvasHairline)
+
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text(convo.subject ?? "(no subject)").font(.system(size: 16, weight: .bold))
-                            .foregroundStyle(Color.inkPrimary)
+                    LazyVStack(alignment: .leading, spacing: 0) {
                         ForEach(vm.messages, id: \.id) { m in
                             MessageBubble(authorName: m.authorName ?? "Unknown", body: m.body ?? "",
                                           date: m.createdAt, isMine: m.authorId == MockData.studentUserId,
                                           isPending: m.pending, isDemo: session.isDemo && m.pending)
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading).padding(20)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 24)
                 }
                 if let error = vm.error {
                     Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal, 10)

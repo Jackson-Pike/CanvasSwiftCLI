@@ -21,13 +21,26 @@ import CanvasCore
 /// Both branches share the same `padding(16)` / `Color.canvasPanel` container so the
 /// three call sites (Assignment detail, Announcement detail, Syllabus) don't each
 /// reimplement the chrome.
+/// How `RichTextView` frames its content.
+///
+/// - `panel` — the padded, filled, hairline-bordered card used by detail panes
+///   (Assignment detail, Announcement detail, Syllabus).
+/// - `bare` — no chrome: content sits flush on whatever background hosts it. Used
+///   by the conversation thread, where every message otherwise became a floating box.
+public enum RichTextChrome: Sendable { case panel, bare }
+
 public struct RichTextView: View {
     private let html: String
     private let linkBaseURL: URL?
+    private let chrome: RichTextChrome
+    private let fontSize: CGFloat
 
-    public init(html: String, linkBaseURL: URL? = nil) {
+    public init(html: String, linkBaseURL: URL? = nil,
+                chrome: RichTextChrome = .panel, fontSize: CGFloat = 15) {
         self.html = html
         self.linkBaseURL = linkBaseURL
+        self.chrome = chrome
+        self.fontSize = fontSize
     }
 
     private var needsWebView: Bool { htmlNeedsWebView(html) }
@@ -35,19 +48,35 @@ public struct RichTextView: View {
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if needsWebView {
-                RichTextWebView(html: html, linkBaseURL: linkBaseURL)
+                RichTextWebView(html: html, linkBaseURL: linkBaseURL, fontSize: fontSize)
             } else {
-                AttributedHTMLText(html: html)
+                AttributedHTMLText(html: html, fontSize: fontSize)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(Color.canvasPanel)
-        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .strokeBorder(Color.canvasHairline, lineWidth: 1)
-        )
+        .modifier(RichTextChromeModifier(chrome: chrome))
+    }
+}
+
+/// Applies (or omits) the panel card treatment. Kept as a modifier so the two
+/// render branches above stay identical across chrome modes.
+private struct RichTextChromeModifier: ViewModifier {
+    let chrome: RichTextChrome
+
+    func body(content: Content) -> some View {
+        switch chrome {
+        case .bare:
+            content
+        case .panel:
+            content
+                .padding(16)
+                .background(Color.canvasPanel)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .strokeBorder(Color.canvasHairline, lineWidth: 1)
+                )
+        }
     }
 }
 
@@ -57,6 +86,7 @@ public struct RichTextView: View {
 /// SwiftUI re-renders don't re-run the (surprisingly expensive) HTML importer.
 private struct AttributedHTMLText: View {
     let html: String
+    var fontSize: CGFloat = 15
 
     @State private var cache: (source: String, text: AttributedString)?
 
@@ -67,7 +97,7 @@ private struct AttributedHTMLText: View {
 
     var body: some View {
         Text(attributed)
-            .font(.system(size: 15))
+            .font(.system(size: fontSize))
             .foregroundStyle(Color.inkPrimary)
             .textSelection(.enabled)
             .fixedSize(horizontal: false, vertical: true)
@@ -98,9 +128,17 @@ private struct AttributedHTMLText: View {
 
         var attributed = AttributedString(ns)
         for run in attributed.runs {
+            // Strip both the SwiftUI *and* AppKit attribute scopes. The HTML importer
+            // stamps every run with a concrete `NSFont` (Times ~12pt) under the AppKit
+            // scope; clearing only the SwiftUI `.font` leaves that NSFont in place, and
+            // an explicit per-run AppKit font wins over the `.font(.system(size:))`
+            // view modifier — so the caller's font/size would silently do nothing.
             attributed[run.range].font = nil
             attributed[run.range].foregroundColor = nil
             attributed[run.range].backgroundColor = nil
+            attributed[run.range].appKit.font = nil
+            attributed[run.range].appKit.foregroundColor = nil
+            attributed[run.range].appKit.backgroundColor = nil
         }
 
         // Trim the trailing newline the HTML importer appends to block-level content.
@@ -124,6 +162,7 @@ private extension AttributedString {
 private struct RichTextWebView: View {
     let html: String
     let linkBaseURL: URL?
+    var fontSize: CGFloat = 15
 
     @Environment(\.colorScheme) private var colorScheme
     @State private var contentHeight: CGFloat = 80
@@ -133,6 +172,7 @@ private struct RichTextWebView: View {
             html: html,
             linkBaseURL: linkBaseURL,
             colorScheme: colorScheme,
+            fontSize: fontSize,
             contentHeight: $contentHeight
         )
         .frame(height: contentHeight)
@@ -144,10 +184,11 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
     let html: String
     let linkBaseURL: URL?
     let colorScheme: ColorScheme
+    let fontSize: CGFloat
     @Binding var contentHeight: CGFloat
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(contentHeight: $contentHeight)
+        Coordinator(contentHeight: $contentHeight, fontSize: fontSize)
     }
 
     func makeNSView(context: Context) -> WKWebView {
@@ -179,6 +220,7 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
 
     final class Coordinator: NSObject, WKNavigationDelegate {
         @Binding private var contentHeight: CGFloat
+        private let fontSize: CGFloat
 
         /// Identity of the content currently loaded, so `updateNSView` (which SwiftUI
         /// calls freely) doesn't reload — and thus re-flash — unchanged HTML.
@@ -189,8 +231,9 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
         /// handed to the browser instead.
         private var hasAllowedInitialLoad = false
 
-        init(contentHeight: Binding<CGFloat>) {
+        init(contentHeight: Binding<CGFloat>, fontSize: CGFloat) {
             self._contentHeight = contentHeight
+            self.fontSize = fontSize
         }
 
         func load(html: String, baseURL: URL?, into webView: WKWebView, colorScheme: ColorScheme) {
@@ -199,7 +242,7 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
             loadedKey = key
             hasAllowedInitialLoad = false
             webView.appearance = NSAppearance(named: colorScheme == .dark ? .darkAqua : .aqua)
-            webView.loadHTMLString(Coordinator.document(wrapping: html), baseURL: baseURL)
+            webView.loadHTMLString(Coordinator.document(wrapping: html, fontSize: fontSize), baseURL: baseURL)
         }
 
         // MARK: Navigation policy
@@ -272,7 +315,7 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
         /// a glaring white rectangle: WebKit inherits the host `NSView`'s appearance,
         /// so the media query flips in lockstep with the SwiftUI environment, and the
         /// hard-coded hex values mirror the `canvasPanel` / `inkPrimary` tokens.
-        static func document(wrapping body: String) -> String {
+        static func document(wrapping body: String, fontSize: CGFloat = 15) -> String {
             """
             <!DOCTYPE html>
             <html>
@@ -303,7 +346,7 @@ private struct RichTextWebViewRepresentable: NSViewRepresentable {
                 color: var(--ink);
               }
               body {
-                font: 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+                font: \(String(format: "%.1f", fontSize))px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
                 line-height: 1.6;
                 overflow-x: auto;
                 -webkit-text-size-adjust: 100%;
