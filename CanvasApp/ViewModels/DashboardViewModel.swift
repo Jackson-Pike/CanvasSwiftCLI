@@ -120,7 +120,16 @@ final class DashboardViewModel {
         awaitingGrade = allAwaitingGrade.sorted {
             ($0.assignment.dueAt ?? .distantPast) > ($1.assignment.dueAt ?? .distantPast)
         }
+        // Duplicate submission/comment rows in the store (tolerated by `stream()`) can emit the
+        // same comment more than once. Dedup by (assignment, author, text, timestamp) *before*
+        // taking the top 3, so one repeated comment can't fill the whole panel.
+        var seenFeedback = Set<String>()
         recentFeedback = allFeedback
+            .filter { item in
+                guard case .feedback(let author, let comment, let date) = item.kind else { return false }
+                let key = "\(item.assignment.id)|\(author)|\(comment)|\(date?.timeIntervalSince1970 ?? 0)"
+                return seenFeedback.insert(key).inserted
+            }
             .sorted { lhs, rhs in
                 guard case .feedback(_, _, let lDate) = lhs.kind,
                       case .feedback(_, _, let rDate) = rhs.kind else { return false }
@@ -134,14 +143,11 @@ final class DashboardViewModel {
         lastSyncedAt = try? repository.lastSyncedAt(entityKind: "courses", scopeId: "all")
     }
 
-    /// Fixed demo palette by course-code prefix; falls back to a stable hash color for
-    /// anything outside the demo set (mirrors `MainWindowView.accentColor(for:)`).
+    /// Stable hash of the course code into the shared `courseAccentPalette`. This is the *same*
+    /// mapping the sidebar uses (`MainWindowView.accentColor(for:)`), so a course's dot color is
+    /// identical on the dashboard ledger and in the sidebar — the previous prefix-based special
+    /// casing gave demo courses a different color in each place.
     private static func dotColor(for code: String) -> Color {
-        let upper = code.uppercased()
-        if upper.hasPrefix("CS")   { return Color(red: 0x3E / 255, green: 0x8A / 255, blue: 0x86 / 255) } // teal
-        if upper.hasPrefix("MATH") { return Color(red: 0x4E / 255, green: 0x7C / 255, blue: 0xA8 / 255) } // muted blue
-        if upper.hasPrefix("HIST") { return Color(red: 0x7A / 255, green: 0x4E / 255, blue: 0x86 / 255) } // muted purple
-        if upper.hasPrefix("REL")  { return Color(red: 0xB4 / 255, green: 0x55 / 255, blue: 0x3A / 255) } // clay
         let hues = Color.courseAccentPalette
         return hues[abs(code.hashValue) % hues.count]
     }

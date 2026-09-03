@@ -140,7 +140,7 @@ struct DashboardView: View {
                         .padding(.bottom, 4)
                 }
                 if !dueSoonItems.isEmpty {
-                    DueSoonStrip(items: dueSoonItems, onItemClick: { item in
+                    DueSoonStrip(items: dueSoonItems, courseColors: dotColors, onItemClick: { item in
                         if let urlString = item.htmlUrl, let url = URL(string: urlString) {
                             NSWorkspace.shared.open(url)
                         }
@@ -299,12 +299,14 @@ struct DashboardView: View {
     }
 
     private var feedbackRows: [FeedbackRow] {
-        vm.recentFeedback.compactMap { item -> FeedbackRow? in
+        vm.recentFeedback.enumerated().compactMap { index, item -> FeedbackRow? in
             guard case .feedback(let authorName, let comment, _) = item.kind else { return nil }
             let resolvedCourseId = courseId(for: item)
             let tint = resolvedCourseId.flatMap { dotColors[$0] } ?? .accentHypothetical
             return FeedbackRow(
-                id: item.assignment.id,
+                // Two distinct comments can share one assignment id; fold in the row index so
+                // `ForEach` identities stay unique (a collision drops/duplicates rows).
+                id: item.assignment.id &* 100 &+ index,
                 initials: initials(from: authorName),
                 tint: tint,
                 author: authorName,

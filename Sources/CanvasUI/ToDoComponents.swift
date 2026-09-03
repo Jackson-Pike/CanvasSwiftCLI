@@ -145,16 +145,16 @@ public struct DueSoonStrip: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 6) {
                     Image(systemName: "clock.badge.exclamationmark")
-                        .foregroundColor(.orange)
+                        .foregroundStyle(Color.lostMissing)
                     Text("Due Soon (Next 24 Hours)")
                         .font(.subheadline.weight(.semibold))
-                        .foregroundColor(.inkPrimary)
+                        .foregroundStyle(Color.inkPrimary)
                 }
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
                         ForEach(items) { item in
-                            let color = item.courseId.flatMap { courseColors[$0] } ?? .orange
+                            let color = item.courseId.flatMap { courseColors[$0] } ?? .inkTertiary
                             Button {
                                 onItemClick?(item)
                             } label: {
@@ -189,7 +189,7 @@ public struct DueSoonStrip: View {
                 }
             }
             .padding(12)
-            .background(Color.orange.opacity(0.08))
+            .background(Color.lostMissing.opacity(0.06))
             .cornerRadius(10)
         }
     }
