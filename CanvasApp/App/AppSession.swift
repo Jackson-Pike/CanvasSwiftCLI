@@ -92,6 +92,17 @@ final class AppSession {
         saveCredentials(host: newHost, token: token)
     }
 
+    /// Wipes every cached row (courses, submissions, comments, planner, etc.) and re-syncs from
+    /// scratch, keeping the current login. Use to clear stale/demo data left in the local store.
+    func resetCache() {
+        try? repository.clearStore()
+        detailVMs = [:]
+        Task {
+            await refresh(.all, force: true)
+            await coursesVM.load(session: self, force: true)
+        }
+    }
+
     func testConnection(host testHost: String, token: String) async -> Result<Profile, any Error> {
         let client = APIClient(credentials: Credentials(host: testHost, token: token))
         do { return .success(try await client.profile()) }

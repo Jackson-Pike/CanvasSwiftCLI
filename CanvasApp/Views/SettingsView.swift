@@ -12,6 +12,7 @@ struct SettingsView: View {
     @State private var tokenInput = ""
     @State private var testState: TestState = .idle
     @State private var confirmHostChange = false
+    @State private var confirmReset = false
     // UserDefaults-backed, so a locally-owned instance reads/writes the same keys as any other
     // instance (e.g. the one `MainWindowBody` owns for the sidebar's below-target coloring). A
     // shared injected instance would be cleaner architecturally, but for Phase 1a the shared
@@ -129,8 +130,14 @@ struct SettingsView: View {
                 Button("Save") {
                     guard let normalized = normalizedHost else { return }
                     let hostChanged = normalized != session.host
+                    // Demo mode seeds MockData into the store; those rows must be wiped before
+                    // real data syncs on top, or they linger (and get merged into) the real account.
+                    let leavingDemo = session.isDemo && tokenInput != "DEMO"
                     let hasData = !((try? session.repository.courses(includeHidden: true)) ?? []).isEmpty
-                    if hostChanged && hasData {
+                    if leavingDemo {
+                        session.replaceCredentials(host: normalized, token: tokenInput)
+                        if !isOnboarding { dismiss() }
+                    } else if hostChanged && hasData {
                         confirmHostChange = true
                     } else {
                         session.saveCredentials(host: normalized, token: tokenInput)
@@ -173,6 +180,30 @@ struct SettingsView: View {
                 if !isOnboarding {
                     CustomizationSection(vm: vm, session: session, courseSettings: courseSettings)
                     NotificationSettingsSection(session: session)
+                }
+
+                if !isOnboarding {
+                    Divider()
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Local Data")
+                            .font(.subheadline).foregroundStyle(.secondary)
+                        Button(role: .destructive) {
+                            confirmReset = true
+                        } label: {
+                            Label("Reset Local Cache", systemImage: "trash")
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                        .confirmationDialog(
+                            "Clear all cached data and re-sync from \(session.host)? Your login is kept.",
+                            isPresented: $confirmReset
+                        ) {
+                            Button("Clear & Re-sync", role: .destructive) { session.resetCache() }
+                            Button("Cancel", role: .cancel) {}
+                        }
+                        Text("Wipes cached courses, grades, messages, and any leftover demo data, then re-downloads everything.")
+                            .font(.caption).foregroundStyle(.secondary)
+                    }
                 }
 
                 let hidden = vm.hiddenCourses(session: session)
