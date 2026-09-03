@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/SettingsView.swift": {
-    "mtime": 1788369927.8399103,
-    "ast_hash": "ccd9b89cbd9e08101cdd099e15e13032",
+    "mtime": 1788381919.5219576,
+    "ast_hash": "c656a4410c97c2d241d90ffe49da0851",
     "semantic_hash": ""
   },
   "CanvasApp/Views/WelcomeView.swift": {
@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasCore/MockData.swift": {
-    "mtime": 1787364323.0023448,
-    "ast_hash": "4dc6ca25e058106bdfa372d5bc978c32",
+    "mtime": 1788377205.128751,
+    "ast_hash": "f4c90d46e23c4e13a7987892615b43fd",
     "semantic_hash": ""
   },
   "Sources/CanvasCore/Models.swift": {
@@ -330,8 +330,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/App/AppSession.swift": {
-    "mtime": 1787364815.323236,
-    "ast_hash": "a803a8d03f171417d797513db1f03b76",
+    "mtime": 1788381908.9929836,
+    "ast_hash": "afc89acff0ce2ce2433e8c51cb62251e",
     "semantic_hash": ""
   },
   "CanvasApp/App/Router.swift": {
@@ -395,8 +395,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/MainWindowView.swift": {
-    "mtime": 1788375093.1700032,
-    "ast_hash": "7848cac8906b4059c10b1a0973b02ca2",
+    "mtime": 1788375447.105071,
+    "ast_hash": "d9f9cd695d3737477bfaf8b610e0e636",
     "semantic_hash": ""
   },
   "Tests/CanvasDataTests/ConcurrencyStressTests.swift": {
@@ -415,13 +415,13 @@
     "semantic_hash": ""
   },
   "CanvasApp/ViewModels/DashboardViewModel.swift": {
-    "mtime": 1788372905.3485825,
-    "ast_hash": "aecab37ada801bd729ae69bf99fc4422",
+    "mtime": 1788381261.5753665,
+    "ast_hash": "02d6d029be6d8fa445dc85e0df76a127",
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/DashboardView.swift": {
-    "mtime": 1788371787.8510773,
-    "ast_hash": "23cc422eb8a606bdbcc756dbc03ad8bf",
+    "mtime": 1788381517.302637,
+    "ast_hash": "4edc7c2c030bc8285c45e0b03e2b0a64",
     "semantic_hash": ""
   },
   "Sources/CanvasCore/PointsLedger.swift": {
@@ -575,8 +575,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasUI/RichTextView.swift": {
-    "mtime": 1788373790.696217,
-    "ast_hash": "e3e62536c4a6dd23451829eeac49cf4c",
+    "mtime": 1788376118.3809676,
+    "ast_hash": "066dfc0c1e2a8631d31fefcbabe4f95b",
     "semantic_hash": ""
   },
   "Tests/CanvasCoreTests/AssignmentPredicatesTests.swift": {
@@ -620,8 +620,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/InboxView.swift": {
-    "mtime": 1786295415.885217,
-    "ast_hash": "3036bcf3041c88b0fdcbde74749ed065",
+    "mtime": 1788375851.0484514,
+    "ast_hash": "4db1c6466bac13ba92a388f9a5f3d5e8",
     "semantic_hash": ""
   },
   "Sources/CanvasCore/ConversationModels.swift": {
@@ -665,8 +665,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasUI/InboxComponents.swift": {
-    "mtime": 1788375186.2024357,
-    "ast_hash": "72066dbcdf59f3ca9788572c623df45f",
+    "mtime": 1788380856.2398708,
+    "ast_hash": "e94781552915e012a82065248f64d9d5",
     "semantic_hash": ""
   },
   "Tests/CanvasCoreTests/ConversationAPITests.swift": {
@@ -765,8 +765,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasUI/ToDoComponents.swift": {
-    "mtime": 1788373266.756728,
-    "ast_hash": "01a51e8995fc44ce41d2e84689c0d7fa",
+    "mtime": 1788381513.1164622,
+    "ast_hash": "c362dafafb52ba62c758425896bccca6",
     "semantic_hash": ""
   },
   "Tests/CanvasCoreTests/CalendarAPITests.swift": {
