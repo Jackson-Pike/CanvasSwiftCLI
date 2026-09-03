@@ -48,7 +48,8 @@ private struct MainWindowBody: View {
                 Section("Courses") {
                     // §1.5: the ledger shows numbers, so the sidebar does too.
                     ForEach(coursesVM.courses, id: \.id) { course in
-                        courseRow(id: course.id, code: course.courseCode)
+                        courseRow(id: course.id, code: course.courseCode,
+                                  label: course.nickname ?? course.courseCode)
                     }
                 }
             }
@@ -162,15 +163,17 @@ private struct MainWindowBody: View {
     }
 
     @ViewBuilder
-    private func courseRow(id: Int, code: String) -> some View {
+    private func courseRow(id: Int, code: String, label: String) -> some View {
         let item = SidebarItem.course(id)
         let selected = router.sidebar == item
         Button {
             router.sidebar = item
         } label: {
             HStack(spacing: 8) {
+                // Color stays keyed on `code` so the dot is stable regardless of nickname.
                 Circle().fill(accentColor(for: code)).frame(width: 8, height: 8)
-                Text(code)
+                Text(label)
+                    .lineLimit(1).truncationMode(.tail)
                     .font(.system(size: 13, weight: selected ? .semibold : .regular))
                     .foregroundStyle(Color.inkPrimary)
                 Spacer(minLength: 4)

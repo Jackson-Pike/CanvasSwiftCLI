@@ -16,15 +16,21 @@ public struct Course: Codable {
     public let id: Int
     public let name: String
     public let courseCode: String
+    /// The real course name. Canvas returns this *only* when the student has set a nickname —
+    /// in which case `name` is the nickname and `originalName` is the underlying course name.
+    /// So a non-nil `originalName` is the signal that `name` is a student-chosen nickname.
+    public let originalName: String?
     public let applyAssignmentGroupWeights: Bool?
     public let gradingScheme: [GradingSchemeEntry]?
     public let syllabusBody: String?
 
-    public init(id: Int, name: String, courseCode: String, applyAssignmentGroupWeights: Bool?,
+    public init(id: Int, name: String, courseCode: String, originalName: String? = nil,
+                applyAssignmentGroupWeights: Bool?,
                 gradingScheme: [GradingSchemeEntry]?, syllabusBody: String? = nil) {
         self.id = id
         self.name = name
         self.courseCode = courseCode
+        self.originalName = originalName
         self.applyAssignmentGroupWeights = applyAssignmentGroupWeights
         self.gradingScheme = gradingScheme
         self.syllabusBody = syllabusBody

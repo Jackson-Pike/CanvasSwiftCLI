@@ -138,15 +138,18 @@ public actor SyncEngine {
             let schemeJSON = c.gradingScheme.flatMap {
                 try? JSONEncoder().encode($0.map { SchemePair(name: $0.name, value: $0.value) })
             }
+            // Canvas returns `original_name` only when a nickname is set; in that case `name`
+            // is the student's nickname. No nickname → `name` is the real course name → store nil.
+            let nickname = c.originalName != nil ? c.name : nil
             if let row = existing[c.id] {
-                row.name = c.name; row.courseCode = c.courseCode
+                row.name = c.name; row.courseCode = c.courseCode; row.nickname = nickname
                 row.applyGroupWeights = c.applyAssignmentGroupWeights ?? false
                 row.gradingSchemeJSON = schemeJSON
                 row.syllabusBody = c.syllabusBody
                 row.sortIndex = i; row.removedAt = nil
             } else {
                 modelContext.insert(CachedCourse(
-                    id: c.id, name: c.name, courseCode: c.courseCode,
+                    id: c.id, name: c.name, courseCode: c.courseCode, nickname: nickname,
                     applyGroupWeights: c.applyAssignmentGroupWeights ?? false,
                     gradingSchemeJSON: schemeJSON,
                     hidden: legacy.contains(c.id), sortIndex: i,

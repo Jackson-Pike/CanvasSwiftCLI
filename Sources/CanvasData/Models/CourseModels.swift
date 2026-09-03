@@ -13,6 +13,8 @@ public final class CachedCourse {
     @Attribute(.unique) public var id: Int
     public var name: String
     public var courseCode: String
+    /// Student-set course nickname, or nil when none is set. Preferred over `courseCode` for display.
+    public var nickname: String?
     public var applyGroupWeights: Bool
     public var gradingSchemeJSON: Data?
     public var hidden: Bool
@@ -22,11 +24,12 @@ public final class CachedCourse {
     public var syllabusBody: String?
     public var removedAt: Date?
 
-    public init(id: Int, name: String, courseCode: String, applyGroupWeights: Bool,
+    public init(id: Int, name: String, courseCode: String, nickname: String? = nil,
+                applyGroupWeights: Bool,
                 gradingSchemeJSON: Data?, hidden: Bool = false, pinned: Bool = false,
                 sortIndex: Int, accentColorHex: String? = nil,
                 syllabusBody: String? = nil, removedAt: Date? = nil) {
-        self.id = id; self.name = name; self.courseCode = courseCode
+        self.id = id; self.name = name; self.courseCode = courseCode; self.nickname = nickname
         self.applyGroupWeights = applyGroupWeights; self.gradingSchemeJSON = gradingSchemeJSON
         self.hidden = hidden; self.pinned = pinned; self.sortIndex = sortIndex
         self.accentColorHex = accentColorHex; self.syllabusBody = syllabusBody
