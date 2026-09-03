@@ -65,7 +65,7 @@ private struct CourseWorkspaceBody: View {
                 FilesTabView(courseId: courseId).id(courseId)
             }
         }
-        .navigationTitle(vm.courseCode ?? "Course")
+        .navigationTitle(vm.courseName ?? "Course")
         .toolbar {
             ToolbarItem {
                 Toggle(isOn: $router.sandboxOpen) { Image(systemName: "function") }

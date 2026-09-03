@@ -11,6 +11,7 @@ final class CourseDetailViewModel: ObservableObject {
     @Published var error: String?
     @Published var lastSyncedAt: Date?
     @Published var courseCode: String?
+    @Published var courseName: String?
 
     var calculator: GradeCalculator? {
         inputs.map { GradeCalculator(items: $0.items, groups: $0.groups,
@@ -34,7 +35,9 @@ final class CourseDetailViewModel: ObservableObject {
     private func readFromStore(_ session: AppSession) {
         inputs = (try? session.repository.calculatorInputs(courseId: courseId)) ?? nil
         streamItems = (try? session.repository.stream(courseId: courseId)) ?? []
-        courseCode = (try? session.repository.course(id: courseId))?.courseCode
+        let course = try? session.repository.course(id: courseId)
+        courseCode = course?.courseCode
+        courseName = course?.name
         lastSyncedAt = try? session.repository.lastSyncedAt(entityKind: "submissions", scopeId: "\(courseId)")
     }
 }

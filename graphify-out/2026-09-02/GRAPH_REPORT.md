@@ -1,7 +1,7 @@
 # Graph Report - CanvasCLISwift  (2026-09-02)
 
 ## Corpus Check
-- 185 files · ~149,770 words
+- 185 files · ~149,920 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

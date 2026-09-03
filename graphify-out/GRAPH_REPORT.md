@@ -1,16 +1,16 @@
 # Graph Report - CanvasCLISwift  (2026-09-02)
 
 ## Corpus Check
-- 185 files · ~149,920 words
+- 185 files · ~149,931 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2485 nodes · 5610 edges · 119 communities (106 shown, 13 thin omitted)
+- 2485 nodes · 5610 edges · 120 communities (106 shown, 14 thin omitted)
 - Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 770 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3e9d159c`
+- Built from commit: `d1ae2013`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -124,6 +124,7 @@
 - RepositoryTests
 - Style
 - Paper & Signal — Implementation Plan
+- BackgroundRefreshController.swift
 - QuickOpenViewModel
 - Sendable
 - CalendarEvent
@@ -162,7 +163,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (119 total, 13 thin omitted)
+## Communities (120 total, 14 thin omitted)
 
 ### Community 0 - "Credentials"
 Cohesion: 0.15
@@ -438,11 +439,7 @@ Nodes (5): htmlNeedsWebView(), Bool, String, .needsWebView, RichTextHeuristicTes
 
 ### Community 74 - "SwiftUI"
 Cohesion: 0.10
-Nodes (4): AppKit, CanvasUI, QuickLook, SwiftUI
-
-### Community 75 - "Foundation"
-Cohesion: 0.08
-Nodes (4): Foundation, IOKit.ps, Network, UserNotifications
+Nodes (3): CanvasUI, QuickLook, SwiftUI
 
 ### Community 76 - "CalculatorViewModel"
 Cohesion: 0.06
@@ -568,6 +565,10 @@ Nodes (5): Style, finalExam, graded, missing, upcoming
 Cohesion: 0.18
 Nodes (10): 1a. Set the token to orchid, 1b. Key subtlety — `.tint()` vs `Color.accentColor`, 1c. Sites to re-point (from grep 2026-09-01), 1d. Verify, Chosen values, Direction in one line, HIG guardrails, Paper & Signal — Implementation Plan (+2 more)
 
+### Community 109 - "BackgroundRefreshController.swift"
+Cohesion: 0.33
+Nodes (4): AppKit, IOKit.ps, Network, UserNotifications
+
 ### Community 111 - "QuickOpenViewModel"
 Cohesion: 0.20
 Nodes (11): QuickOpenViewModel, .query, Bool, Int, String, QuickOpenOverlay, .body, .headerSearchField (+3 more)
@@ -591,14 +592,14 @@ Nodes (28): CourseDetailBody, CourseDetailView, .body, Int, CourseWorkspaceBody,
 ## Knowledge Gaps
 - **526 isolated node(s):** `.isDemo`, `.hasCredentials`, `IOKit.ps`, `Network`, `.coursesVM` (+521 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `View` connect `View` to `DashboardView`, `InboxViewModel`, `CoursesViewModel`, `CachedFile`, `SettingsView`, `FeedbackRow`, `CourseCard`, `CourseDetailViewModel`, `ScenarioChips`, `LedgerRowView`, `CourseGradeSummary`, `Text`, `SemesterTimelineStrip`, `AssignmentRow`, `UnifiedCalendarItem`, `RichTextView`, `ToDoItem`, `ModuleSectionView`, `AssignmentFilter`, `AssignmentsViewModel`, `CalculatorViewModel`, `AssignmentListRow`, `StreamItem`, `MainWindowView.swift`, `ComposeSheet`, `DiscussionsViewModel`, `GradeTrendChart`, `AnnouncementsViewModel`, `ModulesViewModel`, `SearchResultItem`, `AgeCapsule`, `GroupInfo`, `QuickOpenViewModel`?**
   _High betweenness centrality (0.143) - this node is a cross-community bridge._
-- **Why does `CanvasCore` connect `CanvasCore` to `UnifiedCalendarItem`, `CachedCourse`, `RichTextView`, `CanvasData`, `ToDoItem`, `GroupInfo`, `SwiftUI`, `Foundation`, `AssignmentListRow`, `StreamItem`, `MainWindowView.swift`, `ComposeSheet`, `.plan`, `DiscussionsViewModel`, `GradeTrendChart`?**
+- **Why does `CanvasCore` connect `CanvasCore` to `UnifiedCalendarItem`, `CachedCourse`, `RichTextView`, `CanvasData`, `ToDoItem`, `GroupInfo`, `SwiftUI`, `Foundation`, `BackgroundRefreshController.swift`, `StreamItem`, `AssignmentListRow`, `MainWindowView.swift`, `ComposeSheet`, `.plan`, `DiscussionsViewModel`, `GradeTrendChart`?**
   _High betweenness centrality (0.096) - this node is a cross-community bridge._
 - **Why does `SyncEngine` connect `SyncEngine` to `Credentials`, `AppSession`, `Foundation`, `XCTestCase`, `.makeRepo`, `Sendable`, `APIClient`, `SyncEngineCourseTests`?**
   _High betweenness centrality (0.061) - this node is a cross-community bridge._

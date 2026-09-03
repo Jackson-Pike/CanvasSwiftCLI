@@ -65,8 +65,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasCore/Models.swift": {
-    "mtime": 1787364621.7582483,
-    "ast_hash": "82cbbb9be76639ed331f5851975f87a3",
+    "mtime": 1788394093.8938174,
+    "ast_hash": "daa073c4a820a3a88836be045144044e",
     "semantic_hash": ""
   },
   "Sources/CanvasData/ChangeKind.swift": {
@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasData/Models/CourseModels.swift": {
-    "mtime": 1786219448.138057,
-    "ast_hash": "c205f2e28198c88282e800ac6582ecc5",
+    "mtime": 1788394106.510436,
+    "ast_hash": "1af1d41856f4d9b3a8c79e987daa670b",
     "semantic_hash": ""
   },
   "Sources/CanvasData/Models/SubmissionModels.swift": {
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "Sources/CanvasData/SyncEngine.swift": {
-    "mtime": 1787364454.4764364,
-    "ast_hash": "59c8d2a130c2d26b744b9cb792bdcf17",
+    "mtime": 1788394116.564563,
+    "ast_hash": "2c65c7d8f947463a0f8877456a6b38ce",
     "semantic_hash": ""
   },
   "Tests/CanvasDataTests/SyncEngineAllTests.swift": {
@@ -395,8 +395,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/MainWindowView.swift": {
-    "mtime": 1788375447.105071,
-    "ast_hash": "d9f9cd695d3737477bfaf8b610e0e636",
+    "mtime": 1788394132.7229948,
+    "ast_hash": "7efb35f5edfac5caecf9974c3c2dc506",
     "semantic_hash": ""
   },
   "Tests/CanvasDataTests/ConcurrencyStressTests.swift": {
