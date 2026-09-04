@@ -4,7 +4,7 @@ import SwiftData
 public enum CanvasStore {
     public static let schema = Schema([
         CachedCourse.self, CachedEnrollment.self, CachedAssignmentGroup.self,
-        CachedAssignment.self, CachedSubmission.self, CachedComment.self,
+        CachedAssignment.self, CachedSubmission.self, CachedSubmissionDraft.self, CachedComment.self,
         GradeSnapshot.self, ChangeRecord.self, SyncMetadata.self,
         CachedAnnouncement.self,
         CachedConversation.self, CachedMessage.self,
