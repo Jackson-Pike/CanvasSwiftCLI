@@ -8,6 +8,8 @@ struct AssignmentsTabView: View {
     @Environment(AppSession.self) private var session
     @Environment(Router.self) private var router
     @StateObject private var vm: AssignmentsViewModel
+    @State private var submissionVM = SubmissionViewModel()
+    @State private var showFileImporter = false
 
     init(courseId: Int) {
         self.courseId = courseId
@@ -98,6 +100,7 @@ struct AssignmentsTabView: View {
                         .font(.system(size: 16, weight: .bold))
                         .foregroundStyle(Color.inkPrimary)
                     metadataBlock(row)
+                    submissionSection(row)
                     RichTextView(html: row.assignment.descriptionHTML ?? "<p>No description.</p>")
                     rubricSection(row)
                     commentsSection
@@ -169,6 +172,77 @@ struct AssignmentsTabView: View {
                     assessment: row.submission?.rubricAssessment ?? [:]))
             }
         }
+    }
+
+    @ViewBuilder
+    private func submissionSection(_ row: AssignmentsViewModel.Row) -> some View {
+        let supported = SubmissionType.supported(from: row.assignment.submissionTypes)
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Submission").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
+            if supported.isEmpty {
+                // Unsupported type (quiz, external tool, on-paper) — link out.
+                if let html = row.assignment.htmlURL, let url = URL(string: html) {
+                    Link(destination: url) { Label("Submit in Canvas", systemImage: "arrow.up.forward.square") }
+                } else {
+                    Text("This assignment can't be submitted here.")
+                        .font(.system(size: 12)).foregroundStyle(Color.inkTertiary)
+                }
+            } else {
+                SubmissionEditor(
+                    types: supported,
+                    selection: Binding(get: { submissionVM.selection }, set: { submissionVM.selection = $0 }),
+                    text: Binding(get: { submissionVM.text }, set: { submissionVM.text = $0 }),
+                    url: Binding(get: { submissionVM.url }, set: { submissionVM.url = $0 }),
+                    files: submissionVM.uiFiles,
+                    allowedExtensions: submissionVM.allowedExtensions,
+                    onAddFiles: { showFileImporter = true },
+                    onRemoveFile: { submissionVM.removeFile($0) })
+
+                SubmissionStatusView(phase: submissionVM.phase)
+
+                HStack(spacing: 10) {
+                    Button("Submit") { submissionVM.showConfirmation = true }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(!submissionVM.canSubmit || session.apiClient == nil || submissionVM.isSubmitting)
+                    if submissionVM.isSubmitting {
+                        // Spec §7: the flow is cancellable up to the final POST.
+                        Button("Cancel") { submissionVM.cancel() }
+                    }
+                    if session.apiClient == nil {
+                        Text("Sign in to submit").font(.system(size: 11)).foregroundStyle(Color.inkTertiary)
+                    }
+                    // Failure escape hatch (spec §7): always offer "Open in Canvas" after a failed submit.
+                    if case .failed = submissionVM.phase, let html = row.assignment.htmlURL, let url = URL(string: html) {
+                        Link("Open in Canvas", destination: url).font(.system(size: 12))
+                    }
+                }
+            }
+        }
+        .task(id: row.assignment.id) {
+            submissionVM.load(session: session, assignment: row.assignment, courseId: courseId)
+        }
+        // Autosave text/URL drafts as the user types.
+        .onChange(of: submissionVM.text) { _, _ in autosave(row) }
+        .onChange(of: submissionVM.url) { _, _ in autosave(row) }
+        .sheet(isPresented: Binding(get: { submissionVM.showConfirmation },
+                                    set: { submissionVM.showConfirmation = $0 })) {
+            SubmissionConfirmationSheet(
+                assignmentName: row.assignment.name,
+                dueAt: row.assignment.dueAt,
+                isLate: submissionVM.isLate(dueAt: row.assignment.dueAt),
+                attempt: submissionVM.attemptNumber,
+                payloadLines: submissionVM.payloadLines(),
+                isDemo: session.isDemo,
+                onConfirm: { Task { await submissionVM.confirmSubmit(session: session, courseId: courseId, assignment: row.assignment) } },
+                onCancel: { submissionVM.showConfirmation = false })
+        }
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
+            if case .success(let urls) = result { submissionVM.addFiles(urls: urls) }
+        }
+    }
+
+    private func autosave(_ row: AssignmentsViewModel.Row) {
+        Task { await submissionVM.autosaveDraft(session: session, courseId: courseId, assignmentId: row.assignment.id) }
     }
 
     @ViewBuilder
