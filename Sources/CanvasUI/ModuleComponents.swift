@@ -6,11 +6,14 @@ public struct ModuleSectionView: View {
     public let items: [CachedModuleItem]
     public let onItemSelect: (CachedModuleItem) -> Void
 
-    @State private var isExpanded: Bool = true
+    /// Bound so a parent can drive Expand All / Collapse All across every section.
+    @Binding public var isExpanded: Bool
 
-    public init(module: CachedModule, items: [CachedModuleItem], onItemSelect: @escaping (CachedModuleItem) -> Void) {
+    public init(module: CachedModule, items: [CachedModuleItem],
+                isExpanded: Binding<Bool>, onItemSelect: @escaping (CachedModuleItem) -> Void) {
         self.module = module
         self.items = items
+        self._isExpanded = isExpanded
         self.onItemSelect = onItemSelect
     }
 
@@ -54,7 +57,11 @@ public struct ModuleSectionView: View {
 
                 Spacer()
 
-                if let state = module.state, !state.isEmpty {
+                // Canvas returns a module's `state` as "completed" by default when the module
+                // has no completion requirements (nothing to track = trivially done), so the
+                // pill is only meaningful — and only shown, matching Canvas's own web UI — when
+                // at least one item actually carries a completion requirement.
+                if let state = module.state, !state.isEmpty, tracksCompletion {
                     Text(state.capitalized)
                         .font(.system(size: 10, weight: .semibold))
                         .foregroundStyle(stateColor(state))
@@ -72,6 +79,12 @@ public struct ModuleSectionView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+    }
+
+    /// A module tracks completion only if at least one of its items has a completion
+    /// requirement; otherwise Canvas's "completed" state is a meaningless default.
+    private var tracksCompletion: Bool {
+        items.contains { $0.completionRequirementType != nil }
     }
 
     private func stateColor(_ state: String) -> Color {

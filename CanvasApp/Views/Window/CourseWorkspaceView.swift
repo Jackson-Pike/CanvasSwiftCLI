@@ -50,7 +50,12 @@ private struct CourseWorkspaceBody: View {
                 Rectangle().fill(Color.canvasHairline).frame(height: 1)
             }
             if router.courseTab == .grades {
+                // `.id(courseId)`: GradesSandboxSplit seeds a `@StateObject` CalculatorViewModel
+                // from the course's inputs, so without a per-course identity SwiftUI reuses the
+                // first course's calculator and the ledger stays stuck on it while the title
+                // (driven by the observed vm) still updates. Every sibling tab keys the same way.
                 GradesTabView(vm: vm, onFixCredentials: { showSettings = true })
+                    .id(courseId)
             } else if router.courseTab == .assignments {
                 AssignmentsTabView(courseId: courseId).id(courseId)
             } else if router.courseTab == .announcements {
@@ -65,6 +70,12 @@ private struct CourseWorkspaceBody: View {
                 FilesTabView(courseId: courseId).id(courseId)
             }
         }
+        // Fill the detail pane and pin the tab strip to the top. Without this the VStack
+        // sizes to its content, so a tab whose content is a small view (an empty-state
+        // ContentUnavailableView) collapses the stack and centers it — floating the tab
+        // bar into the middle of the pane. Data-bearing tabs return a greedy scroll view
+        // and hid the bug.
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .navigationTitle(vm.courseName ?? "Course")
         .toolbar {
             ToolbarItem {

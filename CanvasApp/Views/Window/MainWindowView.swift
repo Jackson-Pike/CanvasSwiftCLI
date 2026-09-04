@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 import CanvasCore
 import CanvasData
 import CanvasUI
@@ -32,6 +33,10 @@ private struct MainWindowBody: View {
     /// receives it rather than constructing its own so the same prefs back the sidebar's
     /// below-target coloring too.
     @State private var settings = CourseSettingsStore()
+    /// Courses whose quick-link sub-rows are currently disclosed (session-only).
+    @State private var expandedCourses: Set<Int> = []
+    /// Non-nil while the add/edit-quick-link sheet is presented.
+    @State private var quickLinkEditor: QuickLinkEditor?
 
     private var inboxUnread: Int { (try? session.repository.unseenConversationCount()) ?? 0 }
 
@@ -48,8 +53,18 @@ private struct MainWindowBody: View {
                 Section("Courses") {
                     // §1.5: the ledger shows numbers, so the sidebar does too.
                     ForEach(coursesVM.courses, id: \.id) { course in
+                        let display = course.nickname ?? course.courseCode
+                        let links = settings.quickLinks(for: course.id)
                         courseRow(id: course.id, code: course.courseCode,
-                                  label: course.nickname ?? course.courseCode)
+                                  label: display, hasLinks: !links.isEmpty)
+                        // Disclosure sub-rows: user-pinned quick links + an inline "add" row.
+                        // Empty courses stay a plain row — the feature is invisible until opted in.
+                        if expandedCourses.contains(course.id), !links.isEmpty {
+                            ForEach(links) { link in
+                                quickLinkRow(link, courseId: course.id, courseLabel: display)
+                            }
+                            addLinkRow(courseId: course.id, courseLabel: display)
+                        }
                     }
                 }
             }
@@ -111,6 +126,12 @@ private struct MainWindowBody: View {
         .sheet(isPresented: $router.quickOpenOpen) {
             QuickOpenOverlay()
         }
+        .sheet(item: $quickLinkEditor) { editor in
+            AddQuickLinkSheet(editor: editor, settings: settings) { courseId in
+                // Reveal the sub-rows so a freshly added first link is immediately visible.
+                expandedCourses.insert(courseId)
+            }
+        }
         // Keyed on host: switching hosts from this window's own Settings sheet must re-run
         // the stale-selection check, or the sidebar keeps pointing at the old host's course.
         .task(id: session.host) {
@@ -163,36 +184,144 @@ private struct MainWindowBody: View {
     }
 
     @ViewBuilder
-    private func courseRow(id: Int, code: String, label: String) -> some View {
+    private func courseRow(id: Int, code: String, label: String, hasLinks: Bool) -> some View {
         let item = SidebarItem.course(id)
         let selected = router.sidebar == item
-        Button {
-            router.sidebar = item
-        } label: {
-            HStack(spacing: 8) {
-                // Color stays keyed on `code` so the dot is stable regardless of nickname.
-                Circle().fill(accentColor(for: code)).frame(width: 8, height: 8)
-                Text(label)
-                    .lineLimit(1).truncationMode(.tail)
-                    .font(.system(size: 13, weight: selected ? .semibold : .regular))
-                    .foregroundStyle(Color.inkPrimary)
-                Spacer(minLength: 4)
-                if let score = coursesVM.currentScore(for: id) {
-                    Text(String(format: "%.1f", score))
-                        .font(.mono(12))
-                        .foregroundStyle(isBelowTarget(score, courseId: id) ? Color.lostMissing : Color.inkSecondary)
+        let expanded = expandedCourses.contains(id)
+        HStack(spacing: 6) {
+            // Disclosure chevron — its slot is always reserved so course dots stay column-
+            // aligned; the glyph only appears once a course has quick links to disclose.
+            Group {
+                if hasLinks {
+                    Button {
+                        toggleExpanded(id)
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 9, weight: .semibold))
+                            .foregroundStyle(Color.inkSecondary)
+                            .rotationEffect(.degrees(expanded ? 90 : 0))
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(expanded ? "Collapse \(label) links" : "Expand \(label) links")
                 }
             }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
+            .frame(width: 10, alignment: .center)
+
+            Button {
+                router.sidebar = item
+            } label: {
+                HStack(spacing: 8) {
+                    // Color stays keyed on `code` so the dot is stable regardless of nickname.
+                    Circle().fill(accentColor(for: code)).frame(width: 8, height: 8)
+                    Text(label)
+                        .lineLimit(1).truncationMode(.tail)
+                        .font(.system(size: 13, weight: selected ? .semibold : .regular))
+                        .foregroundStyle(Color.inkPrimary)
+                    Spacer(minLength: 4)
+                    if let score = coursesVM.currentScore(for: id) {
+                        Text(String(format: "%.1f", score))
+                            .font(.mono(12))
+                            .foregroundStyle(isBelowTarget(score, courseId: id) ? Color.lostMissing : Color.inkSecondary)
+                    }
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(selected ? Color.accentHypothetical.opacity(0.14) : Color.clear,
+                    in: RoundedRectangle(cornerRadius: 7))
+        .listRowInsets(EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6))
+        .listRowSeparator(.hidden)
+        .contextMenu {
+            Button("Add Quick Link…", systemImage: "plus") {
+                quickLinkEditor = QuickLinkEditor(courseId: id, link: nil, courseLabel: label)
+            }
+        }
+    }
+
+    /// A disclosed quick-link sub-row: SF Symbol + label, indented under the course dot.
+    /// Tapping opens the link in the default browser; right-click edits or removes it.
+    @ViewBuilder
+    private func quickLinkRow(_ link: CourseQuickLink, courseId: Int, courseLabel: String) -> some View {
+        Button {
+            openLink(link.urlString)
+        } label: {
+            HStack(spacing: 10) {
+                Image(systemName: link.symbol)
+                    .font(.system(size: 12))
+                    .foregroundStyle(Color.inkSecondary)
+                    .frame(width: 16)
+                Text(link.label)
+                    .lineLimit(1).truncationMode(.tail)
+                    .font(.system(size: 12.5))
+                    .foregroundStyle(Color.inkSecondary)
+                Spacer(minLength: 4)
+            }
+            .padding(.vertical, 4)
+            .padding(.leading, 30)
+            .padding(.trailing, 10)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(selected ? Color.accentHypothetical.opacity(0.14) : Color.clear,
-                        in: RoundedRectangle(cornerRadius: 7))
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .listRowInsets(EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6))
+        .listRowInsets(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
         .listRowSeparator(.hidden)
+        .contextMenu {
+            Button("Edit…", systemImage: "pencil") {
+                quickLinkEditor = QuickLinkEditor(courseId: courseId, link: link, courseLabel: courseLabel)
+            }
+            Button("Remove", systemImage: "trash", role: .destructive) {
+                settings.removeQuickLink(link.id, for: courseId)
+                if settings.quickLinks(for: courseId).isEmpty {
+                    expandedCourses.remove(courseId)
+                }
+            }
+        }
+    }
+
+    /// The inline "Add quick link" row shown at the bottom of an expanded course.
+    @ViewBuilder
+    private func addLinkRow(courseId: Int, courseLabel: String) -> some View {
+        Button {
+            quickLinkEditor = QuickLinkEditor(courseId: courseId, link: nil, courseLabel: courseLabel)
+        } label: {
+            HStack(spacing: 10) {
+                Image(systemName: "plus")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(Color.accentHypothetical)
+                    .frame(width: 16)
+                Text("Add quick link")
+                    .font(.system(size: 12.5, weight: .medium))
+                    .foregroundStyle(Color.accentHypothetical)
+                Spacer(minLength: 4)
+            }
+            .padding(.vertical, 4)
+            .padding(.leading, 30)
+            .padding(.trailing, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .listRowInsets(EdgeInsets(top: 0, leading: 6, bottom: 2, trailing: 6))
+        .listRowSeparator(.hidden)
+    }
+
+    private func toggleExpanded(_ id: Int) {
+        if expandedCourses.contains(id) {
+            expandedCourses.remove(id)
+        } else {
+            expandedCourses.insert(id)
+        }
+    }
+
+    private func openLink(_ urlString: String) {
+        let normalized = urlString.contains("://") ? urlString : "https://\(urlString)"
+        guard let url = URL(string: normalized) else { return }
+        NSWorkspace.shared.open(url)
     }
 
     /// Phase 0 accent: stable hash of the course code (spec §5.1 fallback;
