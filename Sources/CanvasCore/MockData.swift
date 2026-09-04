@@ -359,7 +359,7 @@ public enum MockData {
         relCourseId:  relAssignmentGroups,
     ]
 
-    public static let submissions: [Int: [Submission]] = [
+    public static var submissions: [Int: [Submission]] = [
         csCourseId:   csSubmissions,
         mathCourseId: mathSubmissions,
         histCourseId: histSubmissions,
@@ -525,6 +525,46 @@ public enum MockData {
                                           lastMessage: c.lastMessage, lastMessageAt: c.lastMessageAt,
                                           messageCount: c.messageCount, contextName: c.contextName,
                                           participants: c.participants, messages: c.messages)
+    }
+
+    private static var demoFileId = 60000
+
+    public static func demoUploadSlot(name: String, contentType: String) -> UploadTicket {
+        UploadTicket(uploadURL: "https://demo.instructure.local/files/upload",
+                     uploadParams: [("filename", name), ("content_type", contentType)])
+    }
+
+    public static func demoUploadedFileId() -> Int {
+        demoFileId += 1
+        return demoFileId
+    }
+
+    public static func demoCurrentSubmission(courseId: Int, assignmentId: Int) -> Submission {
+        if let existing = submissions[courseId]?.first(where: { $0.assignmentId == assignmentId }) {
+            return existing
+        }
+        return Submission(id: demoNextId, userId: studentUserId, assignmentId: assignmentId,
+                          score: nil, workflowState: "unsubmitted", gradedAt: nil, submittedAt: nil,
+                          submissionComments: nil, attempt: nil)
+    }
+
+    public static func demoSubmit(courseId: Int, assignmentId: Int, type: SubmissionType,
+                                  text: String?, url: String?, fileIds: [Int]) -> Submission {
+        let prior = submissions[courseId]?.first { $0.assignmentId == assignmentId }
+        let nextAttempt = (prior?.attempt ?? 0) + 1
+        let iso = ISO8601DateFormatter().string(from: Date())
+        let updated = Submission(
+            id: prior?.id ?? { demoNextId += 1; return demoNextId }(),
+            userId: studentUserId, assignmentId: assignmentId,
+            score: prior?.score, workflowState: "submitted",
+            gradedAt: prior?.gradedAt, submittedAt: iso,
+            submissionComments: prior?.submissionComments,
+            late: false, missing: false, excused: false, attempt: nextAttempt)
+        var list = submissions[courseId] ?? []
+        if let idx = list.firstIndex(where: { $0.assignmentId == assignmentId }) { list[idx] = updated }
+        else { list.append(updated) }
+        submissions[courseId] = list
+        return updated
     }
 
     // MARK: - Phase 2 demo store (discussions)
