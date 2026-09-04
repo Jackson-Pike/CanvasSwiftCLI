@@ -397,5 +397,74 @@ public struct APIClient {
         }
         try data.write(to: destinationURL)
     }
+
+    // MARK: - Submission
+
+    public func requestUploadSlot(courseId: Int, assignmentId: Int,
+                                  name: String, size: Int, contentType: String) async throws -> UploadTicket {
+        #if DEBUG
+        if token == "DEMO" { return MockData.demoUploadSlot(name: name, contentType: contentType) }
+        #endif
+        let data = try await sendForm(
+            path: "/courses/\(courseId)/assignments/\(assignmentId)/submissions/self/files",
+            method: "POST",
+            fields: [("name", name), ("size", String(size)), ("content_type", contentType)])
+        return try JSONDecoder().decode(UploadTicket.self, from: data)
+    }
+
+    public func uploadFileBytes(ticket: UploadTicket, filename: String,
+                                contentType: String, fileData: Data) async throws -> Int {
+        #if DEBUG
+        if token == "DEMO" { return MockData.demoUploadedFileId() }
+        #endif
+        guard let url = URL(string: ticket.uploadURL) else { throw APIError.network("bad upload URL") }
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue(MultipartBody.contentTypeHeader(boundary: boundary), forHTTPHeaderField: "Content-Type")
+        // The upload endpoint is pre-authorized by upload_params; do NOT send the Canvas bearer token here.
+        let body = MultipartBody.build(params: ticket.uploadParams, fileField: "file",
+                                       filename: filename, contentType: contentType,
+                                       fileData: fileData, boundary: boundary)
+        do {
+            // URLSession follows the 3xx to the confirm URL automatically; the final body is the file object.
+            let (data, response) = try await session.upload(for: request, from: body)
+            if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+                throw APIError.http(http.statusCode)
+            }
+            return try JSONDecoder().decode(UploadedFile.self, from: data).id
+        } catch let error as APIError { throw error }
+        catch { throw APIError.network(error.localizedDescription) }
+    }
+
+    public func submitAssignment(courseId: Int, assignmentId: Int, type: SubmissionType,
+                                 text: String?, url: String?, fileIds: [Int]) async throws -> Submission {
+        #if DEBUG
+        if token == "DEMO" {
+            return MockData.demoSubmit(courseId: courseId, assignmentId: assignmentId,
+                                       type: type, text: text, url: url, fileIds: fileIds)
+        }
+        #endif
+        var fields: [(String, String)] = [("submission[submission_type]", type.rawValue)]
+        switch type {
+        case .onlineText:   if let text { fields.append(("submission[body]", text)) }
+        case .onlineURL:    if let url { fields.append(("submission[url]", url)) }
+        case .onlineUpload: fields.append(contentsOf: fileIds.map { ("submission[file_ids][]", String($0)) })
+        }
+        let data = try await sendForm(path: "/courses/\(courseId)/assignments/\(assignmentId)/submissions",
+                                      method: "POST", fields: fields)
+        return try decoder().decode(Submission.self, from: data)
+    }
+
+    public func submissionSelf(courseId: Int, assignmentId: Int) async throws -> Submission {
+        #if DEBUG
+        if token == "DEMO" { return MockData.demoCurrentSubmission(courseId: courseId, assignmentId: assignmentId) }
+        #endif
+        guard let url = URL(string: baseURL + "/courses/\(courseId)/assignments/\(assignmentId)/submissions/self") else {
+            throw APIError.network("bad URL")
+        }
+        let (data, _) = try await getPage(url: url)
+        return try decoder().decode(Submission.self, from: data)
+    }
 }
 
