@@ -119,3 +119,56 @@ public struct SubmissionStatusView: View {
         HStack(spacing: 8) { ProgressView().controlSize(.small); Text(text).font(.system(size: 12.5)) }
     }
 }
+
+public struct SubmissionConfirmationSheet: View {
+    let assignmentName: String
+    let dueAt: Date?
+    let isLate: Bool
+    let attempt: Int
+    let payloadLines: [String]
+    let isDemo: Bool
+    let onConfirm: () -> Void
+    let onCancel: () -> Void
+
+    public init(assignmentName: String, dueAt: Date?, isLate: Bool, attempt: Int,
+                payloadLines: [String], isDemo: Bool,
+                onConfirm: @escaping () -> Void, onCancel: @escaping () -> Void) {
+        self.assignmentName = assignmentName; self.dueAt = dueAt; self.isLate = isLate
+        self.attempt = attempt; self.payloadLines = payloadLines; self.isDemo = isDemo
+        self.onConfirm = onConfirm; self.onCancel = onCancel
+    }
+
+    public var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Submit “\(assignmentName)”?").font(.system(size: 15, weight: .bold))
+            if isDemo {
+                Text("Demo mode — this submission is simulated.")
+                    .font(.system(size: 11, weight: .medium)).foregroundStyle(Color.accentHypothetical)
+            }
+            VStack(alignment: .leading, spacing: 4) {
+                if let dueAt {
+                    Text("Due \(dueAt.formatted(date: .abbreviated, time: .shortened))")
+                        .font(.system(size: 12)).foregroundStyle(Color.inkSecondary)
+                }
+                if isLate {
+                    Label("This submission will be late", systemImage: "clock.badge.exclamationmark")
+                        .font(.system(size: 12, weight: .medium)).foregroundStyle(Color.lostMissing)
+                }
+                Text("Attempt \(attempt)").font(.system(size: 12)).foregroundStyle(Color.inkSecondary)
+            }
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Sending").font(.sectionLabel).foregroundStyle(Color.inkTertiary)
+                ForEach(payloadLines, id: \.self) {
+                    Text($0).font(.system(size: 12.5)).foregroundStyle(Color.inkPrimary)
+                }
+            }
+            HStack {
+                Spacer()
+                Button("Cancel", action: onCancel).keyboardShortcut(.cancelAction)
+                Button("Submit", action: onConfirm).keyboardShortcut(.defaultAction).buttonStyle(.borderedProminent)
+            }
+        }
+        .padding(20)
+        .frame(width: 380)
+    }
+}
