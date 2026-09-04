@@ -4,6 +4,11 @@ import SwiftData
 import CanvasCore
 import CanvasData
 
+/// Lets thin wrappers return `Result<_, String>` with a human-readable failure message
+/// instead of a typed `Error`, matching the existing `String(describing: error)` style used
+/// throughout `AppSession`.
+extension String: @retroactive Error {}
+
 @MainActor @Observable
 final class AppSession {
     var credentials: Credentials?
@@ -133,6 +138,23 @@ final class AppSession {
     func compose(recipientIds: [Int], subject: String, body: String) async -> Result<Int, Error> {
         do { return .success(try await syncEngine.compose(recipientIds: recipientIds, subject: subject, body: body)) }
         catch { return .failure(error) }
+    }
+
+    func submit(courseId: Int, assignmentId: Int, type: SubmissionType,
+                text: String?, url: String?, files: [SyncEngine.SubmissionFile]) async -> Result<Submission, String> {
+        do {
+            let verified = try await syncEngine.submit(courseId: courseId, assignmentId: assignmentId,
+                                                       type: type, text: text, url: url, files: files)
+            return .success(verified)
+        } catch {
+            return .failure(String(describing: error))
+        }
+    }
+
+    func saveSubmissionDraft(assignmentId: Int, courseId: Int, type: SubmissionType,
+                             text: String?, url: String?) async {
+        try? await syncEngine.saveDraft(assignmentId: assignmentId, courseId: courseId,
+                                        type: type, text: text, url: url)
     }
 
     /// Reads unseen changes, posts notifications for enabled categories outside quiet hours,
