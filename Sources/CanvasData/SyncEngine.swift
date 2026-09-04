@@ -935,4 +935,76 @@ public actor SyncEngine {
         try modelContext.save()
         return created.id
     }
+
+    public struct SubmissionFile: Sendable {
+        public let filename: String
+        public let contentType: String
+        public let data: Data
+        public init(filename: String, contentType: String, data: Data) {
+            self.filename = filename; self.contentType = contentType; self.data = data
+        }
+    }
+
+    /// Orchestrates a submission: for `.onlineUpload`, uploads each file first, collecting file
+    /// ids; then POSTs the submission; then VERIFIES with a fresh fetch — success is only
+    /// reported after verification. On success, upserts the verified submission and deletes the
+    /// draft for this assignment. Does NOT catch errors — a failure propagates with the draft
+    /// left intact (the caller autosaves the draft before calling this).
+    public func submit(courseId: Int, assignmentId: Int, type: SubmissionType,
+                       text: String?, url: String?, files: [SubmissionFile]) async throws -> Submission {
+        guard let client else { throw SyncError.noClient }
+
+        var fileIds: [Int] = []
+        if type == .onlineUpload {
+            for file in files {
+                let ticket = try await client.requestUploadSlot(
+                    courseId: courseId, assignmentId: assignmentId,
+                    name: file.filename, size: file.data.count, contentType: file.contentType)
+                let id = try await client.uploadFileBytes(ticket: ticket, filename: file.filename,
+                                                          contentType: file.contentType, fileData: file.data)
+                fileIds.append(id)
+            }
+        }
+
+        _ = try await client.submitAssignment(courseId: courseId, assignmentId: assignmentId,
+                                              type: type, text: text, url: url, fileIds: fileIds)
+        let verified = try await client.submissionSelf(courseId: courseId, assignmentId: assignmentId)
+
+        upsertSubmissions([verified], courseId: courseId)
+        deleteDraftRow(assignmentId: assignmentId)   // success ⇒ clear the preserved draft
+        try modelContext.save()
+        return verified
+    }
+
+    public func saveDraft(assignmentId: Int, courseId: Int, type: SubmissionType,
+                          text: String?, url: String?) async throws {
+        if let row = fetchDraftRow(assignmentId: assignmentId) {
+            row.submissionTypeRaw = type.rawValue; row.text = text; row.url = url; row.updatedAt = Date()
+        } else {
+            modelContext.insert(CachedSubmissionDraft(assignmentId: assignmentId, courseId: courseId,
+                                                      submissionTypeRaw: type.rawValue, text: text, url: url))
+        }
+        try modelContext.save()
+    }
+
+    public func deleteDraft(assignmentId: Int) async throws {
+        deleteDraftRow(assignmentId: assignmentId)
+        try modelContext.save()
+    }
+
+    private func fetchDraftRow(assignmentId: Int) -> CachedSubmissionDraft? {
+        (try? modelContext.fetch(FetchDescriptor<CachedSubmissionDraft>(
+            predicate: #Predicate { $0.assignmentId == assignmentId })))?.first
+    }
+
+    private func deleteDraftRow(assignmentId: Int) {
+        if let row = fetchDraftRow(assignmentId: assignmentId) { modelContext.delete(row) }
+    }
+
+    #if DEBUG
+    public func draftCountForTest(assignmentId: Int) throws -> Int {
+        try modelContext.fetch(FetchDescriptor<CachedSubmissionDraft>(
+            predicate: #Predicate { $0.assignmentId == assignmentId })).count
+    }
+    #endif
 }
