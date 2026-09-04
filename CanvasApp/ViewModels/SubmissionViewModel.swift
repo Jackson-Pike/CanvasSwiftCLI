@@ -34,6 +34,13 @@ final class SubmissionViewModel {
     var attemptNumber: Int { currentAttempt + 1 }
 
     func load(session: AppSession, assignment: CachedAssignment, courseId: Int) {
+        // Reset per-row editor state unconditionally so a prior row's in-progress edit/upload/phase
+        // never bleeds into this one — only the draft-restore block below should repopulate text/url.
+        phase = .idle
+        pickedFiles = []
+        text = ""
+        url = ""
+
         availableTypes = SubmissionType.supported(from: assignment.submissionTypes)
         selection = availableTypes.first ?? .onlineText
         // nil/empty ⇒ any-file-accepted, per SubmissionValidator's documented behavior.

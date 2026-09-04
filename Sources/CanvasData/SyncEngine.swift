@@ -15,8 +15,14 @@ public enum SyncScope: Hashable, Sendable {
 public enum SyncState: Equatable, Sendable { case idle; case syncing(SyncScope); case failed(String, Date) }
 public enum SyncError: Error, CustomStringConvertible {
     case noClient
+    case verificationFailed
     // Surfaced to the user via `String(describing:)`, so it must not read as "noClient".
-    public var description: String { "Not signed in to Canvas — add a token in Settings." }
+    public var description: String {
+        switch self {
+        case .noClient: return "Not signed in to Canvas — add a token in Settings."
+        case .verificationFailed: return "Submission could not be verified. Please try again."
+        }
+    }
 }
 public enum EntityKind: String, Sendable {
     case courses, enrollments, assignments, submissions, announcements
@@ -967,9 +973,16 @@ public actor SyncEngine {
             }
         }
 
+        let priorAttempt = fetchSubmissionRow(assignmentId: assignmentId)?.attempt ?? 0
+
         _ = try await client.submitAssignment(courseId: courseId, assignmentId: assignmentId,
                                               type: type, text: text, url: url, fileIds: fileIds)
         let verified = try await client.submissionSelf(courseId: courseId, assignmentId: assignmentId)
+
+        // Spec §7: not reported successful until a re-fetch returns the new attempt/submitted_at.
+        guard verified.submittedAt != nil, (verified.attempt ?? 0) > priorAttempt else {
+            throw SyncError.verificationFailed
+        }
 
         upsertSubmissions([verified], courseId: courseId)
         deleteDraftRow(assignmentId: assignmentId)   // success ⇒ clear the preserved draft
@@ -991,6 +1004,11 @@ public actor SyncEngine {
     public func deleteDraft(assignmentId: Int) async throws {
         deleteDraftRow(assignmentId: assignmentId)
         try modelContext.save()
+    }
+
+    private func fetchSubmissionRow(assignmentId: Int) -> CachedSubmission? {
+        (try? modelContext.fetch(FetchDescriptor<CachedSubmission>(
+            predicate: #Predicate { $0.assignmentId == assignmentId })))?.first
     }
 
     private func fetchDraftRow(assignmentId: Int) -> CachedSubmissionDraft? {
