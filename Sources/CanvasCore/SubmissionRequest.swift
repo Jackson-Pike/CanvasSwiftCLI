@@ -67,3 +67,27 @@ public struct UploadTicket: Sendable, Equatable, Decodable {
         init?(intValue: Int) { self.stringValue = String(intValue); self.intValue = intValue }
     }
 }
+
+public enum MultipartBody {
+    public static func contentTypeHeader(boundary: String) -> String {
+        "multipart/form-data; boundary=\(boundary)"
+    }
+
+    public static func build(params: [(String, String)], fileField: String, filename: String,
+                             contentType: String, fileData: Data, boundary: String) -> Data {
+        var body = Data()
+        func append(_ s: String) { body.append(Data(s.utf8)) }
+
+        for (name, value) in params {
+            append("--\(boundary)\r\n")
+            append("Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n")
+            append("\(value)\r\n")
+        }
+        append("--\(boundary)\r\n")
+        append("Content-Disposition: form-data; name=\"\(fileField)\"; filename=\"\(filename)\"\r\n")
+        append("Content-Type: \(contentType)\r\n\r\n")
+        body.append(fileData)
+        append("\r\n--\(boundary)--\r\n")
+        return body
+    }
+}

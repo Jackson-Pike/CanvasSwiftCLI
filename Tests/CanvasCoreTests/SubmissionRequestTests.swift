@@ -67,3 +67,29 @@ extension SubmissionRequestTests {
         XCTAssertEqual(try JSONDecoder().decode(UploadedFile.self, from: json).id, 55123)
     }
 }
+
+extension SubmissionRequestTests {
+    func testMultipartBodyOrdersParamsBeforeFile() {
+        let body = MultipartBody.build(
+            params: [("key", "abc"), ("content_type", "text/plain")],
+            fileField: "file", filename: "note.txt", contentType: "text/plain",
+            fileData: Data("hello".utf8), boundary: "BOUND")
+        let text = String(decoding: body, as: UTF8.self)
+
+        // params appear, file part is last and carries the bytes
+        XCTAssertTrue(text.contains("name=\"key\"\r\n\r\nabc\r\n"))
+        XCTAssertTrue(text.contains("name=\"content_type\"\r\n\r\ntext/plain\r\n"))
+        let keyIdx = text.range(of: "name=\"key\"")!.lowerBound
+        let fileIdx = text.range(of: "name=\"file\"")!.lowerBound
+        XCTAssertLessThan(keyIdx, fileIdx, "params must precede the file part")
+        XCTAssertTrue(text.contains("filename=\"note.txt\""))
+        XCTAssertTrue(text.contains("Content-Type: text/plain"))
+        XCTAssertTrue(text.contains("\r\nhello\r\n"))
+        XCTAssertTrue(text.hasSuffix("--BOUND--\r\n"))
+    }
+
+    func testContentTypeHeader() {
+        XCTAssertEqual(MultipartBody.contentTypeHeader(boundary: "X"),
+                       "multipart/form-data; boundary=X")
+    }
+}
