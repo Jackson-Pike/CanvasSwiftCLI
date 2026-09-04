@@ -36,10 +36,8 @@ final class SubmissionViewModel {
     func load(session: AppSession, assignment: CachedAssignment, courseId: Int) {
         availableTypes = SubmissionType.supported(from: assignment.submissionTypes)
         selection = availableTypes.first ?? .onlineText
-        // `CachedAssignment` does not persist `allowedExtensions` (CanvasCore.Assignment does, but
-        // the sync layer never copies it into the cache) — treat as unrestricted per
-        // SubmissionValidator's documented nil/empty ⇒ any-file-accepted behavior.
-        allowedExtensions = nil
+        // nil/empty ⇒ any-file-accepted, per SubmissionValidator's documented behavior.
+        allowedExtensions = assignment.allowedExtensions
         currentAttempt = (try? session.repository.submission(assignmentId: assignment.id))?.attempt ?? 0
         if let draft = try? session.repository.submissionDraft(assignmentId: assignment.id) {
             text = draft.text ?? ""

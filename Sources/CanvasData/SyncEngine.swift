@@ -444,13 +444,14 @@ public actor SyncEngine {
                 row.unlockAt = unlockAt; row.lockAt = lockAt
                 row.htmlURL = a.htmlURL
                 row.rubricJSON = rubricJSON
+                row.allowedExtensions = a.allowedExtensions
             } else {
                 modelContext.insert(CachedAssignment(
                     id: a.id, courseId: courseId, groupId: a.assignmentGroupId, name: a.name,
                     pointsPossible: a.pointsPossible, dueAt: dueAt, sortIndex: i,
                     descriptionHTML: a.descriptionHTML, submissionTypes: a.submissionTypes ?? [],
                     unlockAt: unlockAt, lockAt: lockAt, htmlURL: a.htmlURL,
-                    rubricJSON: rubricJSON))
+                    rubricJSON: rubricJSON, allowedExtensions: a.allowedExtensions))
             }
         }
         for (id, row) in existingAssignments where !fetchedAssignmentIds.contains(id) && row.removedAt == nil {
