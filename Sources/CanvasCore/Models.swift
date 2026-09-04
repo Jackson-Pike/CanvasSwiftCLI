@@ -64,7 +64,7 @@ public struct Assignment: Codable {
     enum CodingKeys: String, CodingKey {
         case id, name, pointsPossible, dueAt, assignmentGroupId
         case descriptionHTML = "description"
-        case submissionTypes, unlockAt, lockAt
+        case submissionTypes, unlockAt, lockAt, allowedExtensions
         case htmlURL = "htmlUrl"   // .convertFromSnakeCase turns "html_url" -> "htmlUrl"
         case rubric
     }
@@ -80,10 +80,12 @@ public struct Assignment: Codable {
     public let lockAt: String?
     public let htmlURL: String?
     public let rubric: [RubricCriterion]?
+    public let allowedExtensions: [String]?
 
     public init(id: Int, name: String, pointsPossible: Double?, dueAt: String?, assignmentGroupId: Int,
                 descriptionHTML: String? = nil, submissionTypes: [String]? = nil, unlockAt: String? = nil,
-                lockAt: String? = nil, htmlURL: String? = nil, rubric: [RubricCriterion]? = nil) {
+                lockAt: String? = nil, htmlURL: String? = nil, rubric: [RubricCriterion]? = nil,
+                allowedExtensions: [String]? = nil) {
         self.id = id
         self.name = name
         self.pointsPossible = pointsPossible
@@ -95,6 +97,7 @@ public struct Assignment: Codable {
         self.lockAt = lockAt
         self.htmlURL = htmlURL
         self.rubric = rubric
+        self.allowedExtensions = allowedExtensions
     }
 }
 
