@@ -24,3 +24,46 @@ public enum SubmissionValidator {
         return allowed.map { $0.lowercased() }.contains(ext)
     }
 }
+
+public struct UploadedFile: Codable, Sendable, Equatable {
+    public let id: Int
+}
+
+public struct UploadTicket: Sendable, Equatable, Decodable {
+    public let uploadURL: String
+    public let uploadParams: [(String, String)]
+
+    public init(uploadURL: String, uploadParams: [(String, String)]) {
+        self.uploadURL = uploadURL
+        self.uploadParams = uploadParams
+    }
+
+    public static func == (l: UploadTicket, r: UploadTicket) -> Bool {
+        l.uploadURL == r.uploadURL
+            && Dictionary(uniqueKeysWithValues: l.uploadParams) == Dictionary(uniqueKeysWithValues: r.uploadParams)
+    }
+
+    private enum CodingKeys: String, CodingKey { case uploadURL = "upload_url", uploadParams = "upload_params" }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        uploadURL = try c.decode(String.self, forKey: .uploadURL)
+        // upload_params is an object of scalar values; preserve order and coerce scalars to strings.
+        let paramsContainer = try c.nestedContainer(keyedBy: DynamicKey.self, forKey: .uploadParams)
+        var pairs: [(String, String)] = []
+        for key in paramsContainer.allKeys {
+            if let s = try? paramsContainer.decode(String.self, forKey: key) { pairs.append((key.stringValue, s)) }
+            else if let i = try? paramsContainer.decode(Int.self, forKey: key) { pairs.append((key.stringValue, String(i))) }
+            else if let d = try? paramsContainer.decode(Double.self, forKey: key) { pairs.append((key.stringValue, String(d))) }
+            else if let b = try? paramsContainer.decode(Bool.self, forKey: key) { pairs.append((key.stringValue, String(b))) }
+            // null / unsupported → dropped
+        }
+        uploadParams = pairs
+    }
+
+    private struct DynamicKey: CodingKey {
+        var stringValue: String; var intValue: Int?
+        init?(stringValue: String) { self.stringValue = stringValue; self.intValue = nil }
+        init?(intValue: Int) { self.stringValue = String(intValue); self.intValue = intValue }
+    }
+}

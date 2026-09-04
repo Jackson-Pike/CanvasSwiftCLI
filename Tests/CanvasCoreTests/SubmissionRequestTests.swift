@@ -37,3 +37,33 @@ final class SubmissionRequestTests: XCTestCase {
         XCTAssertEqual(a.allowedExtensions, ["pdf", "docx"])
     }
 }
+
+extension SubmissionRequestTests {
+    func testUploadTicketDecodesURLAndParams() throws {
+        let json = """
+        {"upload_url":"https://uploads.example.com/put",
+         "upload_params":{"key":"abc","content_type":"application/pdf","success_action_status":"201"}}
+        """.data(using: .utf8)!
+        let ticket = try JSONDecoder().decode(UploadTicket.self, from: json)
+        XCTAssertEqual(ticket.uploadURL, "https://uploads.example.com/put")
+        // stored as ordered (String,String) pairs; assert as a dictionary for order-independence
+        XCTAssertEqual(Dictionary(uniqueKeysWithValues: ticket.uploadParams),
+                       ["key": "abc", "content_type": "application/pdf", "success_action_status": "201"])
+    }
+
+    func testUploadTicketCoercesScalarParamValues() throws {
+        let json = """
+        {"upload_url":"https://u/x","upload_params":{"max_size":10485760,"flag":true,"skip":null}}
+        """.data(using: .utf8)!
+        let ticket = try JSONDecoder().decode(UploadTicket.self, from: json)
+        let dict = Dictionary(uniqueKeysWithValues: ticket.uploadParams)
+        XCTAssertEqual(dict["max_size"], "10485760")
+        XCTAssertEqual(dict["flag"], "true")
+        XCTAssertNil(dict["skip"]) // null dropped
+    }
+
+    func testUploadedFileDecodesId() throws {
+        let json = #"{"id":55123,"display_name":"essay.pdf"}"#.data(using: .utf8)!
+        XCTAssertEqual(try JSONDecoder().decode(UploadedFile.self, from: json).id, 55123)
+    }
+}
