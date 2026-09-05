@@ -31,45 +31,50 @@ final class CalendarViewModel {
 
         do {
             try await session.syncEngine.refresh(.planner(start: start, end: end))
-            let repo = session.repository
-            let plannerItems = (try? repo.plannerItems(start: start, end: end)) ?? []
-            let calendarEvents = (try? repo.calendarEvents(start: start, end: end)) ?? []
-
-            var unified: [UnifiedCalendarItem] = []
-            for p in plannerItems {
-                guard let date = p.plannableDate else { continue }
-                unified.append(UnifiedCalendarItem(
-                    id: p.id,
-                    title: p.title,
-                    courseId: p.courseId,
-                    date: date,
-                    isEvent: false,
-                    locationOrSummary: nil,
-                    htmlUrl: p.htmlUrl,
-                    isCompleted: p.isCompleted,
-                    isMissing: p.isMissing
-                ))
-            }
-            for c in calendarEvents {
-                guard let date = c.startAt else { continue }
-                unified.append(UnifiedCalendarItem(
-                    id: "event_\(c.id)",
-                    title: c.title,
-                    courseId: c.courseId,
-                    date: date,
-                    isEvent: true,
-                    locationOrSummary: c.locationName ?? c.eventDescription,
-                    htmlUrl: c.htmlUrl,
-                    isCompleted: false,
-                    isMissing: false
-                ))
-            }
-
-            let courses = (try? repo.courses()) ?? []
-            self.courseColors = Color.courseAccentMap(courseIDs: courses.map(\.id))
-            self.items = unified.sorted { $0.date < $1.date }
         } catch {
             self.errorMessage = error.localizedDescription
+        }
+
+        let repo = session.repository
+        let plannerItems = (try? repo.plannerItems(start: start, end: end)) ?? []
+        let calendarEvents = (try? repo.calendarEvents(start: start, end: end)) ?? []
+
+        var unified: [UnifiedCalendarItem] = []
+        for p in plannerItems {
+            guard let date = p.plannableDate else { continue }
+            unified.append(UnifiedCalendarItem(
+                id: p.id,
+                title: p.title,
+                courseId: p.courseId,
+                date: date,
+                isEvent: false,
+                locationOrSummary: nil,
+                htmlUrl: p.htmlUrl,
+                isCompleted: p.isCompleted,
+                isMissing: p.isMissing
+            ))
+        }
+        for c in calendarEvents {
+            guard let date = c.startAt else { continue }
+            unified.append(UnifiedCalendarItem(
+                id: "event_\(c.id)",
+                title: c.title,
+                courseId: c.courseId,
+                date: date,
+                isEvent: true,
+                locationOrSummary: c.locationName ?? c.eventDescription,
+                htmlUrl: c.htmlUrl,
+                isCompleted: false,
+                isMissing: false
+            ))
+        }
+
+        let courses = (try? repo.courses()) ?? []
+        self.courseColors = Color.courseAccentMap(courseIDs: courses.map(\.id))
+        self.items = unified.sorted { $0.date < $1.date }
+
+        if !items.isEmpty {
+            self.errorMessage = nil
         }
         isLoading = false
     }

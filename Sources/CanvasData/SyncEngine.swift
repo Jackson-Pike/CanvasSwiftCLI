@@ -675,15 +675,35 @@ public actor SyncEngine {
         let scopeKey = "\(Int(start.timeIntervalSince1970))_\(Int(end.timeIntervalSince1970))"
         guard force || !isFresh(.plannerItems, scope: scopeKey, now: now) else { return }
 
-        let items = try await fetchWithRetry { try await client.plannerItems(start: start, end: end) }
-        let events = try await fetchWithRetry { try await client.calendarEvents(contextCodes: nil, start: start, end: end) }
+        var itemsSucceeded = false
+        var eventsSucceeded = false
+        var firstError: (any Error)?
 
-        upsertPlannerItems(items, now: now)
-        upsertCalendarEvents(events, now: now)
+        do {
+            let items = try await fetchWithRetry { try await client.plannerItems(start: start, end: end) }
+            upsertPlannerItems(items, now: now)
+            touch(.plannerItems, scope: scopeKey, error: nil, at: now)
+            itemsSucceeded = true
+        } catch {
+            firstError = error
+            touch(.plannerItems, scope: scopeKey, error: String(describing: error), at: now)
+        }
 
-        touch(.plannerItems, scope: scopeKey, error: nil, at: now)
-        touch(.calendarEvents, scope: scopeKey, error: nil, at: now)
+        do {
+            let events = try await fetchWithRetry { try await client.calendarEvents(contextCodes: nil, start: start, end: end) }
+            upsertCalendarEvents(events, now: now)
+            touch(.calendarEvents, scope: scopeKey, error: nil, at: now)
+            eventsSucceeded = true
+        } catch {
+            if firstError == nil { firstError = error }
+            touch(.calendarEvents, scope: scopeKey, error: String(describing: error), at: now)
+        }
+
         try modelContext.save()
+
+        if !itemsSucceeded && !eventsSucceeded, let firstError {
+            throw firstError
+        }
     }
 
     private func upsertPlannerItems(_ items: [PlannerItem], now: Date) {

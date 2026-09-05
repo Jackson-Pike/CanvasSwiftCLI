@@ -1,5 +1,6 @@
 import XCTest
 import SwiftData
+import CanvasCore
 @testable import CanvasData
 
 final class SchemaTests: XCTestCase {

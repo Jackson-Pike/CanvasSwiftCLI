@@ -111,6 +111,18 @@ public struct APIClient {
     private func decoder() -> JSONDecoder {
         let d = JSONDecoder()
         d.keyDecodingStrategy = .convertFromSnakeCase
+        d.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            if let dateStr = try? container.decode(String.self) {
+                if let date = CanvasDate.parse(dateStr) {
+                    return date
+                }
+            }
+            if let seconds = try? container.decode(Double.self) {
+                return Date(timeIntervalSince1970: seconds)
+            }
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date format")
+        }
         return d
     }
 
