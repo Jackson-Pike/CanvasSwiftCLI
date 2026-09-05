@@ -71,6 +71,11 @@ public final class CanvasRepository {
         return try context.fetch(FetchDescriptor(predicate: predicate)).first
     }
 
+    public func submissionDrafts(courseId: Int) throws -> [CachedSubmissionDraft] {
+        let predicate = #Predicate<CachedSubmissionDraft> { $0.courseId == courseId }
+        return try context.fetch(FetchDescriptor(predicate: predicate))
+    }
+
     public func announcements(courseId: Int) throws -> [CachedAnnouncement] {
         let predicate = #Predicate<CachedAnnouncement> { $0.courseId == courseId }
         let all = try context.fetch(FetchDescriptor(predicate: predicate))

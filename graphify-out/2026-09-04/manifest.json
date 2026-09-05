@@ -330,8 +330,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/App/Router.swift": {
-    "mtime": 1788573610.2024415,
-    "ast_hash": "4ba3815768679429ea1eea7563805069",
+    "mtime": 1787364813.7340243,
+    "ast_hash": "f15a101e2400712fcd53be40a7033ef9",
     "semantic_hash": ""
   },
   "Sources/CanvasData/DerivedReads.swift": {
@@ -385,8 +385,8 @@
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/CourseWorkspaceView.swift": {
-    "mtime": 1788573634.382979,
-    "ast_hash": "890933db4710f03d88a7a649d25bfeed",
+    "mtime": 1788485603.1373074,
+    "ast_hash": "e93fa01872965cf888ee32e2e7cb916d",
     "semantic_hash": ""
   },
   "CanvasApp/Views/Window/MainWindowView.swift": {

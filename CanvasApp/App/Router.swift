@@ -51,6 +51,14 @@ final class Router {
     var courseTab: CourseTab {
         didSet { UserDefaults.standard.set(courseTab.rawValue, forKey: "router.courseTab") }
     }
+    /// User-defined left-to-right order of the course tabs (drag-reorderable in the tab strip).
+    /// Persisted as comma-joined raw values.
+    var courseTabOrder: [CourseTab] {
+        didSet {
+            UserDefaults.standard.set(courseTabOrder.map(\.rawValue).joined(separator: ","),
+                                      forKey: "router.courseTabOrder")
+        }
+    }
     var dashboardDensity: DashboardDensity {
         didSet { UserDefaults.standard.set(dashboardDensity.rawValue, forKey: "router.dashboardDensity") }
     }
@@ -64,6 +72,14 @@ final class Router {
     init() {
         sidebar = SidebarItem(storageKey: UserDefaults.standard.string(forKey: "router.sidebar") ?? "dashboard")
         courseTab = CourseTab(rawValue: UserDefaults.standard.string(forKey: "router.courseTab") ?? "grades") ?? .grades
+        // Restore the saved tab order, then append any tabs added since (e.g. after an
+        // update) so every case still appears exactly once.
+        let storedOrder = (UserDefaults.standard.string(forKey: "router.courseTabOrder") ?? "")
+            .split(separator: ",").compactMap { CourseTab(rawValue: String($0)) }
+        var order: [CourseTab] = []
+        for tab in storedOrder where !order.contains(tab) { order.append(tab) }
+        for tab in CourseTab.allCases where !order.contains(tab) { order.append(tab) }
+        courseTabOrder = order
         let densityRaw = UserDefaults.standard.string(forKey: "router.dashboardDensity") ?? DashboardDensity.ledger.rawValue
         dashboardDensity = DashboardDensity(rawValue: densityRaw) ?? .ledger
         sandboxOpen = UserDefaults.standard.bool(forKey: "router.sandboxOpen")

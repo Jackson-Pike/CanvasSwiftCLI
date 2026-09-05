@@ -70,7 +70,7 @@ final class SubmissionViewModel {
 
     var canSubmit: Bool {
         switch selection {
-        case .onlineText:   return !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        case .onlineText:   return !SubmissionHTML.isEffectivelyEmpty(text)
         case .onlineURL:    return !url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         case .onlineUpload: return !pickedFiles.isEmpty && pickedFiles.allSatisfy { $0.ui.isAllowed }
         }
@@ -78,7 +78,7 @@ final class SubmissionViewModel {
 
     func payloadLines() -> [String] {
         switch selection {
-        case .onlineText:   return ["Text: \(text.count) characters"]
+        case .onlineText:   return ["Text: \(SubmissionHTML.plainText(fromHTML: text).count) characters"]
         case .onlineURL:    return [url]
         case .onlineUpload: return pickedFiles.map { "\($0.ui.filename) (\(byteString($0.ui.sizeBytes)))" }
         }

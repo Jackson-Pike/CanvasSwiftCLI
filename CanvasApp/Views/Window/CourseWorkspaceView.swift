@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 import CanvasCore
 import CanvasData
 import CanvasUI
@@ -19,13 +20,15 @@ private struct CourseWorkspaceBody: View {
     @Environment(AppSession.self) private var session
     @Environment(Router.self) private var router
     @State private var showSettings = false
+    /// Tab currently being dragged in the strip; drives live reordering.
+    @State private var draggingTab: CourseTab?
 
     var body: some View {
         @Bindable var router = router
         VStack(spacing: 0) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 22) {
-                    ForEach(CourseTab.allCases, id: \.self) { tab in
+                    ForEach(router.courseTabOrder, id: \.self) { tab in
                         let selected = router.courseTab == tab
                         Button {
                             router.courseTab = tab
@@ -40,11 +43,21 @@ private struct CourseWorkspaceBody: View {
                                         .frame(height: 2)
                                 }
                                 .contentShape(Rectangle())
+                                .opacity(draggingTab == tab ? 0.4 : 1)
                         }
                         .buttonStyle(.plain)
+                        .onDrag {
+                            draggingTab = tab
+                            return NSItemProvider(object: tab.rawValue as NSString)
+                        }
+                        .onDrop(of: [.text],
+                                delegate: TabReorderDropDelegate(item: tab,
+                                                                 order: $router.courseTabOrder,
+                                                                 dragging: $draggingTab))
                     }
                 }
                 .padding(.horizontal)
+                .animation(.easeInOut(duration: 0.18), value: router.courseTabOrder)
             }
             .overlay(alignment: .bottom) {
                 Rectangle().fill(Color.canvasHairline).frame(height: 1)
@@ -89,6 +102,31 @@ private struct CourseWorkspaceBody: View {
                 .frame(minHeight: 420)   // SettingsView sets its own 340pt width
         }
         .task(id: ObjectIdentifier(vm)) { await vm.load(session: session) }
+    }
+}
+
+/// Reorders the course tab strip live: as the dragged tab hovers over another tab, the
+/// dragged tab slides into that slot. Persistence is handled by `Router.courseTabOrder`'s
+/// `didSet`, so a reorder survives relaunch.
+private struct TabReorderDropDelegate: DropDelegate {
+    let item: CourseTab
+    @Binding var order: [CourseTab]
+    @Binding var dragging: CourseTab?
+
+    func dropEntered(info: DropInfo) {
+        guard let dragging, dragging != item,
+              let from = order.firstIndex(of: dragging),
+              let to = order.firstIndex(of: item) else { return }
+        withAnimation(.easeInOut(duration: 0.18)) {
+            order.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
+        }
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? { DropProposal(operation: .move) }
+
+    func performDrop(info: DropInfo) -> Bool {
+        dragging = nil
+        return true
     }
 }
 

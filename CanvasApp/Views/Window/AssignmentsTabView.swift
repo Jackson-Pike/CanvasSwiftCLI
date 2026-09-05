@@ -8,8 +8,7 @@ struct AssignmentsTabView: View {
     @Environment(AppSession.self) private var session
     @Environment(Router.self) private var router
     @StateObject private var vm: AssignmentsViewModel
-    @State private var submissionVM = SubmissionViewModel()
-    @State private var showFileImporter = false
+    @State private var openedAssignmentId: Int?
 
     init(courseId: Int) {
         self.courseId = courseId
@@ -17,30 +16,17 @@ struct AssignmentsTabView: View {
     }
 
     var body: some View {
-        Group {
-            if !vm.rows.isEmpty {
-                HStack(spacing: 0) {
-                    listColumn
-                        .frame(width: 320)
-                    Divider()
-                    detailColumn
-                        .frame(maxWidth: .infinity)
+        NavigationStack {
+            content
+                .navigationDestination(item: $openedAssignmentId) { id in
+                    if let row = vm.rows.first(where: { $0.id == id }) {
+                        AssignmentDetailPage(courseId: courseId,
+                                             assignment: row.assignment,
+                                             submission: row.submission,
+                                             status: vm.boardStatus(for: row),
+                                             gradeWeightText: vm.gradeWeightText(for: row))
+                    }
                 }
-            } else if vm.isLoading {
-                SkeletonList()
-            } else if let error = vm.error {
-                ContentUnavailableView {
-                    Label("Couldn't Load Assignments", systemImage: "exclamationmark.triangle")
-                } description: {
-                    Text(error)
-                }
-            } else {
-                ContentUnavailableView {
-                    Label("No Assignments", systemImage: "list.bullet.rectangle")
-                } description: {
-                    Text("This course has no assignments yet.")
-                }
-            }
         }
         .background(Color.canvasBG)
         .task(id: courseId) {
@@ -49,200 +35,133 @@ struct AssignmentsTabView: View {
         }
     }
 
+    @ViewBuilder
+    private var content: some View {
+        if !vm.rows.isEmpty {
+            HStack(spacing: 0) {
+                boardColumn
+                    .frame(maxWidth: .infinity)
+                Divider()
+                detailColumn
+                    .frame(width: 392)
+            }
+        } else if vm.isLoading {
+            SkeletonList()
+        } else if let error = vm.error {
+            ContentUnavailableView {
+                Label("Couldn't Load Assignments", systemImage: "exclamationmark.triangle")
+            } description: {
+                Text(error)
+            }
+        } else {
+            ContentUnavailableView {
+                Label("No Assignments", systemImage: "list.bullet.rectangle")
+            } description: {
+                Text("This course has no assignments yet.")
+            }
+        }
+    }
+
     /// Consumes `RevealTarget.assignment`, set by the Dashboard's Awaiting Grade and
     /// Recent Feedback panels. Cleared so a later tab visit doesn't re-select it.
     private func consumeDeepLink() {
         guard let target = router.selectedAssignmentId else { return }
-        vm.filter = .all                      // the target may not match the default filter
-        vm.select(target, session: session)
+        vm.select(target, session: session)   // grouping shows every assignment, so no filter to relax
         router.selectedAssignmentId = nil
     }
 
-    private var listColumn: some View {
+    // MARK: - Board
+
+    private var boardColumn: some View {
         VStack(alignment: .leading, spacing: 0) {
-            AssignmentFilterChips(selected: $vm.filter)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 10)
+            HStack(spacing: 14) {
+                AssignmentGroupByControl(selected: $vm.grouping)
+                Spacer(minLength: 8)
+                BoardSummaryLine(dueThisWeek: vm.dueThisWeek, ledger: vm.ledger)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 11)
+
             Divider()
-            ScrollView {
-                LazyVStack(spacing: 0) {
-                    ForEach(vm.filteredRows) { row in
-                        AssignmentListRow(name: row.assignment.name,
-                                          dueAt: row.assignment.dueAt,
-                                          pointsPossible: row.assignment.pointsPossible,
-                                          score: row.submission?.score,
-                                          workflowState: row.submission?.workflowState,
-                                          isMissing: isMissing(row),
-                                          isSelected: vm.selectedAssignmentId == row.assignment.id,
-                                          onTap: { vm.select(row.assignment.id, session: session) })
+
+            ScrollView(.horizontal, showsIndicators: true) {
+                HStack(alignment: .top, spacing: 12) {
+                    ForEach(vm.boardColumns) { col in
+                        AssignmentBoardColumn(label: col.label, tint: col.tint,
+                                              count: col.count, meta: col.meta) {
+                            ForEach(col.rows) { row in
+                                AssignmentBoardCard(
+                                    name: row.assignment.name,
+                                    dueAt: row.assignment.dueAt,
+                                    pointsPossible: row.assignment.pointsPossible,
+                                    kind: assignmentKind(submissionTypes: row.assignment.submissionTypes),
+                                    gradedText: gradedChipText(row),
+                                    isSelected: vm.selectedAssignmentId == row.id,
+                                    onTap: { vm.select(row.id, session: session) },
+                                    onOpen: { open(row) })
+                            }
+                        }
                     }
                 }
+                .padding(14)
             }
+
             StalenessLabel(lastSyncedAt: vm.lastSyncedAt)
-                .padding(.horizontal, 12)
+                .padding(.horizontal, 16)
                 .padding(.vertical, 8)
         }
     }
 
-    private func isMissing(_ row: AssignmentsViewModel.Row) -> Bool {
-        isAssignmentMissing(dueAt: row.assignment.dueAt,
-                            submissionWorkflowState: row.submission?.workflowState,
-                            missingFlag: row.submission?.missing,
-                            now: Date())
+    /// Score text shown on a card's chip when the assignment is graded, else nil.
+    private func gradedChipText(_ row: AssignmentsViewModel.Row) -> String? {
+        guard vm.boardStatus(for: row) == .graded, let score = row.submission?.score else { return nil }
+        return AssignmentDetailFormat.points(score)
     }
+
+    private func open(_ row: AssignmentsViewModel.Row) {
+        vm.select(row.id, session: session)   // refresh related-modules for the pushed page
+        openedAssignmentId = row.id
+    }
+
+    // MARK: - Docked preview pane
 
     @ViewBuilder
     private var detailColumn: some View {
         if let row = vm.selectedRow {
+            let status = vm.boardStatus(for: row)
             ScrollView {
-                VStack(alignment: .leading, spacing: 14) {
-                    Text(row.assignment.name)
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(Color.inkPrimary)
-                    metadataBlock(row)
-                    submissionSection(row)
-                    RichTextView(html: row.assignment.descriptionHTML ?? "<p>No description.</p>")
-                    rubricSection(row)
+                VStack(alignment: .leading, spacing: 20) {
+                    AssignmentDetailHeader(assignment: row.assignment, status: status,
+                                           score: row.submission?.score,
+                                           gradeWeightText: vm.gradeWeightText(for: row))
+
+                    Button {
+                        open(row)
+                    } label: {
+                        Text(assignmentCTALabel(status))
+                            .font(.system(size: 13, weight: .semibold))
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color.accentHypothetical)
+
+                    AssignmentReadonlySections(assignment: row.assignment,
+                                               submission: row.submission,
+                                               relatedModules: vm.relatedModuleNames)
+
                     commentsSection
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 22)
-                .padding(.vertical, 20)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 18)
             }
         } else {
             ContentUnavailableView {
                 Label("Select an Assignment", systemImage: "doc.text")
             } description: {
-                Text("Pick an assignment from the list to see its details.")
+                Text("Pick an assignment from the board to see its details.")
             }
         }
-    }
-
-    private func metadataBlock(_ row: AssignmentsViewModel.Row) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack(spacing: 14) {
-                metadataItem("Due", date: row.assignment.dueAt)
-                metadataItem("Available", date: row.assignment.unlockAt)
-                metadataItem("Closes", date: row.assignment.lockAt)
-            }
-            HStack(spacing: 8) {
-                Text(scoreText(row))
-                    .font(.mono(12))
-                    .foregroundStyle(Color.inkPrimary)
-                ForEach(row.assignment.submissionTypes, id: \.self) { type in
-                    Text(type.replacingOccurrences(of: "_", with: " "))
-                        .font(.system(size: 10, weight: .medium))
-                        .foregroundStyle(Color.inkSecondary)
-                        .padding(.horizontal, 7)
-                        .padding(.vertical, 2)
-                        .overlay(Capsule().stroke(Color.canvasHairline, lineWidth: 1))
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func metadataItem(_ label: String, date: Date?) -> some View {
-        if let date {
-            VStack(alignment: .leading, spacing: 1) {
-                Text(label)
-                    .font(.sectionLabel)
-                    .foregroundStyle(Color.inkTertiary)
-                Text(date.formatted(date: .abbreviated, time: .shortened))
-                    .font(.system(size: 11.5))
-                    .foregroundStyle(Color.inkSecondary)
-            }
-        }
-    }
-
-    private func scoreText(_ row: AssignmentsViewModel.Row) -> String {
-        let possible = row.assignment.pointsPossible.map { String(format: "%.0f", $0) } ?? "—"
-        let earned = row.submission?.score.map { String(format: "%.1f", $0) } ?? "—"
-        return "\(earned)/\(possible) pts"
-    }
-
-    @ViewBuilder
-    private func rubricSection(_ row: AssignmentsViewModel.Row) -> some View {
-        let criteria = row.assignment.rubric
-        if !criteria.isEmpty {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Rubric").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
-                RubricTable(lines: formatRubricAssessment(
-                    criteria: criteria,
-                    assessment: row.submission?.rubricAssessment ?? [:]))
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func submissionSection(_ row: AssignmentsViewModel.Row) -> some View {
-        let supported = SubmissionType.supported(from: row.assignment.submissionTypes)
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Submission").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
-            if supported.isEmpty {
-                // Unsupported type (quiz, external tool, on-paper) — link out.
-                if let html = row.assignment.htmlURL, let url = URL(string: html) {
-                    Link(destination: url) { Label("Submit in Canvas", systemImage: "arrow.up.forward.square") }
-                } else {
-                    Text("This assignment can't be submitted here.")
-                        .font(.system(size: 12)).foregroundStyle(Color.inkTertiary)
-                }
-            } else {
-                SubmissionEditor(
-                    types: supported,
-                    selection: Binding(get: { submissionVM.selection }, set: { submissionVM.selection = $0 }),
-                    text: Binding(get: { submissionVM.text }, set: { submissionVM.text = $0 }),
-                    url: Binding(get: { submissionVM.url }, set: { submissionVM.url = $0 }),
-                    files: submissionVM.uiFiles,
-                    allowedExtensions: submissionVM.allowedExtensions,
-                    onAddFiles: { showFileImporter = true },
-                    onRemoveFile: { submissionVM.removeFile($0) })
-
-                SubmissionStatusView(phase: submissionVM.phase)
-
-                HStack(spacing: 10) {
-                    Button("Submit") { submissionVM.showConfirmation = true }
-                        .buttonStyle(.borderedProminent)
-                        .disabled(!submissionVM.canSubmit || session.apiClient == nil || submissionVM.isSubmitting)
-                    if submissionVM.isSubmitting {
-                        // Spec §7: the flow is cancellable up to the final POST.
-                        Button("Cancel") { submissionVM.cancel() }
-                    }
-                    if session.apiClient == nil {
-                        Text("Sign in to submit").font(.system(size: 11)).foregroundStyle(Color.inkTertiary)
-                    }
-                    // Failure escape hatch (spec §7): always offer "Open in Canvas" after a failed submit.
-                    if case .failed = submissionVM.phase, let html = row.assignment.htmlURL, let url = URL(string: html) {
-                        Link("Open in Canvas", destination: url).font(.system(size: 12))
-                    }
-                }
-            }
-        }
-        .task(id: row.assignment.id) {
-            submissionVM.load(session: session, assignment: row.assignment, courseId: courseId)
-        }
-        // Autosave text/URL drafts as the user types.
-        .onChange(of: submissionVM.text) { _, _ in autosave(row) }
-        .onChange(of: submissionVM.url) { _, _ in autosave(row) }
-        .sheet(isPresented: Binding(get: { submissionVM.showConfirmation },
-                                    set: { submissionVM.showConfirmation = $0 })) {
-            SubmissionConfirmationSheet(
-                assignmentName: row.assignment.name,
-                dueAt: row.assignment.dueAt,
-                isLate: submissionVM.isLate(dueAt: row.assignment.dueAt),
-                attempt: submissionVM.attemptNumber,
-                payloadLines: submissionVM.payloadLines(),
-                isDemo: session.isDemo,
-                onConfirm: { Task { await submissionVM.confirmSubmit(session: session, courseId: courseId, assignment: row.assignment) } },
-                onCancel: { submissionVM.showConfirmation = false })
-        }
-        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
-            if case .success(let urls) = result { submissionVM.addFiles(urls: urls) }
-        }
-    }
-
-    private func autosave(_ row: AssignmentsViewModel.Row) {
-        Task { await submissionVM.autosaveDraft(session: session, courseId: courseId, assignmentId: row.assignment.id) }
     }
 
     @ViewBuilder
@@ -250,7 +169,7 @@ struct AssignmentsTabView: View {
         let comments = vm.instructorComments
         if !comments.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
-                Text("Feedback").font(.sectionLabel).foregroundStyle(Color.inkSecondary)
+                DetailSectionHeader("Feedback")
                 ForEach(comments, id: \.id) { comment in
                     InstructorCommentRow(authorName: comment.authorName,
                                          comment: comment.body,

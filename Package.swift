@@ -22,5 +22,6 @@ let package = Package(
         ),
         .testTarget(name: "CanvasCoreTests", dependencies: ["CanvasCore"], path: "Tests/CanvasCoreTests"),
         .testTarget(name: "CanvasDataTests", dependencies: ["CanvasData", "CanvasCore"], path: "Tests/CanvasDataTests"),
+        .testTarget(name: "CanvasUITests", dependencies: ["CanvasUI", "CanvasCore"], path: "Tests/CanvasUITests"),
     ]
 )

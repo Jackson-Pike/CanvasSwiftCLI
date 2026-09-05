@@ -42,6 +42,21 @@ public struct StreamItem: Sendable {
 
 extension CanvasRepository {
 
+    /// Modules in this course whose items reference the given assignment. Reverse lookup
+    /// over `CachedModuleItem` (`itemType == "Assignment"`, `contentId == assignmentId`),
+    /// returned in module display order.
+    public func modulesContaining(assignmentId: Int, courseId: Int) throws -> [CachedModule] {
+        let mods = try modules(courseId: courseId)
+        var result: [CachedModule] = []
+        for mod in mods {
+            let items = try moduleItems(moduleId: mod.id)
+            if items.contains(where: { $0.itemType == "Assignment" && $0.contentId == assignmentId }) {
+                result.append(mod)
+            }
+        }
+        return result
+    }
+
     /// Mirrors `buildGradedItems` (CanvasCore/GradeCalculator.swift) over cached rows.
     public func calculatorInputs(courseId: Int) throws -> CalculatorInputs? {
         guard let course = try course(id: courseId) else { return nil }

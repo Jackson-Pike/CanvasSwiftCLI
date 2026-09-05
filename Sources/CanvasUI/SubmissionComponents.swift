@@ -41,10 +41,7 @@ public struct SubmissionEditor: View {
             }
             switch selection {
             case .onlineText:
-                TextEditor(text: $text)
-                    .frame(minHeight: 120)
-                    .font(.system(size: 13))
-                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.canvasHairline))
+                RichTextEditor(html: $text)
             case .onlineURL:
                 TextField("https://…", text: $url)
                     .textFieldStyle(.roundedBorder)
