@@ -13,3 +13,6 @@ package-lock.json
 
 # Captured test logs
 test-output.txt
+
+# graphify regenerated cache (graph.json, wiki/, GRAPH_REPORT.md stay tracked)
+graphify-out/cache/
